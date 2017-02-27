@@ -12,6 +12,11 @@
     "require": {
         "php": ">=5.5"
        },
-    "require-dev" : {},
+    "require-dev" : {},  
+    "autoload": {
+        "psr-4": {
+            "Hekmatinasser\\Verta\\": "src"
+        }
+    },
     "minimum-stability": "dev"
 }
