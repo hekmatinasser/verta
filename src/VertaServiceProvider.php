@@ -6,8 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class VertaServiceProvider extends ServiceProvider
 {
-
-    protected $defer = false;
     /**
      * Bootstrap the application services.
      *
@@ -30,6 +28,7 @@ class VertaServiceProvider extends ServiceProvider
         });
     }
 
+    
     /**
      * Get the services provided by the provider.
      *
