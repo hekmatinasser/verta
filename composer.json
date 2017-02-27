@@ -1,0 +1,17 @@
+{
+    "name": "hekmatinasser/verta",
+    "description": "This Package helps developers to work with Jalali Date and Time class.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nasser Hekmati",
+            "email": "hekmati.nasser@gmail.com"
+        }
+    ],
+    "keywords": ["Laravel","Date","Datetime","Jalali", "Shamsi", "Verta"],
+    "require": {
+        "php": ">=5.5"
+       },
+    "require-dev" : {},
+    "minimum-stability": "dev"
+}
