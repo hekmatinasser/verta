@@ -26,7 +26,7 @@ In your `config/app.php` add `'Hekmatinasser\Verta\VertaServiceProvider::class'`
 
 'alias' => [
     ...
-    Verta' => Hekmatinasser\Verta\Verta::class,
+    'Verta' => Hekmatinasser\Verta\Verta::class,
 ]
 ```
 
