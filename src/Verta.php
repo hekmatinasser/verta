@@ -288,8 +288,8 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    public static function instance(DateTime $datetime) { 
-        return new static($datetime, $datetime->getTimeZone());
+    public static function instance($datetime = null, $timezone = null) { 
+        return new static($datetime, $timezone);
     }
 
     /**

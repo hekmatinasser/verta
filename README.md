@@ -5,7 +5,7 @@ hekmatinasser/verta
 
 - Verta is a jalali calendar that was used in persian datetime
 
-- Calendar conversion is based on the [algorithm provided by Morteza Parvini, Vahid Sohrablou, Roozbeh Pournader and Mohammad Tou'si](http://IranPHP.org).
+- Calendar conversion is based on the algorithm provided by Morteza Parvini, Vahid Sohrablou, Roozbeh Pournader and Mohammad Tou'si.
 
 Run the Composer update comand
 
@@ -34,7 +34,8 @@ In your `config/app.php` add `'Hekmatinasser\Verta\VertaServiceProvider::class'`
 ## Basic Usage
 
 ### Verta
-You can use verta `use \Verta as Verta ;`
+You can use verta
+`use \Verta as Verta ;`
 #### `$dt = new Verta();`
 ``` php
 // default timestamp is now
@@ -42,7 +43,8 @@ $dt = new Verta();
 
 // pass timestamps
 $dt = new Verta(1333857600);
-// OR
+
+// pass string datetime
 $dt = new Verta('2016-12-27 14:12:32');
 
 //pass datetime object
@@ -50,8 +52,11 @@ $dt = new \Datetime();
 return new Verta($dt); // 1395-12-09 15:05:56
 
 // pass carbon object
-$c = Carbon::now();
+$c = \Carbon::now();
 return new Verta($c); // 1395-12-09 15:05:56
+
+// access static 
+return Verta::instance('2016-12-25 11:12:36'); //1395-10-05 11:12:36
 
 // pass strings persian date
 $dt = Verta::parse('1395-10-07 14:12:32');
