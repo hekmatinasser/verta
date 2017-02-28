@@ -40,6 +40,10 @@ You can use verta
 ``` php
 // default timestamp is now
 $dt = new Verta();
+//OR
+$dt = Verta::now();
+//OR
+$dt = Verta::instance('2016-12-25 11:12:36');
 
 // pass timestamps
 $dt = new Verta(1333857600);
@@ -55,17 +59,29 @@ return new Verta($dt); // 1395-12-09 15:05:56
 $c = \Carbon::now();
 return new Verta($c); // 1395-12-09 15:05:56
 
-// access static 
-return Verta::instance('2016-12-25 11:12:36'); //1395-10-05 11:12:36
-
 // pass strings persian date
 $dt = Verta::parse('1395-10-07 14:12:32');
 
 // format the timestamp
 $dt = new Verta('2016-12-27 14:12:32');
-return $dt->format('Y-n-j H:i'); //1395-10-7 14:12
+return $dt->format('Y-n-j H:i'); // 1395-10-7 14:12
 return $dt->format('%B %d، %Y'); // دی 07، 1395
 return $dt; //1395-10-07 14:12:32
+
+// use predefined format
+$dt = new Verta();
+return $dt->format('datetime'); // 1395-12-10 23:25:12
+return $dt->format('date'); // 1395-12-10
+return $dt->format('time'); // 23:26:35
+
+// use predefined format method
+$dt = new Verta();
+return $dt->formatDatetime(); // 1395-12-10 23:37:26
+return $dt->formatDate(); // 1395-12-10
+return $dt->formatTime(); // 23:26:35
+return $dt->formatPersianDatetime(); // 1395/12/10 23:46:09
+return $dt->formatPersianDate(); // 1395/12/10
+
 
 // get a diffrent time with now
 $dt = Verta::parse('1395-10-07 14:12:32');

@@ -240,6 +240,15 @@ class Verta extends DateTime {
     );
 
     /**
+     * @var array
+     */
+    protected static $formats = array(
+        'datetime'      => 'Y-m-d H:i:s',
+        'date'          => 'Y-m-d',
+        'time'          => 'H:i:s',
+    );
+
+    /**
      * Format to use for __toString method when type juggling occurs.
      *
      * @var string
@@ -282,9 +291,20 @@ class Verta extends DateTime {
 	}
 
     /**
+     * Create a Jalali now Datetime
+     *
+     *
+     * @return static
+     */
+    public static function now() { 
+        return new static();
+    }
+
+    /**
      * Create a Jalali instance from a DateTime one
      *
-     * @param DateTime $datetime
+     * @param timestamp $timestamp [optional]
+     * @param bool $timezone [optional]
      *
      * @return static
      */
@@ -614,7 +634,60 @@ class Verta extends DateTime {
      */
     public function format($format) {
 
+        if (in_array($format, array_keys(self::$formats))) {
+            $format = self::$formats[$format];
+        }
         return $this->strftime($format);
+    }
+
+    /**
+     * Format the instance as date
+     *
+     * @return string
+     */
+    public function formatDatetime()
+    {
+        return $this->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Format the instance as date
+     *
+     * @return string
+     */
+    public function formatDate()
+    {
+        return $this->format('Y-m-d');
+    }
+
+    /**
+     * Format the instance as time
+     *
+     * @return string
+     */
+    public function formatTime()
+    {
+        return $this->format('H:i:s');
+    }
+
+    /**
+     * Format the instance as date
+     *
+     * @return string
+     */
+    public function formatPersianDatetime()
+    {
+        return $this->format('Y/n/j H:i:s');
+    }
+
+    /**
+     * Format the instance as date
+     *
+     * @return string
+     */
+    public function formatPersianDate()
+    {
+        return $this->format('Y/n/j');
     }
 
 
