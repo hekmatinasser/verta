@@ -82,6 +82,13 @@ return $dt->formatTime(); // 23:26:35
 return $dt->formatPersianDatetime(); // 1395/12/10 23:46:09
 return $dt->formatPersianDate(); // 1395/12/10
 
+// set default format
+Verta::setStringformat('Y/n/j H:i:s');
+return new Verta(); // 1395/12/12 00:11:35
+
+// reset default format
+Verta::resetStringFormat();
+return new Verta(); // 1395-12-12 00:18:04
 
 // get a diffrent time with now
 $dt = Verta::parse('1395-10-07 14:12:32');

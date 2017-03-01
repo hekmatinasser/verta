@@ -55,7 +55,23 @@ class Verta extends DateTime {
     /**
      * Word use in format datetime.
     */
-    const DEFAULT_TO_STRING_FORMAT  = 'Y-m-d H:i:s';
+    const DEFAULT_STRING_FORMAT  = 'Y-m-d H:i:s';
+
+    /**
+     * Format to use for __toString.
+     *
+     * @var string
+     */
+    protected static $stringFormat = self::DEFAULT_STRING_FORMAT;  
+
+    /**
+     * @var array
+     */
+    protected static $formats = array(
+        'datetime'      => 'Y-m-d H:i:s',
+        'date'          => 'Y-m-d',
+        'time'          => 'H:i:s',
+    );
 
     /**
      * Default format to use for __toString method when type juggling occurs.
@@ -239,24 +255,6 @@ class Verta extends DateTime {
         self::ENGLISH_NINE,
     );
 
-    /**
-     * @var array
-     */
-    protected static $formats = array(
-        'datetime'      => 'Y-m-d H:i:s',
-        'date'          => 'Y-m-d',
-        'time'          => 'H:i:s',
-    );
-
-    /**
-     * Format to use for __toString method when type juggling occurs.
-     *
-     * @var string
-     */
-    protected static $stringFormat = self::DEFAULT_TO_STRING_FORMAT;
-
-
-
     /*****************************  CONSTRUCT  ****************************/
 
     /**
@@ -355,6 +353,25 @@ class Verta extends DateTime {
     }
 
 	/*****************************  STRING FORMATED  ****************************/
+
+
+    /**
+     * Reset the format used to the default when type juggling a Carbon instance to a string
+     */
+    public static function resetStringFormat()
+    {
+        static::setStringFormat(static::DEFAULT_STRING_FORMAT);
+    }
+
+    /**
+     * Set the default format used when type juggling a Carbon instance to a string
+     *
+     * @param string $format
+     */
+    public static function setStringFormat($format)
+    {
+        static::$stringFormat = $format;
+    }
 
     /**
      * Format the instance as a string using the set format
