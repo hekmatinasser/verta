@@ -713,7 +713,7 @@ class Verta extends DateTime {
      *
      * @return string
      */
-    public function diffrentNow()
+    public function diffNow()
     {
         $now = time();
 
