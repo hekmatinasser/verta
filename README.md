@@ -62,6 +62,13 @@ return new Verta($c); // 1395-12-09 15:05:56
 
 // pass strings persian date
 $dt = Verta::parse('1395-10-07 14:12:32');
+
+// create from a specific date and time
+return Verta::create();  // 1395-12-14 11:17:01 equal now()
+return Verta::create(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
+return Verta::createDate(1394,12,29); // 1394-12-29 11:18:29 set time now
+return Verta::createTime(15,51,5); // 1395-12-14 15:51:05 set date now
+return Verta::createTimestamp(1488614023); // 1395-12-14 11:23:43
 ```
 ---
 #### Formating
@@ -139,6 +146,10 @@ echo Verta::isLeapYear(1395); // true
 // is valid date
 echo Verta::isValideDate(1394, 12, 30); // false
 echo Verta::isValideDate(1395, 12, 30); // true
+
+// is valid time
+echo Verta::isValideTime(15, 62, 50); // false
+echo Verta::isValideTime(15, 12, 30); // true
 ```
 
 ---

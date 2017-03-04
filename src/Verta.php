@@ -289,7 +289,7 @@ class Verta extends DateTime {
 	}
 
     /**
-     * Create a Jalali now Datetime
+     * Create a Verta now datetime
      *
      *
      * @return static
@@ -299,9 +299,9 @@ class Verta extends DateTime {
     }
 
     /**
-     * Create a Jalali instance from a DateTime one
+     * Create a Verta instance from a DateTime one
      *
-     * @param timestamp $timestamp [optional]
+     * @param timestamp $datetime [optional]
      * @param bool $timezone [optional]
      *
      * @return static
@@ -319,18 +319,108 @@ class Verta extends DateTime {
         return new DateTime(date('Y-m-d H:i:s.u', $this->getTimestamp()), $this->getTimeZone());
     }
 
+
+    /**
+     * Create a Verta instance from a DateTime one
+     *
+     * @param timestamp $datetime [optional]
+     * @param bool $timezone [optional]
+     *
+     * @return static
+     */
     public static function parse($datetime, $timezone = null) {
         $parse = date_parse($datetime);
+
         if($parse['error_count'] == 0){
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-        list( $hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
-        $timezone = self::createTimeZone($timezone);
-        $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);
-        return new static($datetime);
+            list( $hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+
+            $timezone = self::createTimeZone($timezone);
+            $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);
+            return new static($datetime);
         }
         else{
             throw new \InvalidArgumentException('Unknown datetime ('.$datetime.')');
         }
+    }
+
+    /**
+     * Create a new Verta instance from a specific date and time.
+     *
+     * If any of feild are set to null their now() values will
+     * be used.
+     *
+     * @param int|null                  $year
+     * @param int|null                  $month
+     * @param int|null                  $day
+     * @param int|null                  $hour
+     * @param int|null                  $minute
+     * @param int|null                  $second
+     * @param \DateTimeZone|string|null $timezone
+     *
+     * @return static
+     */
+
+    public static function create($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $timezone = null)
+    {
+        $now = static::instance(null, $timezone)->format('Y-n-j-G-i-s');
+        $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
+
+        $year   = $year   === null ? intval($defaults['year'])   : $year;
+        $month  = $month  === null ? intval($defaults['month'])  : $month;
+        $day    = $day    === null ? intval($defaults['day'])    : $day;
+        $hour   = $hour   === null ? intval($defaults['hour'])   : $hour;
+        $minute = $minute === null ? intval($defaults['minute']) : $minute;
+        $second = $second === null ? intval($defaults['second']) : $second;
+
+        if (!static::isValideDate($year, $month, $day) || !static::isValideTime($hour, $minute, $second)) {
+            throw new \InvalidArgumentException('Unknown datetime');
+        } 
+
+        return static::parse(sprintf('%s-%s-%s %s:%s:%s', $year, $month, $day, $hour, $minute, $second));
+    }
+
+    /**
+     * Create a Verta from just a date.
+     *
+     * @param int|null                  $year
+     * @param int|null                  $month
+     * @param int|null                  $day
+     * @param \DateTimeZone|string|null $timezone
+     *
+     * @return static
+     */
+    public static function createDate($year = null, $month = null, $day = null, $timezone = null)
+    {
+        return static::create($year, $month, $day, null, null, null, $timezone);
+    }
+
+    /**
+     * Create a Verta instance from just a time.
+     *
+     * @param int|null                  $hour
+     * @param int|null                  $minute
+     * @param int|null                  $second
+     * @param \DateTimeZone|string|null $timezone
+     *
+     * @return static
+     */
+    public static function createTime($hour = null, $minute = null, $second = null, $timezone = null)
+    {
+        return static::create(null, null, null, $hour, $minute, $second, $timezone);
+    }
+
+    /**
+     * Create a Verta instance from a timestamp.
+     *
+     * @param int                       $timestamp
+     * @param \DateTimeZone|string|null $timezone
+     *
+     * @return static
+     */
+    public static function createTimestamp($timestamp, $timezone = null)
+    {
+        return static::instance($timestamp, $timezone);
     }
 
     /**
@@ -781,6 +871,21 @@ class Verta extends DateTime {
         return $year >= 1 && $year <= 32766
         && $month >= 1 && $month <= 12
         && $day >= 1 && $day <= static::daysMonthJalali($year, $month);
+    }
+
+
+    /**
+     * validate a time
+     *
+     * @param int $hour
+     * @param int $minute
+     * @param int $second
+     * @return bool
+     */
+    public static function isValideTime($hour, $minute, $second) {
+        return $hour >= 0 && $hour <= 24
+        && $minute >= 0 && $minute <= 59
+        && $second >= 0 && $second <= 59;
     }
 
  
