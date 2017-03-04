@@ -1,4 +1,3 @@
-
 hekmatinasser/verta
 ======
 - This package compatible with Laravel `>=5` & `< 6.0`
