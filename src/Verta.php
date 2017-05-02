@@ -888,8 +888,62 @@ class Verta extends DateTime {
         && $second >= 0 && $second <= 59;
     }
 
- 
-	/*****************************  CONVERTION  ****************************/
+
+    /*****************************  CALCULATION ****************************/
+
+    /**
+     * Add years to the instance. Positive $value travel forward while
+     * negative $value travel into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addYears($value)
+    {
+        return $this->modify((int) $value.' year');
+    }
+
+    /**
+     * Add a year to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addYear($value = 1)
+    {
+        return $this->addYears($value);
+    }
+
+    /**
+     * Remove years from the instance.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subYears($value)
+    {
+        return $this->addYears(-1 * $value)->modify('-1 day');
+    }
+
+    /**
+     * Remove a year from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subYear($value = 1)
+    {
+        return $this->subYears($value);
+    }
+
+
+
+
+    /*****************************  CONVERTION  ****************************/
 
 	/**
 	 * gregorian to jalali convertion
