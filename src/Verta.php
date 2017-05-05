@@ -940,8 +940,260 @@ class Verta extends DateTime {
         return $this->subYears($value);
     }
 
+    /**
+     * Add days to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addDays($value)
+    {
+        return $this->modify((int) $value.' day');
+    }
+
+    /**
+     * Add a day to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addDay($value = 1)
+    {
+        return $this->addDays($value);
+    }
+
+    /**
+     * Remove a day from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subDay($value = 1)
+    {
+        return $this->subDays($value);
+    }
+
+    /**
+     * Remove days from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subDays($value)
+    {
+        return $this->addDays(-1 * $value);
+    }
+
+    /**
+     * Add weekdays to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
 
 
+    /**
+     * Add weeks to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addWeeks($value)
+    {
+        return $this->modify((int) $value.' week');
+    }
+
+    /**
+     * Add a week to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addWeek($value = 1)
+    {
+        return $this->addWeeks($value);
+    }
+
+    /**
+     * Remove a week from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subWeek($value = 1)
+    {
+        return $this->subWeeks($value);
+    }
+
+    /**
+     * Remove weeks to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subWeeks($value)
+    {
+        return $this->addWeeks(-1 * $value);
+    }
+
+    /**
+     * Add hours to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addHours($value)
+    {
+        return $this->modify((int) $value.' hour');
+    }
+
+    /**
+     * Add an hour to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addHour($value = 1)
+    {
+        return $this->addHours($value);
+    }
+
+    /**
+     * Remove an hour from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subHour($value = 1)
+    {
+        return $this->subHours($value);
+    }
+
+    /**
+     * Remove hours from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subHours($value)
+    {
+        return $this->addHours(-1 * $value);
+    }
+
+    /**
+     * Add minutes to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addMinutes($value)
+    {
+        return $this->modify((int) $value.' minute');
+    }
+
+    /**
+     * Add a minute to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addMinute($value = 1)
+    {
+        return $this->addMinutes($value);
+    }
+
+    /**
+     * Remove a minute from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subMinute($value = 1)
+    {
+        return $this->subMinutes($value);
+    }
+
+    /**
+     * Remove minutes from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subMinutes($value)
+    {
+        return $this->addMinutes(-1 * $value);
+    }
+
+    /**
+     * Add seconds to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addSeconds($value)
+    {
+        return $this->modify((int) $value.' second');
+    }
+
+    /**
+     * Add a second to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addSecond($value = 1)
+    {
+        return $this->addSeconds($value);
+    }
+
+    /**
+     * Remove a second from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subSecond($value = 1)
+    {
+        return $this->subSeconds($value);
+    }
+
+    /**
+     * Remove seconds from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subSeconds($value)
+    {
+        return $this->addSeconds(-1 * $value);
+    }
 
     /*****************************  CONVERTION  ****************************/
 
