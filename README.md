@@ -107,6 +107,48 @@ return Verta::persianNumbers($dt); // ۱۳۹۶-۱۰-۰۷ ۱۴:۱۲:۳۲
 For help in building your formats, checkout the [PHP strftime() docs](http://php.net/manual/en/function.strftime.php).
 
 ---
+#### Calculation
+```php
+// add and sub unit datetime
+$dt = Verta::parse('1395-10-07 14:12:32');
+return $dt->addYear(); // 1396-10-07 14:12:32
+return $dt->addYears(4); // 1399-10-07 14:12:32
+return $dt->subYear(); // 1394-10-07 14:12:32
+return $dt->subYears(2); // 1393-10-07 14:12:32
+
+return $dt->addMonth(); // 1395-11-07 14:12:32
+return $dt->addMonths(5); // 1396-03-07 14:12:32
+return $dt->subMonth(); // 1395-09-07 14:12:32
+return $dt->subMonths(2); // 1395-08-07 14:12:32
+
+return $dt->addWeek(); // 1395-10-12 14:12:32
+return $dt->addWeeks(3); // 1395-10-26 14:12:32
+return $dt->subWeek(); // 1395-09-30 14:12:32
+return $dt->subWeeks(2); // 1395-09-27 14:12:32
+
+return $dt->addDay(); // 1395-10-08 14:12:32
+return $dt->addDays(3); // 1395-10-11 14:12:32
+return $dt->subDay(); // 1395-10-06 14:12:32
+return $dt->subDays(2); // 1395-09-05 14:12:32
+
+return $dt->addHour(); // 1395-10-07 15:12:32
+return $dt->addHours(5); // 1395-10-07 19:12:32
+return $dt->subHour(); // 1395-10-07 13:12:32
+return $dt->subHours(2); // 1395-10-07 12:12:32
+
+return $dt->addMinute(); // 1395-10-07 14:13:32
+return $dt->addMinutes(3); // 1395-10-07 14:15:32
+return $dt->subMinute(); // 1395-10-07 14:11:32
+return $dt->subMinutes(2); // 1395-10-07 14:10:32
+
+return $dt->addSecond(); // 1395-10-07 14:12:33
+return $dt->addSeconds(3); // 1395-10-07 14:12:35
+return $dt->subSecond(); // 1395-10-07 14:12:31
+return $dt->subSeconds(2); // 1395-10-07 14:12:30
+
+```
+
+---
 #### Differences
 ```php
 // get a diffrent time with now
