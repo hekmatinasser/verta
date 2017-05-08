@@ -941,6 +941,83 @@ class Verta extends DateTime {
     }
 
     /**
+     * Add months to the instance. Positive $value travels forward while
+     * negative $value travels into the past.
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addMonths($value)
+    {
+        list($year, $month, $day, $hour, $minute, $second) = explode('-', $this->format('Y-m-d-H-i-s'));
+        $month += $value;
+        if ($month > 12) {
+            $year += intval($month / 12);
+            $month = $month % 12;
+        }
+        if ($month < 1) {
+            $year += intval($month / 12) - 1;
+            $month = 12 + ($month % 12);
+        }
+        if ($value > 0) {
+            if ($month > 6 && $day == 31) {
+                $day--;
+            }
+            if ($month == 12 && !self::isLeapYear($year)) {
+                $day--;
+            }
+        }
+        else {
+            if ($month == 12 && $day == 31) {
+                if (self::isLeapYear($year)) {
+                    $day = 30;
+                }
+                else {
+                    $day = 29;
+                }
+            }
+        }
+        return self::create($year, $month, $day, $hour, $minute, $second, $this->getTimeZone());
+    }
+
+    /**
+     * Add a month to the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function addMonth($value = 1)
+    {
+        return $this->addMonths($value);
+    }
+
+    /**
+     * Remove a month from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subMonth($value = 1)
+    {
+        return $this->subMonths($value);
+    }
+
+    /**
+     * Remove months from the instance
+     *
+     * @param int $value
+     *
+     * @return static
+     */
+    public function subMonths($value)
+    {
+        return $this->addMonths(-1 * $value);
+    }
+
+    /**
      * Add days to the instance. Positive $value travels forward while
      * negative $value travels into the past.
      *
@@ -988,15 +1065,6 @@ class Verta extends DateTime {
     {
         return $this->addDays(-1 * $value);
     }
-
-    /**
-     * Add weekdays to the instance. Positive $value travels forward while
-     * negative $value travels into the past.
-     *
-     * @param int $value
-     *
-     * @return static
-     */
 
 
     /**
