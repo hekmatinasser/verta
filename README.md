@@ -194,5 +194,22 @@ echo Verta::isValideTime(15, 12, 30); // true
 ```
 
 ---
+#### Exchange n2w
+```php
+// get word of number  
+// max number size 39 digit
+echo Verta::getWords('455000000000000000000000000000000000000'); // چهارصد و پنجاه و پنج دسیلیون
+echo Verta::getWords('4550000'); // چهار میلیون و پانصد و پنجاه هزار
+echo Verta::getWords('4550000', 'fa'); // چهار میلیون و پانصد و پنجاه هزار
+echo Verta::getPersianWords('4550000'); // چهار میلیون و پانصد و پنجاه هزار
+echo Verta::getWords('4550000', 'en'); // four million and five hundred and fifty thousand
+echo Verta::getEnglishWords('4550000'); // four million and five hundred and fifty thousand
+
+// add currency persian
+echo Verta::getRial('4550000'); // چهار میلیون و پانصد و پنجاه هزار ریال
+echo Verta::getToman('4550000'); // چهار میلیون و پانصد و پنجاه هزار تومان
+```
+
+---
 ## License ##
 -  This package was created and modified by [Nasser Hekmati](https://github.com/hekmatinasser) for Laravel >= 5 and is released under the MIT License.
