@@ -64,10 +64,18 @@ $dt = Verta::parse('1395-10-07 14:12:32');
 
 // create from a specific date and time
 return Verta::create();  // 1395-12-14 11:17:01 equal now()
-return Verta::create(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
-return Verta::createDate(1394,12,29); // 1394-12-29 11:18:29 set time now
-return Verta::createTime(15,51,5); // 1395-12-14 15:51:05 set date now
+return Verta::create(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
+return Verta::createDate(2016,12,25); // 1395-10-05 21:35:49 set time now
+return Verta::createTime(15,51,5); // 1396-02-31 15:51:05 set date now
 return Verta::createTimestamp(1488614023); // 1395-12-14 11:23:43
+
+return Verta::createGregorian(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
+return Verta::createGregorianDate(2016,12,25); // 1395-10-05 21:35:49 set time now
+return Verta::createGregorianTime(15,51,5); // 1396-02-31 15:51:05 set date now
+
+return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
+return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
+return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 ```
 ---
 #### Formating
@@ -89,8 +97,8 @@ $dt = new Verta();
 return $dt->formatDatetime(); // 1395-12-10 23:37:26
 return $dt->formatDate(); // 1395-12-10
 return $dt->formatTime(); // 23:26:35
-return $dt->formatPersianDatetime(); // 1395/12/10 23:46:09
-return $dt->formatPersianDate(); // 1395/12/10
+return $dt->formatJalaliDatetime(); // 1395/12/10 23:46:09
+return $dt->formatJalaliDate(); // 1395/12/10
 
 // set default format
 Verta::setStringformat('Y/n/j H:i:s');
