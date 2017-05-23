@@ -401,6 +401,42 @@ class Verta extends DateTime {
     public static function now() { 
         return new static();
     }
+    /**
+     * Create a Carbon instance for today.
+     *
+     * @param \DateTimeZone|string|null $tz
+     *
+     * @return static
+     */
+    
+    public static function today($tz = null)
+    {
+        return static::now($tz)->startOfDay();
+    }
+
+    /**
+     * Create a Carbon instance for tomorrow.
+     *
+     * @param \DateTimeZone|string|null $tz
+     *
+     * @return static
+     */
+    public static function tomorrow($tz = null)
+    {
+        return static::today($tz)->addDay();
+    }
+
+    /**
+     * Create a Carbon instance for yesterday.
+     *
+     * @param \DateTimeZone|string|null $tz
+     *
+     * @return static
+     */
+    public static function yesterday($tz = null)
+    {
+        return static::today($tz)->subDay();
+    }
 
     /**
      * Create a Verta instance from a DateTime one
@@ -970,6 +1006,17 @@ class Verta extends DateTime {
     }
 
     /**
+     * The format of the outputted date string (gregorian)
+     *
+     * @param $format
+     * @return string
+     */
+    public function formatGregorian($format) {
+
+        return $this->DateTime()->format($format);
+    }
+
+    /**
      * Format the instance as date
      *
      * @return string
@@ -1485,7 +1532,29 @@ class Verta extends DateTime {
         return $this->addSeconds(-1 * $value);
     }
 
-    /*****************************  CONVERTION  ****************************/
+    /*****************************  MODIFY  ****************************/
+
+    /**
+     * Resets the time to 00:00:00
+     *
+     * @return static
+     */
+    public function startOfDay()
+    {
+        return $this->setTime(0, 0, 0);
+    }
+
+    /**
+     * Resets the time to 23:59:59
+     *
+     * @return static
+     */
+    public function endOfDay()
+    {
+        return $this->setTime(23, 59, 59);
+    }
+
+    /*****************************  CONVERT  ****************************/
 
 	/**
 	 * gregorian to jalali convertion

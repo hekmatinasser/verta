@@ -41,7 +41,10 @@ use \Verta as Verta ;`
 // default timestamp is now
 $dt = new Verta();
 // OR
-$dt = Verta::now();
+$dt = Verta::now(); 
+return Verta::today(); //1396-03-02 00:00:00
+return Verta::tomorrow(); // 1396-03-03 00:00:00
+return Verta::yesterday(); // 1396-03-01 00:00:00
 
 // pass string datetime
 $dt = new Verta('2016-12-27 14:12:32');
@@ -99,6 +102,10 @@ return $dt->formatDate(); // 1395-12-10
 return $dt->formatTime(); // 23:26:35
 return $dt->formatJalaliDatetime(); // 1395/12/10 23:46:09
 return $dt->formatJalaliDate(); // 1395/12/10
+
+// get gregorain datetime
+return $dt->DateTime()->format('Y-m-d H:i:s'); // 2017-05-23 23:21:02
+return $dt->formatGregorian('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 
 // set default format
 Verta::setStringformat('Y/n/j H:i:s');
