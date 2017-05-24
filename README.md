@@ -41,10 +41,10 @@ use \Verta as Verta ;`
 // default timestamp is now
 $dt = new Verta();
 // OR
-$dt = Verta::now(); 
-return Verta::today(); //1396-03-02 00:00:00
-return Verta::tomorrow(); // 1396-03-03 00:00:00
-return Verta::yesterday(); // 1396-03-01 00:00:00
+$dt = Verta::now(); //1396-02-02 15:32:08
+$dt = Verta::today(); //1396-03-02 00:00:00
+$dt = Verta::tomorrow(); // 1396-03-03 00:00:00
+$dt = Verta::yesterday(); // 1396-03-01 00:00:00
 
 // pass string datetime
 $dt = new Verta('2016-12-27 14:12:32');
