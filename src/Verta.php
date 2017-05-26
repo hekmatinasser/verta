@@ -18,11 +18,11 @@ use InvalidArgumentException;
 use Exception;
 
     
-    /*********************************  CONFIG  *********************************/
-	/**
-     * set Default timezone
-     */
-	date_default_timezone_set('Asia/Tehran');
+/*********************************  CONFIG  *********************************/
+/**
+ * set Default timezone
+ */
+date_default_timezone_set('Asia/Tehran');
 
 class Verta extends DateTime {
 
@@ -83,12 +83,6 @@ class Verta extends DateTime {
     const NUMBER_TH                 = ' ام';
     const PRE                       = 'پیش';
     const POST                      = 'بعد';
-
-    /**
-     * Curency use in number to word.
-    */
-    const RIAL =  'ریال';
-    const TOMAN =  'تومان';
 
     /**
      * number day in months gregorian
@@ -232,133 +226,6 @@ class Verta extends DateTime {
         '9',
     );
 
-    protected static $number_word = array(
-        'fa' => array(
-            'd1' => array(
-                0 => 'صفر',
-                1 => 'یک',
-                2 => 'دو',
-                3 => 'سه',
-                4 => 'چهار',
-                5 => 'پنج',
-                6 => 'شش',
-                7 => 'هفت',
-                8 => 'هشت',
-                9 => 'نه',
-            ),
-            'd2-1' => array(
-                1 => 'یازده',
-                2 => 'دوازده',
-                3 => 'سیزده',
-                4 => 'چهارده',
-                5 => 'پانزده',
-                6 => 'شانزده',
-                7 => 'هفده',
-                8 => 'هجده',
-                9 => 'نوزده',
-            ),
-            'd2-2' => array(
-                1 => 'ده',
-                2 => 'بیست',
-                3 => 'سی',
-                4 => 'چهل',
-                5 => 'پنجاه',
-                6 => 'شصت',
-                7 => 'هفتاد',
-                8 => 'هشتاد',
-                9 => 'نود'
-            ),
-            'd3' => array(
-                1 => 'صد',
-                2 => 'دویست',
-                3 => 'سیصد',
-                4 => 'چهارصد',
-                5 => 'پانصد',
-                6 => 'ششصد',
-                7 => 'هفتصد',
-                8 => 'هشتصد',
-                9 => 'نهصد',
-            ),
-            'step' => array(
-                1 => 'هزار',
-                2 => 'میلیون',
-                3 => 'میلیارد',
-                4 => 'بیلیون',
-                5 => 'تریلیون',
-                6 => 'کادریلیون',
-                7 => 'کوینتریلیون',
-                8 => 'سکستریلیون',
-                9 => 'سپتریلیون',
-                10 => 'اکتریلیون',
-                11 => 'نونیلیون',
-                12 => 'دسیلیون',
-            ),
-            'and' => 'و',
-        ),
-        'en' => array(
-            'd1' => array(
-                0 => 'zero',
-                1 => 'one',
-                2 => 'two',
-                3 => 'three',
-                4 => 'four',
-                5 => 'five',
-                6 => 'six',
-                7 => 'seven',
-                8 => 'eight',
-                9 => 'nine',
-            ),
-            'd2-1' => array(
-                1 => 'eleven',
-                2 => 'twelve',
-                3 => 'thirteen',
-                4 => 'fourteen',
-                5 => 'fifteen',
-                6 => 'sixteen',
-                7 => 'seventeen',
-                8 => 'eighteen',
-                9 => 'nineteen',
-            ),
-            'd2-2' => array(
-                1 => 'ten',
-                2 => 'twenty',
-                3 => 'thirty',
-                4 => 'forty',
-                5 => 'fifty',
-                6 => 'sixty',
-                7 => 'seventy',
-                8 => 'eighty',
-                9 => 'ninety'
-            ),
-            'd3' => array(
-                1 => 'one hundred',
-                2 => 'two hundred',
-                3 => 'three hundred',
-                4 => 'four hundred',
-                5 => 'five hundred',
-                6 => 'six hundred',
-                7 => 'seven hundred',
-                8 => 'eight hundred',
-                9 => 'nine hundred',
-            ),
-            'step' => array(
-                1 => 'thousand',
-                2 => 'million',
-                3 => 'milliard',
-                4 => 'billion',
-                5 => 'trillion',
-                6 => 'quadrillion',
-                7 => 'quintillion',
-                8 => 'sextillion',
-                9 => 'septillion',
-                10 => 'octillion',
-                11 => 'nonillion',
-                12 => 'decillion',
-            ),
-            'and' => 'and',
-        ),
-    );
-
     /*****************************  CONSTRUCT  ****************************/
 
     /**
@@ -459,8 +326,7 @@ class Verta extends DateTime {
         return new DateTime(date('Y-m-d H:i:s.u', $this->getTimestamp()), $this->getTimeZone());
     }
 
-
-    /**
+   /**
      * Create a Verta instance from a DateTime one
      *
      * @param timestamp $datetime [optional]
@@ -596,7 +462,7 @@ class Verta extends DateTime {
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
-        if (!static::isValideDate($year, $month, $day) || !static::isValideTime($hour, $minute, $second)) {
+        if (!checkdate($year, $month, $day) || !static::isValideTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
@@ -731,8 +597,7 @@ class Verta extends DateTime {
         return $this->format(static::$stringFormat);
     }
 
-
-    /**
+   /**
 	 * The format of the outputted date string (jalali equivalent of php date() function)
 	 *
 	 * @param string $format for example 'Y-m-d H:i:s'
@@ -1066,6 +931,60 @@ class Verta extends DateTime {
         return $this->format('Y/n/j');
     }
 
+   /**
+     * Convert english numbers to persian numbers
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function persianNumbers($string)
+    {
+        return str_replace(self::$englishNumber, self::$persianNumber, $string);
+    }
+
+    /*****************************  COMPERTION  ****************************/
+
+    /**
+	 * check jalali the instance is a leap year
+	 *
+	 * @param int $year
+	 * @return bool
+	 */
+	public static function isLeapYear($year) {
+	    $mod = ($year % 33);
+	    if (($mod == 1) or ( $mod == 5) or ( $mod == 9) or ( $mod == 13) or ( $mod == 17) or ( $mod == 22) or ( $mod == 26) or ( $mod == 30)) {
+	        return true;
+	    }
+	    return false;
+	}
+
+    /**
+     * validate a jalali date (jalali equivalent of php checkdate() function)
+     *
+     * @param int $month
+     * @param int $day
+     * @param int $year
+     * @return bool
+     */
+    public static function isValideDate($year, $month, $day) {
+        return $year >= 1 && $year <= 32766
+        && $month >= 1 && $month <= 12
+        && $day >= 1 && $day <= static::daysMonthJalali($year, $month);
+    }
+
+    /**
+     * validate a time
+     *
+     * @param int $hour
+     * @param int $minute
+     * @param int $second
+     * @return bool
+     */
+    public static function isValideTime($hour, $minute, $second) {
+        return $hour >= 0 && $hour <= 24
+        && $minute >= 0 && $minute <= 59
+        && $second >= 0 && $second <= 59;
+    }
 
     /**
      * get difference to  now
@@ -1097,66 +1016,6 @@ class Verta extends DateTime {
 
         return sprintf('%s %s %s', $difference, static::$unitName[$j], $timebound);
     }
-
-    /**
-     * Convert english numbers to persian numbers
-     *
-     * @param string $string
-     * @return string
-     */
-    public static function persianNumbers($string)
-    {
-        return str_replace(self::$englishNumber, self::$persianNumber, $string);
-    }
-
-    /*****************************  COMPERTION  ****************************/
-
-	
-
-    /**
-	 * check jalali the instance is a leap year
-	 *
-	 * @param int $year
-	 * @return bool
-	 */
-	public static function isLeapYear($year) {
-	    $mod = ($year % 33);
-	    if (($mod == 1) or ( $mod == 5) or ( $mod == 9) or ( $mod == 13) or ( $mod == 17) or ( $mod == 22) or ( $mod == 26) or ( $mod == 30)) {
-	        return true;
-	    }
-	    return false;
-	}
-
-
-    /**
-     * validate a jalali date (jalali equivalent of php checkdate() function)
-     *
-     * @param int $month
-     * @param int $day
-     * @param int $year
-     * @return bool
-     */
-    public static function isValideDate($year, $month, $day) {
-        return $year >= 1 && $year <= 32766
-        && $month >= 1 && $month <= 12
-        && $day >= 1 && $day <= static::daysMonthJalali($year, $month);
-    }
-
-
-    /**
-     * validate a time
-     *
-     * @param int $hour
-     * @param int $minute
-     * @param int $second
-     * @return bool
-     */
-    public static function isValideTime($hour, $minute, $second) {
-        return $hour >= 0 && $hour <= 24
-        && $minute >= 0 && $minute <= 59
-        && $second >= 0 && $second <= 59;
-    }
-
 
     /*****************************  CALCULATION ****************************/
 
@@ -1335,8 +1194,7 @@ class Verta extends DateTime {
         return $this->addDays(-1 * $value);
     }
 
-
-    /**
+   /**
      * Add weeks to the instance. Positive $value travels forward while
      * negative $value travels into the past.
      *
@@ -1554,7 +1412,7 @@ class Verta extends DateTime {
         return $this->setTime(23, 59, 59);
     }
 
-    /*****************************  CONVERT  ****************************/
+    /*****************************  TRANSFORMATION  ****************************/
 
 	/**
 	 * gregorian to jalali convertion
@@ -1657,9 +1515,6 @@ class Verta extends DateTime {
         return ~~($a / $b);
     }
 
-    /*****************************  HELPER  ****************************/
-
-
 	/**
 	 * return day number from first day of year
 	 *
@@ -1689,129 +1544,4 @@ class Verta extends DateTime {
 	    $month = intval($month);
 	    return static::$daysMonthJalali[$month-1];
 	}
-
-    /**
-     * format number for change to word
-     *
-     * @param string $number
-     * @param int $decimal_precision
-     * @param string $decimals_separator
-     * @param string $thousands_separator
-     * @return string
-     */
-    static function number_format($number, $decimal_precision = 0, $decimals_separator = '.', $thousands_separator = ',') {
-        $number = explode('.', str_replace(' ', '', $number));
-        $number[0] = str_split(strrev($number[0]), 3);
-        $total_segments = count($number[0]);
-        for ($i = 0; $i < $total_segments; $i++) {
-            $number[0][$i] = strrev($number[0][$i]);
-        }
-        $number[0] = implode($thousands_separator, array_reverse($number[0]));
-        if (!empty($number[1])) {
-           $number[1] = round($number[1], $decimal_precision);
-        }
-        return implode($decimals_separator, $number);
-    }
-
-    /**
-     * group number to word
-     *
-     * @param array $group
-     * @param string $lang
-     * @return array
-     */
-    protected static function groupToWords($group, $lang) {
-        $d3 = floor($group / 100);
-        $d2 = floor(($group - $d3 * 100) / 10);
-        $d1 = $group - $d3 * 100 - $d2 * 10;
-
-        $group_array = array();
-
-        if ($d3 != 0) {
-            $group_array[] = static::$number_word[$lang]['d3'][$d3];
-        }
-
-        if ($d2 == 1 && $d1 != 0) { // 11-19
-            $group_array[] = static::$number_word[$lang]['d2-1'][$d1];
-        } else if ($d2 != 0 && $d1 == 0) { // 10-20-...-90
-            $group_array[] = static::$number_word[$lang]['d2-2'][$d2];
-        } else if ($d2 == 0 && $d1 == 0) { // 00
-        } else if ($d2 == 0 && $d1 != 0) { // 1-9
-            $group_array[] = static::$number_word[$lang]['d1'][$d1];
-        } else { // Others
-            $group_array[] = static::$number_word[$lang]['d2-2'][$d2];
-            $group_array[] = static::$number_word[$lang]['d1'][$d1];
-        }
-        if (!count($group_array)) {
-            return FALSE;
-        }
-        return $group_array;
-    }
-
-    /**
-     * return string of number
-     *
-     * @param string $number
-     * @param string $lang
-     * @return string
-     */
-    public static function getWords($number, $lang = 'fa') {
-        $formated = self::number_format(strval($number), 0, '.', ',');
-        $groups = explode(',', $formated);
-
-        $steps = count($groups);
-
-        $parts = array();
-        foreach ($groups as $step => $group) {
-            $group_words = self::groupToWords($group, $lang);
-            if ($group_words) {
-                $part = implode(' ' . static::$number_word[$lang]['and'] . ' ', $group_words);
-            if (isset(static::$number_word[$lang]['step'][$steps - $step - 1])) {
-                $part .= ' ' . static::$number_word[$lang]['step'][$steps - $step - 1];
-            }
-                $parts[] = $part;
-            }
-        }
-        return implode(' ' . static::$number_word[$lang]['and'] . ' ', $parts);
-    }
-
-    /**
-     * return persian string of number
-     *
-     * @param string $number
-     * @return int
-     */
-    public static function getPersianWords ($number) {
-        return self::getWords($number);
-    }
-
-    /**
-     * return english string of number
-     *
-     * @param string $number
-     * @return string
-     */
-    public static function getEnglishWords ($number) {
-        return self::getWords($number, 'en');
-    }
-
-    /**
-     * return rial string of number
-     *
-     * @param string $number
-     * @return string
-     */
-    public static function getRial($number) {
-        return self::getPersianWords($number) . ' ' . self::RIAL;
-    }
-
-    /**
-     * return toman string of number
-     *
-     * @param string $number
-     * @return string
-     */
-    public static function getToman($number) {
-        return self::getPersianWords($number) . ' ' . self::TOMAN;
-    }
 }

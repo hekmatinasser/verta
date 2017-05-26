@@ -1,6 +1,6 @@
 {
     "name": "hekmatinasser/verta",
-    "description": "This Package helps developers to work with Jalali Date and Time class.",
+    "description": "This Package helps developers to work with Jalali Date and Time class for Laravel freamwork PHP",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,10 @@
     "autoload": {
         "psr-4": {
             "Hekmatinasser\\Verta\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "minimum-stability": "dev"
 }

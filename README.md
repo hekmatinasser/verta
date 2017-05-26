@@ -80,6 +80,7 @@ return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
 return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
 return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 ```
+
 ---
 #### Formating
 ```php
@@ -160,12 +161,23 @@ return $dt->addSecond(); // 1395-10-07 14:12:33
 return $dt->addSeconds(3); // 1395-10-07 14:12:35
 return $dt->subSecond(); // 1395-10-07 14:12:31
 return $dt->subSeconds(2); // 1395-10-07 14:12:30
-
 ```
 
 ---
-#### Differences
+#### Comparisons
 ```php
+// is leap year 
+echo Verta::isLeapYear(1394); // false
+echo Verta::isLeapYear(1395); // true
+
+// is valid date
+echo Verta::isValideDate(1394, 12, 30); // false
+echo Verta::isValideDate(1395, 12, 30); // true
+
+// is valid time
+echo Verta::isValideTime(15, 62, 50); // false
+echo Verta::isValideTime(15, 12, 30); // true
+
 // get a diffrent time with now
 $dt = Verta::parse('1395-10-07 14:12:32');
 return $dt->diffNow(); // 2 ماه پیش
@@ -190,39 +202,6 @@ $dt = $v->DateTime();
 // export to carbon object
 $dt = Verta::parse('1395/01/05 23:50:25');
 $c = Carbon::instance($v->DateTime());
-```
-
----
-#### Comparisons
-```php
-// is leap year 
-echo Verta::isLeapYear(1394); // false
-echo Verta::isLeapYear(1395); // true
-
-// is valid date
-echo Verta::isValideDate(1394, 12, 30); // false
-echo Verta::isValideDate(1395, 12, 30); // true
-
-// is valid time
-echo Verta::isValideTime(15, 62, 50); // false
-echo Verta::isValideTime(15, 12, 30); // true
-```
-
----
-#### Exchange n2w
-```php
-// get word of number  
-// max number size 39 digit
-echo Verta::getWords('455000000000000000000000000000000000000'); // چهارصد و پنجاه و پنج دسیلیون
-echo Verta::getWords('4550000'); // چهار میلیون و پانصد و پنجاه هزار
-echo Verta::getWords('4550000', 'fa'); // چهار میلیون و پانصد و پنجاه هزار
-echo Verta::getPersianWords('4550000'); // چهار میلیون و پانصد و پنجاه هزار
-echo Verta::getWords('4550000', 'en'); // four million and five hundred and fifty thousand
-echo Verta::getEnglishWords('4550000'); // four million and five hundred and fifty thousand
-
-// add currency persian
-echo Verta::getRial('4550000'); // چهار میلیون و پانصد و پنجاه هزار ریال
-echo Verta::getToman('4550000'); // چهار میلیون و پانصد و پنجاه هزار تومان
 ```
 
 ---
