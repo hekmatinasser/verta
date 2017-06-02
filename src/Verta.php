@@ -10,7 +10,7 @@ namespace Hekmatinasser\Verta;
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use Closure;
+
 use DateTime;
 use DateTimeZone;
 use DatePeriod;
@@ -31,58 +31,58 @@ class Verta extends DateTime {
 	/**
      * The day constants
      */
-    const SATURDAY 		            = 0;
-    const SUNDAY 		            = 1;
-    const MONDAY 		            = 2;
-    const TUESDAY		            = 3;
-    const WEDNESDAY		            = 4;
-    const THURSDAY 		            = 5;
-    const FRIDAY 		            = 6;
+    const SATURDAY = 0;
+    const SUNDAY = 1;
+    const MONDAY = 2;
+    const TUESDAY = 3;
+    const WEDNESDAY = 4;
+    const THURSDAY = 5;
+    const FRIDAY = 6;
 
 	/**
      * Number unit in date
      */
-    const YEARS_PER_CENTURY		    = 100;
-    const YEARS_PER_DECADE		    = 10;
-    const MONTHS_PER_YEAR		    = 12;
-    const WEEKS_PER_YEAR		    = 52;
-    const WEEKS_PER_MONTH		    = 4.35;
-    const DAYS_PER_WEEK			    = 7;
-    const HOURS_PER_DAY			    = 24;
-    const MINUTES_PER_HOUR		    = 60;
-    const SECONDS_PER_MINUTE        = 60;
+    const YEARS_PER_CENTURY = 100;
+    const YEARS_PER_DECADE = 10;
+    const MONTHS_PER_YEAR = 12;
+    const WEEKS_PER_YEAR = 52;
+    const WEEKS_PER_MONTH = 4.35;
+    const DAYS_PER_WEEK = 7;
+    const HOURS_PER_DAY = 24;
+    const MINUTES_PER_HOUR = 60;
+    const SECONDS_PER_MINUTE = 60;
 
     /**
      * Word use in format datetime.
     */
-    const DEFAULT_STRING_FORMAT     = 'Y-m-d H:i:s';
+    const DEFAULT_STRING_FORMAT = 'Y-m-d H:i:s';
 
     /**
      * Format to use for __toString.
      *
      * @var string
      */
-    protected static $stringFormat  = self::DEFAULT_STRING_FORMAT;  
+    protected static $stringFormat = self::DEFAULT_STRING_FORMAT;  
 
     /**
      * @var array
      */
     protected static $formats = array(
-        'datetime'                  => 'Y-m-d H:i:s',
-        'date'                      => 'Y-m-d',
-        'time'                      => 'H:i:s',
+        'datetime' => 'Y-m-d H:i:s',
+        'date' => 'Y-m-d',
+        'time' => 'H:i:s',
     );
 
     /**
      * Default format to use for __toString method when type juggling occurs.
      */
-    const AM                        = 'ق.ظ';
-    const PM                        = 'ب.ظ';
-    const ANTE_MERIDIEM             = 'قبل از ظهر';
-    const POST_MERIDIEM             = 'بعد از ظهر';
-    const NUMBER_TH                 = ' ام';
-    const PRE                       = 'پیش';
-    const POST                      = 'بعد';
+    const AM = 'ق.ظ';
+    const PM = 'ب.ظ';
+    const ANTE_MERIDIEM = 'قبل از ظهر';
+    const POST_MERIDIEM = 'بعد از ظهر';
+    const NUMBER_TH = ' ام';
+    const PRE = 'پیش';
+    const POST = 'بعد';
 
     /**
      * number day in months gregorian
@@ -268,41 +268,42 @@ class Verta extends DateTime {
     public static function now() { 
         return new static();
     }
+
     /**
-     * Create a Carbon instance for today.
+     * Create a Verta instance for today.
      *
-     * @param \DateTimeZone|string|null $tz
+     * @param \DateTimeZone|string|null $timezone
      *
      * @return static
      */
     
-    public static function today($tz = null)
+    public static function today($timezone = null)
     {
-        return static::now($tz)->startOfDay();
+        return static::now($timezone)->startOfDay();
     }
 
     /**
-     * Create a Carbon instance for tomorrow.
+     * Create a Verta instance for tomorrow.
      *
-     * @param \DateTimeZone|string|null $tz
+     * @param \DateTimeZone|string|null $timezone
      *
      * @return static
      */
-    public static function tomorrow($tz = null)
+    public static function tomorrow($timezone = null)
     {
-        return static::today($tz)->addDay();
+        return static::today($timezone)->addDay();
     }
 
     /**
-     * Create a Carbon instance for yesterday.
+     * Create a Verta instance for yesterday.
      *
-     * @param \DateTimeZone|string|null $tz
+     * @param \DateTimeZone|string|null $timezone
      *
      * @return static
      */
-    public static function yesterday($tz = null)
+    public static function yesterday($timezone = null)
     {
-        return static::today($tz)->subDay();
+        return static::today($timezone)->subDay();
     }
 
     /**
