@@ -81,7 +81,66 @@ return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
 return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
 return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 ```
+---
+#### Geter
+```php
+//get each part of the time
+$v = verta();
+return $v->year; // 1396
+return $v->month; // 3
+return $v->day; // 14
+return $v->hour; // 14
+return $v->minute; // 18
+return $v->second; // 23
+return $v->timestamp; // 1496557661
+return $v->timezone; // Asia/Tehran
 
+```
+---
+#### Setter
+```php
+//set each part of the time
+$v = verta();
+$v->year = 1395;
+$v->month = 4; // set 13 for next year first month
+$v->day = 25;
+$v->hour = 16;
+$v->minute = 50;
+$v->second = 42;
+$v->timestamp = 1496557661;
+$v->timezone = 'Asia/Baku';
+
+//set each part of the time with method
+$v = $v->year(1395)
+$v = $v->month(4) // set 13 for next year first month
+$v = $v->day(25)
+$v = $v->hour(16)
+$v = $v->minute(50)
+$v = $v->second(42)
+$v = $v->timestamp(1496557661)
+$v = $v->timezone('Asia/Baku');
+
+//set date and time
+$v = $v->setDateTime(1395, 4, 25, 16, 50, 42);
+$v = $v->setDateTime(1395, 4, 25, 16, 50, 42, 1569856);
+$v = $v->setDate(1395, 4, 25);
+$v = $v->setTimeString('12:25:48');
+
+```
+---
+#### Isset
+```php
+$v = verta();
+echo isset($v->year); // true
+echo isset($v->month); // true
+echo empty($v->day); // false
+echo empty($v->hour); // false
+echo empty($v->minute); // false
+echo empty($v->second); // false
+echo isset($v->timestamp); // true
+echo isset($v->timezone); // true
+
+```
 ---
 #### Formating
 ```php
