@@ -1,5 +1,9 @@
 hekmatinasser/verta
 ======
+
+Document [English](https://hekmatinasser.github.io/verta/)
+[فارسی](https://www.parsclick.net/articles?subject=11&article=132)
+
 - This package compatible with Laravel `>=5` & `< 6.0`
 
 - Verta is a jalali calendar that was used in persian datetime
@@ -111,13 +115,13 @@ $v->timestamp = 1496557661;
 $v->timezone = 'Asia/Baku';
 
 //set each part of the time with method
-$v = $v->year(1395)
-$v = $v->month(4) // set 13 for next year first month
-$v = $v->day(25)
-$v = $v->hour(16)
-$v = $v->minute(50)
-$v = $v->second(42)
-$v = $v->timestamp(1496557661)
+$v = $v->year(1395);
+$v = $v->month(4); // set 13 for next year first month
+$v = $v->day(25);
+$v = $v->hour(16);
+$v = $v->minute(50);
+$v = $v->second(42);
+$v = $v->timestamp(1496557661);
 $v = $v->timezone('Asia/Baku');
 
 //set date and time
@@ -219,6 +223,24 @@ return $v->addSecond(); // 1395-10-07 14:12:33
 return $v->addSeconds(3); // 1395-10-07 14:12:35
 return $v->subSecond(); // 1395-10-07 14:12:31
 return $v->subSeconds(2); // 1395-10-07 14:12:30
+
+$v1 = verta(); // 1396-03-31 22:21:40
+$v2 = verta('2018-06-21 01:21:40'); // 1397-03-31 01:21:40
+$v3 = verta('2016-06-20'); // 1395-03-30 15:24:53
+
+return $v1->diffYears($v3); // -1
+return $v1->diffMonths($v2); // 11
+return $v2->diffMonths(); // -11 compare with now
+return $v1->diffWeeks($v2); // 51
+return $v1->diffDays($v3); // -372
+return $v3->diffMinutes(); // 536548
+return $v3->diffMinutes(); // 536548
+
+return $v1->diffFormat($v2); // 12 ماه بعد
+return $v1->diffFormat($v3); // 1 سال قبل
+return $v1->addDays(25)->diffFormat(); // 4 هفته بعد compare with now
+return $v1->subDays(6)->diffFormat(); // 6 روز قبل
+
 ```
 
 ---
@@ -236,12 +258,55 @@ echo Verta::isValideDate(1395, 12, 30); // true
 echo Verta::isValideTime(15, 62, 50); // false
 echo Verta::isValideTime(15, 12, 30); // true
 
-// get a diffrent time with now
-$v = Verta::parse('1395-10-07 14:12:32');
-return $v->diffNow(); // 2 ماه پیش
+// Comparisons objects together
+$v1 = verta(); // 1396-03-31 22:21:40
+$v2 = verta('2017-06-21 01:21:40'); // 1396-03-31 01:21:40
+$v3 = verta('2017-06-20'); // 1396-03-30 15:24:53
 
-$v = Verta::parse('1395/12/12 14:13:50');
-return $v->diffNow(); // 5 ثانیه بعد
+echo $v1->eq($v2); // false equalTo()
+echo $v1->ne($v2); // true notEqualTo()
+echo $v1->gt($v2); // true greaterThan()
+echo $v1->gte($v2); // true greaterThanOrEqualTo()
+echo $v1->lt($v2); // false lessThan()
+echo $v1->lte($v2); // false lessThanOrEqualTo()
+echo $v1->between($v2, $v3); // false
+
+echo $v1->closest($v2, $v3); // return $v2 object
+echo $v1->farthest($v2, $v3); // return $v3 object
+echo $v1->min($v2); // return $v2 object minimum()
+echo $v1->max($v2); // return $v1 object maximum()
+
+echo $v1->isWeekday(); // true
+echo $v1->isWeekend(); // false
+echo $v1->isYesterday(); // false
+echo $v1->isToday(); // true
+echo $v1->isTomorrow(); // false
+echo $v1->isNextWeek(); // false
+echo $v1->isLastWeek(); // false
+echo $v1->isNextMonth(); // false
+echo $v1->isLastMonth(); // false
+echo $v1->isNextYear(); // false
+echo $v1->isLastYear(); // false
+echo $v1->isFuture(); // false
+echo $v1->isPast(); // false
+echo $v1->isPast(); // false
+
+echo $v1->isCurrentYear(); // true
+echo $v1->isSameAs('y', $v2); // true isSameYear()
+echo $v1->isCurrentMonth(); // true
+echo $v1->isSameMonth($v2); // true
+echo $v1->isSameDay($v2); // true
+echo $v1->isBirthday(); // true compare with today
+echo $v1->isBirthday($v2); // true
+
+echo $v1->isSaturday(); // false
+echo $v1->isSunday(); // false
+echo $v1->isMonday(); // false
+echo $v1->isTuesday(); // false
+echo $v1->isWednesday(); // false
+echo $v1->isThursday(); // true
+echo $v1->isFriday(); // false
+
 ```
 
 ---

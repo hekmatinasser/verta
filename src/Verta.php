@@ -55,7 +55,31 @@ class Verta extends DateTime {
      *
      * @var string
      */
-    protected static $stringFormat = self::DEFAULT_STRING_FORMAT;  
+    protected static $stringFormat = self::DEFAULT_STRING_FORMAT;
+
+    /**
+     * First day of week.
+     *
+     * @var int
+     */
+    protected static $weekStartsAt = self::SATURDAY;
+
+    /**
+     * Last day of week.
+     *
+     * @var int
+     */
+    protected static $weekEndsAt = self::FRIDAY;
+
+    /**
+     * Days of weekend.
+     *
+     * @var array
+     */
+    protected static $weekendDays = array(
+        self::THURSDAY,
+        self::FRIDAY,
+    );
 
     /**
      * @var array
@@ -74,7 +98,8 @@ class Verta extends DateTime {
     const ANTE_MERIDIEM = 'قبل از ظهر';
     const POST_MERIDIEM = 'بعد از ظهر';
     const NUMBER_TH = ' ام';
-    const PRE = 'پیش';
+    const PRE = 'قبل';
+    const NOW = 'الان';
     const POST = 'بعد';
 
     /**
@@ -816,7 +841,7 @@ class Verta extends DateTime {
 	/*****************************  STRING FORMATED  ****************************/
 
     /**
-     * Reset the format used to the default when type juggling a Carbon instance to a string
+     * Reset the format used to the default when type juggling a Verta instance to a string
      */
     public static function resetStringFormat()
     {
@@ -824,7 +849,7 @@ class Verta extends DateTime {
     }
 
     /**
-     * Set the default format used when type juggling a Carbon instance to a string
+     * Set the default format used when type juggling a Verta instance to a string
      *
      * @param string $format
      */
@@ -933,7 +958,7 @@ class Verta extends DateTime {
 	                break;
 
 	            case 't':
-	                $result .= $this->daysMonthJalali($pYear,$pMonth);
+	                $result .= static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth)-1];
 	                break;
 
 	            # Years
@@ -999,6 +1024,22 @@ class Verta extends DateTime {
 
 	    return $result;
 	}
+
+    /**
+     * return day number from first day of year
+     *
+     * @param int $month
+     * @param int $day
+     * @return type
+     * @since 5.0.0
+     */
+    protected function daysYear($month, $day) {
+        $days = 0;
+        for ($i = 0; $i < $month; $i ++) {
+            $days += static::$daysMonthJalali[$i];
+        }
+        return ($days + $day);
+    }
 
 
 	/**
@@ -1213,9 +1254,10 @@ class Verta extends DateTime {
      * @return bool
      */
     public static function isValideDate($year, $month, $day) {
+        $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month)-1];
         return $year >= 1 && $year <= 32766
         && $month >= 1 && $month <= 12
-        && $day >= 1 && $day <= static::daysMonthJalali($year, $month);
+        && $day >= 1 && $day <= $dayLastMonthJalali;
     }
 
     /**
@@ -1233,34 +1275,551 @@ class Verta extends DateTime {
     }
 
     /**
-     * get difference to  now
+     * Determines if the instance is equal to another
      *
-     * @return string
+     * @param Verta $v
+     *
+     * @return bool
      */
-    public function diffNow()
+    public function eq(Verta $v)
     {
-        $now = time();
+        return $this == $v;
+    }
 
-        // get difference
-        $difference = $now - $this->getTimestamp();
+    /**
+     * Determines if the instance is equal to another
+     *
+     * @param Verta $v
+     *
+     * @see eq()
+     *
+     * @return bool
+     */
+    public function equalTo(Verta $v)
+    {
+        return $this->eq($v);
+    }
 
-        $negative = true;
-        // set descriptor
-        if ($difference < 0) {
-            $difference = abs($difference); // absolute value
-            $negative = false;
+    /**
+     * Determines if the instance is not equal to another
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function ne(Verta $v)
+    {
+        return !$this->eq($v);
+    }
+
+    /**
+     * Determines if the instance is not equal to another
+     *
+     * @param Verta $v
+     *
+     * @see ne()
+     *
+     * @return bool
+     */
+    public function notEqualTo(Verta $v)
+    {
+        return $this->ne($v);
+    }
+
+    /**
+     * Determines if the instance is greater (after) than another
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function gt(Verta $v)
+    {
+        return $this > $v;
+    }
+
+    /**
+     * Determines if the instance is greater (after) than another
+     *
+     * @param Verta $v
+     *
+     * @see gt()
+     *
+     * @return bool
+     */
+    public function greaterThan(Verta $v)
+    {
+        return $this->gt($v);
+    }
+
+    /**
+     * Determines if the instance is greater (after) than or equal to another
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function gte(Verta $v)
+    {
+        return $this >= $v;
+    }
+
+    /**
+     * Determines if the instance is greater (after) than or equal to another
+     *
+     * @param Verta $v
+     *
+     * @see gte()
+     *
+     * @return bool
+     */
+    public function greaterThanOrEqualTo(Verta $v)
+    {
+        return $this->gte($v);
+    }
+
+    /**
+     * Determines if the instance is less (before) than another
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function lt(Verta $v)
+    {
+        return $this < $v;
+    }
+
+    /**
+     * Determines if the instance is less (before) than another
+     *
+     * @param Verta $v
+     *
+     * @see lt()
+     *
+     * @return bool
+     */
+    public function lessThan(Verta $v)
+    {
+        return $this->lt($v);
+    }
+
+    /**
+     * Determines if the instance is less (before) or equal to another
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function lte(Verta $v)
+    {
+        return $this <= $v;
+    }
+
+    /**
+     * Determines if the instance is less (before) or equal to another
+     *
+     * @param Verta $v
+     *
+     * @see lte()
+     *
+     * @return bool
+     */
+    public function lessThanOrEqualTo(Verta $v)
+    {
+        return $this->lte($v);
+    }
+
+    /**
+     * Determines if the instance is between two others
+     *
+     * @param Verta $v1
+     * @param Verta $v2
+     * @param bool   $equal Indicates if a > and < comparison should be used or <= or >=
+     *
+     * @return bool
+     */
+    public function between(Verta $v1, Verta $v2, $equal = true)
+    {
+        if ($v1->gt($v2)) {
+            $temp = $v1;
+            $v1 = $v2;
+            $v2 = $temp;
         }
 
-        // do math
-        for ($j = 0; $difference >= static::$unitNumber[$j] and $j < count(static::$unitNumber) - 1; $j++) {
-            $difference /= static::$unitNumber[$j];
+        if ($equal) {
+            return $this->gte($v1) && $this->lte($v2);
         }
 
-        // round difference
-        $difference = intval(round($difference));
-        $timebound = ($negative ? self::PRE : self::POST);
+        return $this->gt($v1) && $this->lt($v2);
+    }
 
-        return sprintf('%s %s %s', $difference, static::$unitName[$j], $timebound);
+    /**
+     * Get the closest date from the instance.
+     *
+     * @param Verta $v1
+     * @param Verta $v2
+     *
+     * @return static
+     */
+    public function closest(Verta $v1, Verta $v2)
+    {
+        return $this->diffSeconds($v1) < $this->diffSeconds($v2) ? $v1 : $v2;
+    }
+
+    /**
+     * Get the farthest date from the instance.
+     *
+     * @param Verta $v1
+     * @param Verta $v2
+     *
+     * @return static
+     */
+    public function farthest(Verta $v1, Verta $v2)
+    {
+        return $this->diffSeconds($v1) > $this->diffSeconds($v2) ? $v1 : $v2;
+    }
+
+    /**
+     * Get the minimum instance between a given instance (default now) and the current instance.
+     *
+     * @param Verta|null $v
+     *
+     * @return static
+     */
+    public function min(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return $this->lt($v) ? $this : $v;
+    }
+
+    /**
+     * Get the minimum instance between a given instance (default now) and the current instance.
+     *
+     * @param Verta|null $v
+     *
+     * @see min()
+     *
+     * @return static
+     */
+    public function minimum(Verta $v = null)
+    {
+        return $this->min($v);
+    }
+
+    /**
+     * Get the maximum instance between a given instance (default now) and the current instance.
+     *
+     * @param Verta|null $v
+     *
+     * @return static
+     */
+    public function max(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return $this->gt($v) ? $this : $v;
+    }
+
+    /**
+     * Get the maximum instance between a given instance (default now) and the current instance.
+     *
+     * @param Verta|null $v
+     *
+     * @see max()
+     *
+     * @return static
+     */
+    public function maximum(Verta $v = null)
+    {
+        return $this->max($v);
+    }
+
+    /**
+     * Determines if the instance is a weekday
+     *
+     * @return bool
+     */
+    public function isWeekday()
+    {
+        return !$this->isWeekend();
+    }
+
+    /**
+     * Determines if the instance is a weekend day
+     *
+     * @return bool
+     */
+    public function isWeekend()
+    {
+        return in_array($this->dayOfWeek, static::$weekendDays);
+    }
+
+    /**
+     * Determines if the instance is yesterday
+     *
+     * @return bool
+     */
+    public function isYesterday()
+    {
+        return $this->formatDate() === static::yesterday($this->getTimezone())->formatDate();
+    }
+
+    /**
+     * Determines if the instance is today
+     *
+     * @return bool
+     */
+    public function isToday()
+    {
+        return $this->formatDate() === static::now($this->getTimezone())->formatDate();
+    }
+
+    /**
+     * Determines if the instance is tomorrow
+     *
+     * @return bool
+     */
+    public function isTomorrow()
+    {
+        return $this->formatDate() === static::tomorrow($this->getTimezone())->formatDate();
+    }
+
+    /**
+     * Determines if the instance is within the next week
+     *
+     * @return bool
+     */
+    public function isNextWeek()
+    {
+        return $this->weekOfYear === static::now($this->getTimezone())->addWeek()->weekOfYear;
+    }
+
+    /**
+     * Determines if the instance is within the last week
+     *
+     * @return bool
+     */
+    public function isLastWeek()
+    {
+        return $this->weekOfYear === static::now($this->getTimezone())->subWeek()->weekOfYear;
+    }
+
+    /**
+     * Determines if the instance is within the next month
+     *
+     * @return bool
+     */
+    public function isNextMonth()
+    {
+        return $this->month === static::now($this->getTimezone())->addMonth()->month;
+    }
+
+    /**
+     * Determines if the instance is within the last month
+     *
+     * @return bool
+     */
+    public function isLastMonth()
+    {
+        return $this->month === static::now($this->getTimezone())->subMonth()->month;
+    }
+
+    /**
+     * Determines if the instance is within next year
+     *
+     * @return bool
+     */
+    public function isNextYear()
+    {
+        return $this->year === static::now($this->getTimezone())->addYear()->year;
+    }
+
+    /**
+     * Determines if the instance is within the previous year
+     *
+     * @return bool
+     */
+    public function isLastYear()
+    {
+        return $this->year === static::now($this->getTimezone())->subYear()->year;
+    }
+
+    /**
+     * Determines if the instance is in the future, ie. greater (after) than now
+     *
+     * @return bool
+     */
+    public function isFuture()
+    {
+        return $this->gt(static::now($this->getTimezone()));
+    }
+
+    /**
+     * Determines if the instance is in the past, ie. less (before) than now
+     *
+     * @return bool
+     */
+    public function isPast()
+    {
+        return $this->lt(static::now($this->getTimezone()));
+    }
+
+    /**
+     * Compares the formatted values of the two dates.
+     *
+     * @param string              $format The date formats to compare.
+     * @param Verta|null $v     The instance to compare with or null to use current day.
+     *
+     * @return bool
+     */
+    public function isSameAs($format, Verta $v = null)
+    {
+        $v = $v ?: static::now($this->timezone);
+
+        return $this->format($format) === $v->format($format);
+    }
+
+    /**
+     * Determines if the instance is in the current year
+     *
+     * @return bool
+     */
+    public function isCurrentYear()
+    {
+        return $this->isSameYear();
+    }
+
+    /**
+     * Checks if the passed in date is in the same year as the instance year.
+     *
+     * @param Verta|null $v The instance to compare with or null to use current day.
+     *
+     * @return bool
+     */
+    public function isSameYear(Verta $v = null)
+    {
+        return $this->isSameAs('Y', $v);
+    }
+
+    /**
+     * Determines if the instance is in the current month
+     *
+     * @return bool
+     */
+    public function isCurrentMonth()
+    {
+        return $this->isSameMonth();
+    }
+
+    /**
+     * Checks if the passed in date is in the same month as the instance month (and year if needed).
+     *
+     * @param Verta|null $v         The instance to compare with or null to use current day.
+     * @param bool                $ofSameYear Check if it is the same month in the same year.
+     *
+     * @return bool
+     */
+    public function isSameMonth(Verta $v = null, $ofSameYear = false)
+    {
+        $format = $ofSameYear ? 'Y-m' : 'm';
+
+        return $this->isSameAs($format, $v);
+    }
+
+    /**
+     * Checks if the passed in date is the same day as the instance current day.
+     *
+     * @param Verta $v
+     *
+     * @return bool
+     */
+    public function isSameDay(Verta $v)
+    {
+        return $this->formatDate() === $v->formatDate();
+    }
+
+    /**
+     * Check if its the birthday. Compares the date/month values of the two dates.
+     *
+     * @param Verta|null $dt The instance to compare with or null to use current day.
+     *
+     * @return bool
+     */
+    public function isBirthday(Verta $v = null)
+    {
+        return $this->isSameAs('md', $v);
+    }
+
+    /**
+     * Checks if this day is a Saturday.
+     *
+     * @return bool
+     */
+    public function isSaturday()
+    {
+        return $this->dayOfWeek === static::SATURDAY;
+    }
+
+    /**
+     * Checks if this day is a Sunday.
+     *
+     * @return bool
+     */
+    public function isSunday()
+    {
+        return $this->dayOfWeek === static::SUNDAY;
+    }
+
+    /**
+     * Checks if this day is a Monday.
+     *
+     * @return bool
+     */
+    public function isMonday()
+    {
+        return $this->dayOfWeek === static::MONDAY;
+    }
+
+    /**
+     * Checks if this day is a Tuesday.
+     *
+     * @return bool
+     */
+    public function isTuesday()
+    {
+        return $this->dayOfWeek === static::TUESDAY;
+    }
+
+    /**
+     * Checks if this day is a Wednesday.
+     *
+     * @return bool
+     */
+    public function isWednesday()
+    {
+        return $this->dayOfWeek === static::WEDNESDAY;
+    }
+
+    /**
+     * Checks if this day is a Thursday.
+     *
+     * @return bool
+     */
+    public function isThursday()
+    {
+        return $this->dayOfWeek === static::THURSDAY;
+    }
+
+    /**
+     * Checks if this day is a Friday.
+     *
+     * @return bool
+     */
+    public function isFriday()
+    {
+        return $this->dayOfWeek === static::FRIDAY;
     }
 
     /*****************************  CALCULATION ****************************/
@@ -1636,6 +2195,124 @@ class Verta extends DateTime {
         return $this->addSeconds(-1 * $value);
     }
 
+    /**
+     * Get the difference in years
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffYears(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return (int) $this->diff($v)->format('%r%y');
+    }
+
+    /**
+     * Get the difference in months
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffMonths(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return $this->diffYears($v) * static::MONTHS_PER_YEAR + (int) $this->diff($v)->format('%r%m');
+    }
+
+    /**
+     * Get the difference in weeks
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffWeeks(Verta $v = null)
+    {
+        return (int) ($this->diffDays($v) / static::DAYS_PER_WEEK);
+    }
+
+
+    /**
+     * Get the difference in days
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffDays(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return (int) $this->diff($v)->format('%r%a');
+    }
+
+    /**
+     * Get the difference in hours
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffHours(Verta $v = null)
+    {
+        return (int) ($this->diffSeconds($v) / static::SECONDS_PER_MINUTE / static::MINUTES_PER_HOUR);
+    }
+
+    /**
+     * Get the difference in minutes
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffMinutes(Verta $v = null)
+    {
+        return (int) ($this->diffSeconds($v) / static::SECONDS_PER_MINUTE);
+    }
+
+    /**
+     * Get the difference in seconds
+     *
+     * @param Verta|null $v
+     *
+     * @return int
+     */
+    public function diffSeconds(Verta $v = null)
+    {
+        $v = $v ?: static::now($this->getTimezone());
+
+        return $v->getTimestamp() - $this->getTimestamp();
+    }
+
+    /**
+     * get difference in all
+     *
+     * @param Verta|null $v
+     *
+     * @return string
+     */
+    public function diffFormat(Verta $v = null)
+    {
+        $difference = $this->diffSeconds($v);
+        $absolute = $difference < 0 ? self::POST : self::PRE;
+        $difference = abs($difference);
+
+        for ($j = 0; $difference >= static::$unitNumber[$j] and $j < count(static::$unitNumber) - 1; $j++) {
+            $difference /= static::$unitNumber[$j];
+        }
+        $difference = intval(round($difference));
+
+        if($difference === 0) {
+            return self::NOW;
+        }
+
+        return sprintf('%s %s %s', $difference, static::$unitName[$j], $absolute);
+    }
+
     /*****************************  MODIFY  ****************************/
 
     /**
@@ -1660,96 +2337,82 @@ class Verta extends DateTime {
 
     /*****************************  TRANSFORMATION  ****************************/
 
-	/**
-	 * gregorian to jalali convertion
-	 *
-	 * @param int $g_y
-	 * @param int $g_m
-	 * @param int $g_d
-	 * @return array
-	 */
+    /**
+     * gregorian to jalali convertion
+     *
+     * @param int $g_y
+     * @param int $g_m
+     * @param int $g_d
+     * @return array
+     */
     public static function getJalali($g_y, $g_m, $g_d) {
-	    $gy = $g_y - 1600;
-	    $gm = $g_m - 1;
-	    $g_day_no = (365 * $gy + static::div($gy + 3, 4) - static::div($gy + 99, 100) + static::div($gy + 399, 400));
-
-	    for ($i = 0; $i < $gm; ++$i) {
-	        $g_day_no += static::$daysMonthGregorian[$i];
-	    }
-
-	    if ($gm > 1 && (($gy % 4 == 0 && $gy % 100 != 0) || ($gy % 400 == 0)))
-	    # leap and after Feb
-	        $g_day_no ++;
-	    $g_day_no += $g_d - 1;
-	    $j_day_no = $g_day_no - 79;
-	    $j_np = static::div($j_day_no, 12053); # 12053 = (365 * 33 + 32 / 4)
-	    $j_day_no = $j_day_no % 12053;
-	    $jy = (979 + 33 * $j_np + 4 * static::div($j_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
-	    $j_day_no %= 1461;
-
-	    if ($j_day_no >= 366) {
-	        $jy += static::div($j_day_no - 1, 365);
-	        $j_day_no = ($j_day_no - 1) % 365;
-	    }
-
-	    for ($i = 0; ($i < 11 && $j_day_no >= static::$daysMonthJalali[$i]); ++$i) {
-	        $j_day_no -= static::$daysMonthJalali[$i];
-	    }
-
-	    return array($jy, $i + 1, $j_day_no + 1);
-	}
-
-	/**
-	 * jalali to gregorian convertion
-	 *
-	 * @param int $j_y
-	 * @param int $j_m
-	 * @param int $j_d
-	 * @return array
-	 */
-	public static function getGregorian($j_y, $j_m, $j_d) {
-	    $jy = $j_y - 979;
-	    $jm = $j_m - 1;
-	    $j_day_no = (365 * $jy + static::div($jy, 33) * 8 + static::div($jy % 33 + 3, 4));
-
-	    for ($i = 0; $i < $jm; ++$i) {
-	        $j_day_no += static::$daysMonthJalali[$i];
-	    }
-
-	    $j_day_no += $j_d - 1;
-	    $g_day_no = $j_day_no + 79;
-	    $gy = (1600 + 400 * static::div($g_day_no, 146097)); # 146097 = (365 * 400 + 400 / 4 - 400 / 100 + 400 / 400)
-	    $g_day_no = $g_day_no % 146097;
-	    $leap = 1;
-
-	    if ($g_day_no >= 36525) { # 36525 = (365 * 100 + 100 / 4)
-	        $g_day_no --;
-	        $gy += (100 * static::div($g_day_no, 36524)); # 36524 = (365 * 100 + 100 / 4 - 100 / 100)
-	        $g_day_no = $g_day_no % 36524;
-	        if ($g_day_no >= 365) {
-	            $g_day_no ++;
-	        } else {
-	            $leap = 0;
-	        }
-	    }
-
-	    $gy += (4 * static::div($g_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
-	    $g_day_no %= 1461;
-
-	    if ($g_day_no >= 366) {
-	        $leap = 0;
-	        $g_day_no --;
-	        $gy += static::div($g_day_no, 365);
-	        $g_day_no = ($g_day_no % 365);
-	    }
-
-	    for ($i = 0; $g_day_no >= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap)); $i ++) {
-	        $g_day_no -= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap));
-	    }
-
-	    return array($gy, $i + 1, $g_day_no + 1);
-	}
-
+        $gy = $g_y - 1600;
+        $gm = $g_m - 1;
+        $g_day_no = (365 * $gy + static::div($gy + 3, 4) - static::div($gy + 99, 100) + static::div($gy + 399, 400));
+        for ($i = 0; $i < $gm; ++$i) {
+            $g_day_no += static::$daysMonthGregorian[$i];
+        }
+        if ($gm > 1 && (($gy % 4 == 0 && $gy % 100 != 0) || ($gy % 400 == 0)))
+            # leap and after Feb
+            $g_day_no ++;
+        $g_day_no += $g_d - 1;
+        $j_day_no = $g_day_no - 79;
+        $j_np = static::div($j_day_no, 12053); # 12053 = (365 * 33 + 32 / 4)
+        $j_day_no = $j_day_no % 12053;
+        $jy = (979 + 33 * $j_np + 4 * static::div($j_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
+        $j_day_no %= 1461;
+        if ($j_day_no >= 366) {
+            $jy += static::div($j_day_no - 1, 365);
+            $j_day_no = ($j_day_no - 1) % 365;
+        }
+        for ($i = 0; ($i < 11 && $j_day_no >= static::$daysMonthJalali[$i]); ++$i) {
+            $j_day_no -= static::$daysMonthJalali[$i];
+        }
+        return array($jy, $i + 1, $j_day_no + 1);
+    }
+    /**
+     * jalali to gregorian convertion
+     *
+     * @param int $j_y
+     * @param int $j_m
+     * @param int $j_d
+     * @return array
+     */
+    public static function getGregorian($j_y, $j_m, $j_d) {
+        $jy = $j_y - 979;
+        $jm = $j_m - 1;
+        $j_day_no = (365 * $jy + static::div($jy, 33) * 8 + static::div($jy % 33 + 3, 4));
+        for ($i = 0; $i < $jm; ++$i) {
+            $j_day_no += static::$daysMonthJalali[$i];
+        }
+        $j_day_no += $j_d - 1;
+        $g_day_no = $j_day_no + 79;
+        $gy = (1600 + 400 * static::div($g_day_no, 146097)); # 146097 = (365 * 400 + 400 / 4 - 400 / 100 + 400 / 400)
+        $g_day_no = $g_day_no % 146097;
+        $leap = 1;
+        if ($g_day_no >= 36525) { # 36525 = (365 * 100 + 100 / 4)
+            $g_day_no --;
+            $gy += (100 * static::div($g_day_no, 36524)); # 36524 = (365 * 100 + 100 / 4 - 100 / 100)
+            $g_day_no = $g_day_no % 36524;
+            if ($g_day_no >= 365) {
+                $g_day_no ++;
+            } else {
+                $leap = 0;
+            }
+        }
+        $gy += (4 * static::div($g_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
+        $g_day_no %= 1461;
+        if ($g_day_no >= 366) {
+            $leap = 0;
+            $g_day_no --;
+            $gy += static::div($g_day_no, 365);
+            $g_day_no = ($g_day_no % 365);
+        }
+        for ($i = 0; $g_day_no >= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap)); $i ++) {
+            $g_day_no -= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap));
+        }
+        return array($gy, $i + 1, $g_day_no + 1);
+    }
     /**
      * integer division
      *
@@ -1760,34 +2423,4 @@ class Verta extends DateTime {
     private static function div($a, $b) {
         return ~~($a / $b);
     }
-
-	/**
-	 * return day number from first day of year
-	 *
-	 * @param int $month
-	 * @param int $day
-	 * @return type
-	 * @since 5.0.0
-	 */
-	public function daysYear($month, $day) {
-	    $days = 0;
-	    for ($i = 0; $i < $month; $i ++) {
-	        $days += static::$daysMonthJalali[$i];
-	    }
-	    return ($days + $day);
-	}
-
-	/**
-	 * return last day of month
-	 *
-	 * @param int $year
-	 * @param int $month
-	 * @return int
-	 */
-	public static function daysMonthJalali($year,$month) {
-	    if(static::isLeapYear($year) && ($month == 12))
-	        return 30;
-	    $month = intval($month);
-	    return static::$daysMonthJalali[$month-1];
-	}
 }
