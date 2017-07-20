@@ -2507,7 +2507,7 @@ class Verta extends DateTime {
         }
         return array($gy, $i + 1, $g_day_no + 1);
     }
-    
+
     /**
      * integer division
      *

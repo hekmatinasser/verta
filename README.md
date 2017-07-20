@@ -263,7 +263,8 @@ return $v->startWeek(); // 1396 1396-04-24 00:00:00
 return $v->endWeek(); // 1396-04-30 23:59:59
 return $v->startMonth(); // 1396-04-01 00:00:00
 return $v->endMonth(); // 1396-04-31 00:00:00
-return $v->endQuarter(); // 1396-09-30 23:59:59
+return $v->startQuarter(); // 1396-04-01 23:59:59
+return $v->endQuarter(); // 1396-06-31 23:59:59
 ```
 ---
 #### Comparisons
