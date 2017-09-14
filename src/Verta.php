@@ -254,7 +254,6 @@ class Verta extends DateTime {
      * @param bool $timezone [optional]
      */
 	public function __construct($datetime = null, $timezone = null) {
-        date_default_timezone_set('Asia/Tehran');
 		if ($datetime === null) {
             $instance = time();
         }

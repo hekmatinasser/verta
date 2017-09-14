@@ -52,6 +52,7 @@ create object with pass string
 ```php
 $v = new Verta('2016-12-27 14:12:32');
 $v = Verta::instance('2016-12-25 11:12:36');
+$v = Facades\Verta::instance('2016-12-25 11:12:36');
 ```
 
 create object with timestamp
