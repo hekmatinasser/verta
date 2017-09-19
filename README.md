@@ -8,7 +8,7 @@ Document [English](https://hekmatinasser.github.io/verta/)
 
 - Verta is a jalali calendar that was used in persian datetime
 
-- Calendar conversion is based on the algorithm provided by Morteza Parvini, Vahid Sohrablou, Roozbeh Pournader and Mohammad Tou'si.
+- Calendar conversion is based on the algorithm provided by Vahid Sohrablou, Roozbeh Pournader and Mohammad Tou'si.
 
 Run the Composer update comand
 
@@ -165,6 +165,16 @@ echo isset($v->timezone); // true
 ```
 ---
 #### Formating
+set default format
+```php
+// set default format
+Verta::setStringformat('Y/n/j H:i:s');
+return verta(); // 1395/12/12 00:11:35
+
+// reset default format
+Verta::resetStringFormat();
+return verta(); // 1395-12-12 00:18:04
+```
 format with php standard 
 ```php
 $v = verta();
@@ -173,12 +183,6 @@ return $v->format('%B %d، %Y'); // دی 07، 1395
 return $v; //1395-10-07 14:12:32
 ```
 use predefined format
-```php
-return $v->format('datetime'); // 1395-12-10 23:25:12
-return $v->format('date'); // 1395-12-10
-return $v->format('time'); // 23:26:35
-```
-use predefined format method
 ```php
 return $v->formatDatetime(); // 1395-12-10 23:37:26
 return $v->formatDate(); // 1395-12-10
@@ -191,22 +195,13 @@ get Gregorian format
 return $v->DateTime()->format('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 return $v->formatGregorian('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 ```
-set default format
-```php
-// set default format
-Verta::setStringformat('Y/n/j H:i:s');
-return verta(); // 1395/12/12 00:11:35
-
-// reset default format
-Verta::resetStringFormat();
-return verta(); // 1395-12-12 00:18:04
-```
 difference format 
 ```php
-return $v1->diffFormat($v2); // 12 ماه بعد
-return $v1->diffFormat($v3); // 1 سال قبل
-return $v1->addDays(25)->diffFormat(); // 4 هفته بعد compare with now
-return $v1->subDays(6)->diffFormat(); // 6 روز قبل
+return $v1->formatDifference($v2); // 12 ماه بعد
+return $v1->formatDifference($v3); // 1 سال قبل
+return $v1->addDays(25)->formatDifference(); // 4 هفته بعد compare with now
+return $v1->subDays(6)->formatDifference(); // 6 روز قبل
+return verta()->formatDifference(); // الان
 ```
 change number
 ```php

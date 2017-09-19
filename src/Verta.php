@@ -83,15 +83,6 @@ class Verta extends DateTime {
     );
 
     /**
-     * @var array
-     */
-    protected static $formats = array(
-        'datetime' => 'Y-m-d H:i:s',
-        'date' => 'Y-m-d',
-        'time' => 'H:i:s',
-    );
-
-    /**
      * Default format to use for __toString method when type juggling occurs.
      */
     const AM = 'ق.ظ';
@@ -1153,10 +1144,6 @@ class Verta extends DateTime {
      * @return string
      */
     public function format($format) {
-
-        if (in_array($format, array_keys(self::$formats))) {
-            $format = self::$formats[$format];
-        }
         return $this->strftime($format);
     }
 
@@ -1228,7 +1215,7 @@ class Verta extends DateTime {
      *
      * @return string
      */
-    public function diffFormat(Verta $v = null)
+    public function formatDifference(Verta $v = null)
     {
         $difference = $this->diffSeconds($v);
         $absolute = $difference < 0 ? self::POST : self::PRE;
