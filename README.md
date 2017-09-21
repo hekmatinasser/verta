@@ -1,3 +1,7 @@
+[![Latest Stable Version](https://poser.pugx.org/hekmatinasser/verta/v/stable)](https://packagist.org/packages/hekmatinasser/verta)
+[![Total Downloads](https://poser.pugx.org/hekmatinasser/verta/downloads)](https://packagist.org/packages/hekmatinasser/verta)
+[![License](https://poser.pugx.org/hekmatinasser/verta/license)](https://packagist.org/packages/hekmatinasser/verta)
+
 hekmatinasser/verta
 ======
 
@@ -203,6 +207,14 @@ return $v1->addDays(25)->formatDifference(); // 4 هفته بعد compare with n
 return $v1->subDays(6)->formatDifference(); // 6 روز قبل
 return verta()->formatDifference(); // الان
 ```
+get Word Format
+```php
+return $v->formatWord('Y'); // یک هزار و سیصد و نود و شش
+return $v->formatWord('l dS F'); // چهارشنبه بیست و نه ام شهریور
+return $v->formatWord('d F Y'); // بیست و نه شهریور یک هزار و سیصد و نود و شش
+return $v->formatWord('r'); // چهارشنبه یک هزار و سیصد و نود و شش, شش, بیست و نه, بیست و دو:چهل و نه:سی و هشت +04:30
+return $v->formatWord('d F ') . $v->year; // بیست و نه شهریور 1396
+``` 
 change number
 ```php
 $v = verta();

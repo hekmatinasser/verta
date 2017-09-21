@@ -13,9 +13,8 @@ namespace Hekmatinasser\Verta;
 
 use DateTime;
 use DateTimeZone;
-use DatePeriod;
 use InvalidArgumentException;
-use Exception;
+use Hekmatinasser\Notowo\Notowo;
 
 class Verta extends DateTime {
 
@@ -1020,6 +1019,160 @@ class Verta extends DateTime {
 	}
 
     /**
+     * The format of the outputted date string (jalali equivalent of php date() function)
+     *
+     * @param string $format for example 'Y-m-d H:i:s'
+     * @return string
+     */
+    protected function dateWord($format){
+
+        $timestamp = $this->getTimestamp();
+
+        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', date('Y-m-d-w', $timestamp));
+        list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
+        $pWeek = ($gWeek + 1);
+
+        if ($pWeek >= 7) {
+            $pWeek = 0;
+        }
+
+        if ($format == '\\') {
+            $format = '//';
+        }
+
+        $lenghFormat = strlen($format);
+        $i = 0;
+        $result = '';
+
+        $word = new Notowo(0, 'fa');
+
+        while ($i < $lenghFormat) {
+            $par = $format{$i};
+            if ($par == '\\') {
+                $result .= $format{ ++$i};
+                $i ++;
+                continue;
+            }
+            switch ($par) {
+                # Day
+                case 'd':
+                case 'j':
+                    $result .= $word->getWord(strval($pDay));
+                    break;
+
+                case 'D':
+                    $result .= substr(static::$dayWeek[$pWeek], 0, 2);
+                    break;
+
+                case 'l':
+                    $result .= static::$dayWeek[$pWeek];
+                    break;
+
+                case 'N':
+                    $result .= $word->getWord(strval($pWeek + 1));
+                    break;
+
+                case 'w':
+                    $result .= $word->getWord(strval($pWeek));
+                    break;
+
+                case 'z':
+                    $result .= $word->getWord(strval($this->daysYear($pMonth, $pDay)));
+                    break;
+
+                case 'S':
+                    $result .= self::NUMBER_TH;
+                    break;
+
+                # Week
+                case 'W':
+                    $result .= $word->getWord(strval(ceil($this->daysYear($pMonth, $pDay) / 7)));
+                    break;
+
+                # Month
+                case 'F':
+                    $result .= static::$monthYear[$pMonth-1];
+                    break;
+
+                case 'm':
+                case 'n':
+                    $result .= $word->getWord(strval($pMonth));
+                    break;
+
+                case 'M':
+                    $result .= substr(static::$monthYear[$pMonth-1], 0, 6);
+                    break;
+
+                case 't':
+                    $result .= $word->getWord(strval(static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth)-1]));
+                    break;
+
+                # Years
+                case 'L':
+                    $result .= intval($this->isLeapYear($pYear));
+                    break;
+
+                case 'Y':
+                case 'o':
+                    $result .= $word->getWord(strval($pYear));
+                    break;
+
+                case 'y':
+                    $result .= $word->getWord(strval(substr($pYear, 2)));
+                    break;
+
+                # Time
+                case 'a':
+                case 'A':
+                    if (date('a', $timestamp) == 'am') {
+                        $result .= (($par == 'a') ? self::AM : self::ANTE_MERIDIEM);
+                    } else {
+                        $result .= (($par == 'a') ? self::PM : self::POST_MERIDIEM);
+                    }
+                    break;
+
+                case 'B':
+                case 'g':
+                case 'G':
+                case 'h':
+                case 'H':
+                case 's':
+                case 'u':
+                case 'i':
+                    $result .= $word->getWord(strval(date($par, $timestamp)));
+                    break;
+                case 'e':
+                case 'I':
+                case 'O':
+                case 'P':
+                case 'T':
+                case 'Z':
+                    $result .= date($par, $timestamp);
+                    break;
+
+                # Full Date/Time
+                case 'c':
+                    $result .= $this->dateWord('Y, m, d, H:i:s P');
+                    break;
+
+                case 'r':
+                    $result .=  $this->dateWord('l Y, m, d, H:i:s P');
+                    break;
+
+                case 'U':
+                    $result .= $word->getWord(strval($timestamp));
+                    break;
+
+                default:
+                    $result .= $par;
+            }
+            $i ++;
+        }
+
+        return $result;
+    }
+
+    /**
      * return day number from first day of year
      *
      * @param int $month
@@ -1034,7 +1187,6 @@ class Verta extends DateTime {
         }
         return ($days + $day);
     }
-
 
 	/**
 	 * The format of the outputted date string (jalali equivalent of php strftime() function)
@@ -1130,11 +1282,7 @@ class Verta extends DateTime {
             "%",
         );
 
-        //Change Strftime format to Date format
-        $format = str_replace($str_format_code, $date_format_code, $format);
-
-        //Convert to date
-        return $this->date($format);
+        return str_replace($str_format_code, $date_format_code, $format);
     }
 
     /**
@@ -1144,7 +1292,7 @@ class Verta extends DateTime {
      * @return string
      */
     public function format($format) {
-        return $this->strftime($format);
+        return $this->date($this->strftime($format));
     }
 
     /**
@@ -1231,6 +1379,11 @@ class Verta extends DateTime {
         }
 
         return sprintf('%s %s %s', $difference, static::$unitName[$j], $absolute);
+    }
+
+    public function formatWord($format)
+    {
+        return $this->dateWord($this->strftime($format));
     }
 
    /**

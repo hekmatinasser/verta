@@ -11,7 +11,8 @@
     "keywords": ["Laravel","Date","Datetime","Jalali", "Shamsi", "Verta"],
     "require": {
         "php": ">=5.5",
-        "illuminate/support": "^5.0"
+        "illuminate/support": "^5.0",
+        "hekmatinasser/notowo": "^1.0"
        },
     "require-dev" : {},  
     "autoload": {
