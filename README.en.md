@@ -9,19 +9,20 @@ hekmatinasser/verta
 [English](https://github.com/hekmatinasser/verta/blob/master/README.en.md) ,
 [فارسی](https://github.com/hekmatinasser/verta/blob/master/README.md)
 
-- ورتا پکیجی برای تبدیلات و شامل توابع کمکی که کاربران به راحتی بتوانند تبدیلات تاریخ خود را انجام دهند.
-- ورتا پکیجی شامل الگوریتم تبدیل تاریخ شمسی به میلادی و بالعکس می باشد.
-- زبان پی اچ پی دارای کلاسی به نام تاریخ و زمان است که ورتا از همین کلاس ارث بری کرده است.
-- این پکیج با نسخه لاراول `>=5` & `< 6.0` سازگار می باشد.
-- الگوریتم مبدل تاریخ بر اساس الگوریتم تاریخ جلالی وحید سهراب لو، روزبه پورنادر و محمد توسی می باشد.
 
-##  نصب 
+- Verta is a package for conversions and includes auxiliary functions that allow users to easily convert their datetime.
+- Verta Package includes the conversion algorithm from Jalali to Gregorian and vice versa.
+- PHP language has a class called the Datetime that Verta has inherited from the same class.
+- This package is compatible with the laravel version `> = 5` &` <6.0`.
+- The algorithm for the datetime converter is based on Jalali Vahid Sohrab Lo, Roozbeh Pournader and Mohammad Tusi's algorithm.
 
-برای نصب ورتا دستور زیر را وارد کنید
+##  Install 
+
+To install Verta, enter the following command
 
     $ composer require hekmatinasser/verta
 
-حال باید پکیج را درون پروژه خود اضافه کنید برای این کار دستور زیر را وارد کنید
+Now you have to add the package to your project by entering the following command
 
 ```php
 // config/app.php
@@ -37,23 +38,23 @@ hekmatinasser/verta
 ]
 ```
 <a name="basic-usage"></a>
-## نحوه استفاده 
+## Usage 
 
-### افزودن کلاس 
- در بالای هر فایل خود از کلاس ورتا استفاده میکند، از دستور زیر استفاده کنید
+### Add Verta 
+Use the following command at the top of each file of the use Verta class
 ```php
 use Verta;
 // or
 use Hekmatinasser\Verta\Verta;
 ```
 
-### ایجاد کردن 
-برای بدست آوردن تاریخ و زمان کنونی، از دستور زیر استفاده کنید
+### construct 
+To get the current date and time, use the following command
 ```php
 $v = new Verta(); //1396-02-02 15:32:08
 $v = verta(); //1396-02-02 15:32:08
 ‍‍‍‍```
-برای بدست آوردن تاریخ و زمان کنونی، از دستور زیر استفاده کنید
+To get the current date and time, use the following command
 ‍‍```php
 $v = Verta::now(); //1396-02-02 15:32:08
 $v = Verta::today(); //1396-03-02 00:00:00
@@ -61,36 +62,36 @@ $v = Verta::tomorrow(); // 1396-03-03 00:00:00
 $v = Verta::yesterday(); // 1396-03-01 00:00:00
 ```
 
-برای تبدیل تاریخ میلادی خود، از دستور زیر استفاده کنید
+To convert your Gregorian datetime, use the following command
 ```php
 $v = new Verta('2016-12-27 14:12:32');
 $v = Verta::instance('2016-12-25 11:12:36');
 $v = Facades\Verta::instance('2016-12-25 11:12:36');
 ```
 
-برای استفاده از عدد تایم استمپ، از دستور زیر استفاده کنید
+To use the timestamp number, use the following command
 ```php
 $v = new Verta(1333857600);
 ```
 
-برای استفاده از کلاس تاریخ و زمان پی اچ پی، از دستور زیر استفاده کنید
+To use the Datetime class for PHP, use the following command
 ```php
 $dt = new \Datetime();
 return new Verta($dt); // 1395-12-09 15:05:56
 ```
 
-برای استفاده از کلاس کربن، از دستور زیر استفاده کنید
+To use the Carbon class, use the following command
 ```php
 $c = \Carbon::now();
 return verta($c); // 1395-12-09 15:05:56
 ```
 
-برای استفاده از تاریخ شمسی به صورت رشته، از دستور زیر استفاده کنید
+To use the jalali datetime as a string, use the following command
 ```php
 $v = Verta::parse('1395-10-07 14:12:32');
 ```
 
-در صورتی مقادیر تاریخ میلادی به صورت جداگانه باشد، از دستورات زیر استفاده کنید
+If the date values are separate, use the following commands
 ```php
 return Verta::create();  // 1395-12-14 11:17:01 equal now()
 return Verta::create(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
@@ -106,7 +107,7 @@ return Verta::createGregorianDate(2016,12,25); // 1395-10-05 21:35:49 set time n
 return Verta::createGregorianTime(15,51,5); // 1396-02-31 15:51:05 set date now
 ```
 
-در صورتی مقادیر تاریخ شمسی به صورت جداگانه باشد، از دستورات زیر استفاده کنید
+If the date jalali values are separate, use the following commands
 ```php
 // get Jalali datetime
 return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
@@ -114,8 +115,8 @@ return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
 return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 ```
 ---
-###  دریافت خصوصیات 
-برای دریافت خصوصیات، از دستورات زیر استفاده کنید
+### Get Property 
+To get property, use the following command
 ```php
 $v = verta(); // 1396-03-14 14:18:23
 return $v->year; // 1396
@@ -134,12 +135,12 @@ return $v->timestamp; // 1496557661
 return $v->timezone; // Asia/Tehran
 ```
 ---
-### مقدار دهی خصوصیات 
-برای مقدار دهی خصوصیات، از دستورات زیر استفاده کنید
+### Set property 
+To set property, use the following command
 ```php
 $v = verta();
 $v->year = 1395;
-$v->month = 4; // عدد 13 برای ثبت سال آینده اولین ماه
+$v->month = 4; // set 13 for next year first month
 $v->day = 25;
 $v->hour = 16;
 $v->minute = 50;
@@ -147,7 +148,7 @@ $v->second = 42;
 $v->timestamp = 1496557661;
 $v->timezone = 'Asia/Baku';
 ```
-برای مقدار دهی خصوصیات با استفاده از تابع، از دستورات زیر استفاده کنید
+To set property with method, use the following command
 ```php
 $v = $v->year(1395);
 $v = $v->month(4); // set 13 for next year first month
@@ -158,7 +159,7 @@ $v = $v->second(42);
 $v = $v->timestamp(1496557661);
 $v = $v->timezone('Asia/Baku');
 ```
-برای مقدار دهی خصوصیات با یکدیگر، از دستورات زیر استفاده کنید
+To set property together, use the following command
 ```php
 //
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42);
@@ -167,8 +168,8 @@ $v = $v->setDate(1395, 4, 25);
 $v = $v->setTimeString('12:25:48');
 ```
 ---
-### بررسی مقدار دهی 
-برای بررسی وجود خصوصیات، از دستورات زیر استفاده کنید
+### Isset 
+To isset the properties, use the following command
 ```php
 $v = verta();
 echo isset($v->year); // true
@@ -181,31 +182,30 @@ echo isset($v->timestamp); // true
 echo isset($v->timezone); // true
 ```
 ---
-### فرمت نمایش 
-برای تعیین فرمت خروجی پیش فرض، از دستور زیر استفاده کنید
+### Format 
+to default output format, use the following command
 ```php
 Verta::setStringformat('Y/n/j H:i:s');
 return verta(); // 1395/12/12 00:11:35
 ```
-برای تنظیم مجددفرمت خروجی به حالت اولیه، از دستور زیر استفاده کنید
+to reset output format, use the following command
 ```php
 Verta::resetStringFormat();
 return verta(); // 1395-12-12 00:18:04
 ```
-برای نمایش تاریخ، از دستور زیر استفاده کنید
+to output format, use the following command
 ```php
 $v = verta();
 return $v->format('Y-n-j H:i'); // 1395-10-7 14:12
 return $v->format('%B %d، %Y'); // دی 07، 1395
 return $v; //1395-10-07 14:12:32
 ```
-برای ساخت فرمت نمایش مورد نظر خود راهنمای پی اچ پی را مطالعه کنید
-
+Read the PHP manual to create the format you want
 [strftime()](http://php.net/manual/en/function.strftime.php)
 [date()](http://php.net/manual/en/function.date.php)
 
 
-برای نمایش تاریخ با فرمت های متعارف، از دستور زیر استفاده کنید
+To display the datetime in standard formats, use the following command
 ```php
 return $v->formatDatetime(); // 1395-12-10 23:37:26
 return $v->formatDate(); // 1395-12-10
@@ -213,13 +213,13 @@ return $v->formatTime(); // 23:26:35
 return $v->formatJalaliDatetime(); // 1395/12/10 23:46:09
 return $v->formatJalaliDate(); // 1395/12/10
 ```
-برای نمایش تاریخ به صورت میلادی، از دستور زیر استفاده کنید
+to output format Gregorian, use the following command
 ```php
 return $v->DateTime()->format('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 return $v->formatGregorian('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 ```
-برای نمایش اختلاف تاریخ به صورت واحد زمانی، از دستور زیر استفاده کنید
-درصورتی که تاریخ را وارد نکنید، اختلاف با زمان کنونی محاسبه می شود.
+To display the date difference as a unit of time, use the following command
+If you do set parameter, the difference is calculated with the current time.
 ```php
 return $v1->formatDifference($v2); // 12 ماه بعد
 return $v1->formatDifference($v3); // 1 سال قبل
@@ -227,7 +227,7 @@ return $v1->addDays(25)->formatDifference(); // 4 هفته بعد
 return $v1->subDays(6)->formatDifference(); // 6 روز قبل
 return verta()->formatDifference(); // الان
 ```
-برای نمایش اعداد به صورت حروف، از دستور زیر استفاده کنید
+To display numbers in alphabetical order, use the following command
 ```php
 return $v->formatWord('Y'); // یک هزار و سیصد و نود و شش
 return $v->formatWord('l dS F'); // چهارشنبه بیست و نه ام شهریور
@@ -235,15 +235,15 @@ return $v->formatWord('d F Y'); // بیست و نه شهریور یک هزار �
 return $v->formatWord('r'); // چهارشنبه یک هزار و سیصد و نود و شش, شش, بیست و نه, بیست و دو:چهل و نه:سی و هشت +04:30
 return $v->formatWord('d F ') . $v->year; // بیست و نه شهریور 1396
 ``` 
-برای تبدیل اعداد به فارسی، از دستور زیر استفاده کنید
+To convert numbers to Persian, use the following command
 ```php
 return Verta::persianNumbers($v); // ۱۳۹۶-۱۰-۰۷ ۱۴:۱۲:۳۲
 ```
 
 
 ---
-###  تغییر دادن 
-برای اضافه یا کم کردن از تاریخ خود، از دستور زیر استفاده کنید
+###  Modify 
+To add or sub datetime, use the following command
 ```php
 $v = verta();
 return $v->addYear(); // 1396-10-07 14:12:32
@@ -281,7 +281,7 @@ return $v->addSeconds(3); // 1395-10-07 14:12:35
 return $v->subSecond(); // 1395-10-07 14:12:31
 return $v->subSeconds(2); // 1395-10-07 14:12:30
 ```
-برای بدست آوردن تاریخ شروع و پاین هر بازه زمانی، از دستور زیر استفاده کنید
+To get start or end datetime period, use the following command
 ```php
 $v = verta(); // 1396-04-29 14:25:48
 return $v->startDay(); // 1396-04-29 00:00:00
@@ -296,14 +296,14 @@ return $v->startYear(); // 1396-01-01 00:00:00
 return $v->endYear(); // 1396-12-29 23:59:59
 ```
 ---
-#### بررسی 
-برای اعتبار سنجی تاریخ، از دستور زیر استفاده کنید
+#### Validation 
+To validate datetime, use the following command
 ```php
 echo Verta::isLeapYear(1394); // false
 echo Verta::isValideDate(1394, 12, 30); // false
 echo Verta::isValideTime(15, 12, 30); // true
 ```
-برای محاسبه اختلاف تاریخ ها با یکدیگر، از دستور زیر استفاده کنید
+To difference datetime together, use the following command
 ```php
 // diff objects together 
 $v1 = verta(); // 1396-03-31 22:21:40
@@ -318,7 +318,7 @@ return $v1->diffDays($v3); // -372
 return $v3->diffMinutes(); // 536548
 return $v3->diffMinutes(); // 536548
 ```
-برای مقایسه تاریخ ها با یکدیگر، از دستور زیر استفاده کنید
+To compere datetime together, use the following command
 ```php
 echo $v1->eq($v2); // false equalTo()
 echo $v1->ne($v2); // true notEqualTo()
@@ -328,7 +328,7 @@ echo $v1->lt($v2); // false lessThan()
 echo $v1->lte($v2); // false lessThanOrEqualTo()
 echo $v1->between($v2, $v3); // false
 ```
-برای بررسی تاریخ از لحاظ نزدیکتر یا دورتر بودن و یا کوچکتر و بزرگتر بودن، از دستور زیر استفاده کنید
+To compere datetime for closest, farthest, min or max together, use the following command
 ```php
 echo $v1->closest($v2, $v3); // return $v2 object
 echo $v1->farthest($v2, $v3); // return $v3 object
@@ -337,7 +337,7 @@ echo $v1->min($v2); // return $v2
 echo $v1->maximum($v2); // return $v1
 echo $v1->max($v2); // return $v1
 ```
-برای بررسی تاریخ با تاریخ فعلی، از دستور زیر استفاده کنید
+To compere datetime with now, use the following command
 ```php
 echo $v1->isWeekday(); // true
 echo $v1->isWeekend(); // false
@@ -371,27 +371,25 @@ echo $v1->isThursday(); // true
 echo $v1->isFriday(); // false
 ```
 ---
-#### تبدیلات 
-برای تبدیل از شمسی به میلادی به صورت ساده، از دستور زیر استفاده کنید
+### Transformations 
+Gregorian to Jalali date, use the following command
 ```php
 return Verta::getJalali(2015,12,25); // [1394,10,4]
 ```
-برای تبدیل از میلادی به شمسی به صورت ساده، از دستور زیر استفاده کنید
+Jalali to Gregorian date, use the following command
 ```php
 return Verta::getGregorian(1394,10,4); // [2015,12,25]
 ```
-برای تبدیل تاریخ از ورتا به تاریخ و زمان پی اچ پی، از دستور زیر استفاده کنید
+Verta to Datatime PHP, use the following command
 ```php
 $v = verta();
 $dt = $v->DateTime();
 ```
-برای تبدیل تاریخ از ورتا به کربن، از دستور زیر استفاده کنید
+Verta to Carbon, use the following command
 ```php
 $c = Carbon::instance($v->DateTime());
 ```
 
 ---
 ## License ##
--  این پکیج توسط [ناصر حکمتی](https://github.com/hekmatinasser) تحت مجوز 
-ام ای تی
- منتشر شده است.
+-  This package was created by [Nasser Hekmati](https://github.com/hekmatinasser) and is released under the MIT License.
