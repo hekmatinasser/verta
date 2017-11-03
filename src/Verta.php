@@ -344,11 +344,43 @@ class Verta extends DateTime {
      * @return static
      */
     public static function parse($datetime, $timezone = null) {
-        $parse = date_parse($datetime);
+        $monthName = array_map(function ($value) {
+            return ' ' . $value . ' ';
+        }, self::$monthYear);
+        $monthValue = array_map(function ($value) {
+            return '-' . $value . '-';
+        }, range(1,12));
+        $datetime = str_replace($monthName, $monthValue, $datetime);
 
+        $parse = date_parse($datetime);
         if($parse['error_count'] == 0){
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-            list( $hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+            list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+
+            $timezone = self::createTimeZone($timezone);
+            $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);
+            return new static($datetime);
+        }
+        else{
+            throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
+        }
+    }
+
+    /**
+     * Create a Verta instance from a DateTime one
+     *
+     * @param string $format
+     * @param string $datetime [optional]
+     * @param bool $timezone [optional]
+     * @return static
+     */
+    public static function parseFormat($format,$datetime, $timezone = null) {
+        $datetime = str_replace(self::$monthYear, range(1,12), $datetime);
+
+        $parse = date_parse_from_format($format, $datetime);
+        if($parse['error_count'] == 0){
+            list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
+            list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
             $timezone = self::createTimeZone($timezone);
             $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);

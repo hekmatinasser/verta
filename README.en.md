@@ -89,6 +89,8 @@ return verta($c); // 1395-12-09 15:05:56
 To use the jalali datetime as a string, use the following command
 ```php
 $v = Verta::parse('1395-10-07 14:12:32');
+$v = Verta::parse('1396 مهر 17'); 
+$v =  Verta::parseFormat('Y n j','1396 مهر 17');
 ```
 
 If the date values are separate, use the following commands
