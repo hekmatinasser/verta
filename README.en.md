@@ -317,7 +317,7 @@ return $v2->diffMonths(); // -11 compare with now
 return $v1->diffWeeks($v2); // 51
 return $v1->diffDays($v3); // -372
 return $v3->diffMinutes(); // 536548
-return $v3->diffMinutes(); // 536548
+return $v3->diffSeconds(); // 12261931
 ```
 To compere datetime together, use the following command
 ```php

@@ -287,7 +287,7 @@ class Verta extends DateTime {
     
     public static function today($timezone = null)
     {
-        return static::now($timezone)->startOfDay();
+        return static::now($timezone)->startDay();
     }
 
     /**
