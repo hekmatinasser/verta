@@ -2181,26 +2181,18 @@ class Verta extends DateTime {
             $year += intval($month / 12);
             $month = $month % 12;
         }
-        if ($month < 1) {
+        elseif ($month < 1) {
             $year += intval($month / 12) - 1;
             $month = 12 + ($month % 12);
         }
         if ($value > 0) {
-            if ($month > 6 && $day == 31) {
-                $day--;
-            }
-            if ($month == 12 && !self::isLeapYear($year)) {
+            if (($month > 6 && $day == 31) || ($month == 12 && $day == 30 && !self::isLeapYear($year))) {
                 $day--;
             }
         }
         else {
-            if ($month == 12 && $day == 31) {
-                if (self::isLeapYear($year)) {
-                    $day = 30;
-                }
-                else {
-                    $day = 29;
-                }
+            if (($month == 12 && $day == 31) || ($month == 12 && $day == 30)) {
+                $day = self::isLeapYear($year) ? 30 : 29;
             }
         }
         return self::createJalali($year, $month, $day, $hour, $minute, $second, $this->getTimeZone());
