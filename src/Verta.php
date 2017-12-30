@@ -240,11 +240,12 @@ class Verta extends DateTime {
     /**
      * create object of Jalali
      *
-     * @param timestamp $timestamp [optional]
+     * @param null $datetime
      * @param bool $timezone [optional]
+     * @internal param timestamp $timestamp [optional]
      */
 	public function __construct($datetime = null, $timezone = null) {
-		if ($datetime === null) {
+        if ($datetime === null) {
             $instance = time();
         }
         elseif (is_string($datetime)){
@@ -263,6 +264,7 @@ class Verta extends DateTime {
 		else {
 	        throw new \InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
 		}
+
         $timezone = static::createTimeZone($timezone);
 		parent::__construct(date('Y-m-d H:i:s.u', $instance), $timezone);
 	}
@@ -271,10 +273,11 @@ class Verta extends DateTime {
      * Create a Verta now datetime
      *
      *
+     * @param null $timezone
      * @return static
      */
-    public static function now() { 
-        return new static();
+    public static function now($timezone = null) {
+        return new static(null, $timezone);
     }
 
     /**
@@ -461,17 +464,21 @@ class Verta extends DateTime {
      */
     protected static function createTimeZone($timezone = null) {
         if ($timezone === null) {
-            return new DateTimeZone('Asia/Tehran');
+            $newTimezone = new DateTimeZone('Asia/Tehran');
         }
-        if ($timezone instanceof DateTimeZone) {
-            return $timezone;
+        elseif ($timezone instanceof DateTimeZone) {
+            $newTimezone = $timezone;
         }
-        $object = @timezone_open(strval($timezone));
-        if ($object === false) {
-            throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $timezone));
+        else {
+            $newTimezone = @timezone_open(strval($timezone));
+            if ($newTimezone === false) {
+                throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $newTimezone));
+            }
         }
 
-        return $object;
+        date_default_timezone_set($newTimezone->getName());
+
+        return $newTimezone;
     }
 
     /**
