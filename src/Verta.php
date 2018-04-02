@@ -464,7 +464,7 @@ class Verta extends DateTime {
      */
     protected static function createTimeZone($timezone = null) {
         if ($timezone === null) {
-            $newTimezone = new DateTimeZone('Asia/Tehran');
+            $newTimezone = new DateTimeZone(date_default_timezone_get());
         }
         elseif ($timezone instanceof DateTimeZone) {
             $newTimezone = $timezone;
@@ -475,8 +475,6 @@ class Verta extends DateTime {
                 throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $newTimezone));
             }
         }
-
-        date_default_timezone_set($newTimezone->getName());
 
         return $newTimezone;
     }
