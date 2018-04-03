@@ -139,7 +139,7 @@ class Verta extends DateTime {
      * @var array
      */
 	protected static $monthYear = array(
-		'فرودین',
+		'فروردین',
 		'اردیبهشت',
 		'خرداد',
 		'تیر',
