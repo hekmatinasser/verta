@@ -371,6 +371,68 @@ echo $v1->isWednesday(); // false
 echo $v1->isThursday(); // true
 echo $v1->isFriday(); // false
 ```
+
+##### Verta Validator For Laravel
+You can validate form with Validator Laravel.
+ 
+###### Define the Error Messages
+
+You need to define error messages for jdate, ... rules in validation.php in lang folders.
+Samples to copy & paste are provided under sample-lang directory of this package.
+For example, in your English translation are under resources/lang/en directory, copy these lines to resources/lang/en/validation.php:
+```php
+'jdate' => 'The :attribute is not valid Jalali date',
+'jdatetime' => 'The :attribute is not valid Jalali datetime',
+'jdate_after' => 'The :attribute must be a Jalali date after :date.',
+'jdatetime_after' => 'The :attribute must be a Jalali datetime after :date.',
+'jdate_before' => 'The :attribute must be a Jalali date before :date.',
+'jdatetime_before' => 'The :attribute must be a Jalali datetime before :date.',
+```
+###### Validation Rules
+jdate[:Y/m/d]
+Determines if an input is a valid Jalali date with the specified format. The default format is Y/m/d.
+
+jdatetime[:Y/m/d h:i:s]
+Determines if an input is a valid Jalali datetime with the specified format. The default format is Y/m/d H:i:s.
+
+jdate_after[[:1388/01/01],Y/m/d]
+Determines if an input is a valid Jalali date with the specified format and it is after a given date. The default format is Y/m/d and the default date is today.
+
+jdatetime_after[[:1380/1/1 12:00:00],Y/m/d H:i:s]
+Determines if an input is a valid Jalali datetime with the specified format and it is after a given datetime. The default format is Y/m/d H:i:s and the default time is now.
+
+jdate_before[[:1395-01-01],Y-m-d]
+Determines if an input is a valid Jalali date with the specified format and it is before a given date. The default format is Y/m/d and the default date is today.
+
+jdatetime_before:"1395-01-01 h:i","Y-m-d H:i:s"
+Determines if an input is a valid Jalali datetime with the specified format and it is before a given date-time. The default format is Y/m/d h:i:s and the default time is now.
+
+```php
+$validate = Validator::make([
+        'start_date' => '1389/01/31',
+        'expire_datetime' => '1397/02/16 12:10:00',
+    ],
+    [
+        'start_date' => 'required|jdate:Y/m/d|jdate_after:1388/01/01,Y/m/d|jdate_before:1390/01/01',
+        'expire_datetime' => 'required|jdatetime|jdatetime_after:1397/02/16 12:09:50,Y/m/d H:i:s|jdatetime_before:1397/02/16 12:11:00',
+    ]);
+
+    if ($validate->fails()) {
+        dd($validate->messages()->toArray());
+    }
+    
+    //output
+array:2 [
+  "start_date" => array:1 [
+    0 => "The start date must be a Jalali date before 1390/01/01."
+  ]
+  "expire_datetime" => array:1 [
+    0 => "The expire datetime must be a Jalali datetime before 1397/02/16 12:10:00."
+  ]
+]
+    
+
+```
 ---
 ### Transformations 
 Gregorian to Jalali date, use the following command

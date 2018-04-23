@@ -139,7 +139,7 @@ class Verta extends DateTime {
      * @var array
      */
 	protected static $monthYear = array(
-		'فرودین',
+		'فروردین',
 		'اردیبهشت',
 		'خرداد',
 		'تیر',
@@ -381,7 +381,7 @@ class Verta extends DateTime {
         $datetime = str_replace(self::$monthYear, range(1,12), $datetime);
 
         $parse = date_parse_from_format($format, $datetime);
-        if($parse['error_count'] == 0){
+        if($parse['error_count'] == 0 && self::isValideDate($parse['year'], $parse['month'], $parse['day']) && self::isValideTime($parse['hour'], $parse['minute'], $parse['second'])){
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
             list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
