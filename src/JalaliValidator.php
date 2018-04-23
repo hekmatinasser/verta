@@ -25,7 +25,7 @@ class JalaliValidator
             return false;
         }
 
-        $format = count($parameters) ? $parameters[0] : 'Y/m/d h:i:s';
+        $format = count($parameters) ? $parameters[0] : 'Y/m/d H:i:s';
         try {
             Verta::parseFormat($format, $value);
         } catch (\Exception $e) {
