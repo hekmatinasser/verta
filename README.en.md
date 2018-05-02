@@ -12,7 +12,7 @@ hekmatinasser/verta
 
 - Verta is a package for conversions jalali and datetime and includes auxiliary functions that allow users to easily convert their datetime.
 - PHP language has a class for the Datetime that Verta has inherited from the same class.
-- This package is compatible with the laravel version `5.5`.
+- This package is compatible with the laravel versions `5.x`.
 - Verta Package includes the conversion algorithm from Jalali to Gregorian and vice versa. The algorithm for the datetime converter is based on Jalali Vahid Sohrab Lo, Roozbeh Pournader and Mohammad Tusi's algorithm.
 
 ##  Install 
