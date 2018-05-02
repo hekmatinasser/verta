@@ -1578,9 +1578,9 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function eq(Verta $v)
+    public function eq(Verta $v = null)
     {
-        return $this == $v;
+        return $this == ($v ?: new static());
     }
 
     /**
@@ -1592,7 +1592,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function equalTo(Verta $v)
+    public function equalTo(Verta $v = null)
     {
         return $this->eq($v);
     }
@@ -1604,7 +1604,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function ne(Verta $v)
+    public function ne(Verta $v = null)
     {
         return !$this->eq($v);
     }
@@ -1618,7 +1618,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function notEqualTo(Verta $v)
+    public function notEqualTo(Verta $v = null)
     {
         return $this->ne($v);
     }
@@ -1630,9 +1630,9 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function gt(Verta $v)
+    public function gt(Verta $v = null)
     {
-        return $this > $v;
+        return $this > ($v ?: new static());
     }
 
     /**
@@ -1644,7 +1644,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function greaterThan(Verta $v)
+    public function greaterThan(Verta $v = null)
     {
         return $this->gt($v);
     }
@@ -1656,9 +1656,9 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function gte(Verta $v)
+    public function gte(Verta $v = null)
     {
-        return $this >= $v;
+        return $this >= ($v ?: new static());
     }
 
     /**
@@ -1670,7 +1670,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function greaterThanOrEqualTo(Verta $v)
+    public function greaterThanOrEqualTo(Verta $v = null)
     {
         return $this->gte($v);
     }
@@ -1682,9 +1682,9 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function lt(Verta $v)
+    public function lt(Verta $v = null)
     {
-        return $this < $v;
+        return $this < ($v ?: new static());
     }
 
     /**
@@ -1696,7 +1696,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function lessThan(Verta $v)
+    public function lessThan(Verta $v = null)
     {
         return $this->lt($v);
     }
@@ -1708,9 +1708,9 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function lte(Verta $v)
+    public function lte(Verta $v = null)
     {
-        return $this <= $v;
+        return $this <= ($v ?: new static());
     }
 
     /**
@@ -1722,7 +1722,7 @@ class Verta extends DateTime {
      *
      * @return bool
      */
-    public function lessThanOrEqualTo(Verta $v)
+    public function lessThanOrEqualTo(Verta $v = null)
     {
         return $this->lte($v);
     }

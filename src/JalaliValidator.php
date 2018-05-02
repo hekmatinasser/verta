@@ -41,7 +41,7 @@ class JalaliValidator
         }
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         try {
-            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : new Verta();
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
             return Verta::parseFormat($format, $value)->greaterThan($base);
         } catch (\Exception $e) {
             return false;
@@ -55,7 +55,7 @@ class JalaliValidator
         }
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         try {
-            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : new Verta();
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
             return Verta::parseFormat($format, $value)->greaterThan($base);
         } catch (\Exception $e) {
             return false;
@@ -69,7 +69,7 @@ class JalaliValidator
         }
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         try {
-            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : new Verta();
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
             return Verta::parseFormat($format, $value)->lessThan($base);
         } catch (\Exception $e) {
             return false;
@@ -83,7 +83,7 @@ class JalaliValidator
         }
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         try {
-            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : new Verta();
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
             return Verta::parseFormat($format, $value)->lessThan($base);
         } catch (\Exception $e) {
             return false;

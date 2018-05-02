@@ -321,12 +321,12 @@ return $v3->diffSeconds(); // 12261931
 ```
 To compere datetime together, use the following command
 ```php
-echo $v1->eq($v2); // false equalTo()
-echo $v1->ne($v2); // true notEqualTo()
-echo $v1->gt($v2); // true greaterThan()
-echo $v1->gte($v2); // true greaterThanOrEqualTo()
-echo $v1->lt($v2); // false lessThan()
-echo $v1->lte($v2); // false lessThanOrEqualTo()
+echo $v1->eq(); // ture alias equalTo()
+echo $v1->ne($v2); // true alias notEqualTo()
+echo $v1->gt($v2); // true alias greaterThan()
+echo $v1->gte($v2); // true alias greaterThanOrEqualTo()
+echo $v1->lt($v2); // false alias lessThan()
+echo $v1->lte($v2); // false alias lessThanOrEqualTo()
 echo $v1->between($v2, $v3); // false
 ```
 To compere datetime for closest, farthest, min or max together, use the following command
