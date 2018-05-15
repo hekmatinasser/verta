@@ -24,5 +24,15 @@
             "src/helpers.php"
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hekmatinasser\\Verta\\VertaServiceProvider"
+            ],
+            "aliases": {
+                "Verta": "Hekmatinasser\\Verta\\Verta"
+            }
+        }
+    }
 }
