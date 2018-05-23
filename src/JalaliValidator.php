@@ -19,6 +19,34 @@ class JalaliValidator
         return true;
     }
 
+    public function validateDateEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->eq($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function validateDateNotEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->ne($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public function validateDateTime($attribute, $value, $parameters)
     {
         if (!is_string($value)) {
@@ -34,6 +62,34 @@ class JalaliValidator
         return true;
     }
 
+    public function validateDateTimeEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->eq($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function validateDateTimeNotEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->ne($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public function validateDateAfter($attribute, $value, $parameters)
     {
         if (!is_string($value)) {
@@ -42,7 +98,21 @@ class JalaliValidator
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         try {
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
-            return Verta::parseFormat($format, $value)->greaterThan($base);
+            return Verta::parseFormat($format, $value)->gt($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function validateDateAfterEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->gte($base);
         } catch (\Exception $e) {
             return false;
         }
@@ -56,7 +126,21 @@ class JalaliValidator
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         try {
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
-            return Verta::parseFormat($format, $value)->greaterThan($base);
+            return Verta::parseFormat($format, $value)->gt($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function validateDateTimeAfterEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->gte($base);
         } catch (\Exception $e) {
             return false;
         }
@@ -70,7 +154,21 @@ class JalaliValidator
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         try {
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
-            return Verta::parseFormat($format, $value)->lessThan($base);
+            return Verta::parseFormat($format, $value)->lt($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function validateDateBeforeEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->lte($base);
         } catch (\Exception $e) {
             return false;
         }
@@ -84,23 +182,32 @@ class JalaliValidator
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         try {
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
-            return Verta::parseFormat($format, $value)->lessThan($base);
+            return Verta::parseFormat($format, $value)->lt($base);
         } catch (\Exception $e) {
             return false;
         }
     }
 
-    public function replaceDate($message, $attribute, $rule, $parameters)
+    public function validateDateTimeBeforeEqual($attribute, $value, $parameters)
+    {
+        if (!is_string($value)) {
+            return false;
+        }
+        $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
+        try {
+            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            return Verta::parseFormat($format, $value)->lte($base);
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function replaceDateOrDatetime($message, $attribute, $rule, $parameters)
     {
         return $message;
     }
 
-    public function replaceDatetime($message, $attribute, $rule, $parameters)
-    {
-        return $message;
-    }
-
-    public function replaceDateAfterOrBefore($message, $attribute, $rule, $parameters)
+    public function replaceDateAfterOrBeforeOrEqual($message, $attribute, $rule, $parameters)
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
@@ -108,7 +215,7 @@ class JalaliValidator
         return str_replace([':date', ':fa-date'], [$date, $faDate], $message);
     }
 
-    public function replaceDateTimeAfterOrBefore($message, $attribute, $rule, $parameters)
+    public function replaceDateTimeAfterOrBeforeOrEqual($message, $attribute, $rule, $parameters)
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);

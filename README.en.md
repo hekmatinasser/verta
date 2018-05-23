@@ -392,20 +392,44 @@ For example, in your English translation are under resources/lang/en directory, 
 jdate[:Y/m/d]
 Determines if an input is a valid Jalali date with the specified format. The default format is Y/m/d.
 
+jdate_equal[:1388/01/01],Y/m/d]
+Determines if an input is a valid Jalali date with the specified format and it is equal a given date. The default format is Y/m/d.
+
+jdate_not_equal[:1388/01/01],Y/m/d]
+Determines if an input is a valid Jalali date with the specified format and it is not equal a given datet. The default format is Y/m/d.
+
 jdatetime[:Y/m/d h:i:s]
 Determines if an input is a valid Jalali datetime with the specified format. The default format is Y/m/d H:i:s.
+
+jdatetime_equal[[:1380/1/1 12:00:00],Y/m/d H:i:s]
+Determines if an input is a valid Jalali datetime with the specified format and it is equal a given datetime. The default format is Y/m/d H:i:s.
+
+jdatetime_not_equal[:Y/m/d h:i:s]
+Determines if an input is a valid Jalali datetime with the specified format and it is not equal a given datetime. The default format is Y/m/d H:i:s.
 
 jdate_after[[:1388/01/01],Y/m/d]
 Determines if an input is a valid Jalali date with the specified format and it is after a given date. The default format is Y/m/d and the default date is today.
 
+jdate_after_equal[[:1388/01/01],Y/m/d]
+Determines if an input is a valid Jalali date with the specified format and it is after or equal a given date. The default format is Y/m/d and the default date is today.
+
 jdatetime_after[[:1380/1/1 12:00:00],Y/m/d H:i:s]
 Determines if an input is a valid Jalali datetime with the specified format and it is after a given datetime. The default format is Y/m/d H:i:s and the default time is now.
+
+jdatetime_after_equal[[:1380/1/1 12:00:00],Y/m/d H:i:s]
+Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime. The default format is Y/m/d H:i:s and the default time is now.
 
 jdate_before[[:1395-01-01],Y-m-d]
 Determines if an input is a valid Jalali date with the specified format and it is before a given date. The default format is Y/m/d and the default date is today.
 
-jdatetime_before:"1395-01-01 h:i","Y-m-d H:i:s"
+jdate_before_equal[[:1395-01-01],Y-m-d]
+Determines if an input is a valid Jalali date with the specified format and it is before or equal a given date. The default format is Y/m/d and the default date is today.
+
+jdatetime_before:[[:1395/1/1 12:00:00],Y/m/d H:i:s]
 Determines if an input is a valid Jalali datetime with the specified format and it is before a given date-time. The default format is Y/m/d h:i:s and the default time is now.
+
+jdatetime_before_equal:[[:1395/1/1 12:00:00],Y/m/d H:i:s]
+Determines if an input is a valid Jalali datetime with the specified format and it is before or equal a given date-time. The default format is Y/m/d h:i:s and the default time is now.
 
 ```php
 $validate = Validator::make([
