@@ -1219,7 +1219,7 @@ class Verta extends DateTime {
      */
     protected function daysYear($month, $day) {
         $days = 0;
-        for ($i = 0; $i < $month; $i ++) {
+        for ($i = 1; $i < $month; $i ++) {
             $days += static::$daysMonthJalali[$i];
         }
         return ($days + $day);
