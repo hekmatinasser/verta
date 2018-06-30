@@ -330,6 +330,16 @@ class Verta extends DateTime {
     }
 
     /**
+     * Get a copy of the instance.
+     *
+     * @return static
+     */
+    public function copy()
+    {
+        return clone $this;
+    }
+
+    /**
      * Create a DateTime instance from Verta
      *
      * @return DateTime $datetime
