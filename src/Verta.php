@@ -518,7 +518,7 @@ class Verta extends DateTime {
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
-        if (!checkdate($year, $month, $day) || !static::isValideTime($hour, $minute, $second)) {
+        if (!checkdate($month, $day, $year) || !static::isValideTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
