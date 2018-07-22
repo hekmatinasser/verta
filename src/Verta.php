@@ -2200,13 +2200,12 @@ class Verta extends DateTime {
             $year += intval($month / 12) - 1;
             $month = 12 + ($month % 12);
         }
-        if ($value > 0) {
-            if (($month > 6 && $day == 31) || ($month == 12 && $day == 30 && !self::isLeapYear($year))) {
-                $day--;
-            }
+
+        if (($month > 6 && $month < 12 && $day == 31)) {
+            $day--;
         }
         else {
-            if (($month == 12 && $day == 31) || ($month == 12 && $day == 30)) {
+            if ($month == 12 && ($day == 30 || $day == 31)) {
                 $day = self::isLeapYear($year) ? 30 : 29;
             }
         }
