@@ -2607,6 +2607,13 @@ class Verta extends DateTime {
 
     /*****************************  TRANSFORMATION  ****************************/
 
+    /** Gregorian & Jalali (Hijri_Shamsi,Solar) Date Converter Functions
+    Author: JDF.SCR.IR =>> Download Full Version : http://jdf.scr.ir/jdf
+    License: GNU/LGPL _ Open Source & Free _ Version: 2.72 [Custom-made]
+    --------------------------------------------------------------------
+    1461 = 365*4 + 4/4   &  146097 = 365*400 + 400/4 - 400/100 + 400/400
+    12053 = 365*33 + 32/4    &    36524 = 365*100 + 100/4 - 100/100   */
+
     /**
      * gregorian to jalali convertion
      *
@@ -2615,30 +2622,28 @@ class Verta extends DateTime {
      * @param int $g_d
      * @return array
      */
-    public static function getJalali($g_y, $g_m, $g_d) {
-        $gy = $g_y - 1600;
-        $gm = $g_m - 1;
-        $g_day_no = (365 * $gy + static::div($gy + 3, 4) - static::div($gy + 99, 100) + static::div($gy + 399, 400));
-        for ($i = 0; $i < $gm; ++$i) {
-            $g_day_no += static::$daysMonthGregorian[$i];
+    function getJalali($gy, $gm, $gd) {
+        $g_d_m = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334);
+        if ($gy > 1600) {
+            $jy = 979;
+            $gy -= 1600;
+        } else {
+            $jy = 0;
+            $gy -= 621;
         }
-        if ($gm > 1 && (($gy % 4 == 0 && $gy % 100 != 0) || ($gy % 400 == 0)))
-            # leap and after Feb
-            $g_day_no ++;
-        $g_day_no += $g_d - 1;
-        $j_day_no = $g_day_no - 79;
-        $j_np = static::div($j_day_no, 12053); # 12053 = (365 * 33 + 32 / 4)
-        $j_day_no = $j_day_no % 12053;
-        $jy = (979 + 33 * $j_np + 4 * static::div($j_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
-        $j_day_no %= 1461;
-        if ($j_day_no >= 366) {
-            $jy += static::div($j_day_no - 1, 365);
-            $j_day_no = ($j_day_no - 1) % 365;
+        $gy2 = ($gm > 2) ? ($gy + 1) : $gy;
+        $days = (365 * $gy) + ((int) (($gy2 + 3) / 4)) - ((int) (($gy2 + 99) / 100)) + ((int) (($gy2 + 399) / 400)) - 80 + $gd + $g_d_m[$gm - 1];
+        $jy += 33 * ((int) ($days / 12053));
+        $days %= 12053;
+        $jy += 4 * ((int) ($days / 1461));
+        $days %= 1461;
+        if ($days > 365) {
+            $jy += (int) (($days - 1) / 365);
+            $days = ($days - 1) % 365;
         }
-        for ($i = 0; ($i < 11 && $j_day_no >= static::$daysMonthJalali[$i]); ++$i) {
-            $j_day_no -= static::$daysMonthJalali[$i];
-        }
-        return array($jy, $i + 1, $j_day_no + 1);
+        $jm = ($days < 186) ? 1 + (int) ($days / 31) : 7 + (int) (($days - 186) / 30);
+        $jd = 1 + (($days < 186) ? ($days % 31) : (($days - 186) % 30));
+        return array($jy, $jm, $jd);
     }
 
     /**
@@ -2649,50 +2654,39 @@ class Verta extends DateTime {
      * @param int $j_d
      * @return array
      */
-    public static function getGregorian($j_y, $j_m, $j_d) {
-        $jy = $j_y - 979;
-        $jm = $j_m - 1;
-        $j_day_no = (365 * $jy + static::div($jy, 33) * 8 + static::div($jy % 33 + 3, 4));
-        for ($i = 0; $i < $jm; ++$i) {
-            $j_day_no += static::$daysMonthJalali[$i];
+    function getGregorian($jy, $jm, $jd) {
+        if ($jy > 979) {
+            $gy = 1600;
+            $jy -= 979;
+        } else {
+            $gy = 621;
         }
-        $j_day_no += $j_d - 1;
-        $g_day_no = $j_day_no + 79;
-        $gy = (1600 + 400 * static::div($g_day_no, 146097)); # 146097 = (365 * 400 + 400 / 4 - 400 / 100 + 400 / 400)
-        $g_day_no = $g_day_no % 146097;
-        $leap = 1;
-        if ($g_day_no >= 36525) { # 36525 = (365 * 100 + 100 / 4)
-            $g_day_no --;
-            $gy += (100 * static::div($g_day_no, 36524)); # 36524 = (365 * 100 + 100 / 4 - 100 / 100)
-            $g_day_no = $g_day_no % 36524;
-            if ($g_day_no >= 365) {
-                $g_day_no ++;
-            } else {
-                $leap = 0;
+        $days = (365 * $jy) + (((int) ($jy / 33)) * 8) + ((int) ((($jy % 33) + 3) / 4)) + 78 + $jd + (($jm < 7) ? ($jm - 1) * 31 : (($jm - 7) * 30) + 186);
+        $gy += 400 * ((int) ($days / 146097));
+        $days %= 146097;
+        if ($days > 36524) {
+            $gy += 100 * ((int) (--$days / 36524));
+            $days %= 36524;
+            if ($days >= 365) {
+                $days++;
             }
         }
-        $gy += (4 * static::div($g_day_no, 1461)); # 1461 = (365 * 4 + 4 / 4)
-        $g_day_no %= 1461;
-        if ($g_day_no >= 366) {
-            $leap = 0;
-            $g_day_no --;
-            $gy += static::div($g_day_no, 365);
-            $g_day_no = ($g_day_no % 365);
+        $gy += 4 * ((int) ($days / 1461));
+        $days %= 1461;
+        if ($days > 365) {
+            $gy += (int) (($days - 1) / 365);
+            $days = ($days - 1) % 365;
         }
-        for ($i = 0; $g_day_no >= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap)); $i ++) {
-            $g_day_no -= (static::$daysMonthGregorian[$i] + ($i == 1 && $leap));
+        $gd = $days + 1;
+        foreach (array(0, 31, (($gy % 4 == 0 and $gy % 100 != 0) or ($gy % 400 == 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31) as $gm => $v) {
+            if ($gd <= $v) {
+                break;
+            }
+
+            $gd -= $v;
         }
-        return array($gy, $i + 1, $g_day_no + 1);
+        return array($gy, $gm, $gd);
     }
 
-    /**
-     * integer division
-     *
-     * @param int $a
-     * @param int $b
-     * @return int
-     */
-    private static function div($a, $b) {
-        return ~~($a / $b);
-    }
+
 }
