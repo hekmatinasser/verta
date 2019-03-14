@@ -18,9 +18,9 @@ use Hekmatinasser\Notowo\Notowo;
 
 class Verta extends DateTime {
 
-    /*****************************  STATCT VARIABLE  ****************************/
+     /*****************************  STATCT VARIABLE  ****************************/
 	
-	/**
+     /**
      * The day constants
      */
     const SATURDAY = 0;
@@ -31,7 +31,7 @@ class Verta extends DateTime {
     const THURSDAY = 5;
     const FRIDAY = 6;
 
-	/**
+     /**
      * Number unit in date
      */
     const YEARS_PER_CENTURY = 100;
@@ -92,26 +92,6 @@ class Verta extends DateTime {
     const PRE = 'قبل';
     const NOW = 'الان';
     const POST = 'بعد';
-
-    /**
-     * number day in months gregorian
-     *
-     * @var array
-     */
-    protected static $daysMonthGregorian = array(
-    	31,
-    	28,
-    	31,
-    	30,
-    	31,
-    	30,
-    	31,
-    	31,
-    	30,
-    	31,
-    	30,
-    	31,
-    );	
 
     /**
      * number day in month jalali
@@ -2605,7 +2585,7 @@ class Verta extends DateTime {
         return $this->setDateTime($this->year, 12, $day, 23, 59, 59);
     }
 
-    /*****************************  TRANSFORMATION  ****************************/
+    /************************  TRANSFORMATION  ************************/
 
     /** Gregorian & Jalali (Hijri_Shamsi,Solar) Date Converter Functions
     Author: JDF.SCR.IR =>> Download Full Version : http://jdf.scr.ir/jdf
@@ -2617,10 +2597,10 @@ class Verta extends DateTime {
     /**
      * gregorian to jalali convertion
      *
-     * @param int $g_y
-     * @param int $g_m
-     * @param int $g_d
-     * @return array
+     * @param int $gy
+     * @param int $gm
+     * @param int $gd
+     * @return array($jy, $jm, $jd)
      */
     function getJalali($gy, $gm, $gd) {
         $g_d_m = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334);
@@ -2649,10 +2629,10 @@ class Verta extends DateTime {
     /**
      * jalali to gregorian convertion
      *
-     * @param int $j_y
-     * @param int $j_m
-     * @param int $j_d
-     * @return array
+     * @param int $jy
+     * @param int $jm
+     * @param int $jd
+     * @return array($gy, $gm, $gd)
      */
     function getGregorian($jy, $jm, $jd) {
         if ($jy > 979) {
@@ -2682,11 +2662,9 @@ class Verta extends DateTime {
             if ($gd <= $v) {
                 break;
             }
-
             $gd -= $v;
         }
         return array($gy, $gm, $gd);
     }
-
 
 }
