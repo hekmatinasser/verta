@@ -13,14 +13,15 @@ namespace Hekmatinasser\Verta;
 
 use DateTime;
 use DateTimeZone;
-use InvalidArgumentException;
 use Hekmatinasser\Notowo\Notowo;
+use InvalidArgumentException;
 
-class Verta extends DateTime {
+class Verta extends DateTime
+{
 
-     /*****************************  STATCT VARIABLE  ****************************/
-	
-     /**
+    /*****************************  STATCT VARIABLE  ****************************/
+
+    /**
      * The day constants
      */
     const SATURDAY = 0;
@@ -31,7 +32,7 @@ class Verta extends DateTime {
     const THURSDAY = 5;
     const FRIDAY = 6;
 
-     /**
+    /**
      * Number unit in date
      */
     const YEARS_PER_CENTURY = 100;
@@ -47,7 +48,7 @@ class Verta extends DateTime {
 
     /**
      * Word use in format datetime.
-    */
+     */
     const DEFAULT_STRING_FORMAT = 'Y-m-d H:i:s';
 
     /**
@@ -98,39 +99,39 @@ class Verta extends DateTime {
      *
      * @var array
      */
-	protected static $daysMonthJalali = array(
-		31,
-		31,
-		31,
-		31,
-		31,
-		31,
-		30,
-		30,
-		30,
-		30,
-		30,
-		29,
-	);
+    protected static $daysMonthJalali = array(
+        31,
+        31,
+        31,
+        31,
+        31,
+        31,
+        30,
+        30,
+        30,
+        30,
+        30,
+        29,
+    );
 
     /**
      * month name jalali
      *
      * @var array
      */
-	protected static $monthYear = array(
-		'فروردین',
-		'اردیبهشت',
-		'خرداد',
-		'تیر',
-		'مرداد',
-		'شهریور',
-		'مهر',
-		'آبان',
-		'آذر',
-		'دی',
-		'بهمن',
-		'اسفند',
+    protected static $monthYear = array(
+        'فروردین',
+        'اردیبهشت',
+        'خرداد',
+        'تیر',
+        'مرداد',
+        'شهریور',
+        'مهر',
+        'آبان',
+        'آذر',
+        'دی',
+        'بهمن',
+        'اسفند',
     );
 
     /**
@@ -153,31 +154,31 @@ class Verta extends DateTime {
      *
      * @var array
      */
-	protected static $unitName = array(
-		'ثانیه',
-		'دقیقه', 
-		'ساعت', 
-		'روز', 
-		'هفته', 
-		'ماه', 
-		'سال', 
-		'قرن'
-	);
+    protected static $unitName = array(
+        'ثانیه',
+        'دقیقه',
+        'ساعت',
+        'روز',
+        'هفته',
+        'ماه',
+        'سال',
+        'قرن',
+    );
 
     /**
      * unit date number.
      *
      * @var array
      */
-	protected static $unitNumber = array(
-		self::SECONDS_PER_MINUTE, 
-		self::MINUTES_PER_HOUR, 
-		self::HOURS_PER_DAY, 
-		self::DAYS_PER_WEEK, 
-		self::WEEKS_PER_MONTH, 
-		self::MONTHS_PER_YEAR, 
-		self::YEARS_PER_DECADE,
-	);
+    protected static $unitNumber = array(
+        self::SECONDS_PER_MINUTE,
+        self::MINUTES_PER_HOUR,
+        self::HOURS_PER_DAY,
+        self::DAYS_PER_WEEK,
+        self::WEEKS_PER_MONTH,
+        self::MONTHS_PER_YEAR,
+        self::YEARS_PER_DECADE,
+    );
 
     /**
      * persian number.
@@ -224,30 +225,27 @@ class Verta extends DateTime {
      * @param bool $timezone [optional]
      * @internal param timestamp $timestamp [optional]
      */
-	public function __construct($datetime = null, $timezone = null) {
+    public function __construct($datetime = null, $timezone = null)
+    {
         if ($datetime === null) {
             $instance = time();
-        }
-        elseif (is_string($datetime)){
+        } elseif (is_string($datetime)) {
             $object = date_create($datetime);
             if ($object === false) {
                 throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
             }
             $instance = $object->getTimestamp();
-        }
-        elseif ($datetime instanceof DateTime || $datetime instanceof Verta) {
+        } elseif ($datetime instanceof DateTime || $datetime instanceof Verta) {
             $instance = $datetime->getTimestamp();
-        }
-        elseif (is_numeric($datetime)) {
+        } elseif (is_numeric($datetime)) {
             $instance = $datetime;
+        } else {
+            throw new \InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
-		else {
-	        throw new \InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
-		}
 
         $timezone = static::createTimeZone($timezone);
-		parent::__construct(date('Y-m-d H:i:s.u', $instance), $timezone);
-	}
+        parent::__construct(date('Y-m-d H:i:s.u', $instance), $timezone);
+    }
 
     /**
      * Create a Verta now datetime
@@ -256,7 +254,8 @@ class Verta extends DateTime {
      * @param null $timezone
      * @return static
      */
-    public static function now($timezone = null) {
+    public static function now($timezone = null)
+    {
         return new static(null, $timezone);
     }
 
@@ -267,7 +266,7 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    
+
     public static function today($timezone = null)
     {
         return static::now($timezone)->startDay();
@@ -305,7 +304,8 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    public static function instance($datetime = null, $timezone = null) { 
+    public static function instance($datetime = null, $timezone = null)
+    {
         return new static($datetime, $timezone);
     }
 
@@ -324,11 +324,12 @@ class Verta extends DateTime {
      *
      * @return DateTime $datetime
      */
-    public function DateTime() { 
+    public function DateTime()
+    {
         return new DateTime(date('Y-m-d H:i:s.u', $this->getTimestamp()), $this->getTimeZone());
     }
 
-   /**
+    /**
      * Create a Verta instance from a DateTime one
      *
      * @param timestamp $datetime [optional]
@@ -336,25 +337,25 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    public static function parse($datetime, $timezone = null) {
+    public static function parse($datetime, $timezone = null)
+    {
         $monthName = array_map(function ($value) {
             return ' ' . $value . ' ';
         }, self::$monthYear);
         $monthValue = array_map(function ($value) {
             return '-' . $value . '-';
-        }, range(1,12));
+        }, range(1, 12));
         $datetime = str_replace($monthName, $monthValue, $datetime);
 
         $parse = date_parse($datetime);
-        if($parse['error_count'] == 0){
+        if ($parse['error_count'] == 0) {
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-            list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+            list($hour, $minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
             $timezone = self::createTimeZone($timezone);
             $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);
             return new static($datetime);
-        }
-        else{
+        } else {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
     }
@@ -367,19 +368,19 @@ class Verta extends DateTime {
      * @param bool $timezone [optional]
      * @return static
      */
-    public static function parseFormat($format,$datetime, $timezone = null) {
-        $datetime = str_replace(self::$monthYear, range(1,12), $datetime);
+    public static function parseFormat($format, $datetime, $timezone = null)
+    {
+        $datetime = str_replace(self::$monthYear, range(1, 12), $datetime);
 
         $parse = date_parse_from_format($format, $datetime);
-        if($parse['error_count'] == 0 && self::isValideDate($parse['year'], $parse['month'], $parse['day']) && self::isValideTime($parse['hour'], $parse['minute'], $parse['second'])){
+        if ($parse['error_count'] == 0 && self::isValideDate($parse['year'], $parse['month'], $parse['day']) && self::isValideTime($parse['hour'], $parse['minute'], $parse['second'])) {
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-            list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+            list($hour, $minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
             $timezone = self::createTimeZone($timezone);
             $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second), $timezone);
             return new static($datetime);
-        }
-        else{
+        } else {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
     }
@@ -434,7 +435,7 @@ class Verta extends DateTime {
     {
         return static::create(null, null, null, $hour, $minute, $second, $timezone);
     }
-        
+
     /**
      * Create a Verta instance from a timestamp.
      *
@@ -452,14 +453,13 @@ class Verta extends DateTime {
      * @param null $timezone
      * @return DateTimeZone|null
      */
-    protected static function createTimeZone($timezone = null) {
+    protected static function createTimeZone($timezone = null)
+    {
         if ($timezone === null) {
             $newTimezone = new DateTimeZone(date_default_timezone_get());
-        }
-        elseif ($timezone instanceof DateTimeZone) {
+        } elseif ($timezone instanceof DateTimeZone) {
             $newTimezone = $timezone;
-        }
-        else {
+        } else {
             $newTimezone = @timezone_open(strval($timezone));
             if ($newTimezone === false) {
                 throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $newTimezone));
@@ -491,10 +491,10 @@ class Verta extends DateTime {
         $now = date('Y-n-j-G-i-s', time());
         $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
 
-        $year   = $year   === null ? intval($defaults['year'])   : $year;
-        $month  = $month  === null ? intval($defaults['month'])  : $month;
-        $day    = $day    === null ? intval($defaults['day'])    : $day;
-        $hour   = $hour   === null ? intval($defaults['hour'])   : $hour;
+        $year = $year === null ? intval($defaults['year']) : $year;
+        $month = $month === null ? intval($defaults['month']) : $month;
+        $day = $day === null ? intval($defaults['day']) : $day;
+        $hour = $hour === null ? intval($defaults['hour']) : $hour;
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
@@ -557,10 +557,10 @@ class Verta extends DateTime {
         $now = static::instance(null, $timezone)->format('Y-n-j-G-i-s');
         $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
 
-        $year   = $year   === null ? intval($defaults['year'])   : $year;
-        $month  = $month  === null ? intval($defaults['month'])  : $month;
-        $day    = $day    === null ? intval($defaults['day'])    : $day;
-        $hour   = $hour   === null ? intval($defaults['hour'])   : $hour;
+        $year = $year === null ? intval($defaults['year']) : $year;
+        $month = $month === null ? intval($defaults['month']) : $month;
+        $day = $day === null ? intval($defaults['day']) : $day;
+        $hour = $hour === null ? intval($defaults['hour']) : $hour;
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
@@ -616,19 +616,19 @@ class Verta extends DateTime {
     {
         switch (true) {
             case array_key_exists($name, $formats = array(
-                'year' => 'Y',
-                'month' => 'n',
-                'day' => 'j',
-                'hour' => 'G',
-                'minute' => 'i',
-                'second' => 's',
-                'micro' => 'u',
-                'dayOfWeek' => 'w',
-                'dayOfYear' => 'z',
-                'weekOfYear' => 'W',
-                'daysInMonth' => 't',
-                'timestamp' => 'U',
-            )):
+                    'year' => 'Y',
+                    'month' => 'n',
+                    'day' => 'j',
+                    'hour' => 'G',
+                    'minute' => 'i',
+                    'second' => 's',
+                    'micro' => 'u',
+                    'dayOfWeek' => 'w',
+                    'dayOfYear' => 'z',
+                    'weekOfYear' => 'W',
+                    'daysInMonth' => 't',
+                    'timestamp' => 'U',
+                )):
                 return (int) $this->format($formats[$name]);
 
             case $name === 'quarter':
@@ -820,7 +820,7 @@ class Verta extends DateTime {
     {
         return $this->setDate($year, $month, $day)->setTime($hour, $minute, $second, $microseconds);
     }
-    
+
     /**
      * Sets the current date of the DateTime object to a different date.
      * Calls modify as a workaround for a php bug
@@ -836,7 +836,7 @@ class Verta extends DateTime {
         list($year, $month, $day) = self::getGregorian($year, $month, $day);
 
         return parent::setDate($year, $month, $day);
-    }  
+    }
 
     /**
      * Set the time by time string
@@ -858,7 +858,7 @@ class Verta extends DateTime {
         return $this->setTime($hour, $minute, $second, 0);
     }
 
-	/*****************************  STRING FORMATED  ****************************/
+    /*****************************  STRING FORMATED  ****************************/
 
     /**
      * Reset the format used to the default when type juggling a Verta instance to a string
@@ -888,162 +888,163 @@ class Verta extends DateTime {
         return $this->format(static::$stringFormat);
     }
 
-   /**
-	 * The format of the outputted date string (jalali equivalent of php date() function)
-	 *
-	 * @param string $format for example 'Y-m-d H:i:s'
-	 * @return string
-	 */
-	protected function date($format){
+    /**
+     * The format of the outputted date string (jalali equivalent of php date() function)
+     *
+     * @param string $format for example 'Y-m-d H:i:s'
+     * @return string
+     */
+    protected function date($format)
+    {
 
-		$timestamp = $this->getTimestamp();
-		
-	    list($gYear, $gMonth, $gDay, $gWeek) = explode('-', date('Y-m-d-w', $timestamp));
-	    list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
-	    $pWeek = ($gWeek + 1);
+        $timestamp = $this->getTimestamp();
 
-	    if ($pWeek >= 7) {
-	        $pWeek = 0;
-	    }
+        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', date('Y-m-d-w', $timestamp));
+        list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
+        $pWeek = ($gWeek + 1);
 
-	    if ($format == '\\') {
-	        $format = '//';
-	    }
+        if ($pWeek >= 7) {
+            $pWeek = 0;
+        }
 
-	    $lenghFormat = strlen($format);
-	    $i = 0;
-	    $result = '';
+        if ($format == '\\') {
+            $format = '//';
+        }
 
-	    while ($i < $lenghFormat) {
-	        $par = $format{$i};
-	        if ($par == '\\') {
-	            $result .= $format{ ++$i};
-	            $i ++;
-	            continue;
-	        }
-	        switch ($par) {
-	            # Day
-	            case 'd':
-	                $result .= sprintf('%02s', $pDay);
-	                break;
+        $lenghFormat = strlen($format);
+        $i = 0;
+        $result = '';
 
-	            case 'D':
-	                $result .= substr(static::$dayWeek[$pWeek], 0, 2);
-	                break;
+        while ($i < $lenghFormat) {
+            $par = $format{$i};
+            if ($par == '\\') {
+                $result .= $format{ ++$i};
+                $i++;
+                continue;
+            }
+            switch ($par) {
+                # Day
+                case 'd':
+                    $result .= sprintf('%02s', $pDay);
+                    break;
 
-	            case 'j':
-	                $result .= $pDay;
-	                break;
+                case 'D':
+                    $result .= substr(static::$dayWeek[$pWeek], 0, 2);
+                    break;
 
-	            case 'l':
-	                $result .= static::$dayWeek[$pWeek];
-	                break;
+                case 'j':
+                    $result .= $pDay;
+                    break;
 
-	            case 'N':
-	                $result .= $pWeek + 1;
-	                break;
+                case 'l':
+                    $result .= static::$dayWeek[$pWeek];
+                    break;
 
-	            case 'w':
-	                $result .= $pWeek;
-	                break;
+                case 'N':
+                    $result .= $pWeek + 1;
+                    break;
 
-	            case 'z':
-	                $result .= $this->daysYear($pMonth, $pDay);
-	                break;
+                case 'w':
+                    $result .= $pWeek;
+                    break;
 
-	            case 'S':
-	                $result .= self::NUMBER_TH;
-	                break;
+                case 'z':
+                    $result .= $this->daysYear($pMonth, $pDay);
+                    break;
 
-	            # Week
-	            case 'W':
-	                $result .= ceil($this->daysYear($pMonth, $pDay) / 7);
-	                break;
+                case 'S':
+                    $result .= self::NUMBER_TH;
+                    break;
 
-	            # Month
-	            case 'F':
-	                $result .= static::$monthYear[$pMonth-1];
-	                break;
+                # Week
+                case 'W':
+                    $result .= ceil($this->daysYear($pMonth, $pDay) / 7);
+                    break;
 
-	            case 'm':
-	                $result .= sprintf('%02s', $pMonth);
-	                break;
+                # Month
+                case 'F':
+                    $result .= static::$monthYear[$pMonth - 1];
+                    break;
 
-	            case 'M':
-	                $result .= substr(static::$monthYear[$pMonth-1], 0, 6);
-	                break;
+                case 'm':
+                    $result .= sprintf('%02s', $pMonth);
+                    break;
 
-	            case 'n':
-	                $result .= $pMonth;
-	                break;
+                case 'M':
+                    $result .= substr(static::$monthYear[$pMonth - 1], 0, 6);
+                    break;
 
-	            case 't':
-	                $result .= static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth)-1];
-	                break;
+                case 'n':
+                    $result .= $pMonth;
+                    break;
 
-	            # Years
-	            case 'L':
-	                $result .= intval($this->isLeapYear($pYear));
-	                break;
+                case 't':
+                    $result .= static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth) - 1];
+                    break;
 
-	            case 'Y':
-	            case 'o':
-	                $result .= $pYear;
-	                break;
+                # Years
+                case 'L':
+                    $result .= intval($this->isLeapYear($pYear));
+                    break;
 
-	            case 'y':
-	                $result .= substr($pYear, 2);
-	                break;
+                case 'Y':
+                case 'o':
+                    $result .= $pYear;
+                    break;
 
-	            # Time
-	            case 'a':
-	            case 'A':
-	                if (date('a', $timestamp) == 'am') {
-	                    $result .= (($par == 'a') ? self::AM : self::ANTE_MERIDIEM);
-	                } else {
-	                    $result .= (($par == 'a') ? self::PM : self::POST_MERIDIEM);
-	                }
-	                break;
+                case 'y':
+                    $result .= substr($pYear, 2);
+                    break;
 
-	            case 'B':
-	            case 'g':
-	            case 'G':
-	            case 'h':
-	            case 'H':
-	            case 's':
-	            case 'u':
-	            case 'i':
-	            # Timezone
-	            case 'e':
-	            case 'I':
-	            case 'O':
-	            case 'P':
-	            case 'T':
-	            case 'Z':
-	                $result .= date($par, $timestamp);
-	                break;
+                # Time
+                case 'a':
+                case 'A':
+                    if (date('a', $timestamp) == 'am') {
+                        $result .= (($par == 'a') ? self::AM : self::ANTE_MERIDIEM);
+                    } else {
+                        $result .= (($par == 'a') ? self::PM : self::POST_MERIDIEM);
+                    }
+                    break;
 
-	            # Full Date/Time
-	            case 'c':
-	                $result .= ($pYear . '-' . $pMonth . '-' . $pDay . ' ' . date('H:i:s P', $timestamp));
-	                break;
+                case 'B':
+                case 'g':
+                case 'G':
+                case 'h':
+                case 'H':
+                case 's':
+                case 'u':
+                case 'i':
+                # Timezone
+                case 'e':
+                case 'I':
+                case 'O':
+                case 'P':
+                case 'T':
+                case 'Z':
+                    $result .= date($par, $timestamp);
+                    break;
 
-	            case 'r':
-	                $result .= (substr(static::$dayWeek[$pWeek], 0, 2) . '، ' . $pDay . ' ' . substr(static::$monthYear[$pMonth], 0, 6) . ' ' . $pYear . ' ' . date('H:i:s P', $timestamp));
-	                break;
+                # Full Date/Time
+                case 'c':
+                    $result .= ($pYear . '-' . $pMonth . '-' . $pDay . ' ' . date('H:i:s P', $timestamp));
+                    break;
 
-	            case 'U':
-	                $result .= $timestamp;
-	                break;
+                case 'r':
+                    $result .= (substr(static::$dayWeek[$pWeek], 0, 2) . '، ' . $pDay . ' ' . substr(static::$monthYear[$pMonth], 0, 6) . ' ' . $pYear . ' ' . date('H:i:s P', $timestamp));
+                    break;
 
-	            default:
-	                $result .= $par;
-	        }
-	        $i ++;
-	    }
+                case 'U':
+                    $result .= $timestamp;
+                    break;
 
-	    return $result;
-	}
+                default:
+                    $result .= $par;
+            }
+            $i++;
+        }
+
+        return $result;
+    }
 
     /**
      * The format of the outputted date string (jalali equivalent of php date() function)
@@ -1051,7 +1052,8 @@ class Verta extends DateTime {
      * @param string $format for example 'Y-m-d H:i:s'
      * @return string
      */
-    protected function dateWord($format){
+    protected function dateWord($format)
+    {
 
         $timestamp = $this->getTimestamp();
 
@@ -1077,7 +1079,7 @@ class Verta extends DateTime {
             $par = $format{$i};
             if ($par == '\\') {
                 $result .= $format{ ++$i};
-                $i ++;
+                $i++;
                 continue;
             }
             switch ($par) {
@@ -1118,7 +1120,7 @@ class Verta extends DateTime {
 
                 # Month
                 case 'F':
-                    $result .= static::$monthYear[$pMonth-1];
+                    $result .= static::$monthYear[$pMonth - 1];
                     break;
 
                 case 'm':
@@ -1127,11 +1129,11 @@ class Verta extends DateTime {
                     break;
 
                 case 'M':
-                    $result .= substr(static::$monthYear[$pMonth-1], 0, 6);
+                    $result .= substr(static::$monthYear[$pMonth - 1], 0, 6);
                     break;
 
                 case 't':
-                    $result .= $word->getWord(strval(static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth)-1]));
+                    $result .= $word->getWord(strval(static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth) - 1]));
                     break;
 
                 # Years
@@ -1183,7 +1185,7 @@ class Verta extends DateTime {
                     break;
 
                 case 'r':
-                    $result .=  $this->dateWord('l Y, m, d, H:i:s P');
+                    $result .= $this->dateWord('l Y, m, d, H:i:s P');
                     break;
 
                 case 'U':
@@ -1193,7 +1195,7 @@ class Verta extends DateTime {
                 default:
                     $result .= $par;
             }
-            $i ++;
+            $i++;
         }
 
         return $result;
@@ -1207,17 +1209,18 @@ class Verta extends DateTime {
      * @return type
      * @since 5.0.0
      */
-    protected function daysYear($month, $day) {
+    protected function daysYear($month, $day)
+    {
         $days = 0;
-        for ($i = 1; $i < $month; $i ++) {
+        for ($i = 1; $i < $month; $i++) {
             $days += static::$daysMonthJalali[$i];
         }
         return ($days + $day);
     }
 
-	/**
-	 * The format of the outputted date string (jalali equivalent of php strftime() function)
-	 *
+    /**
+     * The format of the outputted date string (jalali equivalent of php strftime() function)
+     *
      * @param $format
      * @return string
      */
@@ -1318,7 +1321,8 @@ class Verta extends DateTime {
      * @param $format
      * @return string
      */
-    public function format($format) {
+    public function format($format)
+    {
         return $this->date($this->strftime($format));
     }
 
@@ -1328,7 +1332,8 @@ class Verta extends DateTime {
      * @param $format
      * @return string
      */
-    public function formatGregorian($format) {
+    public function formatGregorian($format)
+    {
 
         return $this->DateTime()->format($format);
     }
@@ -1401,7 +1406,7 @@ class Verta extends DateTime {
         }
         $difference = intval(round($difference));
 
-        if($difference === 0) {
+        if ($difference === 0) {
             return self::NOW;
         }
 
@@ -1413,7 +1418,7 @@ class Verta extends DateTime {
         return $this->dateWord($this->strftime($format));
     }
 
-   /**
+    /**
      * Convert english numbers to persian numbers
      *
      * @param string $string
@@ -1427,18 +1432,19 @@ class Verta extends DateTime {
     /*****************************  COMPERTION  ****************************/
 
     /**
-	 * check jalali the instance is a leap year
-	 *
-	 * @param int $year
-	 * @return bool
-	 */
-	public static function isLeapYear($year) {
-	    $mod = ($year % 33);
-	    if (($mod == 1) or ( $mod == 5) or ( $mod == 9) or ( $mod == 13) or ( $mod == 17) or ( $mod == 22) or ( $mod == 26) or ( $mod == 30)) {
-	        return true;
-	    }
-	    return false;
-	}
+     * check jalali the instance is a leap year
+     *
+     * @param int $year
+     * @return bool
+     */
+    public static function isLeapYear($year)
+    {
+        $mod = ($year % 33);
+        if (($mod == 1) or ($mod == 5) or ($mod == 9) or ($mod == 13) or ($mod == 17) or ($mod == 22) or ($mod == 26) or ($mod == 30)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * validate a jalali date (jalali equivalent of php checkdate() function)
@@ -1448,11 +1454,12 @@ class Verta extends DateTime {
      * @param int $year
      * @return bool
      */
-    public static function isValideDate($year, $month, $day) {
-        $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month)-1];
+    public static function isValideDate($year, $month, $day)
+    {
+        $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month) - 1];
         return $year >= 1 && $year <= 32766
-        && $month >= 1 && $month <= 12
-        && $day >= 1 && $day <= $dayLastMonthJalali;
+            && $month >= 1 && $month <= 12
+            && $day >= 1 && $day <= $dayLastMonthJalali;
     }
 
     /**
@@ -1463,10 +1470,11 @@ class Verta extends DateTime {
      * @param int $second
      * @return bool
      */
-    public static function isValideTime($hour, $minute, $second) {
+    public static function isValideTime($hour, $minute, $second)
+    {
         return $hour >= 0 && $hour <= 24
-        && $minute >= 0 && $minute <= 59
-        && $second >= 0 && $second <= 59;
+            && $minute >= 0 && $minute <= 59
+            && $second >= 0 && $second <= 59;
     }
 
     /**
@@ -2121,7 +2129,7 @@ class Verta extends DateTime {
      */
     public function addYears($value)
     {
-        return $this->modify((int) $value.' year');
+        return $this->modify((int) $value . ' year');
     }
 
     /**
@@ -2175,16 +2183,14 @@ class Verta extends DateTime {
         if ($month > 12) {
             $year += intval($month / 12);
             $month = $month % 12;
-        }
-        elseif ($month < 1) {
+        } elseif ($month < 1) {
             $year += intval($month / 12) - 1;
             $month = 12 + ($month % 12);
         }
 
         if (($month > 6 && $month < 12 && $day == 31)) {
             $day--;
-        }
-        else {
+        } else {
             if ($month == 12 && ($day == 30 || $day == 31)) {
                 $day = self::isLeapYear($year) ? 30 : 29;
             }
@@ -2238,7 +2244,7 @@ class Verta extends DateTime {
      */
     public function addDays($value)
     {
-        return $this->modify((int) $value.' day');
+        return $this->modify((int) $value . ' day');
     }
 
     /**
@@ -2277,7 +2283,7 @@ class Verta extends DateTime {
         return $this->addDays(-1 * $value);
     }
 
-   /**
+    /**
      * Add weeks to the instance. Positive $value travels forward while
      * negative $value travels into the past.
      *
@@ -2287,7 +2293,7 @@ class Verta extends DateTime {
      */
     public function addWeeks($value)
     {
-        return $this->modify((int) $value.' week');
+        return $this->modify((int) $value . ' week');
     }
 
     /**
@@ -2336,7 +2342,7 @@ class Verta extends DateTime {
      */
     public function addHours($value)
     {
-        return $this->modify((int) $value.' hour');
+        return $this->modify((int) $value . ' hour');
     }
 
     /**
@@ -2385,7 +2391,7 @@ class Verta extends DateTime {
      */
     public function addMinutes($value)
     {
-        return $this->modify((int) $value.' minute');
+        return $this->modify((int) $value . ' minute');
     }
 
     /**
@@ -2434,7 +2440,7 @@ class Verta extends DateTime {
      */
     public function addSeconds($value)
     {
-        return $this->modify((int) $value.' second');
+        return $this->modify((int) $value . ' second');
     }
 
     /**
@@ -2602,7 +2608,8 @@ class Verta extends DateTime {
      * @param int $gd
      * @return array($jy, $jm, $jd)
      */
-    function getJalali($gy, $gm, $gd) {
+    public function getJalali($gy, $gm, $gd)
+    {
         $g_d_m = array(0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334);
         if ($gy > 1600) {
             $jy = 979;
@@ -2634,7 +2641,8 @@ class Verta extends DateTime {
      * @param int $jd
      * @return array($gy, $gm, $gd)
      */
-    function getGregorian($jy, $jm, $jd) {
+    public function getGregorian($jy, $jm, $jd)
+    {
         if ($jy > 979) {
             $gy = 1600;
             $jy -= 979;
