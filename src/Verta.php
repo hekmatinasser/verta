@@ -915,154 +915,154 @@ class Verta extends DateTime {
 	 * @return string
 	 */
 	protected function date($format){
+        $timestamp = $this->getTimestamp();
 
-		$timestamp = $this->getTimestamp();
-		
-	    list($gYear, $gMonth, $gDay, $gWeek) = explode('-', date('Y-m-d-w', $timestamp));
-	    list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
-	    $pWeek = ($gWeek + 1);
 
-	    if ($pWeek >= 7) {
-	        $pWeek = 0;
-	    }
+        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', parent::format( 'Y-m-d-w' ) );
+        list( $pYear, $pMonth, $pDay ) = static::getJalali( $gYear, $gMonth, $gDay );
+        $pWeek = ( $gWeek + 1 );
 
-	    if ($format == '\\') {
-	        $format = '//';
-	    }
+        if ($pWeek >= 7) {
+            $pWeek = 0;
+        }
 
-	    $lenghFormat = strlen($format);
-	    $i = 0;
-	    $result = '';
+        if ($format == '\\') {
+            $format = '//';
+        }
 
-	    while ($i < $lenghFormat) {
-	        $par = $format{$i};
-	        if ($par == '\\') {
-	            $result .= $format{ ++$i};
-	            $i ++;
-	            continue;
-	        }
-	        switch ($par) {
-	            # Day
-	            case 'd':
-	                $result .= sprintf('%02s', $pDay);
-	                break;
+        $lenghFormat = strlen( $format );
+        $i = 0;
+        $result = '';
 
-	            case 'D':
-	                $result .= substr(static::$dayWeek[$pWeek], 0, 2);
-	                break;
+        while ($i < $lenghFormat) {
+            $par = $format{$i};
+            if ($par == '\\') {
+                $result .= $format{++$i};
+                $i++;
+                continue;
+            }
+            switch ($par) {
+                # Day
+                case 'd':
+                    $result .= sprintf( '%02s', $pDay );
+                    break;
 
-	            case 'j':
-	                $result .= $pDay;
-	                break;
+                case 'D':
+                    $result .= substr( static::$dayWeek[ $pWeek ], 0, 2 );
+                    break;
 
-	            case 'l':
-	                $result .= static::$dayWeek[$pWeek];
-	                break;
+                case 'j':
+                    $result .= $pDay;
+                    break;
 
-	            case 'N':
-	                $result .= $pWeek + 1;
-	                break;
+                case 'l':
+                    $result .= static::$dayWeek[ $pWeek ];
+                    break;
 
-	            case 'w':
-	                $result .= $pWeek;
-	                break;
+                case 'N':
+                    $result .= $pWeek + 1;
+                    break;
 
-	            case 'z':
-	                $result .= $this->daysYear($pMonth, $pDay);
-	                break;
+                case 'w':
+                    $result .= $pWeek;
+                    break;
 
-	            case 'S':
-	                $result .= self::NUMBER_TH;
-	                break;
+                case 'z':
+                    $result .= $this->daysYear( $pMonth, $pDay );
+                    break;
 
-	            # Week
-	            case 'W':
-	                $result .= ceil($this->daysYear($pMonth, $pDay) / 7);
-	                break;
+                case 'S':
+                    $result .= self::NUMBER_TH;
+                    break;
 
-	            # Month
-	            case 'F':
-	                $result .= static::$monthYear[$pMonth-1];
-	                break;
+                # Week
+                case 'W':
+                    $result .= ceil( $this->daysYear( $pMonth, $pDay ) / 7 );
+                    break;
 
-	            case 'm':
-	                $result .= sprintf('%02s', $pMonth);
-	                break;
+                # Month
+                case 'F':
+                    $result .= static::$monthYear[ $pMonth - 1 ];
+                    break;
 
-	            case 'M':
-	                $result .= substr(static::$monthYear[$pMonth-1], 0, 6);
-	                break;
+                case 'm':
+                    $result .= sprintf( '%02s', $pMonth );
+                    break;
 
-	            case 'n':
-	                $result .= $pMonth;
-	                break;
+                case 'M':
+                    $result .= substr( static::$monthYear[ $pMonth - 1 ], 0, 6 );
+                    break;
 
-	            case 't':
-	                $result .= static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[intval($pMonth)-1];
-	                break;
+                case 'n':
+                    $result .= $pMonth;
+                    break;
 
-	            # Years
-	            case 'L':
-	                $result .= intval($this->isLeapYear($pYear));
-	                break;
+                case 't':
+                    $result .= static::isLeapYear( $pYear ) && ( $pMonth == 12 ) ? 30 : static::$daysMonthJalali[ intval( $pMonth ) - 1 ];
+                    break;
 
-	            case 'Y':
-	            case 'o':
-	                $result .= $pYear;
-	                break;
+                # Years
+                case 'L':
+                    $result .= intval( $this->isLeapYear( $pYear ) );
+                    break;
 
-	            case 'y':
-	                $result .= substr($pYear, 2);
-	                break;
+                case 'Y':
+                case 'o':
+                    $result .= $pYear;
+                    break;
 
-	            # Time
-	            case 'a':
-	            case 'A':
-	                if (date('a', $timestamp) == 'am') {
-	                    $result .= (($par == 'a') ? self::AM : self::ANTE_MERIDIEM);
-	                } else {
-	                    $result .= (($par == 'a') ? self::PM : self::POST_MERIDIEM);
-	                }
-	                break;
+                case 'y':
+                    $result .= substr( $pYear, 2 );
+                    break;
 
-	            case 'B':
-	            case 'g':
-	            case 'G':
-	            case 'h':
-	            case 'H':
-	            case 's':
-	            case 'u':
-	            case 'i':
-	            # Timezone
-	            case 'e':
-	            case 'I':
-	            case 'O':
-	            case 'P':
-	            case 'T':
-	            case 'Z':
-	                $result .= date($par, $timestamp);
-	                break;
+                # Time
+                case 'a':
+                case 'A':
+                    if (parent::format( 'a' ) == 'am') {
+                        $result .= ( ( $par == 'a' ) ? self::AM : self::ANTE_MERIDIEM );
+                    } else {
+                        $result .= ( ( $par == 'a' ) ? self::PM : self::POST_MERIDIEM );
+                    }
+                    break;
 
-	            # Full Date/Time
-	            case 'c':
-	                $result .= ($pYear . '-' . $pMonth . '-' . $pDay . ' ' . date('H:i:s P', $timestamp));
-	                break;
+                case 'B':
+                case 'g':
+                case 'G':
+                case 'h':
+                case 'H':
+                case 's':
+                case 'u':
+                case 'i':
+                    # Timezone
+                case 'e':
+                case 'I':
+                case 'O':
+                case 'P':
+                case 'T':
+                case 'Z':
+                    $result .= parent::format( $par );
+                    break;
 
-	            case 'r':
-	                $result .= (substr(static::$dayWeek[$pWeek], 0, 2) . '، ' . $pDay . ' ' . substr(static::$monthYear[$pMonth], 0, 6) . ' ' . $pYear . ' ' . date('H:i:s P', $timestamp));
-	                break;
+                # Full Date/Time
+                case 'c':
+                    $result .= ( $pYear . '-' . $pMonth . '-' . $pDay . ' ' . parent::format( 'H:i:s P' ) );
+                    break;
 
-	            case 'U':
-	                $result .= $timestamp;
-	                break;
+                case 'r':
+                    $result .= ( substr( static::$dayWeek[ $pWeek ], 0, 2 ) . '، ' . $pDay . ' ' . substr( static::$monthYear[ $pMonth ], 0, 6 ) . ' ' . $pYear . ' ' . parent::format( 'H:i:s P' ) );
+                    break;
 
-	            default:
-	                $result .= $par;
-	        }
-	        $i ++;
-	    }
+                case 'U':
+                    $result .= $timestamp;
+                    break;
 
-	    return $result;
+                default:
+                    $result .= $par;
+            }
+
+            $i++;
+        }
+        return $result;
 	}
 
     /**
