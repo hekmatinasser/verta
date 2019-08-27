@@ -13,6 +13,7 @@ namespace Hekmatinasser\Verta;
 
 use DateTime;
 use DateTimeZone;
+use Illuminate\Support\Carbon;
 use InvalidArgumentException;
 use Hekmatinasser\Notowo\Notowo;
 
@@ -246,7 +247,7 @@ class Verta extends DateTime {
      */
 	public function __construct($datetime = null, $timezone = null) {
         if ($datetime === null) {
-            $instance = time();
+            $instance =  Carbon::now()->getTimeStamp();
         }
         elseif (is_string($datetime)){
             $object = date_create($datetime);
@@ -508,7 +509,7 @@ class Verta extends DateTime {
     public static function createGregorian($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $timezone = null)
     {
 
-        $now = date('Y-n-j-G-i-s', time());
+        $now = date('Y-n-j-G-i-s', Carbon::now()->getTimestamp());
         $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
 
         $year   = $year   === null ? intval($defaults['year'])   : $year;

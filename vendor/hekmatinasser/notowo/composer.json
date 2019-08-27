@@ -1,0 +1,25 @@
+{
+    "name": "hekmatinasser/notowo",
+    "description": "This Package helps developers change number to word for all language on Laravel freamwork PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nasser Hekmati",
+            "email": "hekmati.nasser@gmail.com"
+        }
+    ],
+    "keywords": ["Laravel","number","word","n2w", "Notowo"],
+    "require": {
+        "php": ">=5.5"
+       },
+    "require-dev" : {},  
+    "autoload": {
+        "psr-4": {
+            "Hekmatinasser\\Notowo\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev"
+}
