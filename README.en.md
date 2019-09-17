@@ -16,18 +16,7 @@ hekmatinasser/verta
 
 ##  Install 
 
-To install Verta in Laravel 5.x, enter the following command
-
-```json
-    ...
-    "require": {
-        ...,
-        "hekmatinasser/verta": "^1"
-    },
-
-```
-
-To install Verta in install Laravel 6, enter the following command
+To install Verta, enter the following command
 
     $ composer require hekmatinasser/verta
 

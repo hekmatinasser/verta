@@ -19,18 +19,7 @@ hekmatinasser/verta
 
 ##  نصب 
 
-برای نصب در نسخه 5 لاراول دستور زیر را وارد کنید
-
-```json
-    ...
-    "require": {
-        ...,
-        "hekmatinasser/verta": "^1"
-    },
-
-```
-
-برای نصب در نسخه 6 لاراول دستور زیر را وارد کنید
+برای نصب دستور زیر را وارد کنید
 
     $ composer require hekmatinasser/verta
 
