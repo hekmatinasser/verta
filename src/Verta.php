@@ -510,7 +510,7 @@ class Verta extends DateTime {
     {
 
         $object = new DateTime();
-        $now = date('Y-n-j-G-i-s', $object->getTimestamp()->getTimestamp());
+        $now = date('Y-n-j-G-i-s', $object->getTimestamp());
         $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
 
         $year   = $year   === null ? intval($defaults['year'])   : $year;
