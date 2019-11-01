@@ -38,6 +38,8 @@ hekmatinasser/verta
     'Verta' => Hekmatinasser\Verta\Verta::class,
 ]
 ```
+**نکته:** در صورتی که از لاراول 5.5 یا بالاتر استفاده می کنید، این عملیات با نصب پکیج بصورت خودکار انجام می شوند
+
 <a name="basic-usage"></a>
 ## نحوه استفاده 
 
