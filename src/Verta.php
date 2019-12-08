@@ -19,7 +19,7 @@ use Hekmatinasser\Notowo\Notowo;
 class Verta extends DateTime {
 
     /*****************************  STATCT VARIABLE  ****************************/
-	
+
 	/**
      * The day constants
      */
@@ -111,7 +111,7 @@ class Verta extends DateTime {
     	31,
     	30,
     	31,
-    );	
+    );
 
     /**
      * number day in month jalali
@@ -175,12 +175,12 @@ class Verta extends DateTime {
      */
 	protected static $unitName = array(
 		'ثانیه',
-		'دقیقه', 
-		'ساعت', 
-		'روز', 
-		'هفته', 
-		'ماه', 
-		'سال', 
+		'دقیقه',
+		'ساعت',
+		'روز',
+		'هفته',
+		'ماه',
+		'سال',
 		'قرن'
 	);
 
@@ -190,12 +190,12 @@ class Verta extends DateTime {
      * @var array
      */
 	protected static $unitNumber = array(
-		self::SECONDS_PER_MINUTE, 
-		self::MINUTES_PER_HOUR, 
-		self::HOURS_PER_DAY, 
-		self::DAYS_PER_WEEK, 
-		self::WEEKS_PER_MONTH, 
-		self::MONTHS_PER_YEAR, 
+		self::SECONDS_PER_MINUTE,
+		self::MINUTES_PER_HOUR,
+		self::HOURS_PER_DAY,
+		self::DAYS_PER_WEEK,
+		self::WEEKS_PER_MONTH,
+		self::MONTHS_PER_YEAR,
 		self::YEARS_PER_DECADE,
 	);
 
@@ -288,7 +288,7 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    
+
     public static function today($timezone = null)
     {
         return static::now($timezone)->startDay();
@@ -326,7 +326,7 @@ class Verta extends DateTime {
      *
      * @return static
      */
-    public static function instance($datetime = null, $timezone = null) { 
+    public static function instance($datetime = null, $timezone = null) {
         return new static($datetime, $timezone);
     }
 
@@ -345,7 +345,7 @@ class Verta extends DateTime {
      *
      * @return DateTime $datetime
      */
-    public function DateTime() { 
+    public function DateTime() {
         return new DateTime(date('Y-m-d H:i:s.u', $this->getTimestamp()), $this->getTimeZone());
     }
 
@@ -455,7 +455,7 @@ class Verta extends DateTime {
     {
         return static::create(null, null, null, $hour, $minute, $second, $timezone);
     }
-        
+
     /**
      * Create a Verta instance from a timestamp.
      *
@@ -842,7 +842,7 @@ class Verta extends DateTime {
     {
         return $this->setDate($year, $month, $day)->setTime($hour, $minute, $second, $microseconds);
     }
-    
+
     /**
      * Sets the current date of the DateTime object to a different date.
      * Calls modify as a workaround for a php bug
@@ -858,7 +858,7 @@ class Verta extends DateTime {
         list($year, $month, $day) = self::getGregorian($year, $month, $day);
 
         return parent::setDate($year, $month, $day);
-    }  
+    }
 
     /**
      * Set the time by time string
@@ -937,9 +937,9 @@ class Verta extends DateTime {
         $result = '';
 
         while ($i < $lenghFormat) {
-            $par = $format{$i};
+            $par = $format[$i];
             if ($par == '\\') {
-                $result .= $format{++$i};
+                $result .= $format[++$i];
                 $i++;
                 continue;
             }
@@ -1096,9 +1096,9 @@ class Verta extends DateTime {
         $word = new Notowo(0, 'fa');
 
         while ($i < $lenghFormat) {
-            $par = $format{$i};
+            $par = $format[$i];
             if ($par == '\\') {
-                $result .= $format{ ++$i};
+                $result .= $format[++$i];
                 $i ++;
                 continue;
             }
