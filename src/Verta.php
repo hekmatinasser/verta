@@ -937,9 +937,9 @@ class Verta extends DateTime {
         $result = '';
 
         while ($i < $lenghFormat) {
-            $par = $format{$i};
+            $par =  $format[$i];
             if ($par == '\\') {
-                $result .= $format{++$i};
+                $result .= $format[++$i];
                 $i++;
                 continue;
             }
