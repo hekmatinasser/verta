@@ -1096,9 +1096,9 @@ class Verta extends DateTime {
         $word = new Notowo(0, 'fa');
 
         while ($i < $lenghFormat) {
-            $par = $format{$i};
+            $par = $format[$i];
             if ($par == '\\') {
-                $result .= $format{ ++$i};
+                $result .= $format[++$i];
                 $i ++;
                 continue;
             }
