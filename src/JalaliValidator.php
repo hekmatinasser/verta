@@ -90,20 +90,26 @@ class JalaliValidator
         }
     }
 
-    public function validateDateAfter($attribute, $value, $parameters)
+     public function validateDateAfter($attribute, $value, $parameters)
     {
+
         if (!is_string($value)) {
             return false;
         }
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         try {
-            $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
+            if(count($parameters) > 0 and $parameters[0] != 'now')//if current time is not now
+                $base = Verta::parseFormat($format, $parameters[0]);
+            elseif(count($parameters) > 0 and $parameters[0] == 'now')//if current time set to now
+                $base=Verta::now();
+            else
+                $base=null;
+            
             return Verta::parseFormat($format, $value)->gt($base);
         } catch (\Exception $e) {
             return false;
         }
     }
-
     public function validateDateAfterEqual($attribute, $value, $parameters)
     {
         if (!is_string($value)) {
