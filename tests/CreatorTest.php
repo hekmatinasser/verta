@@ -1,6 +1,6 @@
 <?php
 
-namespace Hekmatinasser\VertaTests;
+namespace Hekmatinasser\Verta\Tests;
 
 use DateTime;
 use Hekmatinasser\Verta\Facades\Verta as VertaFacade;
