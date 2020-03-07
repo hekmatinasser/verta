@@ -63,9 +63,9 @@ class CreatorTest extends TestCase
         $app = ['verta' => new Verta];
         VertaFacade::setFacadeApplication($app);
 
-        $actual = (string) VertaFacade::instance('2019-01-01 10:20:11');
+        $datetime = (string) VertaFacade::instance('2019-01-01 10:20:11');
 
-        $this->assertEquals('1397-10-11 10:20:11', $actual);
+        $this->assertEquals('1397-10-11 10:20:11', $datetime);
     }
 
     public function testDatetime()
