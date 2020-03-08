@@ -1448,7 +1448,7 @@ class Verta extends DateTime {
         return str_replace(self::$englishNumber, self::$persianNumber, $string);
     }
 
-    /*****************************  COMPERTION  ****************************/
+    /*****************************  COMPARISION  ****************************/
 
     /**
      * check jalali the instance is a leap year
