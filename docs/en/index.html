@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-    <title>Verta — پلاگین تاریخ شمسی در لاراول</title>
+    <title>Verta — Laravel plugin Jalali datetime</title>
     <meta name="description" content="">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
-    <link href="https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.rtl.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body dir="rtl">
+<body>
 <a href="https://github.com/hekmaitnasser/verta" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
 <header id="header">
     <h1>Verta</h1>
-    <h2>تاریخ شمسی برای لاراول</h2>
+    <h2>Laravel plugin Jalali datetime</h2>
 </header>
 
 <div class="container">
@@ -22,40 +21,40 @@
         <div class="col-sm-3">
             <ul>
                 <li>
-                    <a href="#installation">نصب</a>
+                    <a href="#installation">Installation</a>
                 </li>
                 <li>
-                    <a href="#usage">نحوه استفاده</a>
+                    <a href="#usage">Usage</a>
                 </li>
                 <li>
-                    <a href="#creator">ایجاد کردن</a>
+                    <a href="#creator">Creator</a>
                 </li>
                 <li>
-                    <a href="#transformation">تبدیل تاریخ</a>
+                    <a href="#transformation">Transformation</a>
                 </li>
                 <li>
-                    <a href="#property">خصوصیات</a>
+                    <a href="#property">Property</a>
                 </li>
                 <li>
-                    <a href="#format">قالب نمایش</a>
+                    <a href="#format">Format</a>
                 </li>
                 <li>
-                    <a href="#modification">تغییر دادن</a>
+                    <a href="#modification">Modification</a>
                 </li>
                 <li>
-                    <a href="#comparison">بررسی و مقایسه</a>
+                    <a href="#comparison">Comparison</a>
                 </li>
                 <li>
-                    <a href="#validation">اعتبار سنجی</a>
+                    <a href="#validation">Validation Laravel</a>
                 </li>
             </ul>
         </div>
         <div class="col-sm-9">
                 <article class="content">
-                    <h2 id="installation">نصب</h2>
-                    <p>برای نصب دستور زیر را وارد کنید</p>
+                    <h2 id="installation">Installation</h2>
+                    <p>Enter the following command to install Verta</p>
                     <pre>$ composer require hekmatinasser/verta</pre>
-                    <p>حال باید پکیج را درون پروژه خود اضافه کنید برای این کار دستور زیر را وارد کنید</p>
+                    <p>Now you have to add the package to your project by entering the following command</p>
 
                     <pre>// config/app.php
 'providers' => [
@@ -67,20 +66,20 @@
     ...
     'Verta' => Hekmatinasser\Verta\Verta::class,
 ]</pre>
-                    <h2 id="usage">نحوه استفاده</h2>
-                    <p>در بالای هر فایل خود از کلاس ورتا استفاده میکند، از دستور زیر استفاده کنید</p>
+                    <h2 id="usage">Usage</h2>
+                    <p>Use the following command at the top of each file of the use Verta class</p>
 <pre>
 use Verta;
 // or
 use Hekmatinasser\Verta\Verta;
 </pre>
-                    <h2 id="creator">ایجاد کردن</h2>
-                    <p>برای بدست آوردن تاریخ و زمان کنونی شمسی، از دستور زیر استفاده کنید</p>
+                    <h2 id="creator">Creator</h2>
+                    <p>To get the current datetime, use the following command</p>
 <pre>
 $v = new Verta(); //1396-02-02 15:32:08
 $v = verta(); //1396-02-02 15:32:08
 </pre>
-                    <p>برای بدست آوردن تاریخ و زمان به نسبت اکنون، از دستور زیر استفاده کنید</p>
+                    <p>To get the current date and time, use the following command</p>
 <pre>
 $v = Verta::now(); //1396-02-02 15:32:08
 $v = Verta::today(); //1396-03-02 00:00:00
@@ -88,34 +87,34 @@ $v = Verta::tomorrow(); // 1396-03-03 00:00:00
 $v = Verta::yesterday(); // 1396-03-01 00:00:00
 </pre>
 
-                    <p>برای تبدیل تاریخ میلادی خود به شمسی، از دستور زیر استفاده کنید</p>
+                    <p>To convert your Gregorian datetime, use the following command</p>
 <pre>
 $v = new Verta('2016-12-27 14:12:32');
 $v = Verta::instance('2016-12-25 11:12:36');
 $v = Facades\Verta::instance('2016-12-25 11:12:36');
 </pre>
-                    <p>برای استفاده از عدد تایم استمپ به شمسی، از دستور زیر استفاده کنید</p>
+                    <p>To use the timestamp number, use the following command</p>
 <pre>
 $v = new Verta(1333857600);
 </pre>
-                    <p>برای استفاده از کلاس تاریخ و زمان پی اچ پی به شمسی، از دستور زیر استفاده کنید</p>
+                    <p>To use the Datetime class PHP, use the following command</p>
 <pre>
 $dt = new \Datetime();
 return new Verta($dt); // 1395-12-09 15:05:56
 </pre>
-                    <p>برای استفاده از کلاس کربن به شمسی، از دستور زیر استفاده کنید</p>
+                    <p>To use the Carbon class, use the following command</p>
 <pre>
 $c = \Carbon::now();
 return verta($c); // 1395-12-09 15:05:56
 </pre>
-                    <p>برای استفاده از تاریخ شمسی به صورت رشته، از دستور زیر استفاده کنید</p>
+                    <p>To use the jalali datetime as a string, use the following command</p>
 <pre>
 $v = Verta::parse('1395-10-07 14:12:32');
 $v = Verta::parse('1396 مهر 17');
 $v =  Verta::parseFormat('Y n j','1396 مهر 17');
 </pre>
 
-                    <p>در صورتی مقادیر تاریخ میلادی به صورت جداگانه باشد، از دستورات زیر استفاده کنید</p>
+                    <p>If the date values are separate, use the following commands</p>
 <pre>
 return Verta::create();  // 1395-12-14 11:17:01 equal now()
 return Verta::create(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
@@ -127,36 +126,36 @@ return Verta::createGregorian(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
 return Verta::createGregorianDate(2016,12,25); // 1395-10-05 21:35:49 set time now
 return Verta::createGregorianTime(15,51,5); // 1396-02-31 15:51:05 set date now
 </pre>
-                    <p>برای استفاده از عدد تایم استمپ به شمسی، از دستور زیر استفاده کنید</p>
+                    <p>To use the timestamp numeric, use the following command</p>
 <pre>
 return Verta::createTimestamp(1488614023); // 1395-12-14 11:23:43
 </pre>
-                    <p>در صورتی مقادیر تاریخ شمسی به صورت جداگانه باشد، از دستورات زیر استفاده کنید</p>
+                    <p>If the date jalali values are separate, use the following commands</p>
 <pre>
 // get Jalali datetime
 return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
 return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
 return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 </pre>
-                    <h2 id="transformation">تبدیل تاریخ</h2>
-                    <p>برای تبدیل از شمسی به میلادی به صورت ساده، از دستور زیر استفاده کنید</p>
+                    <h2 id="transformation">Transformations</h2>
+                    <p>Gregorian to Jalali date, use the following command</p>
                     <pre>
 return Verta::getJalali(2015,12,25); // [1394,10,4]
 </pre>
-                    <p>برای تبدیل از میلادی به شمسی به صورت ساده، از دستور زیر استفاده کنید</p>
+                    <p>Jalali to Gregorian date, use the following command</p>
                     <pre>
 return Verta::getGregorian(1394,10,4); // [2015,12,25]
 </pre>
-                    <p>برای تبدیل تاریخ از ورتا به تاریخ و زمان پی اچ پی، از دستور زیر استفاده کنید</p>
+                    <p>Verta to Datatime PHP, use the following command</p>
                     <pre>
 $dt = verta()->DateTime();
 </pre>
-                    <p>برای تبدیل تاریخ از ورتا به کربن، از دستور زیر استفاده کنید</p>
+                    <p>Verta to Carbon, use the following command</p>
                     <pre>
 $c = Carbon::instance($v->DateTime());
 </pre>
-                    <h3 id="property">خصوصیات</h3>
-                    <p>برای دریافت مقادیر خصوصیات، از دستورات زیر استفاده کنید</p>
+                    <h3 id="property">Property</h3>
+                    <p>To get property, use the following command</p>
 <pre>
 $v = verta(); // 1396-03-14 14:18:23
 return $v->year; // 1396
@@ -174,11 +173,11 @@ return $v->daysInMonth; // 31
 return $v->timestamp; // 1496557661
 return $v->timezone; // Asia/Tehran
 </pre>
-                    <p>برای مقدار دهی خصوصیات، از دستورات زیر استفاده کنید</p>
+                    <p>To set property, use the following command</p>
 <pre>
 $v = verta();
 $v->year = 1395;
-$v->month = 4; // عدد 13 برای ثبت سال آینده اولین ماه
+$v->month = 4; // set 13 for next year first month
 $v->day = 25;
 $v->hour = 16;
 $v->minute = 50;
@@ -186,7 +185,7 @@ $v->second = 42;
 $v->timestamp = 1496557661;
 $v->timezone = 'Asia/Baku';
 </pre>
-                    <p>برای مقدار دهی خصوصیات با استفاده از تابع، از دستورات زیر استفاده کنید</p>
+                    <p>To set property with method, use the following command</p>
 <pre>
 $v = $v->year(1395);
 $v = $v->month(4); // set 13 for next year first month
@@ -197,37 +196,37 @@ $v = $v->second(42);
 $v = $v->timestamp(1496557661);
 $v = $v->timezone('Asia/Baku');
 </pre>
-                    <p>برای مقدار دهی خصوصیات با یکدیگر، از دستورات زیر استفاده کنید</p>
+                    <p>To set property together, use the following command</p>
 <pre>
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42);
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42, 1569856);
 $v = $v->setDate(1395, 4, 25);
 $v = $v->setTimeString('12:25:48');
 </pre>
-                    <h2 id="format">قالب نمایش</h2>
-                    <p>برای نمایش تاریخ به شمسی، از دستور زیر استفاده کنید</p>
+                    <h2 id="format">Format</h2>
+                    <p>To output format, use the following command</p>
 <pre>
 $v = verta();
 return $v->format('Y-n-j H:i'); // 1395-10-7 14:12
 return $v->format('%B %d، %Y'); // دی 07، 1395
 return $v; //1395-10-07 14:12:32
 </pre>
-                    <p>برای ساخت فرمت نمایش مورد نظر خود راهنمای پی اچ پی را مطالعه کنید</p>
+                    <p>Read the PHP manual to create the format you want</p>
                     <p>
                         <a href="http://php.net/manual/en/function.strftime.php" target="_blank">strftime</a>
                         <a href="http://php.net/manual/en/function.date.php" target="_blank">date</a>
                     </p>
-                    <p>برای تعیین فرمت خروجی پیش فرض، از دستور زیر استفاده کنید</p>
+                    <p>To default output format, use the following command</p>
 <pre>
 Verta::setStringformat('Y/n/j H:i:s');
 return verta(); // 1395/12/12 00:11:35
 </pre>
-                    <p>برای تنظیم مجددفرمت خروجی به حالت اولیه، از دستور زیر استفاده کنید</p>
+                    <p>To reset output format, use the following command</p>
 <pre>
 Verta::resetStringFormat();
 return verta(); // 1395-12-12 00:18:04
 </pre>
-                    <p>برای نمایش تاریخ با فرمت های متعارف، از دستور زیر استفاده کنید</p>
+                    <p>To display the datetime in standard formats, use the following command</p>
 <pre>
 return $v->formatDatetime(); // 1395-12-10 23:37:26
 return $v->formatDate(); // 1395-12-10
@@ -235,12 +234,12 @@ return $v->formatTime(); // 23:26:35
 return $v->formatJalaliDatetime(); // 1395/12/10 23:46:09
 return $v->formatJalaliDate(); // 1395/12/10
 </pre>
-                    <p>برای نمایش تاریخ به صورت میلادی، از دستور زیر استفاده کنید</p>
+                    <p>To output format Gregorian, use the following command</p>
 <pre>
 return $v->formatGregorian('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 </pre>
-                    <p>برای نمایش اختلاف تاریخ به صورت واحد زمانی، از دستور زیر استفاده کنید</p>
-                    <p>درصورتی که تاریخ را وارد نکنید، اختلاف با زمان کنونی محاسبه می شود.</p>
+                    <p>To display the date difference as a unit of time, use the following command</p>
+                    <p>If you do set parameter, the difference is calculated with the current time</p>
 <pre>
 return $v1->formatDifference($v2); // 12 ماه بعد
 return $v1->formatDifference($v3); // 1 سال قبل
@@ -248,7 +247,7 @@ return $v1->addDays(25)->formatDifference(); // 4 هفته بعد
 return $v1->subDays(6)->formatDifference(); // 6 روز قبل
 return verta()->formatDifference(); // الان
 </pre>
-                    <p>برای نمایش اعداد به صورت حروف، از دستور زیر استفاده کنید</p>
+                    <p>To display numbers in alphabetical order, use the following command</p>
 <pre>
 return $v->formatWord('Y'); // یک هزار و سیصد و نود و شش
 return $v->formatWord('l dS F'); // چهارشنبه بیست و نه ام شهریور
@@ -256,8 +255,8 @@ return $v->formatWord('d F Y'); // بیست و نه شهریور یک هزار �
 return $v->formatWord('r'); // چهارشنبه یک هزار و سیصد و نود و شش, شش, بیست و نه, بیست و دو:چهل و نه:سی و هشت +04:30
 return $v->formatWord('d F ') . $v->year; // بیست و نه شهریور 1396
 </pre>
-                    <h2 id="modification">تغییر دادن</h2>
-                    <p>برای اضافه یا کم کردن از تاریخ خود، از دستور زیر استفاده کنید</p>
+                    <h2 id="modification">Modification</h2>
+                    <p>To add or sub datetime, use the following command</p>
 <pre>
 $v = verta();
 return $v->addYear(); // 1396-10-07 14:12:32
@@ -301,7 +300,7 @@ return $v->addSeconds(3); // 1395-10-07 14:12:35
 return $v->subSecond(); // 1395-10-07 14:12:31
 return $v->subSeconds(2); // 1395-10-07 14:12:30
 </pre>
-                    <p>برای بدست آوردن تاریخ شروع و پایان هر بازه زمانی، از دستور زیر استفاده کنید</p>
+                    <p>To get start or end datetime period, use the following command</p>
 <pre>
 $v = verta(); // 1396-04-29 14:25:48
 return $v->startDay(); // 1396-04-29 00:00:00
@@ -323,14 +322,14 @@ return $v->endQuarter(); // 1396-06-31 23:59:59
 return $v->startYear(); // 1396-01-01 00:00:00
 return $v->endYear(); // 1396-12-29 23:59:59
 </pre>
-                    <h2 id="comparison">بررسی و مقایسه</h2>
-                    <p>برای اعتبار سنجی تاریخ، از دستور زیر استفاده کنید</p>
+                    <h2 id="comparison">Comparison</h2>
+                    <p>To validate datetime, use the following command</p>
 <pre>
 return Verta::isLeapYear(1394); // false
 return Verta::isValideDate(1394, 12, 30); // false
 return Verta::isValideTime(15, 12, 30); // true
 </pre>
-                    <p>برای محاسبه اختلاف تاریخ ها با یکدیگر، از دستور زیر استفاده کنید</p>
+                    <p>To difference datetime together, use the following command</p>
 <pre>
 // diff objects together
 $v1 = verta(); // 1396-03-31 22:21:40
@@ -339,13 +338,13 @@ $v3 = verta('2017-06-20'); // 1396-03-30 15:24:53
 
 return $v1->diffYears($v3); // -1
 return $v1->diffMonths($v2); // 11
-return $v2->diffMonths(); // -11 مقایسه با زمان کنونی
+return $v2->diffMonths(); // -11 compare with now
 return $v1->diffWeeks($v2); // 51
 return $v1->diffDays($v3); // -372
 return $v3->diffMinutes(); // 536548
 return $v3->diffSeconds(); // 12261931
 </pre>
-                    <p>برای مقایسه تاریخ ها با یکدیگر، از دستور زیر استفاده کنید</p>
+                    <p>To compere datetime together, use the following command</p>
 <pre>
 return $v1->eq(); // ture alias equalTo()
 return $v1->ne($v2); // true alias notEqualTo()
@@ -355,7 +354,7 @@ return $v1->lt($v2); // false alias lessThan()
 return $v1->lte($v2); // false alias lessThanOrEqualTo()
 return $v1->between($v2, $v3); // false    
 </pre>                    
-                    <p>برای بررسی تاریخ از لحاظ نزدیکتر یا دورتر بودن و یا کوچکتر و بزرگتر بودن، از دستور زیر استفاده کنید</p>
+                    <p>To compere datetime for closest, farthest, min or max together, use the following command</p>
 <pre>
 return $v1->closest($v2, $v3); // return $v2 object
 return $v1->farthest($v2, $v3); // return $v3 object
@@ -364,7 +363,7 @@ return $v1->min($v2); // return $v2
 return $v1->maximum($v2); // return $v1
 return $v1->max($v2); // return $v1
 </pre>
-                    <p>برای بررسی تاریخ فعلی، از دستورات زیر استفاده کنید</p>
+                    <p>To compere datetime now, use the following command</p>
 <pre>
 return $v1->isWeekday(); // true
 return $v1->isWeekend(); // false
@@ -397,39 +396,39 @@ return $v1->isWednesday(); // false
 return $v1->isThursday(); // true
 return $v1->isFriday(); // false
 </pre>
-                    <h2 id="validation">اعتبار سنجی</h2>
-                    <p>شما می توانید با اعتبار سنجی لاراول تاریخ های شمسی درون فرم های خود استفاده کنید</p>
-                    <p>شما باید پیام های خطا برای اعتبار سنجی خود در در مسیر فایل های ترجمه خود اضافه کنیدبرای نمونه کد هایی که درون پکیج برای پیام خطا وجود دارد در فایل ترجمه خود قرار دهیدبرای مثال در فایل ترجمه پیام خطا به آرایه عبارات زیر را اضافه کنید</p>
+                    <h2 id="validation">Laravel Validator</h2>
+                    <p>You can validate form with Validator Laravel</p>
+                    <p>You need to define error messages for jdate, ... rules in validation.php in lang folders.</p>
 <pre>
-'jdate' => ':attribute تاریخ شمسی معتبر نمی باشد.',
-'jdate_equal' => ':attribute تاریخ شمسی برابر :fa-date نمی باشد.',
-'jdate_not_equal' => ':attribute تاریخ شمسی نامساوی :fa-date نمی باشد.',
-'jdatetime' => ':attribute تاریخ و زمان شمسی معتبر نمی باشد.',
-'jdatetime_equal' => ':attribute تاریخ و زمان شمسی مساوی :fa-date نمی باشد.',
-'jdatetime_not_equal' => ':attribute تاریخ و زمان شمسی نامساوی :fa-date نمی باشد.',
-'jdate_after' => ':attribute تاریخ شمسی باید بعد از :fa-date باشد.',
-'jdate_after_equal' => ':attribute تاریخ شمسی باید بعد یا برابر از :fa-date باشد.',
-'jdatetime_after' => ':attribute تاریخ و زمان شمسی باید بعد از :fa-date باشد.',
-'jdatetime_after_equal' => ':attribute تاریخ و زمان شمسی باید بعد یا برابر از :fa-date باشد.',
-'jdate_before' => ':attribute تاریخ شمسی باید قبل از :fa-date باشد.',
-'jdate_before_equal' => ':attribute تاریخ شمسی باید قبل یا برابر از :fa-date باشد.',
-'jdatetime_before' => ':attribute تاریخ و زمان شمسی باید قبل از :fa-date باشد.',
-'jdatetime_before_equal' => ':attribute تاریخ و زمان شمسی باید قبل یا برابر از :fa-date باشد.',
+'jdate' => 'The :attribute is not valid Jalali date',
+'jdate_equal' => 'The :attribute is not equal Jalali date  :date',
+'jdate_not_equal' => 'The :attribute is\'nt not equal Jalali date  :date',
+'jdatetime' => 'The :attribute is not valid Jalali datetime',
+'jdatetime_equal' => 'The :attribute is not equal Jalali datetime :date',
+'jdatetime_not_equal' => 'The :attribute is\'nt not equal Jalali datetime :date',
+'jdate_after' => 'The :attribute must be a Jalali date after :date.',
+'jdate_after_equal' => 'The :attribute must be a Jalali date after or equal :date.',
+'jdatetime_after' => 'The :attribute must be a Jalali datetime after :date.',
+'jdatetime_after_equal' => 'The :attribute must be a Jalali datetime after or equal :date.',
+'jdate_before' => 'The :attribute must be a Jalali date before :date.',
+'jdate_before_equal' => 'The :attribute must be a Jalali date before or equal :date.',
+'jdatetime_before' => 'The :attribute must be a Jalali datetime before :date.',
+'jdatetime_before_equal' => 'The :attribute must be a Jalali datetime before or equal :date.',
 
 'attributes' => [
-    'start_date' => 'تاریخ شروع',
-    'expire_datetime' => 'تاریخ انقضا',
+    'start_date' => 'start date',
+    'expire_datetime' => 'expire datetime',
 ],
 </pre>
-                    <h3>قوانین اعتبار سنجی</h3>
-                    <p>اگر تاریخ شمسی با فرمت معین درست باشد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد</p>
+                    <h3>Validation Rules</h3>
+                    <p>Determines if an input is a valid Jalali date with the specified format</p>
+                    <p>The default format is Y/m/d</p>
 <pre>
 'start_date' => 'jdate'
 'start_date' => 'jdate:Y/m/d'
 </pre>
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده مساوی باشد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد</p>
+                    <p>Determines if an input is a valid Jalali date with the specified format and it is equal a given date</p>
+                    <p>The default format is Y/m/d</p>
 
 <pre>
 'start_date' => 'jdate_equal'
@@ -437,101 +436,101 @@ return $v1->isFriday(); // false
 'start_date' => 'jdate_equal:1388/01/01,Y/m/d'
 </pre>
 
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده نامساوی باشد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد</p>
+                    <p>Determines if an input is a valid Jalali date with the specified format and it is not equal a given date</p>
+                    <p>The default format is Y/m/d</p>
 
 <pre>
 'start_date' => 'jdate_not_equal'
 'start_date' => 'jdate_not_equal:1388/01/01'
 'start_date' => 'jdate_not_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده درست باشد</p>
-                    <p>فرمت پیش فرض  Y/m/d H:i:s می باشد</p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format</p>
+                    <p>The default format is Y/m/d H:i:s</p>
 <pre>
 'start_date' => 'jdatetime'
 'start_date' => 'jdatetime:Y/m/d H:i:s'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده مساوی باشد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد</p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is equal a given datetime</p>
+                    <p>The default format is Y/m/d H:i:s</p>
 <pre>
 'start_date' => 'jdatetime_equal'
 'start_date' => 'jdatetime_equal:1388/01/01 12:56:28'
 'start_date' => 'jdatetime_equal:1388/01/01 12:56:28,Y/m/d H:i:s'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده نامساوی باشد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد</p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is not equal a given datetime</p>
+                    <p>The default format is Y/m/d H:i:s</p>
 <pre>
 'start_date' => 'jdatetime_not_equal'
 'start_date' => 'jdatetime_not_equal:1388/01/01 12:56:28'
 'start_date' => 'jdatetime_not_equal:1388/01/01 12:56:28,Y/m/d H:i:s'
 </pre>
 
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده درست باشد و بعد از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید تاریخ فعلی در نظر میگیرد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد</p>
+                    <p>Determines if an input is a valid Jalali date with the specified format and it is after a given date</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d</p>
 <pre>
 'start_date' => 'jdate_after'
 'start_date' => 'jdate_after:1388/01/01'
 'start_date' => 'jdate_after:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده درست باشد و بعد یا مساوی از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید تاریخ فعلی در نظر میگیرد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد </p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d</p>
 <pre>
 'start_date' => 'jdate_after_equal'
 'start_date' => 'jdate_after_equal:1388/01/01'
 'start_date' => 'jdate_after_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده درست باشد و بعد از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید تاریخ فعلی در نظر میگیرد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد </p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after a given datetime</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d H:i:s</p>
                     <pre>
 'start_date' => 'jdatetime_after'
 'start_date' => 'jdatetime_after:1388/01/01'
 'start_date' => 'jdatetime_after:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده درست باشد و بعد یا مساوی از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید تاریخ فعلی در نظر میگیرد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد </p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d H:i:s</p>
                     <pre>
 'start_date' => 'jdatetime_after_equal'
 'start_date' => 'jdatetime_after_equal:1388/01/01'
 'start_date' => 'jdatetime_after_equal:1388/01/01,Y/m/d'
 </pre>
 
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده درست باشد و قبل از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید قبل از تاریخ فعلی باشد باشد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد </p>
+                    <p>Determines if an input is a valid Jalali date with the specified format and it is before a given date</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d</p>
 <pre>
 'start_date' => 'jdate_before'
 'start_date' => 'jdate_before:1388/01/01'
 'start_date' => 'jdate_before:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ شمسی با فرمت تعیین شده درست باشد و قبل یا مساوی از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید قبل از تاریخ فعلی باشد باشد</p>
-                    <p>فرمت پیش فرض Y/m/d می باشد </p>
+                    <p>Determines if an input is a valid Jalali date with the specified format and it is before or equal a given date</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d</p>
 <pre>
 'start_date' => 'jdate_before_equal'
 'start_date' => 'jdate_before_equal:1388/01/01'
 'start_date' => 'jdate_before_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده درست باشد و قبل از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید قبل از تاریخ فعلی باشد باشد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد </p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is before a given date-time</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d H:i:s</p>
 <pre>
 'start_date' => 'jdatetime_before'
 'start_date' => 'jdatetime_before:1388/01/01'
 'start_date' => 'jdatetime_before:1388/01/01,Y/m/d'
 </pre>
-                    <p>اگر تاریخ و زمان شمسی با فرمت تعیین شده درست باشد و قبل یا مساوی از تاریخ تعیین شده باشد</p>
-                    <p>درصورتی که تاریخ وارد کنید قبل از تاریخ فعلی باشد باشد</p>
-                    <p>فرمت پیش فرض Y/m/d H:i:s می باشد </p>
+                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is before or equal a given datetime</p>
+                    <p>The default date is now</p>
+                    <p>The default format is Y/m/d H:i:s</p>
 <pre>
 'start_date' => 'jdatetime_before_equal'
 'start_date' => 'jdatetime_before_equal:1388/01/01'
 'start_date' => 'jdatetime_before_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>میتوانید با ترکیب قوانین تاریخ را بین دو محدوده بررسی کنید</p>
+                    <p>Can combine the rules of the between the two boundaries</p>
 <pre>
 $validate = Validator::make([
     'start_date' => '1389/01/31',
@@ -549,10 +548,10 @@ if ($validate->fails()) {
     //output
 array:2 [
   "start_date" => array:1 [
-    0 => "تاریخ شروع تاریخ شمسی باید قبل از ۱۳۹۰/۰۱/۰۱ باشد."
+    0 => "The start date must be a Jalali date before 1390/01/01."
   ]
   "expire_datetime" => array:1 [
-    0 => "تاریخ انقضا تاریخ و زمان شمسی باید قبل از ۱۳۹۷/۰۲/۱۶ ۱۲:۱۰:۰۰ باشد."
+    0 => "The expire datetime must be a Jalali datetime before 1397/02/16 12:10:00."
   ]
 ]
 </pre>
