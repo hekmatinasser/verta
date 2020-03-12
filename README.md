@@ -1,4 +1,4 @@
-<p align="center"><img src="https://hekmatinasser.github.io/verta/" width="400"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/hekmatinasser/verta/master/docs/assert/logo.png" width="400"></p>
 <h1 align="center">hekmatinasser/verta</h1>
 <p align="center">
 <a href="https://packagist.org/packages/hekmatinasser/verta"><img src="https://poser.pugx.org/hekmatinasser/verta/v/stable" alt="Latest Stable Version"></a>
