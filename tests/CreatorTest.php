@@ -114,8 +114,10 @@ class CreatorTest extends TestCase
 
     public function testCreateTimestamp()
     {
-        $datetime = Verta::createTimestamp(1583501791)->format('Y-m-d H:i:s');
+        $datetime = Verta::createTimestamp(1557142591)->format('Y-m-d H:i:s');
+        $this->assertEquals("1398-02-16 13:36:31", $datetime);
 
+        $datetime = Verta::createTimestamp(1583498191)->format('Y-m-d H:i:s');
         $this->assertEquals("1398-12-16 13:36:31", $datetime);
     }
 
@@ -163,5 +165,21 @@ class CreatorTest extends TestCase
         $datetime = Verta::createJalaliTime(15,19,51)->format('Y-m-d H:i:s');
 
         $this->assertEquals("{$date} 15:19:51", $datetime);
+    }
+
+    public function testStartYear()
+    {
+        $expected = verta()->setDateTime(2019,1,1,10,20,11);
+        $actual = $expected->startYear();
+
+        $this->assertEquals("2019-01-01 00:00:00", $actual);
+    }
+
+    public function testEndYear()
+    {
+        $expected = verta()->setDateTime(2019,1,1,10,20,11);
+        $actual = $expected->endYear();
+
+        $this->assertEquals("2019-12-29 23:59:59", $actual);
     }
 }
