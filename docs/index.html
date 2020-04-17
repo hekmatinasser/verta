@@ -149,11 +149,11 @@ return Verta::getGregorian(1394,10,4); // [2015,12,25]
 </pre>
                     <p>برای تبدیل تاریخ از ورتا به تاریخ و زمان پی اچ پی، از دستور زیر استفاده کنید</p>
                     <pre>
-$dt = verta()->DateTime();
+$dt = verta()->datetime();
 </pre>
                     <p>برای تبدیل تاریخ از ورتا به کربن، از دستور زیر استفاده کنید</p>
                     <pre>
-$c = Carbon::instance($v->DateTime());
+$c = Carbon::instance($v->datetime());
 </pre>
                     <h3 id="property">خصوصیات</h3>
                     <p>برای دریافت مقادیر خصوصیات، از دستورات زیر استفاده کنید</p>
@@ -327,8 +327,8 @@ return $v->endYear(); // 1396-12-29 23:59:59
                     <p>برای اعتبار سنجی تاریخ، از دستور زیر استفاده کنید</p>
 <pre>
 return Verta::isLeapYear(1394); // false
-return Verta::isValideDate(1394, 12, 30); // false
-return Verta::isValideTime(15, 12, 30); // true
+return Verta::isValidDate(1394, 12, 30); // false
+return Verta::isValidTime(15, 12, 30); // true
 </pre>
                     <p>برای محاسبه اختلاف تاریخ ها با یکدیگر، از دستور زیر استفاده کنید</p>
 <pre>

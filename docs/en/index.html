@@ -148,11 +148,11 @@ return Verta::getGregorian(1394,10,4); // [2015,12,25]
 </pre>
                     <p>Verta to Datatime PHP, use the following command</p>
                     <pre>
-$dt = verta()->DateTime();
+$dt = verta()->datetime();
 </pre>
                     <p>Verta to Carbon, use the following command</p>
                     <pre>
-$c = Carbon::instance($v->DateTime());
+$c = Carbon::instance($v->datetime());
 </pre>
                     <h3 id="property">Property</h3>
                     <p>To get property, use the following command</p>
@@ -326,8 +326,8 @@ return $v->endYear(); // 1396-12-29 23:59:59
                     <p>To validate datetime, use the following command</p>
 <pre>
 return Verta::isLeapYear(1394); // false
-return Verta::isValideDate(1394, 12, 30); // false
-return Verta::isValideTime(15, 12, 30); // true
+return Verta::isValidDate(1394, 12, 30); // false
+return Verta::isValidTime(15, 12, 30); // true
 </pre>
                     <p>To difference datetime together, use the following command</p>
 <pre>

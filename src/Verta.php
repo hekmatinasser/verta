@@ -343,9 +343,9 @@ class Verta extends DateTime {
     /**
      * Create a DateTime instance from Verta
      *
-     * @return DateTime $datetime
+     * @return datetime $datetime
      */
-    public function DateTime() {
+    public function datetime() {
         return new DateTime(date('Y-m-d H:i:s.u', $this->getTimestamp()), $this->getTimeZone());
     }
 
@@ -392,7 +392,7 @@ class Verta extends DateTime {
         $datetime = str_replace(self::$monthYear, range(1,12), $datetime);
 
         $parse = date_parse_from_format($format, $datetime);
-        if($parse['error_count'] == 0 && self::isValideDate($parse['year'], $parse['month'], $parse['day']) && self::isValideTime($parse['hour'], $parse['minute'], $parse['second'])){
+        if($parse['error_count'] == 0 && self::isValidDate($parse['year'], $parse['month'], $parse['day']) && self::isValidTime($parse['hour'], $parse['minute'], $parse['second'])){
             list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
             list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
@@ -520,7 +520,7 @@ class Verta extends DateTime {
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
-        if (!checkdate($month, $day, $year) || !static::isValideTime($hour, $minute, $second)) {
+        if (!checkdate($month, $day, $year) || !static::isValidTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
@@ -586,7 +586,7 @@ class Verta extends DateTime {
         $minute = $minute === null ? intval($defaults['minute']) : $minute;
         $second = $second === null ? intval($defaults['second']) : $second;
 
-        if (!static::isValideDate($year, $month, $day) || !static::isValideTime($hour, $minute, $second)) {
+        if (!static::isValidDate($year, $month, $day) || !static::isValidTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
@@ -1354,7 +1354,7 @@ class Verta extends DateTime {
      */
     public function formatGregorian($format) {
 
-        return $this->DateTime()->format($format);
+        return $this->datetime()->format($format);
     }
 
     /**
@@ -1472,7 +1472,7 @@ class Verta extends DateTime {
      * @param int $year
      * @return bool
      */
-    public static function isValideDate($year, $month, $day) {
+    public static function isValidDate($year, $month, $day) {
         $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month)-1];
         return $year >= 1 && $year <= 32766
             && $month >= 1 && $month <= 12
@@ -1487,7 +1487,7 @@ class Verta extends DateTime {
      * @param int $second
      * @return bool
      */
-    public static function isValideTime($hour, $minute, $second) {
+    public static function isValidTime($hour, $minute, $second) {
         return $hour >= 0 && $hour <= 24
             && $minute >= 0 && $minute <= 59
             && $second >= 0 && $second <= 59;

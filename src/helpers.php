@@ -1,11 +1,12 @@
 <?php
 if (! function_exists('verta')) {
     /**
-     * @param string $str
+     * @param null $datetime
+     * @param null $timezone
      * @return \Hekmatinasse\Verta\Verta
      */
-    function verta($string = null, $timezone = null)
+    function verta($datetime = null, $timezone = null)
     {
-        return new \Hekmatinasser\Verta\Verta($string, $timezone);
+        return new \Hekmatinasser\Verta\Verta($datetime, $timezone);
     }
 }
