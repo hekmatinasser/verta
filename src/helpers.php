@@ -6,6 +6,6 @@ if (! function_exists('verta')) {
      */
     function verta($string = null, $timezone = null)
     {
-        return \Hekmatinasser\Verta\Verta::instance($string, $timezone);
+        return new \Hekmatinasser\Verta\Verta($string, $timezone);
     }
 }
