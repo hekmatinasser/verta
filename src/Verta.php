@@ -1473,10 +1473,17 @@ class Verta extends DateTime {
      * @return bool
      */
     public static function isValidDate($year, $month, $day) {
+        if($year < 0 || $year > 32766) {
+            return false;
+        }
+        if($month < 1 || $month > 12) {
+            return false;
+        }
         $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month)-1];
-        return $year >= 1 && $year <= 32766
-            && $month >= 1 && $month <= 12
-            && $day >= 1 && $day <= $dayLastMonthJalali;
+        if($day < 1 || $day > $dayLastMonthJalali) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -1504,7 +1511,7 @@ class Verta extends DateTime {
     {
         $v = $v ?: static::now($this->getTimezone());
 
-        return (int) $this->diff($v)->format('%r%y');
+        return (int) $this->diff($v->datetime())->format('%r%y');
     }
 
     /**
@@ -1518,7 +1525,7 @@ class Verta extends DateTime {
     {
         $v = $v ?: static::now($this->getTimezone());
 
-        return $this->diffYears($v) * static::MONTHS_PER_YEAR + (int) $this->diff($v)->format('%r%m');
+        return $this->diffYears($v) * static::MONTHS_PER_YEAR + (int) $this->diff($v->datetime())->format('%r%m');
     }
 
     /**
@@ -1544,7 +1551,7 @@ class Verta extends DateTime {
     {
         $v = $v ?: static::now($this->getTimezone());
 
-        return (int) $this->diff($v)->format('%r%a');
+        return (int) $this->diff($v->datetime())->format('%r%a');
     }
 
     /**
