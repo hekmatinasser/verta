@@ -200,40 +200,26 @@ class Verta extends DateTime {
     );
 
     /**
+     * arabic number.
+     *
+     * @var array
+     */
+
+    protected static $arabicNumber = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+
+    /**
      * persian number.
      *
      * @var array
      */
-    protected static $persianNumber = array(
-        '۰',
-        '۱',
-        '۲',
-        '۳',
-        '۴',
-        '۵',
-        '۶',
-        '۷',
-        '۸',
-        '۹',
-    );
+    protected static $persianNumber = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
     /**
      * english number.
      *
      * @var array
      */
-    protected static $englishNumber = array(
-        '0',
-        '1',
-        '2',
-        '3',
-        '4',
-        '5',
-        '6',
-        '7',
-        '8',
-        '9',
-    );
+    protected static $englishNumber = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     /*****************************  CONSTRUCT  ****************************/
 
@@ -245,6 +231,7 @@ class Verta extends DateTime {
      * @internal param timestamp $timestamp [optional]
      */
     public function __construct($datetime = null, $timezone = null) {
+        $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
         if ($datetime === null) {
             $object = new DateTime();
             $instance = $object->getTimestamp();
@@ -1443,9 +1430,31 @@ class Verta extends DateTime {
      * @param string $string
      * @return string
      */
-    public static function persianNumbers($string)
+    public static function enToFaNumbers($string)
     {
         return str_replace(self::$englishNumber, self::$persianNumber, $string);
+    }
+
+    /**
+     * Convert english numbers to persian numbers
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function faToEnNumbers($string)
+    {
+        return str_replace(self::$persianNumber, self::$englishNumber, $string);
+    }
+
+    /**
+     * Convert english numbers to persian numbers
+     *
+     * @param string $string
+     * @return string
+     */
+    public static function arToEnNumbers($string)
+    {
+        return str_replace(self::$persianNumber, self::$englishNumber, $string);
     }
 
     /*****************************  COMPARISION  ****************************/
