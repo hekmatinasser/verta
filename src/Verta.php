@@ -1234,7 +1234,7 @@ class Verta extends DateTime {
     protected function daysYear($month, $day) {
         $days = 0;
         for ($i = 1; $i < $month; $i ++) {
-            $days += static::$daysMonthJalali[$i];
+            $days += static::$daysMonthJalali[$i-1];
         }
         return ($days + $day);
     }
