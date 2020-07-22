@@ -231,12 +231,12 @@ class Verta extends DateTime {
      * @internal param timestamp $timestamp [optional]
      */
     public function __construct($datetime = null, $timezone = null) {
-        $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
         if ($datetime === null) {
             $object = new DateTime();
             $instance = $object->getTimestamp();
         }
         elseif (is_string($datetime)){
+            $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
             $object = date_create($datetime);
             if ($object === false) {
                 throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
