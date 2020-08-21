@@ -1466,11 +1466,7 @@ class Verta extends DateTime {
      * @return bool
      */
     public static function isLeapYear($year) {
-        $mod = ($year % 33);
-        if (($mod == 1) or ( $mod == 5) or ( $mod == 9) or ( $mod == 13) or ( $mod == 17) or ( $mod == 22) or ( $mod == 26) or ( $mod == 30)) {
-            return true;
-        }
-        return false;
+        return in_array(($year % 33) , [1 , 5 , 9 , 13 ,17 , 22 , 26 , 30]);
     }
 
     /**
@@ -1504,7 +1500,7 @@ class Verta extends DateTime {
      * @return bool
      */
     public static function isValidTime($hour, $minute, $second) {
-        return $hour >= 0 && $hour <= 24
+        return $hour >= 0 && $hour <= 23
             && $minute >= 0 && $minute <= 59
             && $second >= 0 && $second <= 59;
     }
@@ -2161,7 +2157,7 @@ class Verta extends DateTime {
      */
     public function addYears($value)
     {
-        return $this->modify((int) $value.' year');
+        return $this->year($this->year + $value);
     }
 
     /**
@@ -2185,7 +2181,7 @@ class Verta extends DateTime {
      */
     public function subYears($value)
     {
-        return $this->addYears(-1 * $value)->modify('-1 day');
+        return $this->addYears(-1 * $value);
     }
 
     /**
