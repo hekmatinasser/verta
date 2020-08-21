@@ -2161,7 +2161,7 @@ class Verta extends DateTime {
      */
     public function addYears($value)
     {
-        return $this->modify((int) $value.' year');
+        return $this->year($this->year + $value);
     }
 
     /**
@@ -2185,7 +2185,7 @@ class Verta extends DateTime {
      */
     public function subYears($value)
     {
-        return $this->addYears(-1 * $value)->modify('-1 day');
+        return $this->addYears(-1 * $value);
     }
 
     /**
