@@ -97,10 +97,11 @@ pre {
   font-size: 1em;
   white-space: pre-wrap;
   word-wrap: break-word;
-  background: lightgray;
-  padding: 5px;
+  padding: 10px;
   direction: ltr;
   text-align: left;
+  color: white;
+  background: #4d4e53;
 }
 
 ul {
@@ -351,6 +352,8 @@ footer#footer {
   cursor: pointer;
   padding: 15px;
   border-radius: 4px;
+  height: 40px;
+  width: 40px;
 }
 
 footer#footer a,
