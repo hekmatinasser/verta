@@ -13,16 +13,13 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Laravel Test Suite">
+        <testsuite name="Verta Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
-            <exclude>
-                <directory suffix=".blade.php">./src/</directory>
-            </exclude>
         </whitelist>
     </filter>
     <php>
