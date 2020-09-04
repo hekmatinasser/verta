@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../css/style.css?v=0.1">
+    <link rel="stylesheet" href="../css/style.css?v=0.2">
 </head>
 <body>
 <a href="https://github.com/hekmatinasser/verta" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
@@ -19,44 +19,48 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            <ul>
-                <li>
-                    <a href="#installation">Installation</a>
-                </li>
-                <li>
-                    <a href="#usage">Usage</a>
-                </li>
-                <li>
-                    <a href="#creator">Creator</a>
-                </li>
-                <li>
-                    <a href="#transformation">Transformation</a>
-                </li>
-                <li>
-                    <a href="#property">Property</a>
-                </li>
-                <li>
-                    <a href="#format">Format</a>
-                </li>
-                <li>
-                    <a href="#modification">Modification</a>
-                </li>
-                <li>
-                    <a href="#comparison">Comparison</a>
-                </li>
-                <li>
-                    <a href="#validation">Validation Laravel</a>
-                </li>
-            </ul>
+            <div class="sidebar">
+                <div class="sticky">
+                    <ul>
+                        <li>
+                            <a href="#installation">Installation</a>
+                        </li>
+                        <li>
+                            <a href="#usage">Usage</a>
+                        </li>
+                        <li>
+                            <a href="#creator">Creator</a>
+                        </li>
+                        <li>
+                            <a href="#transformation">Transformation</a>
+                        </li>
+                        <li>
+                            <a href="#property">Property</a>
+                        </li>
+                        <li>
+                            <a href="#format">Format</a>
+                        </li>
+                        <li>
+                            <a href="#modification">Modification</a>
+                        </li>
+                        <li>
+                            <a href="#comparison">Comparison</a>
+                        </li>
+                        <li>
+                            <a href="#validation">Validation Laravel</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="col-sm-9">
-                <article class="content">
-                    <h2 id="installation">Installation</h2>
-                    <p>Enter the following command to install Verta</p>
-                    <pre>$ composer require hekmatinasser/verta</pre>
-                    <p>Now you have to add the package to your project by entering the following command</p>
+            <article class="content">
+                <h2 id="installation">Installation</h2>
+                <p>Enter the following command to install Verta</p>
+                <pre>$ composer require hekmatinasser/verta</pre>
+                <p>Now you have to add the package to your project by entering the following command</p>
 
-                    <pre>// config/app.php
+                <pre>// config/app.php
 'providers' => [
     ...
     Hekmatinasser\Verta\VertaServiceProvider::class,
@@ -66,56 +70,56 @@
     ...
     'Verta' => Hekmatinasser\Verta\Verta::class,
 ]</pre>
-                    <h2 id="usage">Usage</h2>
-                    <p>Use the following command at the top of each file of the use Verta class</p>
-<pre>
+                <h2 id="usage">Usage</h2>
+                <p>Use the following command at the top of each file of the use Verta class</p>
+                <pre>
 use Verta;
 // or
 use Hekmatinasser\Verta\Verta;
 </pre>
-                    <h2 id="creator">Creator</h2>
-                    <p>To get the current datetime, use the following command</p>
-<pre>
+                <h2 id="creator">Creator</h2>
+                <p>To get the current datetime, use the following command</p>
+                <pre>
 $v = new Verta(); //1396-02-02 15:32:08
 $v = verta(); //1396-02-02 15:32:08
 </pre>
-                    <p>To get the current date and time, use the following command</p>
-<pre>
+                <p>To get the current date and time, use the following command</p>
+                <pre>
 $v = Verta::now(); //1396-02-02 15:32:08
 $v = Verta::today(); //1396-03-02 00:00:00
 $v = Verta::tomorrow(); // 1396-03-03 00:00:00
 $v = Verta::yesterday(); // 1396-03-01 00:00:00
 </pre>
 
-                    <p>To convert your Gregorian datetime, use the following command</p>
-<pre>
+                <p>To convert your Gregorian datetime, use the following command</p>
+                <pre>
 $v = new Verta('2016-12-27 14:12:32');
 $v = Verta::instance('2016-12-25 11:12:36');
 $v = Facades\Verta::instance('2016-12-25 11:12:36');
 </pre>
-                    <p>To use the timestamp number, use the following command</p>
-<pre>
+                <p>To use the timestamp number, use the following command</p>
+                <pre>
 $v = new Verta(1333857600);
 </pre>
-                    <p>To use the Datetime class PHP, use the following command</p>
-<pre>
+                <p>To use the Datetime class PHP, use the following command</p>
+                <pre>
 $dt = new \Datetime();
 return new Verta($dt); // 1395-12-09 15:05:56
 </pre>
-                    <p>To use the Carbon class, use the following command</p>
-<pre>
+                <p>To use the Carbon class, use the following command</p>
+                <pre>
 $c = \Carbon::now();
 return verta($c); // 1395-12-09 15:05:56
 </pre>
-                    <p>To use the jalali datetime as a string, use the following command</p>
-<pre>
+                <p>To use the jalali datetime as a string, use the following command</p>
+                <pre>
 $v = Verta::parse('1395-10-07 14:12:32');
 $v = Verta::parse('1396 مهر 17');
 $v =  Verta::parseFormat('Y n j','1396 مهر 17');
 </pre>
 
-                    <p>If the date values are separate, use the following commands</p>
-<pre>
+                <p>If the date values are separate, use the following commands</p>
+                <pre>
 return Verta::create();  // 1395-12-14 11:17:01 equal now()
 return Verta::create(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
 return Verta::createDate(2016,12,25); // 1395-10-05 21:35:49 set time now
@@ -126,37 +130,37 @@ return Verta::createGregorian(2016,12,25,15,20,15);  // 1395-10-05 15:20:15
 return Verta::createGregorianDate(2016,12,25); // 1395-10-05 21:35:49 set time now
 return Verta::createGregorianTime(15,51,5); // 1396-02-31 15:51:05 set date now
 </pre>
-                    <p>To use the timestamp numeric, use the following command</p>
-<pre>
+                <p>To use the timestamp numeric, use the following command</p>
+                <pre>
 return Verta::createTimestamp(1488614023); // 1395-12-14 11:23:43
 </pre>
-                    <p>If the date jalali values are separate, use the following commands</p>
-<pre>
+                <p>If the date jalali values are separate, use the following commands</p>
+                <pre>
 // get Jalali datetime
 return Verta::createJalali(1394,12,29,15,51,5);  // 1394-12-29 15:51:05
 return Verta::createJalaliDate(1394,12,29); // 1394-12-29 11:18:29 set time now
 return Verta::createJalaliTime(15,51,5); // 1395-12-14 15:51:05 set date now
 </pre>
-                    <h2 id="transformation">Transformations</h2>
-                    <p>Gregorian to Jalali date, use the following command</p>
-                    <pre>
+                <h2 id="transformation">Transformations</h2>
+                <p>Gregorian to Jalali date, use the following command</p>
+                <pre>
 return Verta::getJalali(2015,12,25); // [1394,10,4]
 </pre>
-                    <p>Jalali to Gregorian date, use the following command</p>
-                    <pre>
+                <p>Jalali to Gregorian date, use the following command</p>
+                <pre>
 return Verta::getGregorian(1394,10,4); // [2015,12,25]
 </pre>
-                    <p>Verta to Datatime PHP, use the following command</p>
-                    <pre>
+                <p>Verta to Datatime PHP, use the following command</p>
+                <pre>
 $dt = verta()->datetime();
 </pre>
-                    <p>Verta to Carbon, use the following command</p>
-                    <pre>
+                <p>Verta to Carbon, use the following command</p>
+                <pre>
 $c = Carbon::instance($v->datetime());
 </pre>
-                    <h3 id="property">Property</h3>
-                    <p>To get property, use the following command</p>
-<pre>
+                <h3 id="property">Property</h3>
+                <p>To get property, use the following command</p>
+                <pre>
 $v = verta(); // 1396-03-14 14:18:23
 return $v->year; // 1396
 return $v->quarter // 1
@@ -173,8 +177,8 @@ return $v->daysInMonth; // 31
 return $v->timestamp; // 1496557661
 return $v->timezone; // Asia/Tehran
 </pre>
-                    <p>To set property, use the following command</p>
-<pre>
+                <p>To set property, use the following command</p>
+                <pre>
 $v = verta();
 $v->year = 1395;
 $v->month = 4; // set 13 for next year first month
@@ -185,8 +189,8 @@ $v->second = 42;
 $v->timestamp = 1496557661;
 $v->timezone = 'Asia/Baku';
 </pre>
-                    <p>To set property with method, use the following command</p>
-<pre>
+                <p>To set property with method, use the following command</p>
+                <pre>
 $v = $v->year(1395);
 $v = $v->month(4); // set 13 for next year first month
 $v = $v->day(25);
@@ -196,141 +200,141 @@ $v = $v->second(42);
 $v = $v->timestamp(1496557661);
 $v = $v->timezone('Asia/Baku');
 </pre>
-                    <p>To set property together, use the following command</p>
-<pre>
+                <p>To set property together, use the following command</p>
+                <pre>
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42);
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42, 1569856);
 $v = $v->setDate(1395, 4, 25);
 $v = $v->setTimeString('12:25:48');
 </pre>
-                    <h2 id="format">Format</h2>
-                    <p>To output format, use the following command</p>
-<pre>
+                <h2 id="format">Format</h2>
+                <p>To output format, use the following command</p>
+                <pre>
 $v = verta();
 return $v->format('Y-n-j H:i'); // 1395-10-7 14:12
 return $v->format('%B %d، %Y'); // دی 07، 1395
 return $v; //1395-10-07 14:12:32
 </pre>
-                    <p>Read the PHP manual to create the format you want</p>
-                    <p>
-                        <a href="http://php.net/manual/en/function.strftime.php" target="_blank">strftime</a>
-                        <a href="http://php.net/manual/en/function.date.php" target="_blank">date</a>
-                    </p>
-                    <p>To default output format, use the following command</p>
-<pre>
+                <p>Read the PHP manual to create the format you want</p>
+                <p>
+                    <a href="http://php.net/manual/en/function.strftime.php" target="_blank">strftime</a>
+                    <a href="http://php.net/manual/en/function.date.php" target="_blank">date</a>
+                </p>
+                <p>To default output format, use the following command</p>
+                <pre>
 Verta::setStringformat('Y/n/j H:i:s');
 return verta(); // 1395/12/12 00:11:35
 </pre>
-                    <p>To reset output format, use the following command</p>
-<pre>
+                <p>To reset output format, use the following command</p>
+                <pre>
 Verta::resetStringFormat();
 return verta(); // 1395-12-12 00:18:04
 </pre>
-                    <p>To display the datetime in standard formats, use the following command</p>
-<pre>
+                <p>To display the datetime in standard formats, use the following command</p>
+                <pre>
 return $v->formatDatetime(); // 1395-12-10 23:37:26
 return $v->formatDate(); // 1395-12-10
 return $v->formatTime(); // 23:26:35
 return $v->formatJalaliDatetime(); // 1395/12/10 23:46:09
 return $v->formatJalaliDate(); // 1395/12/10
 </pre>
-                    <p>To output format Gregorian, use the following command</p>
-<pre>
+                <p>To output format Gregorian, use the following command</p>
+                <pre>
 return $v->formatGregorian('Y-m-d H:i:s'); // 2017-05-23 23:21:02
 </pre>
-                    <p>To display the date difference as a unit of time, use the following command</p>
-                    <p>If you do set parameter, the difference is calculated with the current time</p>
-<pre>
+                <p>To display the date difference as a unit of time, use the following command</p>
+                <p>If you do set parameter, the difference is calculated with the current time</p>
+                <pre>
 return $v1->formatDifference($v2); // 12 ماه بعد
 return $v1->formatDifference($v3); // 1 سال قبل
 return $v1->addDays(25)->formatDifference(); // 4 هفته بعد
 return $v1->subDays(6)->formatDifference(); // 6 روز قبل
 return verta()->formatDifference(); // الان
 </pre>
-                    <p>To display numbers in alphabetical order, use the following command</p>
-<pre>
+                <p>To display numbers in alphabetical order, use the following command</p>
+                <pre>
 return $v->formatWord('Y'); // یک هزار و سیصد و نود و شش
 return $v->formatWord('l dS F'); // چهارشنبه بیست و نه ام شهریور
 return $v->formatWord('d F Y'); // بیست و نه شهریور یک هزار و سیصد و نود و شش
 return $v->formatWord('r'); // چهارشنبه یک هزار و سیصد و نود و شش, شش, بیست و نه, بیست و دو:چهل و نه:سی و هشت +04:30
 return $v->formatWord('d F ') . $v->year; // بیست و نه شهریور 1396
 </pre>
-                    <h2 id="modification">Modification</h2>
-                    <p>To add or sub datetime, use the following command</p>
-<pre>
+                <h2 id="modification">Modification</h2>
+                <p>To add or sub datetime, use the following command</p>
+                <pre>
 $v = verta();
 return $v->addYear(); // 1396-10-07 14:12:32
 return $v->addYears(4); // 1399-10-07 14:12:32
 return $v->subYear(); // 1394-10-07 14:12:32
 return $v->subYears(2); // 1393-10-07 14:12:32
 </pre>
-<pre>
+                <pre>
 return $v->addMonth(); // 1395-11-07 14:12:32
 return $v->addMonths(5); // 1396-03-07 14:12:32
 return $v->subMonth(); // 1395-09-07 14:12:32
 return $v->subMonths(2); // 1395-08-07 14:12:32
 </pre>
-<pre>
+                <pre>
 return $v->addWeek(); // 1395-10-12 14:12:32
 return $v->addWeeks(3); // 1395-10-26 14:12:32
 return $v->subWeek(); // 1395-09-30 14:12:32
 return $v->subWeeks(2); // 1395-09-27 14:12:32
 </pre>
-<pre>
+                <pre>
 return $v->addDay(); // 1395-10-08 14:12:32
 return $v->addDays(3); // 1395-10-11 14:12:32
 return $v->subDay(); // 1395-10-06 14:12:32
 return $v->subDays(2); // 1395-09-05 14:12:32
 </pre>
-<pre>
+                <pre>
 return $v->addHour(); // 1395-10-07 15:12:32
 return $v->addHours(5); // 1395-10-07 19:12:32
 return $v->subHour(); // 1395-10-07 13:12:32
 return $v->subHours(2); // 1395-10-07 12:12:32
 </pre>
-<pre>
+                <pre>
 return $v->addMinute(); // 1395-10-07 14:13:32
 return $v->addMinutes(3); // 1395-10-07 14:15:32
 return $v->subMinute(); // 1395-10-07 14:11:32
 return $v->subMinutes(2); // 1395-10-07 14:10:32
 </pre>
-<pre>
+                <pre>
 return $v->addSecond(); // 1395-10-07 14:12:33
 return $v->addSeconds(3); // 1395-10-07 14:12:35
 return $v->subSecond(); // 1395-10-07 14:12:31
 return $v->subSeconds(2); // 1395-10-07 14:12:30
 </pre>
-                    <p>To get start or end datetime period, use the following command</p>
-<pre>
+                <p>To get start or end datetime period, use the following command</p>
+                <pre>
 $v = verta(); // 1396-04-29 14:25:48
 return $v->startDay(); // 1396-04-29 00:00:00
 return $v->endDay(); // 1396-04-29 23:59:59
 </pre>
-<pre>
+                <pre>
 return $v->startWeek(); // 1396 1396-04-24 00:00:00
 return $v->endWeek(); // 1396-04-30 23:59:59
 </pre>
-<pre>
+                <pre>
 return $v->startMonth(); // 1396-04-01 00:00:00
 return $v->endMonth(); // 1396-04-31 00:00:00
 </pre>
-<pre>
+                <pre>
 return $v->startQuarter(); // 1396-04-01 00:00:00
 return $v->endQuarter(); // 1396-06-31 23:59:59
 </pre>
-<pre>
+                <pre>
 return $v->startYear(); // 1396-01-01 00:00:00
 return $v->endYear(); // 1396-12-29 23:59:59
 </pre>
-                    <h2 id="comparison">Comparison</h2>
-                    <p>To validate datetime, use the following command</p>
-<pre>
+                <h2 id="comparison">Comparison</h2>
+                <p>To validate datetime, use the following command</p>
+                <pre>
 return Verta::isLeapYear(1394); // false
 return Verta::isValidDate(1394, 12, 30); // false
 return Verta::isValidTime(15, 12, 30); // true
 </pre>
-                    <p>To difference datetime together, use the following command</p>
-<pre>
+                <p>To difference datetime together, use the following command</p>
+                <pre>
 // diff objects together
 $v1 = verta(); // 1396-03-31 22:21:40
 $v2 = verta('2017-06-21 01:21:40'); // 1396-03-31 01:21:40
@@ -344,8 +348,8 @@ return $v1->diffDays($v3); // -372
 return $v3->diffMinutes(); // 536548
 return $v3->diffSeconds(); // 12261931
 </pre>
-                    <p>To compere datetime together, use the following command</p>
-<pre>
+                <p>To compere datetime together, use the following command</p>
+                <pre>
 return $v1->eq(); // ture alias equalTo()
 return $v1->ne($v2); // true alias notEqualTo()
 return $v1->gt($v2); // true alias greaterThan()
@@ -353,9 +357,9 @@ return $v1->gte($v2); // true alias greaterThanOrEqualTo()
 return $v1->lt($v2); // false alias lessThan()
 return $v1->lte($v2); // false alias lessThanOrEqualTo()
 return $v1->between($v2, $v3); // false    
-</pre>                    
-                    <p>To compere datetime for closest, farthest, min or max together, use the following command</p>
-<pre>
+</pre>
+                <p>To compere datetime for closest, farthest, min or max together, use the following command</p>
+                <pre>
 return $v1->closest($v2, $v3); // return $v2 object
 return $v1->farthest($v2, $v3); // return $v3 object
 return $v1->minimum($v2); // return $v2
@@ -363,8 +367,8 @@ return $v1->min($v2); // return $v2
 return $v1->maximum($v2); // return $v1
 return $v1->max($v2); // return $v1
 </pre>
-                    <p>To compere datetime now, use the following command</p>
-<pre>
+                <p>To compere datetime now, use the following command</p>
+                <pre>
 return $v1->isWeekday(); // true
 return $v1->isWeekend(); // false
 return $v1->isYesterday(); // false
@@ -396,10 +400,10 @@ return $v1->isWednesday(); // false
 return $v1->isThursday(); // true
 return $v1->isFriday(); // false
 </pre>
-                    <h2 id="validation">Laravel Validator</h2>
-                    <p>You can validate form with Validator Laravel</p>
-                    <p>You need to define error messages for jdate, ... rules in validation.php in lang folders.</p>
-<pre>
+                <h2 id="validation">Laravel Validator</h2>
+                <p>You can validate form with Validator Laravel</p>
+                <p>You need to define error messages for jdate, ... rules in validation.php in lang folders.</p>
+                <pre>
 'jdate' => 'The :attribute is not valid Jalali date',
 'jdate_equal' => 'The :attribute is not equal Jalali date  :date',
 'jdate_not_equal' => 'The :attribute is\'nt not equal Jalali date  :date',
@@ -420,118 +424,118 @@ return $v1->isFriday(); // false
     'expire_datetime' => 'expire datetime',
 ],
 </pre>
-                    <h3>Validation Rules</h3>
-                    <p>Determines if an input is a valid Jalali date with the specified format</p>
-                    <p>The default format is Y/m/d</p>
-<pre>
+                <h3>Validation Rules</h3>
+                <p>Determines if an input is a valid Jalali date with the specified format</p>
+                <p>The default format is Y/m/d</p>
+                <pre>
 'start_date' => 'jdate'
 'start_date' => 'jdate:Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali date with the specified format and it is equal a given date</p>
-                    <p>The default format is Y/m/d</p>
+                <p>Determines if an input is a valid Jalali date with the specified format and it is equal a given date</p>
+                <p>The default format is Y/m/d</p>
 
-<pre>
+                <pre>
 'start_date' => 'jdate_equal'
 'start_date' => 'jdate_equal:1388/01/01'
 'start_date' => 'jdate_equal:1388/01/01,Y/m/d'
 </pre>
 
-                    <p>Determines if an input is a valid Jalali date with the specified format and it is not equal a given date</p>
-                    <p>The default format is Y/m/d</p>
+                <p>Determines if an input is a valid Jalali date with the specified format and it is not equal a given date</p>
+                <p>The default format is Y/m/d</p>
 
-<pre>
+                <pre>
 'start_date' => 'jdate_not_equal'
 'start_date' => 'jdate_not_equal:1388/01/01'
 'start_date' => 'jdate_not_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime'
 'start_date' => 'jdatetime:Y/m/d H:i:s'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is equal a given datetime</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is equal a given datetime</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_equal'
 'start_date' => 'jdatetime_equal:1388/01/01 12:56:28'
 'start_date' => 'jdatetime_equal:1388/01/01 12:56:28,Y/m/d H:i:s'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is not equal a given datetime</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is not equal a given datetime</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_not_equal'
 'start_date' => 'jdatetime_not_equal:1388/01/01 12:56:28'
 'start_date' => 'jdatetime_not_equal:1388/01/01 12:56:28,Y/m/d H:i:s'
 </pre>
 
-                    <p>Determines if an input is a valid Jalali date with the specified format and it is after a given date</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d</p>
-<pre>
+                <p>Determines if an input is a valid Jalali date with the specified format and it is after a given date</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d</p>
+                <pre>
 'start_date' => 'jdate_after'
 'start_date' => 'jdate_after:1388/01/01'
 'start_date' => 'jdate_after:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d</p>
+                <pre>
 'start_date' => 'jdate_after_equal'
 'start_date' => 'jdate_after_equal:1388/01/01'
 'start_date' => 'jdate_after_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after a given datetime</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-                    <pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is after a given datetime</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_after'
 'start_date' => 'jdatetime_after:1388/01/01'
 'start_date' => 'jdatetime_after:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-                    <pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is after or equal a given datetime</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_after_equal'
 'start_date' => 'jdatetime_after_equal:1388/01/01'
 'start_date' => 'jdatetime_after_equal:1388/01/01,Y/m/d'
 </pre>
 
-                    <p>Determines if an input is a valid Jalali date with the specified format and it is before a given date</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d</p>
-<pre>
+                <p>Determines if an input is a valid Jalali date with the specified format and it is before a given date</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d</p>
+                <pre>
 'start_date' => 'jdate_before'
 'start_date' => 'jdate_before:1388/01/01'
 'start_date' => 'jdate_before:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali date with the specified format and it is before or equal a given date</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d</p>
-<pre>
+                <p>Determines if an input is a valid Jalali date with the specified format and it is before or equal a given date</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d</p>
+                <pre>
 'start_date' => 'jdate_before_equal'
 'start_date' => 'jdate_before_equal:1388/01/01'
 'start_date' => 'jdate_before_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is before a given date-time</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is before a given date-time</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_before'
 'start_date' => 'jdatetime_before:1388/01/01'
 'start_date' => 'jdatetime_before:1388/01/01,Y/m/d'
 </pre>
-                    <p>Determines if an input is a valid Jalali datetime with the specified format and it is before or equal a given datetime</p>
-                    <p>The default date is now</p>
-                    <p>The default format is Y/m/d H:i:s</p>
-<pre>
+                <p>Determines if an input is a valid Jalali datetime with the specified format and it is before or equal a given datetime</p>
+                <p>The default date is now</p>
+                <p>The default format is Y/m/d H:i:s</p>
+                <pre>
 'start_date' => 'jdatetime_before_equal'
 'start_date' => 'jdatetime_before_equal:1388/01/01'
 'start_date' => 'jdatetime_before_equal:1388/01/01,Y/m/d'
 </pre>
-                    <p>Can combine the rules of the between the two boundaries</p>
-<pre>
+                <p>Can combine the rules of the between the two boundaries</p>
+                <pre>
 $validate = Validator::make([
     'start_date' => '1389/01/31',
     'expire_datetime' => '1397/02/16 12:10:00',
@@ -555,41 +559,15 @@ array:2 [
   ]
 ]
 </pre>
-                </article>
+            </article>
         </div>
     </div>
 </div>
 
 <footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-xs-6 no-padding-bottom">
-                <a href="https://github.com/hekmatinasser/verta" target="_blank">Github repository</a>
-            </div>
-            <div class="col-sm-4 col-xs-6 text-right no-padding-bottom">2020 &copy; <a href="https://github.com/hekmatinasser" target="_blank">Nasser Hekmati</a></div>
-        </div>
+    <div style="text-align: center;">
+        2020 &copy;
     </div>
-
 </footer>
-<button onclick="goTop()" id="go_top" title="Go to top">
-    <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
-    <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="0.375, 35.375 28.375, 0.375 58.67, 35.375 " />
-  </svg>
-</button>
-<script>
-    window.onscroll = function() {
-        var top = document.getElementById("go_top");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            top.style.display = "block";
-        } else {
-            top.style.display = "none";
-        }
-    };
-
-    function goTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
-</script>
 </body>
 </html>

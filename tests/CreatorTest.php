@@ -77,7 +77,7 @@ class CreatorTest extends TestCase
 
     public function testParse()
     {
-        $datetime = Verta::parse('1397-10-11 10:20:11')->formatGregorian('Y-m-d H:i:s');
+        $datetime = Verta::parse('1397 دی 11 10:20:11')->formatGregorian('Y-m-d H:i:s');
 
         $this->assertEquals('2019-01-01 10:20:11', $datetime);
     }

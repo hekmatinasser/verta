@@ -19,7 +19,7 @@ class AccessTest extends TestCase
         $this->assertEquals(35, $datetime->second);
         $this->assertEquals(0, $datetime->micro);
         $this->assertEquals(3, $datetime->dayOfWeek);
-        $this->assertEquals(286, $datetime->dayOfYear);
+        $this->assertEquals(287, $datetime->dayOfYear);
         $this->assertEquals(41, $datetime->weekOfYear);
         $this->assertEquals(30, $datetime->daysInMonth);
         $this->assertEquals(1546350635, $datetime->timestamp);
@@ -58,7 +58,7 @@ class AccessTest extends TestCase
 
     public function testSetMethods()
     {
-        $datetime = verta();
+        $datetime = Verta::parse('1399-05-12 12:36:32');
 
         $datetime->year(1395);
         $this->assertEquals(1395, $datetime->year);

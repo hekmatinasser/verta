@@ -8,47 +8,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <meta name="format-detection" content="telephone=no">
     <link href="https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.rtl.css?v=0.1">
+    <link rel="stylesheet" href="css/style.css?v=0.2">
 </head>
 <body dir="rtl">
 <a href="https://github.com/hekmatinasser/verta" target="_blank"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub"></a>
 <header id="header">
     <h1>Verta</h1>
-    <h2>تاریخ شمسی برای لاراول</h2>
+    <h2>تاریخ شمسی در لاراول</h2>
 </header>
 
 <div class="container">
     <div class="row">
         <div class="col-sm-3">
-            <ul>
-                <li>
-                    <a href="#installation">نصب</a>
-                </li>
-                <li>
-                    <a href="#usage">نحوه استفاده</a>
-                </li>
-                <li>
-                    <a href="#creator">ایجاد کردن</a>
-                </li>
-                <li>
-                    <a href="#transformation">تبدیل تاریخ</a>
-                </li>
-                <li>
-                    <a href="#property">خصوصیات</a>
-                </li>
-                <li>
-                    <a href="#format">قالب نمایش</a>
-                </li>
-                <li>
-                    <a href="#modification">تغییر دادن</a>
-                </li>
-                <li>
-                    <a href="#comparison">بررسی و مقایسه</a>
-                </li>
-                <li>
-                    <a href="#validation">اعتبار سنجی</a>
-                </li>
-            </ul>
+            <div class="sidebar">
+                <div class="sticky">
+                    <ul>
+                        <li>
+                            <a href="#installation">نصب</a>
+                        </li>
+                        <li>
+                            <a href="#usage">نحوه استفاده</a>
+                        </li>
+                        <li>
+                            <a href="#creator">ایجاد کردن</a>
+                        </li>
+                        <li>
+                            <a href="#transformation">تبدیل تاریخ</a>
+                        </li>
+                        <li>
+                            <a href="#property">خصوصیات</a>
+                        </li>
+                        <li>
+                            <a href="#format">قالب نمایش</a>
+                        </li>
+                        <li>
+                            <a href="#modification">تغییر دادن</a>
+                        </li>
+                        <li>
+                            <a href="#comparison">بررسی و مقایسه</a>
+                        </li>
+                        <li>
+                            <a href="#validation">اعتبار سنجی</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
         <div class="col-sm-9">
                 <article class="content">
@@ -353,8 +358,8 @@ return $v1->gt($v2); // true alias greaterThan()
 return $v1->gte($v2); // true alias greaterThanOrEqualTo()
 return $v1->lt($v2); // false alias lessThan()
 return $v1->lte($v2); // false alias lessThanOrEqualTo()
-return $v1->between($v2, $v3); // false    
-</pre>                    
+return $v1->between($v2, $v3); // false
+</pre>
                     <p>برای بررسی تاریخ از لحاظ نزدیکتر یا دورتر بودن و یا کوچکتر و بزرگتر بودن، از دستور زیر استفاده کنید</p>
 <pre>
 return $v1->closest($v2, $v3); // return $v2 object
@@ -562,35 +567,10 @@ array:2 [
 </div>
 
 <footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-xs-6 no-padding-bottom">
-                <a href="https://github.com/hekmatinasser/verta" target="_blank">Github repository</a>
-            </div>
-            <div class="col-sm-4 col-xs-6 text-right no-padding-bottom">2020 &copy; <a href="https://github.com/hekmatinasser" target="_blank">Nasser Hekmati</a></div>
-        </div>
+    <div style="text-align: center;">
+        2020 &copy;
     </div>
 
 </footer>
-<button onclick="goTop()" id="go_top" title="Go to top">
-    <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
-    <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="0.375, 35.375 28.375, 0.375 58.67, 35.375 " />
-  </svg>
-</button>
-<script>
-    window.onscroll = function() {
-        var top = document.getElementById("go_top");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            top.style.display = "block";
-        } else {
-            top.style.display = "none";
-        }
-    };
-
-    function goTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    };
-</script>
 </body>
 </html>
