@@ -12,8 +12,8 @@
     "require": {
         "php": "^7.2.5",
         "hekmatinasser/notowo": "^1.0",
-        "illuminate/validation": "^5|^6|^7",
-        "illuminate/support": "^5|^6|^7"
+        "illuminate/validation": "^5|^6|^7|^8",
+        "illuminate/support": "^5|^6|^7|^8"
     },
     "require-dev" : {
         "phpunit/phpunit": "7.2.*",

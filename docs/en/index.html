@@ -90,6 +90,14 @@ $v = Verta::today(); //1396-03-02 00:00:00
 $v = Verta::tomorrow(); // 1396-03-03 00:00:00
 $v = Verta::yesterday(); // 1396-03-01 00:00:00
 </pre>
+                <p>To get the current date and time similar datetime string, use the following command </p>
+                <pre>
+$v = new Verta('now'); // 1399-06-18 15:32:08
+$v = new Verta('-1 day'); //1399-06-17 15:07:04
+$v = new Verta('+1 month'); //1399-07-17 16:51:09
+$v = new Verta('next friday'); //1399-06-21 00:00:00
+$v = new Verta('last sunday'); //1399-06-16 00:00:00
+</pre>
 
                 <p>To convert your Gregorian datetime, use the following command</p>
                 <pre>
