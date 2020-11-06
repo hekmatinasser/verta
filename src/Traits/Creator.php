@@ -30,12 +30,12 @@ trait Creator
         elseif ($datetime instanceof DateTimeInterface) {
             $datetime = $datetime->getTimestamp();
         }
-        if (is_int($datetime)) {
+        elseif (is_int($datetime)) {
             $datetime = "@$datetime";
         }
 
         try {
-            parent::__construct($datetime, static::createTimeZone($timezone) ?: null);
+            parent::__construct($datetime, static::createTimeZone($timezone));
         } catch (Exception $exception) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
@@ -158,8 +158,7 @@ trait Creator
         list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
         list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
-        $timezone = self::createTimeZone($timezone);
-        $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second));
+        $datetime = sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second);
         return new static($datetime, $timezone);
     }
 
@@ -181,10 +180,8 @@ trait Creator
         list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
         list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
 
-        $timezone = self::createTimeZone($timezone);
-        $datetime = new DateTime(sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second));
+        $datetime = sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second);
         return new static($datetime, $timezone);
-
     }
 
     /**
