@@ -127,7 +127,7 @@ trait Creator
      * @return datetime $datetime
      */
     public function datetime() {
-        return new static(date('Y-m-d H:i:s', $this->getTimestamp()));
+        return new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()), $this->getTimezone());
     }
 
     /**
