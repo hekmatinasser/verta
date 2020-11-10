@@ -27,8 +27,8 @@ trait Creator
         elseif (is_string($datetime)) {
             $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
         }
-        elseif ($datetime instanceof DateTimeInterface) {
-            $datetime = $datetime->getTimestamp();
+        elseif ($datetime instanceof DateTime) {
+            $datetime = "@{$datetime->getTimestamp()}";
         }
         elseif (is_int($datetime)) {
             $datetime = "@$datetime";
