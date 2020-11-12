@@ -48,7 +48,7 @@ trait Formatting
         $timestamp = $this->getTimestamp();
 
 
-        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', date('Y-m-d-w', $timestamp) );
+        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', parent::format('Y-m-d-w') );
         list( $pYear, $pMonth, $pDay ) = static::getJalali( $gYear, $gMonth, $gDay );
         $pWeek = ( $gWeek + 1 );
 
