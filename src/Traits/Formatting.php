@@ -48,7 +48,7 @@ trait Formatting
         $timestamp = $this->getTimestamp();
 
 
-        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', date('Y-m-d-w', $timestamp) );
+        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', parent::format('Y-m-d-w'));
         list( $pYear, $pMonth, $pDay ) = static::getJalali( $gYear, $gMonth, $gDay );
         $pWeek = ( $gWeek + 1 );
 
@@ -205,7 +205,7 @@ trait Formatting
 
         $timestamp = $this->getTimestamp();
 
-        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', date('Y-m-d-w', $timestamp));
+        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', parent::format('Y-m-d-w'));
         list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
         $pWeek = ($gWeek + 1);
 
@@ -300,14 +300,10 @@ trait Formatting
 
                 # Time
                 case 'a':
+                    $result .= (parent::format('a') == 'am' ? self::AM : self::PM);
                 case 'A':
-                    if (date('a', $timestamp) == 'am') {
-                        $result .= (($par == 'a') ? self::AM : self::ANTE_MERIDIEM);
-                    } else {
-                        $result .= (($par == 'a') ? self::PM : self::POST_MERIDIEM);
-                    }
+                    $result .= (parent::format('a') == 'am' ? self::ANTE_MERIDIEM : self::POST_MERIDIEM);
                     break;
-
                 case 'B':
                 case 'g':
                 case 'G':
@@ -316,7 +312,7 @@ trait Formatting
                 case 's':
                 case 'u':
                 case 'i':
-                    $result .= $word->getWord(strval(date($par, $timestamp)));
+                    $result .= $word->getWord(strval(parent::format($par)));
                     break;
                 case 'e':
                 case 'I':
@@ -324,7 +320,7 @@ trait Formatting
                 case 'P':
                 case 'T':
                 case 'Z':
-                    $result .= date($par, $timestamp);
+                    $result .= parent::format($par);
                     break;
 
                 # Full Date/Time
@@ -480,6 +476,7 @@ trait Formatting
      */
     public function formatGregorian($format) {
 
+        return $this->datetime()->format($format);
         return $this->datetime()->format($format);
     }
 

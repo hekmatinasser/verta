@@ -4,7 +4,6 @@
 namespace Hekmatinasser\Verta\Traits;
 
 use DateTime;
-use DateTimeInterface;
 use DateTimeZone;
 use Exception;
 use InvalidArgumentException;
@@ -62,7 +61,7 @@ trait Creator
 
     public static function today($timezone = null)
     {
-        return static::now($timezone)->startDay();
+        return (new static($timezone))->startDay();
     }
 
     /**
@@ -74,7 +73,7 @@ trait Creator
      */
     public static function tomorrow($timezone = null)
     {
-        return static::today($timezone)->addDay();
+        return (new static('+1 day', $timezone))->startDay();
     }
 
     /**
@@ -86,7 +85,7 @@ trait Creator
      */
     public static function yesterday($timezone = null)
     {
-        return static::today($timezone)->subDay();
+        return (new static('-1 day', $timezone))->startDay();
     }
 
     /**
