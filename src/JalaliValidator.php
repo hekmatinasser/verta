@@ -211,7 +211,7 @@ class JalaliValidator
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
-        $faDate = Verta::persianNumbers($date);
+        $faDate = Verta::enToFaNumbers($date);
         return str_replace([':date', ':fa-date'], [$date, $faDate], $message);
     }
 
@@ -219,7 +219,7 @@ class JalaliValidator
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
-        $faDate = Verta::persianNumbers($date);
+        $faDate = Verta::enToFaNumbers($date);
         return str_replace([':date', ':fa-date'], [$date, $faDate], $message);
     }
 }
