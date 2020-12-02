@@ -10,7 +10,7 @@
     ],
     "keywords": ["Laravel","Date","Datetime","Jalali", "Shamsi", "Verta"],
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.2.5|^8.0",
         "hekmatinasser/notowo": "^1.0",
         "illuminate/validation": "^5|^6|^7|^8",
         "illuminate/support": "^5|^6|^7|^8"
