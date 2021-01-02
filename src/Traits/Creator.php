@@ -35,6 +35,7 @@ trait Creator
 
         try {
             parent::__construct($datetime, static::createTimeZone($timezone));
+            parent::setTimezone(static::createTimeZone($timezone));
         } catch (Exception $exception) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
