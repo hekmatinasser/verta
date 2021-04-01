@@ -65,11 +65,15 @@ class VertaServiceProvider extends ServiceProvider
     {
         $validatorClass = JalaliValidator::class . '@';
 
-        foreach (self::DATE_VALIDATORS as $name => $method) {
+        foreach (self::DATE_VALIDATORS as $name => $methods) {
 
-            Validator::extend($name, $validatorClass . $method[self::EXTEND_INDEX]);
+            if (!is_array($methods) || count($methods) < 1) {
+                continue;
+            }
+
+            Validator::extend($name, $validatorClass . $methods[self::EXTEND_INDEX]);
             
-            Validator::replacer($name, $validatorClass . $method[self::REPLACER_INDEX]);
+            Validator::replacer($name, $validatorClass . $methods[self::REPLACER_INDEX]);
         }
     }
 }
