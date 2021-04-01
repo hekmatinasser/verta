@@ -63,9 +63,9 @@ class VertaServiceProvider extends ServiceProvider
 
     protected function validator()
     {
-        foreach (self::DATE_VALIDATORS as $name => $method) {
+        $validatorClass = JalaliValidator::class . '@';
 
-            $validatorClass = JalaliValidator::class . '@';
+        foreach (self::DATE_VALIDATORS as $name => $method) {
 
             Validator::extend($name, $validatorClass . $method[self::EXTEND_INDEX]);
             
