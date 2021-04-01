@@ -3,6 +3,7 @@
 namespace Hekmatinasser\Verta\Validation;
 
 use Illuminate\Support\Facades\Validator;
+use Hekmatinasser\Verta\Validation\JalaliValidator;
 
 class ValidatorLoader
 {
