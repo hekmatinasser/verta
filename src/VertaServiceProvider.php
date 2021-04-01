@@ -72,8 +72,10 @@ class VertaServiceProvider extends ServiceProvider
             }
 
             Validator::extend($name, $validatorClass . $methods[self::EXTEND_INDEX]);
-            
-            Validator::replacer($name, $validatorClass . $methods[self::REPLACER_INDEX]);
+
+            if (array_key_exists(self::REPLACER_INDEX, $methods)) {
+                Validator::replacer($name, $validatorClass . $methods[self::REPLACER_INDEX]);
+            }
         }
     }
 }
