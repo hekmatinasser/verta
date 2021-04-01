@@ -2,7 +2,9 @@
 
 namespace Hekmatinasser\Verta;
 
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\ServiceProvider;
+use Hekmatinasser\Verta\Validation\ValidatorLoader;
 
 class VertaServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,7 @@ class VertaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->validator();
+        ValidatorLoader::loadValidators();
     }
 
     /**
