@@ -1,6 +1,6 @@
 <?php
 
-namespace Hekmatinasser\Verta;
+namespace Hekmatinasser\Verta\Validation;
 
 
 class JalaliValidator
