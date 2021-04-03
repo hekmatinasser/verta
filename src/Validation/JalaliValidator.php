@@ -2,6 +2,7 @@
 
 namespace Hekmatinasser\Verta\Validation;
 
+use Hekmatinasser\Verta\Verta;
 
 class JalaliValidator
 {
