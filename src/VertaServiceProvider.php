@@ -2,11 +2,13 @@
 
 namespace Hekmatinasser\Verta;
 
-use Illuminate\Support\Facades\Validator;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\ServiceProvider;
+use Hekmatinasser\Verta\Validation\ValidatorLoader;
 
 class VertaServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      *
@@ -14,7 +16,7 @@ class VertaServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->validator();
+        ValidatorLoader::loadValidators();
     }
 
     /**
@@ -29,7 +31,7 @@ class VertaServiceProvider extends ServiceProvider
         });
     }
 
-    
+
     /**
      * Get the services provided by the provider.
      *
@@ -38,38 +40,5 @@ class VertaServiceProvider extends ServiceProvider
     public function provides()
     {
         return array('verta');
-    }
-
-    protected function validator()
-    {
-        Validator::extend('jdate', JalaliValidator::class . '@validateDate');
-        Validator::extend('jdate_equal', JalaliValidator::class . '@validateDateEqual');
-        Validator::extend('jdate_not_equal', JalaliValidator::class . '@validateDateNotEqual');
-        Validator::extend('jdatetime', JalaliValidator::class . '@validateDateTime');
-        Validator::extend('jdatetime_equal', JalaliValidator::class . '@validateDateTimeEqual');
-        Validator::extend('jdatetime_not_equal', JalaliValidator::class . '@validateDateTimeNotEqual');
-        Validator::extend('jdate_after', JalaliValidator::class . '@validateDateAfter');
-        Validator::extend('jdate_after_equal', JalaliValidator::class . '@validateDateAfterEqual');
-        Validator::extend('jdatetime_after', JalaliValidator::class . '@validateDateTimeAfter');
-        Validator::extend('jdatetime_after_equal', JalaliValidator::class . '@validateDateTimeAfterEqual');
-        Validator::extend('jdate_before', JalaliValidator::class . '@validateDateBefore');
-        Validator::extend('jdate_before_equal', JalaliValidator::class . '@validateDateBeforeEqual');
-        Validator::extend('jdatetime_before', JalaliValidator::class . '@validateDateTimeBefore');
-        Validator::extend('jdatetime_before_equal', JalaliValidator::class . '@validateDateTimeBeforeEqual');
-
-        Validator::replacer('jdate', JalaliValidator::class . '@replaceDateOrDatetime');
-        Validator::replacer('jdate_equal', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdate_not_equal', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime', JalaliValidator::class . '@replaceDateOrDatetime');
-        Validator::replacer('jdatetime_equal', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime_not_equal', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
-        Validator::replacer('jdate_after', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdate_after_equal', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime_after', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime_after_equal', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
-        Validator::replacer('jdate_before', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdate_before_equal', JalaliValidator::class . '@replaceDateAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime_before', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
-        Validator::replacer('jdatetime_before_equal', JalaliValidator::class . '@replaceDateTimeAfterOrBeforeOrEqual');
     }
 }
