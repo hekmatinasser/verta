@@ -20,7 +20,7 @@ interface VertaInterface
     /**
      * Number unit in date
      */
-    const YEARS_PER_CENTURY = 100;
+    const DECADE_PER_CENTURY = 10;
     const YEARS_PER_DECADE = 10;
     const MONTHS_PER_YEAR = 12;
     const MONTHS_PER_QUARTER = 3;
@@ -37,14 +37,7 @@ interface VertaInterface
     const DEFAULT_STRING_FORMAT = 'Y-m-d H:i:s';
 
     /**
-     * Default format to use for __toString method when type juggling occurs.
+     * Word use in format datetime.
      */
-    const AM = 'ق.ظ';
-    const PM = 'ب.ظ';
-    const ANTE_MERIDIEM = 'قبل از ظهر';
-    const POST_MERIDIEM = 'بعد از ظهر';
-    const NUMBER_TH = ' ام';
-    const PRE = 'قبل';
-    const NOW = 'الان';
-    const POST = 'بعد';
+    const DEFAULT_LOCALE = 'fa';
 }

@@ -6,7 +6,6 @@ namespace Hekmatinasser\Verta\Traits;
 
 use DateTimeZone;
 use Hekmatinasser\Verta\Verta;
-use Hekmatinasser\Verta\VertaInterface;
 use InvalidArgumentException;
 
 trait Accessor
@@ -43,7 +42,7 @@ trait Accessor
                 return (int) $this->format($formats[$name]);
 
             case $name === 'quarter':
-                return (int) ceil($this->month / VertaInterface::MONTHS_PER_QUARTER);
+                return (int) ceil($this->month / static::MONTHS_PER_QUARTER);
 
             case $name === 'timezone':
                 return $this->getTimezone()->getName();

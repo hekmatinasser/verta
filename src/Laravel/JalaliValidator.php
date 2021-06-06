@@ -1,8 +1,10 @@
 <?php
 
-namespace Hekmatinasser\Verta\Validation;
+namespace Hekmatinasser\Verta\Laravel;
 
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Arr;
+use phpDocumentor\Reflection\Types\Static_;
 
 class JalaliValidator
 {
@@ -205,22 +207,27 @@ class JalaliValidator
 
     public function replaceDateOrDatetime($message, $attribute, $rule, $parameters)
     {
-        return $message;
+
+        $message = Verta::loadMessages();
+        return Arr::get(static::$messages, $message, $message);
     }
 
     public function replaceDateAfterOrBeforeOrEqual($message, $attribute, $rule, $parameters)
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
-        $faDate = Verta::enToFaNumbers($date);
-        return str_replace([':date', ':fa-date'], [$date, $faDate], $message);
+        if(Verta::getLocale() != 'en') {
+            $en = Verta::getMessages('en');
+            $date = str_replace(array_values($en['numbers']), array_values(Verta::$messages['numbers']), $date);
+        }
+        return str_replace(':date', $date, $message);
     }
 
     public function replaceDateTimeAfterOrBeforeOrEqual($message, $attribute, $rule, $parameters)
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
-        $faDate = Verta::enToFaNumbers($date);
-        return str_replace([':date', ':fa-date'], [$date, $faDate], $message);
+        $date = str_replace(array_values($en['numbers']), array_values(Verta::$messages['numbers']), $date);
+        return str_replace(':date', $date, $message);
     }
 }

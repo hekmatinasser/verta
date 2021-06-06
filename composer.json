@@ -36,7 +36,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hekmatinasser\\Verta\\VertaServiceProvider"
+                "Hekmatinasser\\Verta\\Laravel\\VertaServiceProvider"
             ],
             "aliases": {
                 "Verta": "Hekmatinasser\\Verta\\Verta"
