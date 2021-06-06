@@ -175,7 +175,7 @@ trait Formatting
                 return ( $pYear . '-' . $pMonth . '-' . $pDay . ' ' . parent::format( 'H:i:s P' ) );
 
             case 'r':
-                return ( substr(self::$messages['weekdays'][$gWeek], 0, 2 ) . '، ' . $pDay . ' ' . substr(self::$messages['year_months'][$pMonth], 0, 6 ) . ' ' . $pYear . ' ' . parent::format( 'H:i:s P' ) );
+                return ( substr(self::$messages['weekdays'][$pWeek], 0, 2 ) . '، ' . $pDay . ' ' . substr(self::$messages['year_months'][$pMonth], 0, 6 ) . ' ' . $pYear . ' ' . parent::format( 'H:i:s P' ) );
 
             case 'U':
                 return $timestamp;
@@ -216,7 +216,10 @@ trait Formatting
                 continue;
             }
             $output = $this->characterFormat($char, $timestamp, $pYear, $pMonth, $pDay, $pWeek);
-            $result .= (string) new Notowo($output, static::getLocale() == 'en' ? 'en' : 'fa' );
+            if(is_numeric($output)) {
+                $output = (string) new Notowo($output, static::getLocale() == 'en' ? 'en' : 'fa' );
+            }
+            $result .= $output;
 
             $index++;
         }
@@ -312,7 +315,6 @@ trait Formatting
     public function formatGregorian($format) {
 
         return $this->datetime()->format($format);
-        return $this->datetime()->format($format);
     }
 
     /**
@@ -385,7 +387,7 @@ trait Formatting
             static::DECADE_PER_CENTURY,
         ];
         $difference = $this->diffSeconds($v);
-        $result .= static::$messages['phrase'][$difference < 0 ? 'later' : 'ago'];
+        $absolute = static::$messages['phrase'][$difference < 0 ? 'later' : 'ago'];
 
         $difference = abs($difference);
 

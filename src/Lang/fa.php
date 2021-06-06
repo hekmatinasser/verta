@@ -47,7 +47,7 @@ return [
         'decade' => 'دهه',
         'century' => 'قرن'
     ],
-    'pharse' => [
+    'phrase' => [
         'am' => 'ق ظ',
         'pm' => 'ب ظ',
         'ante_meridiem' => 'قبل از ظهر',

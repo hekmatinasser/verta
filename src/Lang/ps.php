@@ -46,7 +46,7 @@ return [
         'yaer' => 'سال',
         'century' => 'قرن'
     ],
-    'pharse' => [
+    'phrase' => [
         'am' => 'ق ظ',
         'pm' => 'ب ظ',
         'ante_meridiem' => 'قبل از ظهر',
