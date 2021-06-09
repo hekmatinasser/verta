@@ -47,7 +47,7 @@ return [
         'decade' => 'عشر سنوات',
         'century' => 'مئة عام'
     ],
-    'pharse' => [
+    'phrase' => [
         'am' => 'ق ظ',
         'pm' => 'ب ظ',
         'ante_meridiem' => 'صباحي',

@@ -47,7 +47,7 @@ return [
         'decade' => 'decade',
         'century' => 'century'
     ],
-    'pharse' => [
+    'phrase' => [
         'am' => 'am',
         'pm' => 'pm',
         'ante_meridiem' => 'ante meridiem',

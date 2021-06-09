@@ -334,7 +334,7 @@ trait Comparison
      */
     public function isWeekend()
     {
-        return in_array($this->dayOfWeek, static::$weekEndsAt);
+        return in_array($this->dayOfWeek, static::$weekendDays);
     }
 
     /**
