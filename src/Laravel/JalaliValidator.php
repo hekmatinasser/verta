@@ -207,9 +207,7 @@ class JalaliValidator
 
     public function replaceDateOrDatetime($message, $attribute, $rule, $parameters)
     {
-
-        $message = Verta::loadMessages();
-        return Arr::get(static::$messages, $message, $message);
+        return $message;
     }
 
     public function replaceDateAfterOrBeforeOrEqual($message, $attribute, $rule, $parameters)
@@ -218,7 +216,8 @@ class JalaliValidator
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
         if(Verta::getLocale() != 'en') {
             $en = Verta::getMessages('en');
-            $date = str_replace(array_values($en['numbers']), array_values(Verta::$messages['numbers']), $date);
+            $to = Verta::getMessages();
+            $date = str_replace(array_values($en['numbers']), array_values($to['numbers']), $date);
         }
         return str_replace(':date', $date, $message);
     }
@@ -227,7 +226,11 @@ class JalaliValidator
     {
         $format = count($parameters) > 1 ? $parameters[1] : 'Y/m/d H:i:s';
         $date = count($parameters) ? $parameters[0] : Verta::instance()->format($format);
-        $date = str_replace(array_values($en['numbers']), array_values(Verta::$messages['numbers']), $date);
+        if(Verta::getLocale() != 'en') {
+            $en = Verta::getMessages('en');
+            $to = Verta::getMessages();
+            $date = str_replace(array_values($en['numbers']), array_values($to['numbers']), $date);
+        }
         return str_replace(':date', $date, $message);
     }
 }
