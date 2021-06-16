@@ -167,7 +167,9 @@ trait Creator
      * @param bool $timezone [optional]
      * @return static
      */
-    public static function parseFormat($format, $datetime, $timezone = null) {
+    public static function parseFormat($format, $datetime, $timezone = null)
+    {
+        self::loadMessages();
         $formatted = str_replace(array_values(self::$messages['year_months']), range(1,12), $datetime);
 
         $parse = date_parse_from_format($format, $formatted);
