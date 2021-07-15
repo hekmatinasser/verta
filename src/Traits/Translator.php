@@ -35,8 +35,10 @@ trait Translator
      */
     public static function setLocale($locale)
     {
-        static::$locale = $locale;
-        static::loadMessages($locale);
+        if($messages = static::loadMessages($locale)) {
+            static::$locale = $locale;
+        } 
+        return $messages;
     }
 
     /**

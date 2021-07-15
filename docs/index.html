@@ -67,13 +67,13 @@
 
 <pre>// config/app.php
 'providers' => [
-...
-Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
+    ...
+    Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
 ],
 
 'alias' => [
-...
-'Verta' => Hekmatinasser\Verta\Verta::class,
+    ...
+    'Verta' => Hekmatinasser\Verta\Verta::class,
 ]</pre>
 <h2 id="usage">نحوه استفاده</h2>
 <p>در بالای هر فایل خود از کلاس ورتا استفاده میکند، از دستور زیر استفاده کنید</p>
@@ -415,7 +415,7 @@ return $v1->isFriday(); // false
 </pre>
 <h2 id="validation">اعتبار سنجی</h2>
 <p>شما می توانید با اعتبار سنجی لاراول تاریخ های شمسی درون فرم های خود استفاده کنید</p>
-<p>شما باید پیام های خطا برای اعتبار سنجی خود در در مسیر فایل های ترجمه خود اضافه کنیدبرای نمونه کد هایی که درون پکیج برای پیام خطا وجود دارد در فایل ترجمه خود قرار دهیدبرای مثال در فایل ترجمه پیام خطا به آرایه عبارات زیر را اضافه کنید</p>
+<p>شما باید پیام های خطا برای اعتبار سنجی خود در در مسیر فایل های ترجمه خود اضافه کنید ارور های ترجمه شده برای زبان های قابل پشتیبانی در <a href="https://github.com/hekmatinasser/verta/tree/master/src/Lang">زبان ها</a> مراجعه کنید قرار دارد .برای نمونه کد هایی که درون پکیج برای پیام خطا وجود دارد در فایل ترجمه خود قرار دهیدبرای مثال در فایل ترجمه پیام خطا به آرایه عبارات زیر را اضافه کنید</p>
 <pre>
 'jdate' => ':attribute تاریخ شمسی معتبر نمی باشد.',
 'jdate_equal' => ':attribute تاریخ شمسی برابر :date نمی باشد.',
@@ -433,8 +433,8 @@ return $v1->isFriday(); // false
 'jdatetime_before_equal' => ':attribute تاریخ و زمان شمسی باید قبل یا برابر از :date باشد.',
 
 'attributes' => [
-'start_date' => 'تاریخ شروع',
-'expire_datetime' => 'تاریخ انقضا',
+    'start_date' => 'تاریخ شروع',
+    'expire_datetime' => 'تاریخ انقضا',
 ],
 </pre>
 <h3>قوانین اعتبار سنجی</h3>
@@ -550,12 +550,12 @@ return $v1->isFriday(); // false
 <p>میتوانید با ترکیب قوانین تاریخ را بین دو محدوده بررسی کنید</p>
 <pre>
 $validate = Validator::make([
-'start_date' => '1389/01/31',
-'expire_datetime' => '1397/02/16 12:10:00',
+    'start_date' => '1389/01/31',
+    'expire_datetime' => '1397/02/16 12:10:00',
 ],
 [
-'start_date' => 'required|jdate:Y/m/d|jdate_after:1388/01/01,Y/m/d|jdate_before:1390/01/01',
-'expire_datetime' => 'required|jdatetime|jdatetime_after:1397/02/16 12:09:50,Y/m/d H:i:s|jdatetime_before:1397/02/16 12:11:00',
+    'start_date' => 'required|jdate:Y/m/d|jdate_after:1388/01/01,Y/m/d|jdate_before:1390/01/01',
+    'expire_datetime' => 'required|jdatetime|jdatetime_after:1397/02/16 12:09:50,Y/m/d H:i:s|jdatetime_before:1397/02/16 12:11:00',
 ]);
 
 if ($validate->fails()) {
@@ -564,16 +564,31 @@ dd($validate->messages()->toArray());
 
 //output
 array:2 [
-"start_date" => array:1 [
-0 => "تاریخ شروع تاریخ شمسی باید قبل از ۱۳۹۰/۰۱/۰۱ باشد."
-]
-"expire_datetime" => array:1 [
-0 => "تاریخ انقضا تاریخ و زمان شمسی باید قبل از ۱۳۹۷/۰۲/۱۶ ۱۲:۱۰:۰۰ باشد."
-]
+    "start_date" => array:1 [
+        0 => "تاریخ شروع تاریخ شمسی باید قبل از ۱۳۹۰/۰۱/۰۱ باشد."
+    ]
+    "expire_datetime" => array:1 [
+        0 => "تاریخ انقضا تاریخ و زمان شمسی باید قبل از ۱۳۹۷/۰۲/۱۶ ۱۲:۱۰:۰۰ باشد."
+    ]
 ]
 </pre>
 
-<h2 id="validation">اعتبار سنجی</h2>
+<h2 id="traslation">زبان ها</h2>
+<p>شما میتوانید ایام و ماه ها و پیام را به زبان های موجود در ورتا نمایش دهید برای مشاهده زبان ها پشتیبانی می شود به پوشه زیر مشاهده
+    <a href="https://github.com/hekmatinasser/verta/tree/master/src/Lang">زبان ها</a> مراجعه کنید</p>
+<p>برای تعیین زبان پیام های از دستور زیر استفاده کنید</p>
+<pre>
+Verta::setLocale('fa');
+</pre>
+    <p>برای دریافت زبان جاری پیام های از دستور زیر استفاده کنید</p>
+<pre>
+Verta::getLocale(); // fa
+</pre>
+    <p>برای ریست کردن زبان به فارسی از دستور زیر استفاده کنید</p>
+<pre>
+Verta::resetLocale();
+</pre>
+    <p>برای افزودن زبان های دیگر نمونه فایل های موجود را برای ادغام با پروژه ارسال کنید</p>
 
 </article>
 </div>
@@ -582,7 +597,7 @@ array:2 [
 
 <footer id="footer">
 <div style="text-align: center;">
-2020 &copy;
+    2017-2021 &copy;
 </div>
 
 </footer>
