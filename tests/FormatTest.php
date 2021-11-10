@@ -120,4 +120,11 @@ class FormatTest extends TestCase
 
         $this->assertEquals('چهارشنبه یازده ام دی', $datetime);
     }
+
+    public function testFormatQuarter()
+    {
+        $datetime = Verta::parse('1398-10-10 21:30:50')->formatWord('q');
+
+        $this->assertEquals('زمستان', $datetime);
+    }
 }
