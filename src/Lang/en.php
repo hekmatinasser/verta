@@ -72,6 +72,12 @@ return [
         'jdate_before_equal' => 'The :attribute must be a Jalali date before or equal :date.',
         'jdatetime_before' => 'The :attribute must be a Jalali datetime before :date.',
         'jdatetime_before_equal' => 'The :attribute must be a Jalali datetime before or equal :date.',
+    ],
+    'quarters' => [
+        '1' => 'spring',
+        '2' => 'summer',
+        '3' => 'autumn',
+        '4' => 'winter',
     ]
 ];
 

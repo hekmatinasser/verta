@@ -72,6 +72,12 @@ return [
         'jdate_before_equal' => 'يجب أن يكون :attribute تاريخ جلالي قبل :date أو يساوي.',
         'jdatetime_before' => 'يجب أن يكون :attribute هو تاريخ جلالي قبل :date.',
         'jdatetime_before_equal' => 'يجب أن يكون :attribute هو تاريخ جلالي قبل أو يساوي :date.',
+    ],
+    'quarters' => [
+        '1' => 'ربيع',
+        '2' => 'الصيف',
+        '3' => 'الخريف',
+        '4' => 'شتاء',
     ]
 ];
 

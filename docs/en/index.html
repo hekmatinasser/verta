@@ -221,6 +221,7 @@ $v = $v->setTimeString('12:25:48');
 $v = verta();
 return $v->format('Y-n-j H:i'); // 1395-10-7 14:12
 return $v->format('%B %d، %Y'); // دی 07، 1395
+return $v->format('%Q %Y'); // زمستان 1395
 return $v; //1395-10-07 14:12:32
 </pre>
                 <p>Read the PHP manual to create the format you want</p>
@@ -389,7 +390,6 @@ return $v1->isLastMonth(); // false
 return $v1->isNextYear(); // false
 return $v1->isLastYear(); // false
 return $v1->isFuture(); // false
-return $v1->isPast(); // false
 return $v1->isPast(); // false
 
 return $v1->isCurrentYear(); // true

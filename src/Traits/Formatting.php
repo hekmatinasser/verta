@@ -134,7 +134,10 @@ trait Formatting
 
             case 't':
                 return static::isLeapYear( $pYear ) && ( $pMonth == 12 ) ? 30 : static::$daysMonthJalali[ intval( $pMonth ) - 1 ];
-
+            # Quarter
+            case 'Q':
+            case 'q':
+                return self::$messages['quarters'][$this->quarter];
             # Years
             case 'L':
                 return intval( $this->isLeapYear( $pYear ) );
@@ -291,6 +294,8 @@ trait Formatting
             "%n" => "\n",
             "%t" => "\t",
             "%%" => "%",
+            "%Q" => "q",
+            "%q" => "q"
         );
 
         return str_replace(array_keys($strftime_date), array_values($strftime_date), $format);
