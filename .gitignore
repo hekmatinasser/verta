@@ -2,3 +2,4 @@ vendor/
 .idea/
 *.phpunit.result.cache
 *.bat
+composer.lock
