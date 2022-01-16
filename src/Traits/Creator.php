@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
 
 use DateTime;
@@ -10,7 +9,6 @@ use InvalidArgumentException;
 
 trait Creator
 {
-
     /**
      * create object of Jalali
      *
@@ -20,16 +18,13 @@ trait Creator
      */
     public function __construct($datetime = null, $timezone = null)
     {
-        if(empty($datetime)) {
+        if (empty($datetime)) {
             $datetime = 'now';
-        }
-        elseif (is_string($datetime)) {
+        } elseif (is_string($datetime)) {
             $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
-        }
-        elseif ($datetime instanceof DateTime) {
+        } elseif ($datetime instanceof DateTime) {
             $datetime = "@{$datetime->getTimestamp()}";
-        }
-        elseif (is_int($datetime)) {
+        } elseif (is_int($datetime)) {
             $datetime = "@$datetime";
         }
 
@@ -49,7 +44,8 @@ trait Creator
      * @param null $timezone
      * @return static
      */
-    public static function now($timezone = null) {
+    public static function now($timezone = null)
+    {
         return new static(null, $timezone);
     }
 
@@ -60,7 +56,6 @@ trait Creator
      *
      * @return static
      */
-
     public static function today($timezone = null)
     {
         return (new static($timezone))->startDay();
@@ -98,7 +93,8 @@ trait Creator
      *
      * @return static
      */
-    public static function instance($datetime = null, $timezone = null) {
+    public static function instance($datetime = null, $timezone = null)
+    {
         return new static($datetime, $timezone);
     }
 
@@ -127,7 +123,8 @@ trait Creator
      *
      * @return datetime $datetime
      */
-    public function datetime() {
+    public function datetime()
+    {
         return new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()), $this->getTimezone());
     }
 
@@ -139,23 +136,28 @@ trait Creator
      *
      * @return static
      */
-    public static function parse($datetime , $timezone = null)
+    public static function parse($datetime, $timezone = null)
     {
         self::loadMessages();
-        $names = array_map(function ($value) { return " $value "; }, array_values(self::$messages['year_months']));
-        $values = array_map(function ($value) { return "-$value-"; }, range(1,12));
+        $names = array_map(function ($value) {
+            return " $value ";
+        }, array_values(self::$messages['year_months']));
+        $values = array_map(function ($value) {
+            return "-$value-";
+        }, range(1, 12));
 
         $formatted = str_replace($names, $values, $datetime);
-        $formatted = str_replace(array_values(self::$messages['year_months']), range(1,12), $formatted);
+        $formatted = str_replace(array_values(self::$messages['year_months']), range(1, 12), $formatted);
         $parse = date_parse($formatted);
-        if($parse['error_count'] > 0 || !self::isValidDate($parse['year'], $parse['month'], $parse['day']) || !self::isValidTime($parse['hour'], $parse['minute'], $parse['second'])) {
+        if ($parse['error_count'] > 0 || ! self::isValidDate($parse['year'], $parse['month'], $parse['day']) || ! self::isValidTime($parse['hour'], $parse['minute'], $parse['second'])) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
 
         list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-        list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+        list($hour, $minute, $second) = [$parse['hour'], $parse['minute'], $parse['second']];
 
         $datetime = sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second);
+
         return new static($datetime, $timezone);
     }
 
@@ -170,16 +172,17 @@ trait Creator
     public static function parseFormat($format, $datetime, $timezone = null)
     {
         self::loadMessages();
-        $formatted = str_replace(array_values(self::$messages['year_months']), range(1,12), $datetime);
+        $formatted = str_replace(array_values(self::$messages['year_months']), range(1, 12), $datetime);
 
         $parse = date_parse_from_format($format, $formatted);
-        if($parse['error_count'] > 0 || !self::isValidDate($parse['year'], $parse['month'], $parse['day']) || !self::isValidTime($parse['hour'], $parse['minute'], $parse['second'])) {
+        if ($parse['error_count'] > 0 || ! self::isValidDate($parse['year'], $parse['month'], $parse['day']) || ! self::isValidTime($parse['hour'], $parse['minute'], $parse['second'])) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
         }
         list($year, $month, $day) = self::getGregorian($parse['year'], $parse['month'], $parse['day']);
-        list($hour,$minute, $second) = array($parse['hour'], $parse['minute'], $parse['second']);
+        list($hour, $minute, $second) = [$parse['hour'], $parse['minute'], $parse['second']];
 
         $datetime = sprintf('%04s-%02s-%02s %02s:%02s:%02s', $year, $month, $day, $hour, $minute, $second);
+
         return new static($datetime, $timezone);
     }
 
@@ -251,14 +254,13 @@ trait Creator
      * @param null $timezone
      * @return DateTimeZone|null
      */
-    protected static function createTimeZone($timezone = null) {
+    protected static function createTimeZone($timezone = null)
+    {
         if ($timezone === null) {
             $tz = new DateTimeZone(date_default_timezone_get());
-        }
-        elseif ($timezone instanceof DateTimeZone) {
+        } elseif ($timezone instanceof DateTimeZone) {
             $tz = $timezone;
-        }
-        else {
+        } else {
             $tz = @timezone_open(strval($timezone));
             if ($tz === false) {
                 throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $tz));
@@ -286,18 +288,17 @@ trait Creator
      */
     public static function createGregorian($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $timezone = null)
     {
-
         $now = (new DateTime())->format('Y-n-j-G-i-s');
-        $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
+        $defaults = array_combine(['year', 'month', 'day', 'hour', 'minute', 'second'], explode('-', $now));
 
         $year = $year ?? intval($defaults['year']);
         $month = $month ?? intval($defaults['month']);
         $day = $day ?? intval($defaults['day']);
         $hour = $hour ?? intval($defaults['hour']);
         $minute = $minute ?? intval($defaults['minute']);
-        $second = $second  ?? intval($defaults['second']);
+        $second = $second ?? intval($defaults['second']);
 
-        if (!checkdate($month, $day, $year) || !static::isValidTime($hour, $minute, $second)) {
+        if (! checkdate($month, $day, $year) || ! static::isValidTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
@@ -350,11 +351,10 @@ trait Creator
      *
      * @return static
      */
-
     public static function createJalali($year = null, $month = null, $day = null, $hour = null, $minute = null, $second = null, $timezone = null)
     {
         $now = (new static())->format('Y-n-j-G-i-s');
-        $defaults = array_combine(array('year', 'month', 'day', 'hour', 'minute', 'second'), explode('-', $now));
+        $defaults = array_combine(['year', 'month', 'day', 'hour', 'minute', 'second'], explode('-', $now));
 
         $year = $year ?? intval($defaults['year']);
         $month = $month ?? intval($defaults['month']);
@@ -363,7 +363,7 @@ trait Creator
         $minute = $minute ?? intval($defaults['minute']);
         $second = $second ?? intval($defaults['second']);
 
-        if (!static::isValidDate($year, $month, $day) || !static::isValidTime($hour, $minute, $second)) {
+        if (! static::isValidDate($year, $month, $day) || ! static::isValidTime($hour, $minute, $second)) {
             throw new \InvalidArgumentException('Unknown datetime');
         }
 
@@ -399,5 +399,4 @@ trait Creator
     {
         return static::createJalali(null, null, null, $hour, $minute, $second, $timezone);
     }
-
 }

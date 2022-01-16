@@ -1,14 +1,9 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
-
-use Hekmatinasser\Verta\Verta;
 
 trait Modification
 {
-
     /**
      * Add years to the instance. Positive $value travel forward while
      * negative $value travel into the past.
@@ -73,23 +68,22 @@ trait Modification
         if ($month > 12) {
             $year += intval($month / 12);
             $month = $month % 12;
-        }
-        elseif ($month < 1) {
+        } elseif ($month < 1) {
             $year += intval($month / 12) - 1;
             $month = 12 + ($month % 12);
         }
-        if($month == 0) {
+        if ($month == 0) {
             $year--;
             $month = 12;
         }
         if (($month > 6 && $month < 12 && $day == 31)) {
             $day--;
-        }
-        else {
+        } else {
             if ($month == 12 && ($day == 30 || $day == 31)) {
                 $day = self::isLeapYear($year) ? 30 : 29;
             }
         }
+
         return self::createJalali($year, $month, $day, $hour, $minute, $second, $this->getTimeZone());
     }
 

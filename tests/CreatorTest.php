@@ -23,7 +23,6 @@ class CreatorTest extends TestCase
         $actual = verta()->getTimestamp();
 
         $this->assertEquals($expected, $actual);
-
     }
 
     public function testYesterday()
@@ -60,7 +59,7 @@ class CreatorTest extends TestCase
         $datetime = (string) Verta::instance('2019-01-01 10:20:11');
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
 
-        $app = ['verta' => new Verta];
+        $app = ['verta' => new Verta()];
         VertaFacade::setFacadeApplication($app);
 
         $datetime = (string) VertaFacade::instance('2019-01-01 10:20:11');
@@ -84,14 +83,14 @@ class CreatorTest extends TestCase
 
     public function testParseFormat()
     {
-        $datetime = Verta::parseFormat('Y-m-d H:i:s','1397-10-11 10:20:11')->formatGregorian('Y-m-d H:i:s');
+        $datetime = Verta::parseFormat('Y-m-d H:i:s', '1397-10-11 10:20:11')->formatGregorian('Y-m-d H:i:s');
 
         $this->assertEquals('2019-01-01 10:20:11', $datetime);
     }
 
     public function testCreate()
     {
-        $datetime = Verta::create(2019,1,1,10,20,11)->format('Y-m-d H:i:s');
+        $datetime = Verta::create(2019, 1, 1, 10, 20, 11)->format('Y-m-d H:i:s');
 
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
     }
@@ -99,7 +98,7 @@ class CreatorTest extends TestCase
     public function testCreateDate()
     {
         $time = (new DateTime())->format("H:i:s");
-        $datetime = Verta::createDate(2019,1,1)->format('Y-m-d H:i:s');
+        $datetime = Verta::createDate(2019, 1, 1)->format('Y-m-d H:i:s');
 
         $this->assertEquals("1397-10-11 {$time}", $datetime);
     }
@@ -107,7 +106,7 @@ class CreatorTest extends TestCase
     public function testCreateTime()
     {
         $date = (new DateTime())->format("Y-m-d");
-        $datetime = Verta::createTime(15,19,51)->formatGregorian('Y-m-d H:i:s');
+        $datetime = Verta::createTime(15, 19, 51)->formatGregorian('Y-m-d H:i:s');
 
         $this->assertEquals("{$date} 15:19:51", $datetime);
     }
@@ -121,7 +120,7 @@ class CreatorTest extends TestCase
 
     public function testCreateGregorian()
     {
-        $datetime = Verta::create(2019,1,1,10,20,11)->format('Y-m-d H:i:s');
+        $datetime = Verta::create(2019, 1, 1, 10, 20, 11)->format('Y-m-d H:i:s');
 
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
     }
@@ -129,7 +128,7 @@ class CreatorTest extends TestCase
     public function testCreateGregorianDate()
     {
         $time = (new DateTime())->format("H:i:s");
-        $datetime = Verta::createGregorianDate(2019,1,1)->format('Y-m-d H:i:s');
+        $datetime = Verta::createGregorianDate(2019, 1, 1)->format('Y-m-d H:i:s');
 
         $this->assertEquals("1397-10-11 {$time}", $datetime);
     }
@@ -137,14 +136,14 @@ class CreatorTest extends TestCase
     public function testCreateGregorianTime()
     {
         $date = (new DateTime())->format("Y-m-d");
-        $datetime = Verta::createGregorianTime(15,19,51)->formatGregorian('Y-m-d H:i:s');
+        $datetime = Verta::createGregorianTime(15, 19, 51)->formatGregorian('Y-m-d H:i:s');
 
         $this->assertEquals("{$date} 15:19:51", $datetime);
     }
 
     public function testCreateJalali()
     {
-        $datetime = Verta::createJalali(1397,10,11,10,20,11)->format('Y-m-d H:i:s');
+        $datetime = Verta::createJalali(1397, 10, 11, 10, 20, 11)->format('Y-m-d H:i:s');
 
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
     }
@@ -152,7 +151,7 @@ class CreatorTest extends TestCase
     public function testCreateJalaliDate()
     {
         $time = (new DateTime())->format("H:i:s");
-        $datetime = Verta::createJalaliDate(1397,10,11)->format('Y-m-d H:i:s');
+        $datetime = Verta::createJalaliDate(1397, 10, 11)->format('Y-m-d H:i:s');
 
         $this->assertEquals("1397-10-11 {$time}", $datetime);
     }
@@ -160,7 +159,7 @@ class CreatorTest extends TestCase
     public function testCreateJalaliTime()
     {
         $date = verta()->format("Y-m-d");
-        $datetime = Verta::createJalaliTime(15,19,51)->format('Y-m-d H:i:s');
+        $datetime = Verta::createJalaliTime(15, 19, 51)->format('Y-m-d H:i:s');
 
         $this->assertEquals("{$date} 15:19:51", $datetime);
     }

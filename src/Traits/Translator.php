@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 trait Translator
 {
@@ -11,7 +9,7 @@ trait Translator
      *
      * @var array
      */
-    public static $messages = array();
+    public static $messages = [];
 
     /**
      * List of custom localized messages.
@@ -35,9 +33,10 @@ trait Translator
      */
     public static function setLocale($locale)
     {
-        if($messages = static::loadMessages($locale)) {
+        if ($messages = static::loadMessages($locale)) {
             static::$locale = $locale;
-        } 
+        }
+
         return $messages;
     }
 
@@ -62,12 +61,12 @@ trait Translator
     {
         if ($messages = static::getMessages($locale)) {
             static::$messages = $messages;
+
             return true;
         }
 
         return false;
     }
-
 
     /**
      * Set messages of a locale and take file first if present.
@@ -81,9 +80,9 @@ trait Translator
         if (file_exists($filename = dirname(__DIR__).'/Lang/'.($locale ?: static::getLocale()).'.php')) {
             return require $filename;
         }
+
         return false;
     }
-
 
     /**
      * Set messages of a locale and take file first if present.

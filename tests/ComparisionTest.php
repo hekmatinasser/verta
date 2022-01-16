@@ -190,13 +190,13 @@ class ComparisionTest extends TestCase
     {
         $datetime = Verta::parse('1398-10-10 21:30:50');
 
-        $result =  $datetime->between(Verta::parse('1398-10-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'));
+        $result = $datetime->between(Verta::parse('1398-10-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'));
         $this->assertTrue($result);
 
-        $result =  $datetime->between(Verta::parse('1398-10-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'), false);
+        $result = $datetime->between(Verta::parse('1398-10-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'), false);
         $this->assertFalse($result);
 
-        $result =  $datetime->between(Verta::parse('1398-10-13 21:30:50'), Verta::parse('1398-10-09 21:30:50'));
+        $result = $datetime->between(Verta::parse('1398-10-13 21:30:50'), Verta::parse('1398-10-09 21:30:50'));
         $this->assertTrue($result);
     }
 
@@ -204,10 +204,10 @@ class ComparisionTest extends TestCase
     {
         $datetime = Verta::parse('1398-10-10 21:30:50');
 
-        $result =  $datetime->closest(Verta::parse('1398-10-10 21:30:01'), Verta::parse('1398-10-11 21:30:50'));
+        $result = $datetime->closest(Verta::parse('1398-10-10 21:30:01'), Verta::parse('1398-10-11 21:30:50'));
         $this->assertEquals($result, Verta::parse('1398-10-10 21:30:01'));
 
-        $result =  $datetime->closest(Verta::parse('1398-11-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'));
+        $result = $datetime->closest(Verta::parse('1398-11-10 21:30:50'), Verta::parse('1398-10-11 21:30:50'));
         $this->assertEquals($result, Verta::parse('1398-10-11 21:30:50'));
     }
 

@@ -1,14 +1,11 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 use Hekmatinasser\Verta\Verta;
 
 trait Difference
 {
-
     /**
      * Get the difference in years
      *
@@ -100,5 +97,4 @@ trait Difference
 
         return $v->getTimestamp() - $this->getTimestamp();
     }
-
 }

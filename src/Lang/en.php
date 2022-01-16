@@ -45,7 +45,7 @@ return [
         'month' => 'month',
         'yaer' => 'yaer',
         'decade' => 'decade',
-        'century' => 'century'
+        'century' => 'century',
     ],
     'phrase' => [
         'am' => 'am',
@@ -78,6 +78,5 @@ return [
         '2' => 'summer',
         '3' => 'autumn',
         '4' => 'winter',
-    ]
+    ],
 ];
-
