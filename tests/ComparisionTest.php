@@ -267,8 +267,6 @@ class ComparisionTest extends TestCase
         $this->assertFalse($datetime->isSameAs('Y-m-d'));
         $this->assertFalse($datetime->isCurrentYear());
         $this->assertFalse($datetime->isSameYear($target));
-        $this->assertFalse($datetime->isCurrentMonth());
-        $this->assertFalse($datetime->isSameMonth());
         $this->assertFalse($datetime->isSameDay($target));
         $this->assertTrue($datetime->isBirthday($target));
         $this->assertFalse($datetime->isSaturday());

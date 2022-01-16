@@ -497,7 +497,8 @@ trait Comparison
 
     /**
      * Checks if the passed in date is in the same month as the instance month (and year if needed).
-     *
+     *        $this->assertFalse($datetime->isCurrentMonth());
+
      * @param Verta|null $v         The instance to compare with or null to use current day.
      * @param bool                $ofSameYear Check if it is the same month in the same year.
      *
