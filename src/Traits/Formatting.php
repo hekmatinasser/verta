@@ -259,7 +259,8 @@ trait Formatting
     {
         $offset = $this->clone()->startYear()->format('w');
         $days = $this->format('z');
-        return ceil( ($days + $offset) / 7 );
+
+        return ceil(($days + $offset) / 7);
     }
 
     /**
