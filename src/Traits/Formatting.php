@@ -115,7 +115,7 @@ trait Formatting
 
             # Week
             case 'W':
-                return ceil($this->daysYear($pMonth, $pDay) / 7);
+                return $this->dayOfWeek();
 
             # Month
             case 'F':
@@ -245,6 +245,21 @@ trait Formatting
         }
 
         return ($days + $day);
+    }
+
+    /**
+     * return week number from first of year
+     *
+     * @param int $month
+     * @param int $day
+     * @return type
+     * @since 5.0.0
+     */
+    protected function dayOfWeek()
+    {
+        $offset = $this->clone()->startYear()->format('w');
+        $days = $this->format('z');
+        return ceil( ($days + $offset) / 7 );
     }
 
     /**
