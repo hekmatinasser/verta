@@ -1,4 +1,5 @@
 <?php
+
 if (! function_exists('verta')) {
     /**
      * @param null $datetime

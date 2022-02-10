@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 use Hekmatinasser\Verta\VertaInterface;
 
@@ -59,5 +57,4 @@ trait Date
      * @var array
      */
     protected static $daysMonthJalali = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
-
 }

@@ -2,3 +2,6 @@ vendor/
 .idea/
 *.phpunit.result.cache
 *.bat
+composer.lock
+phpunit.xml.dist.bak
+.php-cs-fixer.cache

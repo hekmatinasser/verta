@@ -1,22 +1,20 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 use Hekmatinasser\Verta\Verta;
 
 trait Comparison
 {
-
     /**
      * check jalali the instance is a leap year
      *
      * @param int $year
      * @return bool
      */
-    public static function isLeapYear($year) {
-        return in_array(($year % 33) , [1 , 5 , 9 , 13 ,17 , 22 , 26 , 30]);
+    public static function isLeapYear($year)
+    {
+        return in_array(($year % 33), [1 , 5 , 9 , 13 ,17 , 22 , 26 , 30]);
     }
 
     /**
@@ -27,17 +25,19 @@ trait Comparison
      * @param int $year
      * @return bool
      */
-    public static function isValidDate($year, $month, $day) {
-        if($year < 0 || $year > 32766) {
+    public static function isValidDate($year, $month, $day)
+    {
+        if ($year < 0 || $year > 32766) {
             return false;
         }
-        if($month < 1 || $month > 12) {
+        if ($month < 1 || $month > 12) {
             return false;
         }
-        $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month)-1];
-        if($day < 1 || $day > $dayLastMonthJalali) {
+        $dayLastMonthJalali = static::isLeapYear($year) && ($month == 12) ? 30 : static::$daysMonthJalali[intval($month) - 1];
+        if ($day < 1 || $day > $dayLastMonthJalali) {
             return false;
         }
+
         return true;
     }
 
@@ -49,7 +49,8 @@ trait Comparison
      * @param int $second
      * @return bool
      */
-    public static function isValidTime($hour, $minute, $second) {
+    public static function isValidTime($hour, $minute, $second)
+    {
         return $hour >= 0 && $hour <= 23
             && $minute >= 0 && $minute <= 59
             && $second >= 0 && $second <= 59;
@@ -90,7 +91,7 @@ trait Comparison
      */
     public function ne(Verta $v = null)
     {
-        return !$this->eq($v);
+        return ! $this->eq($v);
     }
 
     /**
@@ -324,7 +325,7 @@ trait Comparison
      */
     public function isWeekday()
     {
-        return !$this->isWeekend();
+        return ! $this->isWeekend();
     }
 
     /**
@@ -372,7 +373,7 @@ trait Comparison
      *
      * @return bool
      */
-    public function isNextWeek() : bool
+    public function isNextWeek(): bool
     {
         return $this->weekOfYear === static::now($this->getTimezone())->addWeek()->weekOfYear;
     }
@@ -496,7 +497,8 @@ trait Comparison
 
     /**
      * Checks if the passed in date is in the same month as the instance month (and year if needed).
-     *
+     *        $this->assertFalse($datetime->isCurrentMonth());
+
      * @param Verta|null $v         The instance to compare with or null to use current day.
      * @param bool                $ofSameYear Check if it is the same month in the same year.
      *
@@ -602,5 +604,4 @@ trait Comparison
     {
         return $this->dayOfWeek === static::FRIDAY;
     }
-
 }

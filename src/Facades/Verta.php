@@ -1,4 +1,5 @@
 <?php
+
 namespace Hekmatinasser\Verta\Facades;
 
 use Illuminate\Support\Facades\Facade;

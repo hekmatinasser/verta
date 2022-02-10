@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 trait Boundaries
 {
@@ -159,5 +157,4 @@ trait Boundaries
 
         return $this->setDateTime($this->year, 12, $day, 23, 59, 59);
     }
-
 }

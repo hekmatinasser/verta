@@ -85,10 +85,9 @@ class AccessTest extends TestCase
         $this->assertEquals('Asia/Tehran', $datetime->timezone);
     }
 
-
     public function testSetDateTime()
     {
-        $datetime = verta()->setDateTime(1397,10,11,10,20,11);
+        $datetime = verta()->setDateTime(1397, 10, 11, 10, 20, 11);
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);
@@ -98,10 +97,9 @@ class AccessTest extends TestCase
         $this->assertEquals(11, $datetime->second);
     }
 
-
     public function testSetDate()
     {
-        $datetime = verta()->setDate(1397,10,11);
+        $datetime = verta()->setDate(1397, 10, 11);
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);
@@ -110,7 +108,7 @@ class AccessTest extends TestCase
 
     public function testSetTime()
     {
-        $datetime = verta()->setTime(10,20,11);
+        $datetime = verta()->setTime(10, 20, 11);
 
         $this->assertEquals(10, $datetime->hour);
         $this->assertEquals(20, $datetime->minute);
@@ -124,6 +122,5 @@ class AccessTest extends TestCase
         $this->assertEquals(10, $datetime->hour);
         $this->assertEquals(20, $datetime->minute);
         $this->assertEquals(11, $datetime->second);
-
     }
 }

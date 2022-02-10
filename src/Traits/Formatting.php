@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Hekmatinasser\Verta\Traits;
-
 
 use Hekmatinasser\Notowo\Notowo;
 use Hekmatinasser\Verta\Verta;
 
 trait Formatting
 {
-
     /**
      * Reset the format used to the default when type juggling a Verta instance to a string
      */
@@ -48,8 +45,8 @@ trait Formatting
     {
         $timestamp = $this->getTimestamp();
 
-        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', parent::format('Y-m-d-w'));
-        list( $pYear, $pMonth, $pDay ) = static::getJalali( $gYear, $gMonth, $gDay );
+        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', parent::format('Y-m-d-w'));
+        list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
 
         $pWeek = $gWeek + 1;
 
@@ -62,29 +59,30 @@ trait Formatting
         $result = '';
 
         while ($index < $lengh) {
-            $char =  $format[$index];
+            $char = $format[$index];
             if ($char == '\\') {
                 $result .= $format[++$index];
                 $index++;
+
                 continue;
             }
             $result .= $this->characterFormat($char, $timestamp, $pYear, $pMonth, $pDay, $pWeek);
 
             $index++;
         }
+
         return $result;
     }
-
 
     /**
      * The format of the outputted date charactre (jalali equivalent of php date() function)
      *
      * @param string $char
-     * @param integer $timestamp
-     * @param integer $pYear
-     * @param integer $pMonth
-     * @param integer $pDay
-     * @param integer $pWeek
+     * @param int $timestamp
+     * @param int $pYear
+     * @param int $pMonth
+     * @param int $pDay
+     * @param int $pWeek
      * @return string
      */
     private function characterFormat($char, $timestamp, $pYear, $pMonth, $pDay, $pWeek)
@@ -92,25 +90,25 @@ trait Formatting
         switch ($char) {
             # Day
             case 'd':
-                return sprintf( '%02s', $pDay );
+                return sprintf('%02s', $pDay);
 
             case 'D':
-                return substr( self::$messages['weekdays'][$pWeek+1], 0, 2 );
+                return substr(self::$messages['weekdays'][$pWeek + 1], 0, 2);
 
             case 'j':
                 return $pDay;
 
             case 'l':
-                return self::$messages['weekdays'][$pWeek+1];
+                return self::$messages['weekdays'][$pWeek + 1];
 
             case 'N':
-                return $pWeek+1;
+                return $pWeek + 1;
 
             case 'w':
                 return $pWeek;
 
             case 'z':
-                return $this->daysYear( $pMonth, $pDay );
+                return $this->daysYear($pMonth, $pDay);
 
             case 'S':
                 return static::$messages['phrase']['th'];
@@ -124,30 +122,30 @@ trait Formatting
                 return self::$messages['year_months'][$pMonth];
 
             case 'm':
-                return sprintf( '%02s', $pMonth );
+                return sprintf('%02s', $pMonth);
 
             case 'M':
-                return substr(self::$messages['year_months'][$pMonth], 0, 6 );
+                return substr(self::$messages['year_months'][$pMonth], 0, 6);
 
             case 'n':
                 return $pMonth;
 
             case 't':
-                return static::isLeapYear( $pYear ) && ( $pMonth == 12 ) ? 30 : static::$daysMonthJalali[ intval( $pMonth ) - 1 ];
+                return static::isLeapYear($pYear) && ($pMonth == 12) ? 30 : static::$daysMonthJalali[ intval($pMonth) - 1 ];
             # Quarter
             case 'Q':
             case 'q':
                 return self::$messages['quarters'][$this->quarter];
             # Years
             case 'L':
-                return intval( $this->isLeapYear( $pYear ) );
+                return intval($this->isLeapYear($pYear));
 
             case 'Y':
             case 'o':
                 return $pYear;
 
             case 'y':
-                return substr( $pYear, 2 );
+                return substr($pYear, 2);
 
             # Time
             case 'a':
@@ -171,14 +169,14 @@ trait Formatting
             case 'P':
             case 'T':
             case 'Z':
-                return parent::format( $char );
+                return parent::format($char);
 
             # Full Date/Time
             case 'c':
-                return ( $pYear . '-' . $pMonth . '-' . $pDay . ' ' . parent::format( 'H:i:s P' ) );
+                return ($pYear . '-' . $pMonth . '-' . $pDay . ' ' . parent::format('H:i:s P'));
 
             case 'r':
-                return ( substr(self::$messages['weekdays'][$pWeek], 0, 2 ) . '، ' . $pDay . ' ' . substr(self::$messages['year_months'][$pMonth], 0, 6 ) . ' ' . $pYear . ' ' . parent::format( 'H:i:s P' ) );
+                return (substr(self::$messages['weekdays'][$pWeek], 0, 2) . '، ' . $pDay . ' ' . substr(self::$messages['year_months'][$pMonth], 0, 6) . ' ' . $pYear . ' ' . parent::format('H:i:s P'));
 
             case 'U':
                 return $timestamp;
@@ -194,12 +192,12 @@ trait Formatting
      * @param string $format for example 'Y-m-d H:i:s'
      * @return string
      */
-    protected function dateWord($format){
-
+    protected function dateWord($format)
+    {
         $timestamp = $this->getTimestamp();
 
-        list( $gYear, $gMonth, $gDay, $gWeek ) = explode( '-', parent::format('Y-m-d-w'));
-        list( $pYear, $pMonth, $pDay ) = static::getJalali( $gYear, $gMonth, $gDay );
+        list($gYear, $gMonth, $gDay, $gWeek) = explode('-', parent::format('Y-m-d-w'));
+        list($pYear, $pMonth, $pDay) = static::getJalali($gYear, $gMonth, $gDay);
 
         $pWeek = $gWeek + 1;
 
@@ -212,20 +210,22 @@ trait Formatting
         $result = '';
 
         while ($index < $lengh) {
-            $char =  $format[$index];
+            $char = $format[$index];
             if ($char == '\\') {
                 $result .= $format[++$index];
                 $index++;
+
                 continue;
             }
             $output = $this->characterFormat($char, $timestamp, $pYear, $pMonth, $pDay, $pWeek);
-            if(is_numeric($output)) {
-                $output = (string) new Notowo($output, static::getLocale() == 'en' ? 'en' : 'fa' );
+            if (is_numeric($output)) {
+                $output = (string) new Notowo($output, static::getLocale() == 'en' ? 'en' : 'fa');
             }
             $result .= $output;
 
             $index++;
         }
+
         return $result;
     }
 
@@ -237,11 +237,13 @@ trait Formatting
      * @return type
      * @since 5.0.0
      */
-    protected function daysYear($month, $day) {
+    protected function daysYear($month, $day)
+    {
         $days = 0;
-        for ($i = 1; $i < $month; $i ++) {
-            $days += static::$daysMonthJalali[$i-1];
+        for ($i = 1; $i < $month; $i++) {
+            $days += static::$daysMonthJalali[$i - 1];
         }
+
         return ($days + $day);
     }
 
@@ -257,7 +259,8 @@ trait Formatting
     {
         $offset = $this->clone()->startYear()->format('w');
         $days = $this->format('z');
-        return ceil( ($days + $offset) / 7 );
+
+        return ceil(($days + $offset) / 7);
     }
 
     /**
@@ -268,7 +271,7 @@ trait Formatting
      */
     protected function strftime($format)
     {
-        $strftime_date = array(
+        $strftime_date = [
             "%a" => "D",
             "%A" => "l",
             "%d" => "d",
@@ -310,8 +313,8 @@ trait Formatting
             "%t" => "\t",
             "%%" => "%",
             "%Q" => "q",
-            "%q" => "q"
-        );
+            "%q" => "q",
+        ];
 
         return str_replace(array_keys($strftime_date), array_values($strftime_date), $format);
     }
@@ -322,7 +325,8 @@ trait Formatting
      * @param $format
      * @return string
      */
-    public function format($format) {
+    public function format($format)
+    {
         return $this->date($this->strftime($format));
     }
 
@@ -332,8 +336,8 @@ trait Formatting
      * @param $format
      * @return string
      */
-    public function formatGregorian($format) {
-
+    public function formatGregorian($format)
+    {
         return $this->datetime()->format($format);
     }
 
@@ -416,7 +420,7 @@ trait Formatting
         }
         $difference = intval(round($difference));
 
-        if($difference === 0) {
+        if ($difference === 0) {
             return static::$messages['phrase']['now'];
         }
 
@@ -438,6 +442,7 @@ trait Formatting
     {
         $en = static::getMessages('en');
         $fa = static::getMessages('fa');
+
         return str_replace(array_values($en['numbers']), array_values($fa['numbers']), $string);
     }
 
@@ -451,6 +456,7 @@ trait Formatting
     {
         $fa = static::getMessages('fa');
         $en = static::getMessages('en');
+
         return str_replace(array_values($fa['numbers']), array_values($en['numbers']), $string);
     }
 
@@ -464,7 +470,7 @@ trait Formatting
     {
         $ar = static::getMessages('ar');
         $en = static::getMessages('en');
+
         return str_replace(array_values($ar['numbers']), array_values($en['numbers']), $string);
     }
-
 }
