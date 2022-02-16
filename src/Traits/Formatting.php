@@ -41,7 +41,7 @@ trait Formatting
      * @param string $format for example 'Y-m-d H:i:s'
      * @return string
      */
-    protected function date($format)
+    protected function date(string $format): string
     {
         $timestamp = $this->getTimestamp();
 
@@ -322,10 +322,10 @@ trait Formatting
     /**
      * The format of the outputted date string (jalali equivalent of php strftime() function)
      *
-     * @param $format
+     * @param string $format
      * @return string
      */
-    public function format($format)
+    public function format(string $format): string
     {
         return $this->date($this->strftime($format));
     }
@@ -333,10 +333,10 @@ trait Formatting
     /**
      * The format of the outputted date string (gregorian)
      *
-     * @param $format
+     * @param string $format
      * @return string
      */
-    public function formatGregorian($format)
+    public function formatGregorian(string $format): string
     {
         return $this->datetime()->format($format);
     }
@@ -346,7 +346,7 @@ trait Formatting
      *
      * @return string
      */
-    public function formatDatetime()
+    public function formatDatetime(): string
     {
         return $this->format('Y-m-d H:i:s');
     }
