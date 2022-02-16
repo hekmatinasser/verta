@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class CreatorTest extends TestCase
 {
-
     public function testNow()
     {
         $expected = (new DateTime())->getTimestamp();

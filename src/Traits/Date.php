@@ -6,15 +6,15 @@ use Hekmatinasser\Verta\VertaInterface;
 
 trait Date
 {
-    use Accessor,
-        Comparison,
-        Creator,
-        Formatting,
-        Modification,
-        Transformation,
-        Translator,
-        Boundaries,
-        Difference;
+    use Accessor;
+    use Comparison;
+    use Creator;
+    use Formatting;
+    use Modification;
+    use Transformation;
+    use Translator;
+    use Boundaries;
+    use Difference;
     /**
      * Format to use for __toString.
      *
