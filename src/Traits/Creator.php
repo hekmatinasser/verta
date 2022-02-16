@@ -18,6 +18,7 @@ trait Creator
      */
     public function __construct($datetime = null, $timezone = null)
     {
+        $dt = $datetime;
         if (static::$testNow) {
             $dt = static::$testNow;
         } elseif (empty($datetime)) {
@@ -59,7 +60,7 @@ trait Creator
      */
     public static function today($timezone = null)
     {
-        return (new static($timezone))->startDay();
+        return (new static(null, $timezone))->startDay();
     }
 
     /**
@@ -71,7 +72,7 @@ trait Creator
      */
     public static function tomorrow($timezone = null)
     {
-        return (new static('+1 day', $timezone))->startDay();
+        return (new static(null, $timezone))->addDay()->startDay();
     }
 
     /**
@@ -83,14 +84,14 @@ trait Creator
      */
     public static function yesterday($timezone = null)
     {
-        return (new static('-1 day', $timezone))->startDay();
+        return (new static(null, $timezone))->subDay()->startDay();
     }
 
     /**
      * Create a Verta instance from a DateTime one
      *
      * @param $datetime [optional]
-     * @param bool $timezone [optional]
+     * @param \DateTimeZone|string|null $timezone [optional]
      *
      * @return static
      */

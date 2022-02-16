@@ -244,7 +244,7 @@ class ComparisionTest extends TestCase
         $this->assertEquals($result, Verta::parse('1398-10-10 21:30:55'));
     }
 
-    public function testIsDay()
+    public function testIs()
     {
         $datetime = Verta::parse('1397-10-10 21:30:50');
         $target = Verta::parse('1398-10-10 21:30:01');
