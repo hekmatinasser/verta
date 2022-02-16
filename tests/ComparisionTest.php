@@ -277,6 +277,5 @@ class ComparisionTest extends TestCase
         $this->assertFalse($datetime->isWednesday());
         $this->assertFalse($datetime->isThursday());
         $this->assertFalse($datetime->isFriday());
-
     }
 }
