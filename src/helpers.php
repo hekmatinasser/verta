@@ -4,7 +4,7 @@ if (! function_exists('verta')) {
     /**
      * @param null $datetime
      * @param null $timezone
-     * @return \Hekmatinasse\Verta\Verta
+     * @return \Hekmatinasser\Verta\Verta
      */
     function verta($datetime = null, $timezone = null)
     {

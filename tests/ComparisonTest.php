@@ -5,7 +5,7 @@ namespace Hekmatinasser\Verta\Tests;
 use Hekmatinasser\Verta\Verta;
 use PHPUnit\Framework\TestCase;
 
-class ComparisionTest extends TestCase
+class ComparisonTest extends TestCase
 {
     public function testValidDate()
     {
@@ -55,7 +55,6 @@ class ComparisionTest extends TestCase
     {
         $datetime = Verta::parse('1398-10-10 21:30:50');
 
-        $datetime = Verta::parse('1398-10-10 21:30:50');
         $result = $datetime->diffMonths($datetime);
 
         $this->assertEquals(0, $result);
