@@ -21,7 +21,7 @@ trait Date
      *
      * @var string
      */
-    protected static $testNow = null;
+    public static $testNow = null;
 
     /**
      * Format to use for __toString.
