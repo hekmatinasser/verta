@@ -18,7 +18,7 @@ trait Creator
      */
     public function __construct($datetime = null, $timezone = null)
     {
-        if(static::$testNow) {
+        if (static::$testNow) {
             $dt = static::$testNow;
         } elseif (empty($datetime)) {
             $dt = 'now';
@@ -266,6 +266,7 @@ trait Creator
             if ($tz === false) {
                 throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $tz));
             }
+
             return $tz;
         }
     }
