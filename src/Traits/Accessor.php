@@ -246,7 +246,8 @@ trait Accessor
     {
         list($year, $month, $day) = self::getGregorian($year, $month, $day);
 
-        return parent::setDate($year, $month, $day);
+        parent::setDate($year, $month, $day);
+        return $this;
     }
 
     /**
