@@ -247,6 +247,7 @@ trait Accessor
         list($year, $month, $day) = self::getGregorian($year, $month, $day);
 
         parent::setDate($year, $month, $day);
+
         return $this;
     }
 
@@ -268,6 +269,7 @@ trait Accessor
         $second = $time[2] ?? 0;
 
         parent::setTime($hour, $minute, $second, 0);
+
         return $this;
     }
 }
