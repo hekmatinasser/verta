@@ -240,7 +240,7 @@ trait Accessor
      * @param int $month
      * @param int $day
      *
-     * @return static
+     * @return Verta
      */
     public function setDate($year, $month, $day)
     {
@@ -264,9 +264,10 @@ trait Accessor
         $time = explode(':', $time);
 
         $hour = $time[0];
-        $minute = isset($time[1]) ? $time[1] : 0;
-        $second = isset($time[2]) ? $time[2] : 0;
+        $minute = $time[1] ?? 0;
+        $second = $time[2] ?? 0;
 
-        return $this->setTime($hour, $minute, $second, 0);
+        parent::setTime($hour, $minute, $second, 0);
+        return $this;
     }
 }
