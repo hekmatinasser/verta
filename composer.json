@@ -8,21 +8,26 @@
             "email": "hekmati.nasser@gmail.com"
         }
     ],
-    "keywords": ["Laravel","Date","Datetime","Jalali", "Shamsi", "Verta"],
+    "keywords": [
+        "Laravel",
+        "Date",
+        "Datetime",
+        "Jalali",
+        "Shamsi",
+        "Verta"
+    ],
     "require": {
-        "php": "^7.3|^8.0|^8.1",
-        "illuminate/support": "^6.0|^8.0|^9.0",
-        "illuminate/validation": "^6.0|^8.0|^9.0",
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+        "illuminate/validation": "^6.0|^7.0|^8.0|^9.0",
         "hekmatinasser/notowo": "^1.0"
     },
-    "require-dev" : {
-        "orchestra/testbench": "^4.9|^6.23|^7.0",
-        "phpunit/phpunit": "^9.4",
-        "mockery/mockery": "^1.0"
+    "require-dev": {
+        "orchestra/testbench": "^4.18|^5.20|^6.24|^7.0"
     },
     "autoload": {
         "psr-4": {
-            "Hekmatinasser\\Verta\\": "src"
+            "Hekmatinasser\\Verta\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -30,10 +35,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Hekmatinasser\\VertaTests\\": "tests"
+            "Hekmatinasser\\Verta\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
@@ -43,5 +47,7 @@
                 "Verta": "Hekmatinasser\\Verta\\Verta"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
