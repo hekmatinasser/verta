@@ -20,7 +20,7 @@ class AccessTest extends TestCase
         $this->assertEquals(0, $datetime->micro);
         $this->assertEquals(3, $datetime->dayOfWeek);
         $this->assertEquals(287, $datetime->dayOfYear);
-        $this->assertEquals(41, $datetime->weekOfYear);
+        $this->assertEquals(42, $datetime->weekOfYear);
         $this->assertEquals(30, $datetime->daysInMonth);
         $this->assertEquals(1546350635, $datetime->timestamp);
         $this->assertEquals(4, $datetime->quarter);

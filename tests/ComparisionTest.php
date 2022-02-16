@@ -249,6 +249,8 @@ class ComparisionTest extends TestCase
         $datetime = Verta::parse('1397-10-10 21:30:50');
         $target = Verta::parse('1398-10-10 21:30:01');
 
+        Verta::$testNow = $datetime->formatGregorian('Y-m-d H:i:s');
+
         $this->assertTrue($datetime->isWeekday());
         $this->assertFalse($datetime->isWeekend());
         $this->assertFalse($datetime->isYesterday());
@@ -276,5 +278,7 @@ class ComparisionTest extends TestCase
         $this->assertFalse($datetime->isWednesday());
         $this->assertFalse($datetime->isThursday());
         $this->assertFalse($datetime->isFriday());
+
+        Verta::$testNow = null;
     }
 }

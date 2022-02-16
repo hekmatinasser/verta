@@ -21,6 +21,13 @@ trait Date
      *
      * @var string
      */
+    protected static $testNow = null;
+
+    /**
+     * Format to use for __toString.
+     *
+     * @var string
+     */
     protected static $stringFormat = VertaInterface::DEFAULT_STRING_FORMAT;
 
     /**

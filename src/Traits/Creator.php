@@ -18,19 +18,20 @@ trait Creator
      */
     public function __construct($datetime = null, $timezone = null)
     {
-        if (empty($datetime)) {
-            $datetime = 'now';
+        if(static::$testNow) {
+            $dt = static::$testNow;
+        } elseif (empty($datetime)) {
+            $dt = 'now';
         } elseif (is_string($datetime)) {
-            $datetime = self::faToEnNumbers(self::arToEnNumbers($datetime));
+            $dt = self::faToEnNumbers(self::arToEnNumbers($datetime));
         } elseif ($datetime instanceof DateTime) {
-            $datetime = "@{$datetime->getTimestamp()}";
+            $dt = "@{$datetime->getTimestamp()}";
         } elseif (is_int($datetime)) {
-            $datetime = "@$datetime";
+            $dt = "@$datetime";
         }
 
         try {
-            parent::__construct($datetime, static::createTimeZone($timezone));
-            parent::setTimezone(static::createTimeZone($timezone));
+            parent::__construct($dt, static::createTimeZone($timezone));
             self::loadMessages();
         } catch (Exception $exception) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
@@ -257,17 +258,16 @@ trait Creator
     protected static function createTimeZone($timezone = null)
     {
         if ($timezone === null) {
-            $tz = new DateTimeZone(date_default_timezone_get());
+            return new DateTimeZone(date_default_timezone_get());
         } elseif ($timezone instanceof DateTimeZone) {
-            $tz = $timezone;
+            return $timezone;
         } else {
             $tz = @timezone_open(strval($timezone));
             if ($tz === false) {
                 throw new InvalidArgumentException(sprintf("Unknown timezone '%s'", $tz));
             }
+            return $tz;
         }
-
-        return $tz;
     }
 
     /**
