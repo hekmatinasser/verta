@@ -216,7 +216,7 @@ class ModificationTest extends TestCase
 
     public function testEndYear()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Verta::parse('1398-10-15 21:30:20');
 
         $result = $datetime->endYear()->format('Y-m-d H:i:s');
 

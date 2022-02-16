@@ -395,7 +395,7 @@ trait Comparison
      */
     public function isNextMonth()
     {
-        return $this->month === static::now($this->getTimezone())->addMonth()->month;
+        return $this->format('Y-m') === static::now($this->getTimezone())->addMonth()->format('Y-m');
     }
 
     /**
@@ -405,7 +405,7 @@ trait Comparison
      */
     public function isLastMonth()
     {
-        return $this->month === static::now($this->getTimezone())->subMonth()->month;
+        return $this->format('Y-m') === static::now($this->getTimezone())->subMonth()->format('Y-m');
     }
 
     /**
@@ -458,7 +458,7 @@ trait Comparison
      */
     public function isSameAs($format, Verta $v = null)
     {
-        $v = $v ?: static::now($this->timezone);
+        $v = $v ?: static::now($this->getTimezone());
 
         return $this->format($format) === $v->format($format);
     }

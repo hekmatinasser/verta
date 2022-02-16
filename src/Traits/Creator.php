@@ -12,16 +12,14 @@ trait Creator
     /**
      * create object of Jalali
      *
-     * @param null $datetime
-     * @param bool $timezone [optional]
+     * @param DateTime|string|int|null $datetime [optional]
+     * @param DateTimeZone|string|null $timezone [optional]
      * @internal param timestamp $timestamp [optional]
      */
     public function __construct($datetime = null, $timezone = null)
     {
         $dt = $datetime;
-        if (static::$testNow) {
-            $dt = static::$testNow;
-        } elseif (empty($datetime)) {
+        if (empty($datetime)) {
             $dt = 'now';
         } elseif (is_string($datetime)) {
             $dt = self::faToEnNumbers(self::arToEnNumbers($datetime));
@@ -254,7 +252,7 @@ trait Creator
 
     /**
      * @param null $timezone
-     * @return DateTimeZone|null
+     * @return DateTimeZone|string|null
      */
     protected static function createTimeZone($timezone = null)
     {

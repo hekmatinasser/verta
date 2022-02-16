@@ -249,7 +249,7 @@ class ComparisionTest extends TestCase
         $datetime = Verta::parse('1397-10-10 21:30:50');
         $target = Verta::parse('1398-10-10 21:30:01');
 
-        Verta::$testNow = $datetime->formatGregorian('Y-m-d H:i:s');
+//        Verta::setTestNow('1397-10-10 21:30:50');
 
         $this->assertTrue($datetime->isWeekday());
         $this->assertFalse($datetime->isWeekend());
@@ -264,7 +264,6 @@ class ComparisionTest extends TestCase
         $this->assertFalse($datetime->isLastYear());
         $this->assertFalse($datetime->isFuture());
         $this->assertTrue($datetime->isPast());
-
         $this->assertTrue($datetime->isSameAs('m-d', $target));
         $this->assertFalse($datetime->isSameAs('Y-m-d'));
         $this->assertFalse($datetime->isCurrentYear());
@@ -279,6 +278,5 @@ class ComparisionTest extends TestCase
         $this->assertFalse($datetime->isThursday());
         $this->assertFalse($datetime->isFriday());
 
-        Verta::$testNow = null;
     }
 }
