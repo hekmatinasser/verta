@@ -244,9 +244,8 @@ trait Accessor
      */
     public function setDateJalali($year, $month, $day)
     {
-        list($year, $month, $day) = self::getGregorian($year, $month, $day);
-
         if (static::isValidDate($year, $month, $day)) {
+            list($year, $month, $day) = self::getGregorian($year, $month, $day);
             parent::setDate($year, $month, $day);
         }
 
