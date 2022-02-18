@@ -133,7 +133,7 @@ trait Boundaries
     {
         $month = $this->quarter * static::MONTHS_PER_QUARTER;
 
-        return $this->setDate($this->year, $month, 1)->endMonth();
+        return $this->setDateJalali($this->year, $month, 1)->endMonth();
     }
 
     /**

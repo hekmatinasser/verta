@@ -97,9 +97,9 @@ class AccessTest extends TestCase
         $this->assertEquals(11, $datetime->second);
     }
 
-    public function testSetDate()
+    public function testSetDateJalali()
     {
-        $datetime = verta()->setDate(1397, 10, 11);
+        $datetime = verta()->setDateJalali(1397, 10, 11);
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);

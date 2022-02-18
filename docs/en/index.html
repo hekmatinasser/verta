@@ -212,7 +212,7 @@ $v = $v->timezone('Asia/Baku');
                 <pre>
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42);
 $v = $v->setDateTime(1395, 4, 25, 16, 50, 42, 1569856);
-$v = $v->setDate(1395, 4, 25);
+$v = $v->setDateJalali(1395, 4, 25);
 $v = $v->setTimeString('12:25:48');
 </pre>
                 <h2 id="format">Format</h2>
@@ -365,7 +365,7 @@ return $v1->gt($v2); // true alias greaterThan()
 return $v1->gte($v2); // true alias greaterThanOrEqualTo()
 return $v1->lt($v2); // false alias lessThan()
 return $v1->lte($v2); // false alias lessThanOrEqualTo()
-return $v1->between($v2, $v3); // false    
+return $v1->between($v2, $v3); // false
 </pre>
                 <p>To compere datetime for closest, farthest, min or max together, use the following command</p>
                 <pre>
