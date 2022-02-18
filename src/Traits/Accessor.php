@@ -246,9 +246,10 @@ trait Accessor
     {
         list($year, $month, $day) = self::getGregorian($year, $month, $day);
 
-        if(static::isValidDate($year, $month, $day)) {
+        if (static::isValidDate($year, $month, $day)) {
             parent::setDate($year, $month, $day);
         }
+
         return $this;
     }
 
@@ -269,9 +270,10 @@ trait Accessor
         $minute = $time[1] ?? 0;
         $second = $time[2] ?? 0;
 
-        if(static::isValidTime($hour, $minute, $second)) {
+        if (static::isValidTime($hour, $minute, $second)) {
             parent::setTime($hour, $minute, $second, 0);
         }
+
         return $this;
     }
 }
