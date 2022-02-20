@@ -325,7 +325,7 @@ trait Formatting
      * @param string $format
      * @return string
      */
-    public function format($format)
+    public function format(string $format): string
     {
         return $this->date($this->strftime($format));
     }
