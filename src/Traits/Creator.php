@@ -5,6 +5,7 @@ namespace Hekmatinasser\Verta\Traits;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use Illuminate\Support\Carbon;
 use InvalidArgumentException;
 
 trait Creator
@@ -126,6 +127,16 @@ trait Creator
     public function datetime()
     {
         return new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()), $this->getTimezone());
+    }
+
+    /**
+     * Create a Carbon instance from Verta
+     *
+     * @return Carbon
+     */
+    public function toCarbon()
+    {
+        return Carbon::instance($this->datetime());
     }
 
     /**

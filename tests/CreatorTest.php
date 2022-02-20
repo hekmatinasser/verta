@@ -74,6 +74,13 @@ class CreatorTest extends TestCase
         $this->assertEquals('2019-01-01 10:20:11', $datetime);
     }
 
+    public function testToCarbon()
+    {
+        $datetime = verta('2019-01-01 10:20:11')->toCarbon()->format('Y-m-d H:i:s');
+
+        $this->assertEquals('2019-01-01 10:20:11', $datetime);
+    }
+
     public function testParse()
     {
         $datetime = Verta::parse('1397 دی 11 10:20:11')->formatGregorian('Y-m-d H:i:s');

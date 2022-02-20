@@ -123,6 +123,12 @@ return new Verta($dt); // 1395-12-09 15:05:56
 <pre>
 $c = \Carbon::now();
 return verta($c); // 1395-12-09 15:05:56
+// or
+\Illuminate\Support\Carbon::now()->toJalali(); // 1395-12-09 15:05:56
+// or with laravel helper
+now()->toJalali(); // 1395-12-09 15:05:56
+// or in models
+return $model->created_at->toJalali();
 </pre>
 <p>برای استفاده از تاریخ شمسی به صورت رشته، از دستور زیر استفاده کنید</p>
 <pre>
@@ -170,6 +176,8 @@ $dt = verta()->datetime();
 <p>برای تبدیل تاریخ از ورتا به کربن، از دستور زیر استفاده کنید</p>
 <pre>
 $c = Carbon::instance($v->datetime());
+// or
+$c = $v->toCarbon();
 </pre>
 <h3 id="property">خصوصیات</h3>
 <p>برای دریافت مقادیر خصوصیات، از دستورات زیر استفاده کنید</p>

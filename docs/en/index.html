@@ -118,6 +118,12 @@ return new Verta($dt); // 1395-12-09 15:05:56
                 <pre>
 $c = \Carbon::now();
 return verta($c); // 1395-12-09 15:05:56
+// or
+\Illuminate\Support\Carbon::now()->toJalali(); // 1395-12-09 15:05:56
+// or with laravel helper
+now()->toJalali(); // 1395-12-09 15:05:56
+// or in models
+return $model->created_at->toJalali();
 </pre>
                 <p>To use the jalali datetime as a string, use the following command</p>
                 <pre>
@@ -165,6 +171,8 @@ $dt = verta()->datetime();
                 <p>Verta to Carbon, use the following command</p>
                 <pre>
 $c = Carbon::instance($v->datetime());
+// or
+$c = $v->toCarbon();
 </pre>
                 <h3 id="property">Property</h3>
                 <p>To get property, use the following command</p>
