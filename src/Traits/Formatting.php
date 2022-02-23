@@ -4,6 +4,7 @@ namespace Hekmatinasser\Verta\Traits;
 
 use Hekmatinasser\Notowo\Notowo;
 use Hekmatinasser\Verta\Verta;
+use ReturnTypeWillChange;
 
 trait Formatting
 {
@@ -325,7 +326,8 @@ trait Formatting
      * @param string $format
      * @return string
      */
-    public function format(string $format): string
+    #[ReturnTypeWillChange]
+    public function format($format)
     {
         return $this->date($this->strftime($format));
     }

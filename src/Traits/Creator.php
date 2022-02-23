@@ -31,10 +31,11 @@ trait Creator
         }
 
         try {
-            $tz = static::createTimeZone($timezone);
-            parent::__construct($dt, $tz);
             if ($datetime instanceof DateTime) {
-                parent::setTimezone($tz);
+                parent::__construct($dt);
+                parent::setTimezone($datetime->getTimezone());
+            } else {
+                parent::__construct($dt, static::createTimeZone($timezone));
             }
             self::loadMessages();
         } catch (Exception $exception) {
@@ -130,7 +131,9 @@ trait Creator
      */
     public function datetime()
     {
-        return new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()), $this->getTimezone());
+        $dt = new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()));
+        $dt->setTimezone($this->getTimezone());
+        return $dt;
     }
 
     /**
