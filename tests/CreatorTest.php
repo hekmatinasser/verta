@@ -80,7 +80,7 @@ class CreatorTest extends TestCase
 
     public function testDatetime()
     {
-        $datetime = verta('2019-01-01 10:20:11')->DateTime()->format('Y-m-d H:i:s');
+        $datetime = verta('2019-01-01 10:20:11')->datetime()->format('Y-m-d H:i:s');
 
         $this->assertEquals('2019-01-01 10:20:11', $datetime);
     }
