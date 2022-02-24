@@ -5,6 +5,7 @@ namespace Hekmatinasser\Verta\Traits;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use Illuminate\Support\Carbon;
 use InvalidArgumentException;
 
 trait Creator
@@ -30,7 +31,12 @@ trait Creator
         }
 
         try {
-            parent::__construct($dt, static::createTimeZone($timezone));
+            if ($datetime instanceof DateTime) {
+                parent::__construct($dt);
+                parent::setTimezone($datetime->getTimezone());
+            } else {
+                parent::__construct($dt, static::createTimeZone($timezone));
+            }
             self::loadMessages();
         } catch (Exception $exception) {
             throw new InvalidArgumentException(sprintf("Unknown datetime '%s'", $datetime));
@@ -125,7 +131,19 @@ trait Creator
      */
     public function datetime()
     {
-        return new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()), $this->getTimezone());
+        $dt = new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()));
+        $dt->setTimezone($this->getTimezone());
+        return $dt;
+    }
+
+    /**
+     * Create a Carbon instance from Verta
+     *
+     * @return Carbon
+     */
+    public function toCarbon()
+    {
+        return Carbon::instance($this->datetime());
     }
 
     /**

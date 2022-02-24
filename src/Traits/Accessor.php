@@ -5,6 +5,7 @@ namespace Hekmatinasser\Verta\Traits;
 use DateTimeZone;
 use Hekmatinasser\Verta\Verta;
 use InvalidArgumentException;
+use ReturnTypeWillChange;
 
 trait Accessor
 {
@@ -229,7 +230,7 @@ trait Accessor
      */
     public function setDateTime($year, $month, $day, $hour, $minute, $second = 0, $microseconds = 0)
     {
-        return $this->setDateJalali($year, $month, $day)->setTime($hour, $minute, $second, $microseconds);
+        return $this->setDate($year, $month, $day)->setTime($hour, $minute, $second, $microseconds);
     }
 
     /**
@@ -242,7 +243,8 @@ trait Accessor
      *
      * @return Verta
      */
-    public function setDateJalali($year, $month, $day)
+    #[ReturnTypeWillChange]
+    public function setDate($year, $month, $day)
     {
         if (static::isValidDate($year, $month, $day)) {
             list($year, $month, $day) = self::getGregorian($year, $month, $day);

@@ -3,6 +3,7 @@
 namespace Hekmatinasser\Verta\Laravel;
 
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -86,6 +87,10 @@ class VertaServiceProvider extends ServiceProvider
     {
         $this->app->bind('verta', function ($app) {
             return new Verta();
+        });
+
+        Carbon::macro('toJalali', function ($timezone = null) {
+            return new Verta($this, $timezone);
         });
     }
 

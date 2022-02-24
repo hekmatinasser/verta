@@ -3,8 +3,10 @@
 namespace Hekmatinasser\Verta\Tests;
 
 use DateTime;
+use DateTimeZone;
 use Hekmatinasser\Verta\Facades\Verta as VertaFacade;
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Facades\Date;
 use PHPUnit\Framework\TestCase;
 
 class CreatorTest extends TestCase
@@ -55,7 +57,6 @@ class CreatorTest extends TestCase
 
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
 
-
         $datetime = (string) Verta::instance('2019-01-01 10:20:11');
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
 
@@ -67,9 +68,26 @@ class CreatorTest extends TestCase
         $this->assertEquals('1397-10-11 10:20:11', $datetime);
     }
 
+    public function testInstanceFromDateTimeWithTimezone()
+    {
+        $now = new DateTime('now', new DateTimeZone('Asia/Tehran'));
+
+        $datetime = new Verta($now);
+
+        $this->assertEquals($now->getTimezone()->getName(), $datetime->getTimezone()->getName());
+        $this->assertEquals($now->format('Y-m-d H:i:s'), $datetime->datetime()->format('Y-m-d H:i:s'));
+    }
+
     public function testDatetime()
     {
-        $datetime = verta('2019-01-01 10:20:11')->DateTime()->format('Y-m-d H:i:s');
+        $datetime = verta('2019-01-01 10:20:11')->datetime()->format('Y-m-d H:i:s');
+
+        $this->assertEquals('2019-01-01 10:20:11', $datetime);
+    }
+
+    public function testToCarbon()
+    {
+        $datetime = verta('2019-01-01 10:20:11')->toCarbon()->format('Y-m-d H:i:s');
 
         $this->assertEquals('2019-01-01 10:20:11', $datetime);
     }
