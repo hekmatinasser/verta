@@ -133,6 +133,7 @@ trait Creator
     {
         $dt = new DateTime(date('Y-m-d H:i:s', $this->getTimestamp()));
         $dt->setTimezone($this->getTimezone());
+
         return $dt;
     }
 

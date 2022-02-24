@@ -6,7 +6,6 @@ use DateTime;
 use DateTimeZone;
 use Hekmatinasser\Verta\Facades\Verta as VertaFacade;
 use Hekmatinasser\Verta\Verta;
-use Illuminate\Support\Facades\Date;
 use PHPUnit\Framework\TestCase;
 
 class CreatorTest extends TestCase
