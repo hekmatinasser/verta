@@ -16,7 +16,7 @@ trait Accessor
      * @return string|int
      *@throws InvalidArgumentException
      */
-    public function __get(string $name)
+    public function __get($name)
     {
         static $formats = [
             'year' => 'Y',
@@ -51,7 +51,7 @@ trait Accessor
      * @param string $name
      * @return bool
      */
-    public function __isset(string $name)
+    public function __isset($name)
     {
         try {
             $this->__get($name);
@@ -69,7 +69,7 @@ trait Accessor
      * @param \DateTimeZone|int|string $value
      * @throws \InvalidArgumentException
      */
-    public function __set(string $name, $value)
+    public function __set($name, $value)
     {
         switch ($name) {
             case 'year':
@@ -229,7 +229,7 @@ trait Accessor
      *
      * @return Verta
      */
-    public function setDateJalali(int $year, int $month, int $day): Verta
+    public function setDateJalali($year, $month, $day): Verta
     {
         if (static::isValidDate($year, $month, $day)) {
             list($year, $month, $day) = self::getGregorian($year, $month, $day);
@@ -246,7 +246,7 @@ trait Accessor
      * @return Verta
      * @throws \InvalidArgumentException
      */
-    public function setTimeString(string $time): Verta
+    public function setTimeString($time): Verta
     {
         $time = explode(':', $time);
 
