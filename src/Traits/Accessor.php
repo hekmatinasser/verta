@@ -5,7 +5,6 @@ namespace Hekmatinasser\Verta\Traits;
 use DateTimeZone;
 use Hekmatinasser\Verta\Verta;
 use InvalidArgumentException;
-use ReturnTypeWillChange;
 
 trait Accessor
 {
@@ -33,15 +32,14 @@ trait Accessor
             'timestamp' => 'U',
         ];
 
-        if(array_key_exists($name, $formats)) {
+        if (array_key_exists($name, $formats)) {
             return (int) $this->format($formats[$name]);
-        }
-        elseif ($name === 'quarter') {
+        } elseif ($name === 'quarter') {
             return (int) ceil($this->month / static::MONTHS_PER_QUARTER);
-        }
-        elseif ($name === 'timezone') {
+        } elseif ($name === 'timezone') {
             return $this->getTimezone()->getName();
         }
+
         throw new InvalidArgumentException(sprintf("Unknown getter '%s'", $name));
     }
 
