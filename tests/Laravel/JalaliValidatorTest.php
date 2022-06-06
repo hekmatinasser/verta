@@ -4,6 +4,7 @@ namespace Hekmatinasser\Verta\Tests\Laravel\JalaliValidatorTest;
 
 use PHPUnit\Framework\TestCase;
 use Hekmatinasser\Verta\Laravel\JalaliValidator;
+use Hekmatinasser\Verta\Verta;
 
 class JalaliValidatorTest extends TestCase
 {
@@ -341,5 +342,15 @@ class JalaliValidatorTest extends TestCase
         $this->assertEquals($text, $result);
     }
 
-
+    /** @test */
+    public function replaceDateAfterOrBeforeOrEqual()
+    {
+        $message = "The :attribute is not equal Jalali date  :date";
+        Verta::setLocale("en");
+        $result = $this->jalaliValidator->replaceDateAfterOrBeforeOrEqual($message, NULL, NULL, [$date = "1398/01/01", "Y-m-d"]);
+        $this->assertEquals("The :attribute is not equal Jalali date  {$date}", $result);
+        Verta::setLocale("fa");
+        $result = $this->jalaliValidator->replaceDateAfterOrBeforeOrEqual($message, NULL, NULL, [$date = "1398/01/01", "Y-m-d"]);
+        $this->assertEquals("The :attribute is not equal Jalali date  ۱۳۹۸/۰۱/۰۱", $result);
+    }
 }
