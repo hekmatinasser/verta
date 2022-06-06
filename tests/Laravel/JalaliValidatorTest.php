@@ -46,6 +46,49 @@ class JalaliValidatorTest extends TestCase
         );
     }
 
+
+    /** @test */
+    public function validateDateEqualWhenSecondArgIsArray()
+    {
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateEqual(NULL, [], [])
+        );
+    }
+
+    /**
+     * @test
+     * @dataProvider correctDateFormatProvider
+     */
+    public function validateDateEqualByCorrectInput($date, $format = null)
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateEqual(
+                NULL,
+                $date,
+                !!$format ? [$date, $format] : [$date]
+            )
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function validateDateEqualByIncorrectInput()
+    {
+
+        $result = $this->jalaliValidator->validateDateEqual(
+            NULL,
+            '1397/01/01',
+            ['1397/01/02']
+        );
+
+        $this->assertFalse($result);
+    }
+
+
+    /***
+     * provider for tests
+     */
     public function correctDateFormatProvider()
     {
         return [
@@ -75,6 +118,9 @@ class JalaliValidatorTest extends TestCase
         ];
     }
 
+    /**
+     * provider for tests
+     */
     public function incorrectDateFormatProvider()
     {
         return [
