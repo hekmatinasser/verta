@@ -38,23 +38,6 @@ class JalaliValidatorTest extends TestCase
         );
     }
 
-    /** @test */
-    public function validateDateWhenSecondArgIsArray()
-    {
-        $this->assertFalse(
-            $this->jalaliValidator->validateDate(NULL, [], [])
-        );
-    }
-
-
-    /** @test */
-    public function validateDateEqualWhenSecondArgIsArray()
-    {
-        $this->assertFalse(
-            $this->jalaliValidator->validateDateEqual(NULL, [], [])
-        );
-    }
-
     /**
      * @test
      * @dataProvider correctDateFormatProvider
@@ -70,9 +53,7 @@ class JalaliValidatorTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateDateEqualByIncorrectInput()
     {
 
@@ -83,6 +64,18 @@ class JalaliValidatorTest extends TestCase
         );
 
         $this->assertFalse($result);
+    }
+
+    /** @test */
+    public function validateDateNotEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateNotEqual(NULL,  '1399/01/01', ['1399/01/02'])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateNotEqual(NULL, '1399/01/01', ['1399/01/01'])
+        );
     }
 
 
@@ -138,4 +131,215 @@ class JalaliValidatorTest extends TestCase
             ]
         ];
     }
+
+    /**
+     * provider for tests
+     */
+    public function jalaliValidatorMethods()
+    {
+        return [
+            ["validateDate"],
+            ["validateDateEqual"],
+            ["validateDateNotEqual"],
+            ["validateDateTime"],
+            ["validateDateTimeEqual"],
+            ["validateDateTimeNotEqual"],
+            ["validateDateAfterEqual"],
+            ["validateDateTimeAfter"],
+            ["validateDateTimeAfterEqual"],
+            ["validateDateBeforeEqual"],
+            ["validateDateTimeBefore"],
+            ["validateDateTimeBeforeEqual"],
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider jalaliValidatorMethods
+     */
+    public function whenJalaliValidatorSecoundArgumentIsEmpty($method)
+    {
+        $this->assertFalse(
+            $this->jalaliValidator->{$method}(NULL, [], [])
+        );
+    }
+
+    /** @test */
+    public function validateDateTime()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTime(NULL, "1398/01/01 20:00:00", [])
+        );
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTime(NULL, "1398/01/01 20:00:00", ["Y/m/d H:i:s"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTime(NULL, "1398/01/01", ["Y/m/d H:i:s"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:01"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeNotEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeNotEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeNotEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+    }
+
+    /** @test */
+    public function validateDateAfter()
+    {
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateAfter(NULL, "1398/01/02", ["1398/01/01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateAfter(NULL, "1398/01/01", ["1398/01/01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateAfter(NULL, "1398/01/01", ["1398/01/02"])
+        );
+    }
+
+    /** @test */
+    public function validateDateAfterEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateAfterEqual(NULL, "1398/01/02", ["1398/01/01"])
+        );
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateAfterEqual(NULL, "1398/01/01", ["1398/01/01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateAfterEqual(NULL, "1398/01/01", ["1398/01/02"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeAfter()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeAfter(NULL, "1398/01/02 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeAfter(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeAfter(NULL, "1398/01/01 20:00:00", ["1398/01/02 20:00:00"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeAfterEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeAfterEqual(NULL, "1398/01/02 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeAfterEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeAfterEqual(NULL, "1398/01/01 20:00:00", ["1398/01/02 20:00:00"])
+        );
+    }
+
+    /** @test */
+    public function validateDateBefore()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateBefore(NULL, "1398/01/01", ["1398/01/02"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateBefore(NULL, "1398/01/01", ["1398/01/01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateBefore(NULL, "1398/01/02", ["1398/01/01"])
+        );
+    }
+
+    /** @test */
+    public function validateDateBeforeEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateBeforeEqual(NULL, "1398/01/01", ["1398/01/02"])
+        );
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateBeforeEqual(NULL, "1398/01/01", ["1398/01/01"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateBeforeEqual(NULL, "1398/01/05", ["1398/01/01"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeBefore()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeBefore(NULL, "1398/01/01 20:00:00", ["1398/01/02 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeBefore(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeBefore(NULL, "1398/01/02 20:00:00", ["1398/01/01 20:00:00"])
+        );
+    }
+
+    /** @test */
+    public function validateDateTimeBeforeEqual()
+    {
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeBeforeEqual(NULL, "1398/01/01 20:00:00", ["1398/01/02 20:00:00"])
+        );
+
+        $this->assertTrue(
+            $this->jalaliValidator->validateDateTimeBeforeEqual(NULL, "1398/01/01 20:00:00", ["1398/01/01 20:00:00"])
+        );
+
+        $this->assertFalse(
+            $this->jalaliValidator->validateDateTimeBeforeEqual(NULL, "1398/01/02 20:00:00", ["1398/01/01 20:00:00"])
+        );
+    }
+
+    /** @test */
+    public function replaceDateOrDatetime()
+    {
+        $text = "hello world!";
+        $result = $this->jalaliValidator->replaceDateOrDatetime($text, NULL, NULL, NULL);
+        $this->assertEquals($text, $result);
+    }
+
+
 }
