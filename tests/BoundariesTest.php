@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class BoundariesTest extends TestCase
 {
-
     /** @test */
     public function startMinute()
     {
