@@ -1,15 +1,15 @@
 <?php
 
-namespace Hekmatinasser\Verta\Tests\Laravel\JalaliValidatorTest;
+namespace Hekmatinasser\Verta\Tests\Laravel;
 
+use Hekmatinasser\Verta\Verta;
 use PHPUnit\Framework\TestCase;
 use Hekmatinasser\Verta\Laravel\JalaliValidator;
-use Hekmatinasser\Verta\Verta;
 
 class JalaliValidatorTest extends TestCase
 {
 
-    protected JalaliValidator $jalaliValidator;
+    protected $jalaliValidator;
 
     protected function setUp(): void
     {
