@@ -1,15 +1,15 @@
 <?php
 
-namespace Hekmatinasser\Verta\Tests;
+namespace Hekmatinasser\Jalali\Tests;
 
-use Hekmatinasser\Verta\Verta;
+use Hekmatinasser\Jalali\Jalali;
 use PHPUnit\Framework\TestCase;
 
 class ModificationTest extends TestCase
 {
     public function testAddYears()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $datetime->addYears(2);
 
@@ -18,7 +18,7 @@ class ModificationTest extends TestCase
 
     public function testSubYears()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $datetime->subYears(3);
 
@@ -27,7 +27,7 @@ class ModificationTest extends TestCase
 
     public function testAddMonths()
     {
-        $datetime = Verta::parse('1398-10-30 21:30:50');
+        $datetime = Jalali::parse('1398-10-30 21:30:50');
 
         $result = $datetime->addMonths(2)->format('Y-m-d H:i:s');
 
@@ -36,7 +36,7 @@ class ModificationTest extends TestCase
 
     public function testSubMonths()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->subMonths(3)->format('Y-m-d H:i:s');
 
@@ -45,7 +45,7 @@ class ModificationTest extends TestCase
 
     public function testAddWeeks()
     {
-        $datetime = Verta::parse('1398-10-30 21:30:50');
+        $datetime = Jalali::parse('1398-10-30 21:30:50');
 
         $result = $datetime->addWeeks(2)->format('Y-m-d H:i:s');
 
@@ -54,7 +54,7 @@ class ModificationTest extends TestCase
 
     public function testSubWeeks()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->subWeeks(3)->format('Y-m-d H:i:s');
 
@@ -63,7 +63,7 @@ class ModificationTest extends TestCase
 
     public function testAddDays()
     {
-        $datetime = Verta::parse('1398-10-30 21:30:50');
+        $datetime = Jalali::parse('1398-10-30 21:30:50');
 
         $result = $datetime->addDays(20)->format('Y-m-d H:i:s');
 
@@ -72,7 +72,7 @@ class ModificationTest extends TestCase
 
     public function testSubDays()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->subDays(7)->format('Y-m-d H:i:s');
 
@@ -81,25 +81,25 @@ class ModificationTest extends TestCase
 
     public function testAddHours()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
-        $result = $datetime->addHour(6)->format('Y-m-d H:i:s');
+        $result = $datetime->addHour()->format('Y-m-d H:i:s');
 
-        $this->assertEquals('1398-10-11 03:30:50', $result);
+        $this->assertEquals('1398-10-10 22:30:50', $result);
     }
 
     public function testSubHours()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
-        $result = $datetime->subHour(30)->format('Y-m-d H:i:s');
+        $result = $datetime->subHour()->format('Y-m-d H:i:s');
 
-        $this->assertEquals('1398-10-09 15:30:50', $result);
+        $this->assertEquals('1398-10-10 20:30:50', $result);
     }
 
     public function testAddMinutes()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->addMinutes(6)->format('Y-m-d H:i:s');
 
@@ -108,16 +108,16 @@ class ModificationTest extends TestCase
 
     public function testSubMinutes()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
-        $result = $datetime->subMinute(30)->format('Y-m-d H:i:s');
+        $result = $datetime->subMinute()->format('Y-m-d H:i:s');
 
-        $this->assertEquals('1398-10-10 21:00:50', $result);
+        $this->assertEquals('1398-10-10 21:29:50', $result);
     }
 
     public function testAddSeconds()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->addSeconds(16)->format('Y-m-d H:i:s');
 
@@ -126,16 +126,25 @@ class ModificationTest extends TestCase
 
     public function testSubSeconds()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Jalali::parse('1398-10-10 21:30:20');
 
         $result = $datetime->subSeconds(30)->format('Y-m-d H:i:s');
 
         $this->assertEquals('1398-10-10 21:29:50', $result);
     }
 
+    public function testStartMinute()
+    {
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
+
+        $result = $datetime->startMinute()->format('Y-m-d H:i:s');
+
+        $this->assertEquals('1398-10-10 21:30:00', $result);
+    }
+
     public function testStartDay()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->startDay()->format('Y-m-d H:i:s');
 
@@ -144,7 +153,7 @@ class ModificationTest extends TestCase
 
     public function testEndDay()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Jalali::parse('1398-10-10 21:30:20');
 
         $result = $datetime->endDay()->format('Y-m-d H:i:s');
 
@@ -153,7 +162,7 @@ class ModificationTest extends TestCase
 
     public function testStartWeek()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->startWeek()->format('Y-m-d H:i:s');
 
@@ -162,7 +171,7 @@ class ModificationTest extends TestCase
 
     public function testEndWeek()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Jalali::parse('1398-10-10 21:30:20');
 
         $result = $datetime->endWeek()->format('Y-m-d H:i:s');
 
@@ -171,7 +180,7 @@ class ModificationTest extends TestCase
 
     public function testStartMonth()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:50');
+        $datetime = Jalali::parse('1398-10-10 21:30:50');
 
         $result = $datetime->startMonth()->format('Y-m-d H:i:s');
 
@@ -180,7 +189,7 @@ class ModificationTest extends TestCase
 
     public function testEndMonth()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Jalali::parse('1398-10-10 21:30:20');
 
         $result = $datetime->endMonth()->format('Y-m-d H:i:s');
 
@@ -189,7 +198,7 @@ class ModificationTest extends TestCase
 
     public function testStartQuarter()
     {
-        $datetime = Verta::parse('1398-11-10 21:30:50');
+        $datetime = Jalali::parse('1398-11-10 21:30:50');
 
         $result = $datetime->startQuarter()->format('Y-m-d H:i:s');
 
@@ -198,7 +207,7 @@ class ModificationTest extends TestCase
 
     public function testEndQuarter()
     {
-        $datetime = Verta::parse('1398-10-10 21:30:20');
+        $datetime = Jalali::parse('1398-10-10 21:30:20');
 
         $result = $datetime->endQuarter()->format('Y-m-d H:i:s');
 
@@ -207,7 +216,7 @@ class ModificationTest extends TestCase
 
     public function testStartYear()
     {
-        $datetime = Verta::parse('1398-11-10 21:30:50');
+        $datetime = Jalali::parse('1398-11-10 21:30:50');
 
         $result = $datetime->startYear()->format('Y-m-d H:i:s');
 
@@ -216,7 +225,7 @@ class ModificationTest extends TestCase
 
     public function testEndYear()
     {
-        $datetime = Verta::parse('1398-10-15 21:30:20');
+        $datetime = Jalali::parse('1398-10-15 21:30:20');
 
         $result = $datetime->endYear()->format('Y-m-d H:i:s');
 

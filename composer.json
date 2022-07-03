@@ -17,10 +17,10 @@
         "Verta"
     ],
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
-        "illuminate/validation": "^6.0|^7.0|^8.0|^9.0",
-        "hekmatinasser/notowo": "^1.0"
+        "php": "^8.0",
+        "illuminate/support": "^^8.0|^9.0",
+        "illuminate/validation": "^^8.0|^9.0",
+        "hekmatinasser/jalali": "^8.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.18|^5.20|^6.24|^7.0"

@@ -2,10 +2,9 @@
 
 namespace Hekmatinasser\Verta;
 
-use DateTime;
-use Hekmatinasser\Verta\Traits\Date;
+use Hekmatinasser\Jalali\Jalali;
 
-class Verta extends DateTime implements VertaInterface
+class Verta extends Jalali
 {
-    use Date;
+
 }

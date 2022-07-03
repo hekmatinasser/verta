@@ -1,15 +1,15 @@
 <?php
 
-namespace Hekmatinasser\Verta\Tests;
+namespace Hekmatinasser\Jalali\Tests;
 
-use Hekmatinasser\Verta\Verta;
+use Hekmatinasser\Jalali\Jalali;
 use PHPUnit\Framework\TestCase;
 
 class AccessTest extends TestCase
 {
     public function testGetProperty()
     {
-        $datetime = Verta('2019-01-01 17:20:35', 'Asia/Tehran');
+        $datetime = new Jalali('2019-01-01 17:20:35', 'Asia/Tehran');
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);
@@ -29,7 +29,7 @@ class AccessTest extends TestCase
 
     public function testSetProperty()
     {
-        $datetime = new Verta('2019-01-01 17:20:35', 'Asia/Tehran');
+        $datetime = Jalali::parse('1399-01-01 17:20:35', 'Asia/Tehran');
 
         $datetime->year = 1398;
         $this->assertEquals(1398, $datetime->year);
@@ -52,13 +52,13 @@ class AccessTest extends TestCase
         $datetime->timestamp = 1546382684;
         $this->assertEquals(1546382684, $datetime->timestamp);
 
-        $datetime->tz = 'UTC';
+        $datetime->timezone = 'UTC';
         $this->assertEquals('UTC', $datetime->timezone);
     }
 
     public function testSetMethods()
     {
-        $datetime = Verta::parse('1399-05-12 12:36:32');
+        $datetime = Jalali::parse('1399-05-12 12:36:32');
 
         $datetime->year(1395);
         $this->assertEquals(1395, $datetime->year);
@@ -87,7 +87,7 @@ class AccessTest extends TestCase
 
     public function testSetDateTime()
     {
-        $datetime = verta()->setDateTime(1397, 10, 11, 10, 20, 11);
+        $datetime = jalali()->setDateTime(1397, 10, 11, 10, 20, 11);
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);
@@ -99,7 +99,7 @@ class AccessTest extends TestCase
 
     public function testSetDate()
     {
-        $datetime = verta()->setDateJalali(1397, 10, 11);
+        $datetime = jalali()->setDateJalali(1397, 10, 11);
 
         $this->assertEquals(1397, $datetime->year);
         $this->assertEquals(10, $datetime->month);
@@ -108,7 +108,7 @@ class AccessTest extends TestCase
 
     public function testSetTime()
     {
-        $datetime = verta()->setTime(10, 20, 11);
+        $datetime = jalali()->setTime(10, 20, 11);
 
         $this->assertEquals(10, $datetime->hour);
         $this->assertEquals(20, $datetime->minute);
@@ -117,7 +117,7 @@ class AccessTest extends TestCase
 
     public function testSetTimeString()
     {
-        $datetime = verta()->setTimeString('10:20:11');
+        $datetime = jalali()->setTimeString('10:20:11');
 
         $this->assertEquals(10, $datetime->hour);
         $this->assertEquals(20, $datetime->minute);

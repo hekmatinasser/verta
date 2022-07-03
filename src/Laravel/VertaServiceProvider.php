@@ -111,7 +111,6 @@ class VertaServiceProvider extends ServiceProvider
         foreach ($this->rules as $name => $methods) {
             if (array_key_exists('extend', $methods) || array_key_exists('replacer', $methods)) {
                 Validator::extend($name, $className . $methods['extend']);
-
                 Validator::replacer($name, $className . $methods['replacer']);
             }
         }
