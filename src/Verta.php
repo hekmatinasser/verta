@@ -6,5 +6,4 @@ use Hekmatinasser\Jalali\Jalali;
 
 class Verta extends Jalali
 {
-
 }
