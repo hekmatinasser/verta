@@ -1,0 +1,260 @@
+* {
+    box-sizing: border-box;
+    outline: 0
+}
+
+*,
+::after,
+::before,
+:after,
+:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+article,
+footer,
+header {
+    display: block
+}
+
+html {
+    font-size: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Segoe UI,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 27px;
+    color: #000;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+}
+
+a:focus {
+    outline: thin dotted
+}
+
+a:active,
+a:hover {
+    outline: 0
+}
+
+p {
+    font-size: 16px;
+}
+
+ul {
+    padding: 0;
+    font-size: 16px;
+    margin: 1em 0;
+    list-style: none;
+}
+
+a,
+a:visited {
+    color: #666;
+    text-decoration: none
+}
+
+h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-family: monospace, Serif;
+    color: #ff3838;
+}
+
+h2 {
+    font-size: 26px;
+    margin-bottom: 20px
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 2px;
+}
+
+section {
+    padding-top: 10px;
+    min-height: 100vh;
+}
+
+.introduction {
+    text-align: center;
+    padding-top: 10vh;
+}
+.introduction .brand-image {
+    width: auto;
+}
+.introduction .description {
+    padding: 10px 10% 10px 10%;
+}
+
+
+.entity {
+    padding: 10px 10px 70px;
+}
+
+.entity h3 {
+    margin: 1em 0;
+    font-family: monospace, serif;
+    font-size: 22px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 20px;
+    direction: ltr;
+    text-align: left;
+    color: #707070;
+    background: #eee;
+}
+.entity .arguments li {
+    padding-left: 20px;
+}
+.entity .arguments li .type {
+    color: blue;
+}
+.entity .arguments li .name {
+    font-weight: bold;
+}
+.entity .arguments li .description {
+    padding-left: 20px;
+}
+.entity .return {
+    padding-left: 20px;
+}
+
+.sidebar {
+    background: white;
+    height: 100vh;
+    overflow-y: scroll;
+
+    box-shadow: 0 0 .5rem #9da5ab;
+}
+.sidebar .sidebar-header {
+    height: 50px;
+    padding: 5px;
+    box-shadow: 0 0 .5rem #9da5ab;
+}
+.sidebar .sidebar-content {
+    padding: 5px 5px 5px 15px;
+}
+.sidebar #menu {
+    margin: 0;
+}
+.sidebar ul {
+    margin: 0;
+}
+.sidebar li {
+    margin-top: 10px;
+}
+.sidebar a {
+    font-family: monospace, serif;
+    font-size: 1rem;
+}
+.sidebar .parent {
+    font-weight: bold;
+}
+.sidebar .child {
+    padding-left: 10px;
+}
+
+footer#footer {
+    background: #ddd;
+    color: #888;
+    padding: 30px 0;
+    margin-top: 30px
+}
+
+.sidebar {
+    bottom: 0;
+    float: none;
+    left: 0;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    overflow-y: hidden;
+    z-index: 1038;
+    transition: margin-left .3s ease-in-out,width .3s ease-in-out;
+    width: 300px;
+    display: block;
+}
+.brand {
+    display: block;
+    padding: .8125rem .5rem;
+}
+
+.brand-image {
+    display: block;
+    margin: auto;
+    height: 50px;
+}
+
+.sidebar .search {
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+
+.sidebar .search input {
+    height: 34px;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.menu {
+    height: calc(100% - 120px);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+    overflow: visible !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-pack: start;
+    -webkit-box-align: start;
+}
+
+.menu .padding {
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto !important;
+    height: auto !important;
+    z-index: 0;
+}
+.menu .viewport {
+    position: absolute;
+    overflow: hidden;
+    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+}
+.wrapper .content {
+    margin-left: 300px;
+    height: 100%;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        margin-left: 0;
+    }
+    .sidebar {
+        display: none;
+    }
+}
