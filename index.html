@@ -6,46 +6,2618 @@
     <meta name="description" content="تبدیل تاریخ شمسی به میلادی و میلادی به شمسی">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="css/style.css?v=0.3">
     <link rel="stylesheet" href="css/atom-one-dark.min.css">
-    <link rel="shortcut icon" type="image/png" href="image/logo.png" id="favicon" />
+    <link rel="shortcut icon" type="image/png" href="image/logo.png" id="favicon"/>
 </head>
 
 <body>
-    <div class="wrapper">
-        <aside class="sidebar">
-            <div class="header">
-                <a href="https://hekmatinasser.github.io/verta" class="brand">
-                    <img src="image/logo.png" alt="Jalali" class="brand-image">
-                </a>
-                <div class="search">
-                    <label for="search"></label>
-                    <input type="text" id="search" placeholder="Search" onkeyup="search()">
-                </div>
+<div class="wrapper">
+    <aside class="sidebar">
+        <div class="header">
+            <a href="https://hekmatinasser.github.io/verta" class="brand">
+                <img src="image/logo.png" alt="Jalali" class="brand-image">
+            </a>
+            <div class="search">
+                <label for="search"></label>
+                <input type="text" id="search" placeholder="Search" onkeyup="search()">
             </div>
-            <div class="menu">
-                <div class="padding">
-                    <div class="viewport">
-                        <ul id="menu"></ul>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <div class="content">
-            <article>
-            </article>
-            <footer id="footer">
-                <div style="text-align: center;">
-                    2017-2022 &copy;
-                </div>
-            </footer>
         </div>
-    </div>
+        <div class="menu">
+            <div class="padding">
+                <div class="viewport">
+                    <ul id="menu">
+                        <li><a class="parent" href="#introduction">introduction</a></li>
+                        <li><a class="parent" href="#installation">installation</a></li>
+                        <li><a class="parent" href="#usage">usage</a></li>
+                        <li><a class="parent" href="#instantiate">instantiate</a>
+                            <ul>
+                                <li><a class="child" href="#new">new</a></li>
+                                <li><a class="child" href="#helper">verta()</a></li>
+                                <li><a class="child" href="#now">now()</a></li>
+                                <li><a class="child" href="#today">today()</a></li>
+                                <li><a class="child" href="#tomorrow">tomorrow()</a></li>
+                                <li><a class="child" href="#yesterday">yesterday()</a></li>
+                                <li><a class="child" href="#add_interval">plus interval</a></li>
+                                <li><a class="child" href="#sub_interval">sub interval</a></li>
+                                <li><a class="child" href="#next_interval">next interval</a></li>
+                                <li><a class="child" href="#last_interval">last interval</a></li>
+                                <li><a class="child" href="#instance">instance()</a></li>
+                                <li><a class="child" href="#new_timestamp">new with timestamp</a></li>
+                                <li><a class="child" href="#new_datetime">new with Datetime</a></li>
+                                <li><a class="child" href="#new_carbon">new with Carbon</a></li>
+                                <li><a class="child" href="#copy">copy</a></li>
+                                <li><a class="child" href="#clone">clone</a></li>
+                                <li><a class="child" href="#parse">parse()</a></li>
+                                <li><a class="child" href="#parse_format">parseFormat()</a></li>
+                                <li><a class="child" href="#create">create</a></li>
+                                <li><a class="child" href="#create_date">createDate()</a></li>
+                                <li><a class="child" href="#create_time">createTime()</a></li>
+                                <li><a class="child" href="#create_gregorian">createGregorian()</a></li>
+                                <li><a class="child" href="#create_gregorian_date">createGregorianDate()</a></li>
+                                <li><a class="child" href="#create_gregorian_time">createGregorianTime()</a></li>
+                                <li><a class="child" href="#create_timestamp">createTimestamp()</a></li>
+                                <li><a class="child" href="#create_jalali">createJalali()</a></li>
+                                <li><a class="child" href="#create_jalali_date">createJalaliDate()</a></li>
+                                <li><a class="child" href="#create_jalali_time">createJalaliTime()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#transformation">transformation</a>
+                            <ul>
+                                <li><a class="child" href="#jalali_to_gregorian">jalaliToGregorian()</a></li>
+                                <li><a class="child" href="#gregorian_to_jalali">GregorianToJalali()</a></li>
+                                <li><a class="child" href="#datetime">datetime</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#accessor">accessor</a>
+                            <ul>
+                                <li><a class="child" href="#get_year">get year</a></li>
+                                <li><a class="child" href="#get_month">get month</a></li>
+                                <li><a class="child" href="#get_day">get day</a></li>
+                                <li><a class="child" href="#get_hour">get hour</a></li>
+                                <li><a class="child" href="#get_minute">get minute</a></li>
+                                <li><a class="child" href="#get_second">get second</a></li>
+                                <li><a class="child" href="#get_micro">get micro</a></li>
+                                <li><a class="child" href="#get_timestamp">get timestamp</a></li>
+                                <li><a class="child" href="#get_timezone">get timezone</a></li>
+                                <li><a class="child" href="#get_day_of_week">get dayOfWeek</a></li>
+                                <li><a class="child" href="#get_day_of-year">get dayOfYear</a></li>
+                                <li><a class="child" href="#get_days_in_month">get daysInMonth</a></li>
+                                <li><a class="child" href="#set_year">set year</a></li>
+                                <li><a class="child" href="#set_month">set month</a></li>
+                                <li><a class="child" href="#set_day">set day</a></li>
+                                <li><a class="child" href="#set_hour">set hour</a></li>
+                                <li><a class="child" href="#set_minute">set minute</a></li>
+                                <li><a class="child" href="#set_second">set second</a></li>
+                                <li><a class="child" href="#set_micro">set micro</a></li>
+                                <li><a class="child" href="#set_timestamp">set timestamp</a></li>
+                                <li><a class="child" href="#set_timezone">set timezone</a></li>
+                                <li><a class="child" href="#year">year()</a></li>
+                                <li><a class="child" href="#month">month()</a></li>
+                                <li><a class="child" href="#day">day()</a></li>
+                                <li><a class="child" href="#hour">hour()</a></li>
+                                <li><a class="child" href="#minute">minute()</a></li>
+                                <li><a class="child" href="#second">second()</a></li>
+                                <li><a class="child" href="#micro">micro()</a></li>
+                                <li><a class="child" href="#timestamp">timestamp()</a></li>
+                                <li><a class="child" href="#timezone">timezone()</a></li>
+                                <li><a class="child" href="#set_date_time">setDateTime()</a></li>
+                                <li><a class="child" href="#set_date">setDate()</a></li>
+                                <li><a class="child" href="#set_date_jalali">setDateJalali()</a></li>
+                                <li><a class="child" href="#set_time_string">setTimeString()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#formatting">formatting</a>
+                            <ul>
+                                <li><a class="child" href="#format">format()</a></li>
+                                <li><a class="child" href="#format_date_time">formatDatetime()</a></li>
+                                <li><a class="child" href="#format_date">formatDate()</a></li>
+                                <li><a class="child" href="#format_time">formatTime()</a></li>
+                                <li><a class="child" href="#format_jalali_datetime">formatJalaliDatetime()</a></li>
+                                <li><a class="child" href="#format_jalali_date">formatJalaliDate()</a></li>
+                                <li><a class="child" href="#format_gregorian">formatGregorian()</a></li>
+                                <li><a class="child" href="#format_difference">formatDifference()</a></li>
+                                <li><a class="child" href="#format_word">formatWord()</a></li>
+                                <li><a class="child" href="#set_format">setFormat()</a></li>
+                                <li><a class="child" href="#reset_format">resetFormat()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#modification">modification</a>
+                            <ul>
+                                <li><a class="child" href="#add_year">addYear()</a></li>
+                                <li><a class="child" href="#add_years">addYears()</a></li>
+                                <li><a class="child" href="#sub_year">subYear()</a></li>
+                                <li><a class="child" href="#sub_years">subYears()</a></li>
+                                <li><a class="child" href="#add_month">addMonth()</a></li>
+                                <li><a class="child" href="#add_months">addMonths()</a></li>
+                                <li><a class="child" href="#sub_month">subMonth()</a></li>
+                                <li><a class="child" href="#sub_months">subMonths()</a></li>
+                                <li><a class="child" href="#add_week">addWeek()</a></li>
+                                <li><a class="child" href="#add_weeks">addWeeks()</a></li>
+                                <li><a class="child" href="#sub_week">subWeek()</a></li>
+                                <li><a class="child" href="#sub_weeks">subWeeks()</a></li>
+                                <li><a class="child" href="#add_day">addDay()</a></li>
+                                <li><a class="child" href="#add_days">addDays()</a></li>
+                                <li><a class="child" href="#sub_day">subDay()</a></li>
+                                <li><a class="child" href="#sub_days">subDays()</a></li>
+                                <li><a class="child" href="#add_hour">addHour()</a></li>
+                                <li><a class="child" href="#add_hours">addHours()</a></li>
+                                <li><a class="child" href="#sub_hour">subHour()</a></li>
+                                <li><a class="child" href="#sub_hours">subHours()</a></li>
+                                <li><a class="child" href="#add_minute">addMinute()</a></li>
+                                <li><a class="child" href="#add_minutes">addMinutes()</a></li>
+                                <li><a class="child" href="#sub_minute">subMinute()</a></li>
+                                <li><a class="child" href="#sub_minutes">subMinutes()</a></li>
+                                <li><a class="child" href="#add_second">addSecond()</a></li>
+                                <li><a class="child" href="#add_seconds">addSeconds()</a></li>
+                                <li><a class="child" href="#sub_second">subSecond()</a></li>
+                                <li><a class="child" href="#sub_seconds">subSeconds()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#boundaries">boundaries</a>
+                            <ul>
+                                <li><a class="child" href="#start_year">startYear()</a></li>
+                                <li><a class="child" href="#end_year">endYear()</a></li>
+                                <li><a class="child" href="#start_quarter">startQuarter()</a></li>
+                                <li><a class="child" href="#end_quarter">endQuarter()</a></li>
+                                <li><a class="child" href="#start_month">startMonth()</a></li>
+                                <li><a class="child" href="#end_month">endMonth()</a></li>
+                                <li><a class="child" href="#start_week">startWeek()</a></li>
+                                <li><a class="child" href="#end_week">endWeek()</a></li>
+                                <li><a class="child" href="#start_day">startDay()</a></li>
+                                <li><a class="child" href="#end_day">endDay()</a></li>
+                                <li><a class="child" href="#start_hour">startHour()</a></li>
+                                <li><a class="child" href="#end_hour">endHour()</a></li>
+                                <li><a class="child" href="#start_minute">startMinute()</a></li>
+                                <li><a class="child" href="#end_minute">endMinute()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#comparison">comparison</a>
+                            <ul>
+                                <li><a class="child" href="#diff_years">diffYears()</a></li>
+                                <li><a class="child" href="#diff_months">diffMonths()</a></li>
+                                <li><a class="child" href="#diff_weeks">diffWeeks()</a></li>
+                                <li><a class="child" href="#diff_days">diffDays()</a></li>
+                                <li><a class="child" href="#diff_hours">diffHours()</a></li>
+                                <li><a class="child" href="#diff_minutes">diffMinutes()</a></li>
+                                <li><a class="child" href="#diff_seconds">diffSeconds()</a></li>
+                                <li><a class="child" href="#eq">eq()</a></li>
+                                <li><a class="child" href="#equal_to">equalTo()</a></li>
+                                <li><a class="child" href="#ne">ne()</a></li>
+                                <li><a class="child" href="#not_equal_to">notEqualTo()</a></li>
+                                <li><a class="child" href="#gt">gt()</a></li>
+                                <li><a class="child" href="#greater_than">greaterThan()</a></li>
+                                <li><a class="child" href="#gte">gte()</a></li>
+                                <li><a class="child" href="#greater_than_or_equal_to">greaterThanOrEqualTo()</a></li>
+                                <li><a class="child" href="#lt">lt()</a></li>
+                                <li><a class="child" href="#less_than">lessThan()</a></li>
+                                <li><a class="child" href="#lte">lte()</a></li>
+                                <li><a class="child" href="#less_than_or_equal_to">lessThanOrEqualTo()</a></li>
+                                <li><a class="child" href="#between">between()</a></li>
+                                <li><a class="child" href="#closest">closest()</a></li>
+                                <li><a class="child" href="#farthest">farthest()</a></li>
+                                <li><a class="child" href="#min">min()</a></li>
+                                <li><a class="child" href="#minimum">minimum()</a></li>
+                                <li><a class="child" href="#max">max()</a></li>
+                                <li><a class="child" href="#maximum">maximum()</a></li>
+                                <li><a class="child" href="#is_weekday">isWeekday()</a></li>
+                                <li><a class="child" href="#is_weekend">isWeekend()</a></li>
+                                <li><a class="child" href="#is_yesterday">isYesterday()</a></li>
+                                <li><a class="child" href="#is_today">isToday()</a></li>
+                                <li><a class="child" href="#is_next_week">isNextWeek()</a></li>
+                                <li><a class="child" href="#is_last_week">isLastWeek()</a></li>
+                                <li><a class="child" href="#is_next_month">isNextMonth()</a></li>
+                                <li><a class="child" href="#is_last_month">isLastMonth()</a></li>
+                                <li><a class="child" href="#is_next_year">isNextYear()</a></li>
+                                <li><a class="child" href="#is_last_year">isLastYear()</a></li>
+                                <li><a class="child" href="#is_future">isFuture()</a></li>
+                                <li><a class="child" href="#is_past">isPast()</a></li>
+                                <li><a class="child" href="#is_current_year">isCurrentYear()</a></li>
+                                <li><a class="child" href="#is_current_month">isCurrentMonth()</a></li>
+                                <li><a class="child" href="#is_same_as">isSameAs()</a></li>
+                                <li><a class="child" href="#is_same_year">isSameYear()</a></li>
+                                <li><a class="child" href="#is_same_month">isSameMonth()</a></li>
+                                <li><a class="child" href="#is_same_day">isSameDay()</a></li>
+                                <li><a class="child" href="#is_birthday">isBirthday()</a></li>
+                                <li><a class="child" href="#is_saturday">isSaturday()</a></li>
+                                <li><a class="child" href="#is_sunday">isSunday()</a></li>
+                                <li><a class="child" href="#is_monday">isMonday()</a></li>
+                                <li><a class="child" href="#is_tuesday">isTuesday()</a></li>
+                                <li><a class="child" href="#is_wednesday">isWednesday()</a></li>
+                                <li><a class="child" href="#is_thursday">isThursday()</a></li>
+                                <li><a class="child" href="#is_friday">isFriday()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#validation">validation</a>
+                            <ul>
+                                <li><a class="child" href="#is_leap_year">isLeapYear()</a></li>
+                                <li><a class="child" href="#is_valid_date">isValidDate()</a></li>
+                                <li><a class="child" href="#is_valid_time">isValidTime()</a></li>
+                                <li><a class="child" href="#valid_year">validYear()</a></li>
+                                <li><a class="child" href="#valid_month">validMount()</a></li>
+                                <li><a class="child" href="#valid_day">validDay()</a></li>
+                                <li><a class="child" href="#valid_hour">validHour()</a></li>
+                                <li><a class="child" href="#valid_minute">validMinute()</a></li>
+                                <li><a class="child" href="#valid_second">validSecond()</a></li>
+                                <li><a class="child" href="#valid_micro">validMicro()</a></li>
+                                <li><a class="child" href="#valid_date">validDate()</a></li>
+                                <li><a class="child" href="#valid_time">validTime()</a></li>
+                                <li><a class="child" href="#valid_datetime">validDateTime()</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#laravel_validation">laravel validation</a>
+                            <ul>
+                                <li><a class="child" href="#jdate">jdate</a></li>
+                                <li><a class="child" href="#jdatetime">jdatetime</a></li>
+                                <li><a class="child" href="#jdate_equal">jdate_equal</a></li>
+                                <li><a class="child" href="#jdatetime_equal">jdatetime_equal</a></li>
+                                <li><a class="child" href="#jdate_not_equal">jdate_not_equal</a></li>
+                                <li><a class="child" href="#jdatetime_not_equal">jdatetime_not_equal</a></li>
+                                <li><a class="child" href="#jdate_after">jdate_after</a></li>
+                                <li><a class="child" href="#jdatetime_after">jdatetime_after</a></li>
+                                <li><a class="child" href="#jdate_after_equal">jdate_after_equal</a></li>
+                                <li><a class="child" href="#jdatetime_after_equal">jdatetime_after_equal</a></li>
+                                <li><a class="child" href="#jdate_before">jdate_before</a></li>
+                                <li><a class="child" href="#jdatetime_before">jdatetime_before</a></li>
+                                <li><a class="child" href="#jdate_before_equal">jdate_before_equal</a></li>
+                                <li><a class="child" href="#jdatetime_before_equal">jdatetime_before_equal</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="parent" href="#translation">translation</a>
+                            <ul>
+                                <li><a class="child" href="#set_locale">setLocale()</a></li>
+                                <li><a class="child" href="#reset_locale">resetLocale()</a></li>
+                                <li><a class="child" href="#get_locale">getLocale()</a></li>
+                                <li><a class="child" href="#set_messages">setMessages()</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="content">
+        <article>
+            <section id="introduction">
+                <div class="introduction"><img src="image/logo.png" alt="Verta">
+                    <h1>Verta 8</h1>
+                    <div class="description"><p>The verta is package for change solar calendar and gregorian together
+                        and provide helper function to use date and time.</p>
+                        <p>Verta extend class PHP Datetime and compatible with Laravel PHP freamework and Carbon
+                            Package.</p>
+                        <p>Verta use algorithm transform jalali to gregorian and revert. This transformer Jalali
+                            Calendar written Vahid Sohrablo, Rozbeh Pournader and Mohammad Tosi.</p>
+                        <p>This package has been created by Nasser Hekmati under the license of MIT.</p></div>
+                </div>
+            </section>
+            <section id="installation"><h2>Installation</h2>
+                <p>command install verta</p>
+                <pre>
+<code class="language-bash">
+composer require hekmatinasser/verta
+</code>
+</pre>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Laravel Version</th>
+                        <th>Package Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>8.0</td>
+                        <td>8.x</td>
+                    </tr>
+                    <tr>
+                        <td>9.0</td>
+                        <td>8.x</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="usage"><h2>Usage</h2>
+                <p>Use top of each file of the use Verta class</p>
+                <pre>
+<code class="language-php">
+use Hekmatinasser\Verta\Verta;</code></pre>
+            </section>
+            <section id="instantiate"><h2>Instantiate</h2>
+                <div class="entity" id="new"><h3 class="name"><a href="#new">verta(datetime, timezone)</a></h3>
+                    <p class="description">To get the datetime</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo new Verta();
+// output 1401-03-26 15:32:12</code></pre>
+                </div>
+                <div class="entity" id="helper"><h3 class="name"><a href="#helper">verta(datetime, timezone)</a></h3>
+                    <p class="description"></p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2019-01-01 10:20:11');
+// output 11397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="now"><h3 class="name"><a href="#now">now(timezone)</a></h3>
+                    <p class="description">To get the current datetime</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::now();
+// output 1401-03-26 15:32:12</code></pre>
+                </div>
+                <div class="entity" id="today"><h3 class="name"><a href="#today">today(timezone)</a></h3>
+                    <p class="description">To get the start today datetime</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::today();
+// if now 1401-03-26 15:32:12
+// output 1401-03-26 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="tomorrow"><h3 class="name"><a href="#tomorrow">tomorrow(timezone)</a></h3>
+                    <p class="description">To get the start tomorrow datetime</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::tomorrow();
+// if now 1401-03-26 00:00:00
+// output 1401-03-27 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="yesterday"><h3 class="name"><a href="#yesterday">yesterday(timezone)</a></h3>
+                    <p class="description">To get the start yesterday datetime</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::yesterday();
+// if now 1401-03-26 00:00:00
+// output 1401-03-25 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="add_interval"><h3 class="name"><a href="#add_interval">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description">To get the add interval current date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('+2 month');
+// if now 1401-03-26 00:00:00
+// output 1401-05-26 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="sub_interval"><h3 class="name"><a href="#sub_interval">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description">To get the sub interval current date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('-1 day');
+// if now 1401-03-26 00:00:00
+// output 1401-03-25 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="next_interval"><h3 class="name"><a href="#next_interval">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description">To get the next interval current date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next sunday');
+// if now 1401-03-26 00:00:00 thursday
+// output 1401-03-29 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="last_interval"><h3 class="name"><a href="#last_interval">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description">To get the last interval current date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('last friday');
+// if now 1401-03-26 00:00:00 thursday
+// output 1401-03-20 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="instance"><h3 class="name"><a href="#instance">instance(datetime, timezone)</a>
+                </h3>
+                    <p class="description">To get the datetime with static access</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::instance()
+// output 1401-03-20 15:32:21
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/highlight.min.js"></script>
-    <script src="js/main.js"></script>
+echo Verta::instance('2019-01-01 10:20:11');
+// output 1397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="new_timestamp"><h3 class="name"><a href="#new_timestamp">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description">To get the datetime with timestamp</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta(1583501791);
+// output 1398-12-16 13:36:31</code></pre>
+                </div>
+                <div class="entity" id="new_datetime"><h3 class="name"><a href="#new_datetime">verta(datetime,
+                    timezone)</a></h3>
+                    <p class="description"></p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = new Datetime('2019-01-01 10:20:11');
+echo verta($datetime);
+// output 1397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="new_carbon"><h3 class="name"><a href="#new_carbon">verta(datetime, timezone)</a>
+                </h3>
+                    <p class="description">To get the datetime with Carbon</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = new Carbon('2019-01-01 10:20:11');
+echo verta($datetime);
+// output 1397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="copy"><h3 class="name"><a href="#copy">copy()</a></h3>
+                    <p class="description">To get copy instance object for manipulate</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta('2019-01-01 10:20:11');
+$copy = $datetime->copy()->addDay();
+echo $datetime;
+// output 1397-10-11 10:20:11
+echo $copy;
+// output 1397-10-12 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="clone"><h3 class="name"><a href="#clone">clone()</a></h3>
+                    <p class="description">To get copy instance object for manipulate. same copy</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta('2019-01-01 10:20:11');
+$clone = $datetime->clone()->addDay();
+echo $datetime;
+// output 1397-10-11 10:20:11
+echo $clone;
+// output 1397-10-12 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="parse"><h3 class="name"><a href="#parse">parse(datetime, timezone)</a></h3>
+                    <p class="description">To get the verta datetime as a specific string verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">datetime</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::parse('1395-10-07 14:12:32');
+// output 1395-10-07 14:12:32
+
+echo Verta::parse('1396 مهر 17');
+// output 1396-07-07 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="parse_format"><h3 class="name"><a href="#parse_format">parseFormat(format,
+                    datetime, timezone)</a></h3>
+                    <p class="description">To get the verta datetime as a specific string verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                        <li><span class="type">string</span>: <span class="name">datetime</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::parseFormat('Y n j','1396 مهر 17')
+// output 1396-07-07 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="create"><h3 class="name"><a href="#create">create(year, month, day, hour,
+                    minute, second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date and time</p><h4>
+                        Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::create(2016,12,25,15,20,15);
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_date"><h3 class="name"><a href="#create_date">createDate(year, month,
+                    day, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date. hour, minute and
+                        second set now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::createDate(2016,12,25);
+// if now 1398-02-28 15:20:15
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_time"><h3 class="name"><a href="#create_time">createTime(hour, minute,
+                    second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date and time. year, month
+                        and day set now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createTime(15,20,15);
+// if now 1395-10-05 23:18:53
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_gregorian"><h3 class="name"><a href="#create_gregorian">createGregorian(year,
+                    month, day, hour, minute, second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date and time</p><h4>
+                        Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createGregorian(2016,12,25,15,20,15);
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_gregorian_date"><h3 class="name"><a href="#create_gregorian_date">createDate(year,
+                    month, day, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date. hour, minute and
+                        second set now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createGregorianDate(2016,12,25);
+// if now 1398-02-28 15:20:15
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_gregorian_time"><h3 class="name"><a href="#create_gregorian_time">createTime(hour,
+                    minute, second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date and time. year, month
+                        and day set now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createGregorianTime(15,20,15);
+// if now 1395-10-05 23:18:53
+// output 1395-10-05 15:20:15</code></pre>
+                </div>
+                <div class="entity" id="create_timestamp"><h3 class="name"><a href="#create_timestamp">createTimestamp(datetime,
+                    timezone)</a></h3>
+                    <p class="description"></p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">number</span>: <span class="name">datetime</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createTimestamp(1583501791)
+// output 1398-12-16 13:36:31</code></pre>
+                </div>
+                <div class="entity" id="create_jalali"><h3 class="name"><a href="#create_jalali">createJalali(year,
+                    month, day, hour, minute, second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate verta date and time</p><h4>
+                        Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createJalali(1394,12,29,15,51,5);
+// output 1394-12-29 15:51:05</code></pre>
+                </div>
+                <div class="entity" id="create_jalali_date"><h3 class="name"><a href="#create_jalali_date">createJalaliDate(year,
+                    month, day, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate verta date. hour, minute and second
+                        set now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createJalali(1394,12,29);
+// if now 1399-12-23 15:51:05
+// output 1394-12-29 15:51:05</code></pre>
+                </div>
+                <div class="entity" id="create_jalali_time"><h3 class="name"><a href="#create_jalali_time">createJalaliTime(hour,
+                    minute, second, timezone)</a></h3>
+                    <p class="description">To get the verta datetime form separate verta date. year, month and day set
+                        now</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::createJalali(15,51,5);
+// if now 1394-12-29 13:22:44
+// output 1394-12-29 15:51:05</code></pre>
+                </div>
+            </section>
+            <section id="transformation"><h2>Transformation</h2>
+                <div class="entity" id="jalali_to_gregorian"><h3 class="name"><a href="#jalali_to_gregorian">jalaliToGregorian(year,
+                    month, day)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">array</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">vardump(Verta::jalaliToGregorian(1401,03,27));
+// output [2020,6,17]</code></pre>
+                </div>
+                <div class="entity" id="gregorian_to_jalali"><h3 class="name"><a href="#gregorian_to_jalali">jalaliToGregorian(year,
+                    month, day)</a></h3>
+                    <p class="description">To get the verta datetime form separate gregorian date.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">array</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">var_dump(Verta::jalaliToGregorian(2020,6,17));
+// output [1401,03,27]</code></pre>
+                </div>
+                <div class="entity" id="datetime"><h3 class="name"><a href="#datetime">datetime()</a></h3>
+                    <p class="description">To get the object Datetime php</p><h4>Return</h4>
+                    <p class="return">object Datetime php</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->datetime();
+// if now 1397-10-11 10:20:11
+// output 2019-01-01 10:20:11</code></pre>
+                </div>
+            </section>
+            <section id="accessor"><h2>Accessor</h2>
+                <div class="entity" id="get_year"><h3 class="name"><a href="#get_year">year</a></h3>
+                    <p class="description">To get year on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 10:20:11
+echo$datetime->year
+// output 1397</code></pre>
+                </div>
+                <div class="entity" id="get_month"><h3 class="name"><a href="#get_month">month</a></h3>
+                    <p class="description">To get month on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 15:20:11
+echo $datetime->year;
+// output 10</code></pre>
+                </div>
+                <div class="entity" id="get_day"><h3 class="name"><a href="#get_day">day</a></h3>
+                    <p class="description">To get day on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 10:20:11
+echo $datetime->year;
+// output 11</code></pre>
+                </div>
+                <div class="entity" id="get_hour"><h3 class="name"><a href="#get_hour">hour</a></h3>
+                    <p class="description">To get hour on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-09-11 10:20:11
+echo $datetime->hour;
+// output 10</code></pre>
+                </div>
+                <div class="entity" id="get_minute"><h3 class="name"><a href="#get_minute">minute</a></h3>
+                    <p class="description">To get minute on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 10:20:11
+echo $datetime->minute;
+// output 20</code></pre>
+                </div>
+                <div class="entity" id="get_second"><h3 class="name"><a href="#get_second">second</a></h3>
+                    <p class="description">To get second on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 10:20:33
+echo $datetime->hour
+// output 33</code></pre>
+                </div>
+                <div class="entity" id="get_micro"><h3 class="name"><a href="#get_micro">micro</a></h3>
+                    <p class="description">To get micro on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1397-10-11 10:20:11.123843
+echo $datetime->micro;
+// output 123843</code></pre>
+                </div>
+                <div class="entity" id="get_timestamp"><h3 class="name"><a href="#get_timestamp">timestamp</a></h3>
+                    <p class="description">To get timestamp on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-03-14 14:18:23
+echo $datetime->timestamp;
+// output 1496557661</code></pre>
+                </div>
+                <div class="entity" id="get_timezone"><h3 class="name"><a href="#get_timezone">timezone</a></h3>
+                    <p class="description">To get timezone on object verta</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-03-14 14:18:23
+echo $datetime->timezone;
+// output Asia/Tehran</code></pre>
+                </div>
+                <div class="entity" id="get_day_of_week"><h3 class="name"><a href="#get_day_of_week">dayOfWeek</a></h3>
+                    <p class="description">To get dayOfWeek on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now friday
+echo $datetime->dayOfWeek;
+// output 6</code></pre>
+                </div>
+                <div class="entity" id="get_day_of-year"><h3 class="name"><a href="#get_day_of-year">dayOfYear</a></h3>
+                    <p class="description">To get dayOfYear on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->dayOfYear;
+// output 45</code></pre>
+                </div>
+                <div class="entity" id="get_days_in_month"><h3 class="name"><a href="#get_days_in_month">daysInMonth</a>
+                </h3>
+                    <p class="description">To get daysInMonth on object verta</p><h4>Return</h4>
+                    <p class="return">int</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-03-14 14:18:23
+echo $datetime->daysInMonth;
+// output 31</code></pre>
+                </div>
+                <div class="entity" id="set_year"><h3 class="name"><a href="#set_year">year</a></h3>
+                    <p class="description">To set year on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->year = 1398;
+echo $datetime;
+// output 1398-02-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="set_month"><h3 class="name"><a href="#set_month">month</a></h3>
+                    <p class="description">To set month on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->month = 13;
+echo $datetime;
+// output 1397-01-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="set_day"><h3 class="name"><a href="#set_day">day</a></h3>
+                    <p class="description">To set day on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->day = 25;
+echo $datetime;
+// output 1396-02-25 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="set_hour"><h3 class="name"><a href="#set_hour">hour</a></h3>
+                    <p class="description">To set hour on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->hour = 8;
+echo $datetime;
+// output 1396-02-25 8:18:23</code></pre>
+                </div>
+                <div class="entity" id="set_minute"><h3 class="name"><a href="#set_minute">minute</a></h3>
+                    <p class="description">To set minute on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->minute = 25;
+echo $datetime;
+// output 1396-02-25 14:25:23</code></pre>
+                </div>
+                <div class="entity" id="set_second"><h3 class="name"><a href="#set_second">second</a></h3>
+                    <p class="description">To set second on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->second = 55;
+echo $datetime;
+// output 1396-02-25 14:18:55</code></pre>
+                </div>
+                <div class="entity" id="set_micro"><h3 class="name"><a href="#set_micro">micro</a></h3>
+                    <p class="description">To set micro on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->micro = 158265;
+echo $datetime;
+// output 1396-02-25 14:18:23.158265</code></pre>
+                </div>
+                <div class="entity" id="set_timestamp"><h3 class="name"><a href="#set_timestamp">timestamp</a></h3>
+                    <p class="description">To set timestamp on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->timestamp = 1496557661;
+echo $datetime;
+// output 1396-03-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="set_timezone"><h3 class="name"><a href="#set_timezone">timezone</a></h3>
+                    <p class="description">To set timezone on object verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->timezone = 'Asia/Baku';
+echo $datetime->timezone;
+// output Asia/Baku</code></pre>
+                </div>
+                <div class="entity" id="year"><h3 class="name"><a href="#year">year(value)</a></h3>
+                    <p class="description">To set year on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->year(1398);
+// output 1398-02-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="month"><h3 class="name"><a href="#month">month(value)</a></h3>
+                    <p class="description">To set month on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->month(13);
+// output 1397-01-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="day"><h3 class="name"><a href="#day">day(value)</a></h3>
+                    <p class="description">To set day on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->day(25);
+// output 1396-02-25 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="hour"><h3 class="name"><a href="#hour">hour(value)</a></h3>
+                    <p class="description">To set hour on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->hour(8);
+// output 1396-02-25 8:18:23</code></pre>
+                </div>
+                <div class="entity" id="minute"><h3 class="name"><a href="#minute">minute(value)</a></h3>
+                    <p class="description">To set minute on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->minute(25);
+// output 1396-02-25 14:25:23</code></pre>
+                </div>
+                <div class="entity" id="second"><h3 class="name"><a href="#second">second(value)</a></h3>
+                    <p class="description">To set second on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->second(55);
+// output 1396-02-25 14:18:55</code></pre>
+                </div>
+                <div class="entity" id="micro"><h3 class="name"><a href="#micro">micro(value)</a></h3>
+                    <p class="description">To set micro on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->micro(158265);
+// output 1396-02-25 14:18:23.158265</code></pre>
+                </div>
+                <div class="entity" id="timestamp"><h3 class="name"><a href="#timestamp">timestamp(value)</a></h3>
+                    <p class="description">To set timestamp on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+$datetime->timestamp(1496557661);
+// output 1396-03-14 14:18:23</code></pre>
+                </div>
+                <div class="entity" id="timezone"><h3 class="name"><a href="#timezone">timezone()</a></h3>
+                    <p class="description">To set timezone on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->timezone('Asia/Baku');
+// output Asia/Baku</code></pre>
+                </div>
+                <div class="entity" id="set_date_time"><h3 class="name"><a href="#set_date_time">setDateTime(year,
+                    month, day, hour, minute, second, micro)</a></h3>
+                    <p class="description">To set date and time on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">int</span>: <span class="name">micro</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->setDateTime(1395, 4, 25, 16, 50, 42);
+// output 1395-04-25 16:50:42</code></pre>
+                </div>
+                <div class="entity" id="set_date"><h3 class="name"><a href="#set_date">setDate(year, month, day)</a>
+                </h3>
+                    <p class="description">To set date on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->setDate(2022, 6, 17);
+// output 1401-03-27 16:50:42</code></pre>
+                </div>
+                <div class="entity" id="set_date_jalali"><h3 class="name"><a href="#set_date_jalali">setDateJalali(year,
+                    month, day)</a></h3>
+                    <p class="description">To set date on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1396-02-14 14:18:23
+echo $datetime->setDateJalali(1401,3,17);
+// output 1401-03-27 16:50:42</code></pre>
+                </div>
+                <div class="entity" id="set_time_string"><h3 class="name"><a
+                        href="#set_time_string">setTimeString(time)</a></h3>
+                    <p class="description">To set time on object verta</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">time</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = verta();
+// if now 1401-03-27 14:18:23
+echo $datetime->setTimeString('12:25:45.695321');
+// output 1401-03-27 12:25:45.695321
+echo $datetime->setTimeString('12:25:45');
+// output 1401-03-27 12:25:45
+echo $datetime->setTimeString('12:25');
+// output 1401-03-27 12:25:00
+echo $datetime->setTimeString('12:25');
+// output 1401-03-27 12:25:00
+echo $datetime->setTimeString('12');
+// output 1401-03-27 12:00:00</code></pre>
+                </div>
+            </section>
+            <section id="formatting"><h2>Formatting</h2>
+                <div class="entity" id="format"><h3 class="name"><a href="#format">format(format)</a></h3>
+                    <p class="description">To represent date and time format</p>
+                    <p>To create the format you want read the PHP document <a
+                            href="https://php.net/manual/en/function.strftime.php" target="_blank">strftime</a> and <a
+                            href="https://php.net/manual/en/function.date.php" target="_blank">date</a>.</p><h4>
+                        Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->format('Y-n-j H:i');
+// output 1395-10-7 14:12
+echo verta()->format('%B %d، %Y');
+// output دی 7، 1395
+echo verta()->format('%Q %Y');
+// output زمستان 1395
+echo verta();
+// output 1395-10-07 14:12:25</code></pre>
+                </div>
+                <div class="entity" id="format_date_time"><h3 class="name"><a
+                        href="#format_date_time">formatDatetime()</a></h3>
+                    <p class="description">To represent date and time format</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatDatetime();
+// output 1395-10-07 14:12:25</code></pre>
+                </div>
+                <div class="entity" id="format_date"><h3 class="name"><a href="#format_date">formatDate()</a></h3>
+                    <p class="description">To represent date format</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatDate();
+// output 1395-10-07</code></pre>
+                </div>
+                <div class="entity" id="format_time"><h3 class="name"><a href="#format_time">formatTime()</a></h3>
+                    <p class="description">To represent time format</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatTime();
+// output 14:12:25</code></pre>
+                </div>
+                <div class="entity" id="format_jalali_datetime"><h3 class="name"><a href="#format_jalali_datetime">formatJalaliDatetime()</a>
+                </h3>
+                    <p class="description">To represent verta date format</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatJalaliDatetime();
+// output 1395/10/07 14:12:25</code></pre>
+                </div>
+                <div class="entity" id="format_jalali_date"><h3 class="name"><a href="#format_jalali_date">formatJalaliDate()</a>
+                </h3>
+                    <p class="description">To represent verta date format</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatJalaliDate();
+// output 1395/10/07</code></pre>
+                </div>
+                <div class="entity" id="format_gregorian"><h3 class="name"><a href="#format_gregorian">formatGregorian(format)</a>
+                </h3>
+                    <p class="description">To represent date and time format gregorian</p>
+                    <p>To create the format you want read the PHP document <a
+                            href="https://php.net/manual/en/function.strftime.php" target="_blank">strftime</a> and <a
+                            href="https://php.net/manual/en/function.date.php" target="_blank">date</a>.</p><h4>
+                        Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatGregorian('Y-n-j H:i');
+// output 2017-05-23 23:21:02</code></pre>
+                </div>
+                <div class="entity" id="format_difference"><h3 class="name"><a href="#format_difference">formatJalaliDate(datetime)</a>
+                </h3>
+                    <p class="description">To display the date difference as a unit of time. If don't set parameter, the
+                        difference is calculated with the current time</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">verta</span>: <span class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatDifference(verta('+1 year'));
+// output 1 سال بعد
+echo verta()->formatDifference(verta('-1 year'));
+// output 1 سال قبل
+echo verta('+25 day')->formatDifference();
+// output 4 هفته بعد
+echo verta('-6 day')->formatDifference();
+// output 6 روز قبل
+echo verta()->formatDifference();
+// output الان
+</code></pre>
+                </div>
+                <div class="entity" id="format_word"><h3 class="name"><a href="#format_word">formatWord(format)</a></h3>
+                    <p class="description">To display numbers in alphabetical</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->formatWord('Y');
+// output یک هزار و سیصد و نود و شش
+echo verta()->formatWord('l dS F');
+// output چهارشنبه بیست و نه ام شهریور
+echo verta()->formatWord('d F Y');
+// output بیست و نه شهریور یک هزار و سیصد و نود و شش
+</code></pre>
+                </div>
+                <div class="entity" id="set_format"><h3 class="name"><a href="#set_format">formatJalaliDate(format)</a>
+                </h3>
+                    <p class="description">To set default output format</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::setFormat('Y/n/j H:i:s');
+echo verta(); // output 1395/12/12 00:11:35</code></pre>
+                </div>
+                <div class="entity" id="reset_format"><h3 class="name"><a href="#reset_format">undefined</a></h3>
+                    <p class="description">To reset output format</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::resetFormat('Y/n/j H:i:s');
+echo verta(); // output 1395-12-12 00:18:04</code></pre>
+                </div>
+            </section>
+            <section id="modification"><h2>Modification</h2>
+                <div class="entity" id="add_year"><h3 class="name"><a href="#add_year">addYear()</a></h3>
+                    <p class="description">To increment a year verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addYear();
+// if now 1395-10-07 14:12:32
+// output 1396-10-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_years"><h3 class="name"><a href="#add_years">addYears(value)</a></h3>
+                    <p class="description">To increment years verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addYears(3);
+// if now 1395-10-07 14:12:32
+// output 1398-10-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_year"><h3 class="name"><a href="#sub_year">subYear()</a></h3>
+                    <p class="description">To decrement a year verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subYear();
+// if now 1395-10-07 14:12:32
+// output 1394-10-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_years"><h3 class="name"><a href="#sub_years">subYears(value)</a></h3>
+                    <p class="description">To decrement years verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subYears(3);
+// if now 1395-10-07 14:12:32
+// output 1392-10-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_month"><h3 class="name"><a href="#add_month">addMonth()</a></h3>
+                    <p class="description">To increment a month verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addMonth();
+// if now 1395-10-07 14:12:32
+// output 1395-11-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_months"><h3 class="name"><a href="#add_months">addMonths(value)</a></h3>
+                    <p class="description">To increment months verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addMonth(2);
+// if now 1395-10-07 14:12:32
+// output 1395-12-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_month"><h3 class="name"><a href="#sub_month">subMonth()</a></h3>
+                    <p class="description">To decrement a month verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subMonth();
+// if now 1395-10-07 14:12:32
+// output 1395-09-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_months"><h3 class="name"><a href="#sub_months">subMonths(value)</a></h3>
+                    <p class="description">To decrement months verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subMonths(3);
+// if now 1395-10-07 14:12:32
+// output 1395-07-07 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_week"><h3 class="name"><a href="#add_week">addWeek()</a></h3>
+                    <p class="description">To increment a week verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addMonth();
+// if now 1395-10-07 14:12:32
+// output 1395-10-14 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_weeks"><h3 class="name"><a href="#add_weeks">undefined</a></h3>
+                    <p class="description">To increment weeks verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addWeeks(3);
+// if now 1395-10-07 14:12:32
+// output 1395-12-28 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_week"><h3 class="name"><a href="#sub_week">subWeek()</a></h3>
+                    <p class="description">To decrement a week verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subWeek();
+// if now 1395-10-07 14:12:32
+// output 1395-09-30 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_weeks"><h3 class="name"><a href="#sub_weeks">subWeeks(value)</a></h3>
+                    <p class="description">To decrement weeks verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subWeeks(3);
+// if now 1395-10-07 14:12:32
+// output 1395-09-16 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_day"><h3 class="name"><a href="#add_day">addDay()</a></h3>
+                    <p class="description">To increment a day verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addDay();
+// if now 1395-10-07 14:12:32
+// output 1395-10-08 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_days"><h3 class="name"><a href="#add_days">undefined</a></h3>
+                    <p class="description">To increment days verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addWeeks(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-10 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_day"><h3 class="name"><a href="#sub_day">subDay()</a></h3>
+                    <p class="description">To decrement a day verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subDay();
+// if now 1395-10-07 14:12:32
+// output 1395-10-06 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_days"><h3 class="name"><a href="#sub_days">subDays(value)</a></h3>
+                    <p class="description">To decrement days verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subDays(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-04 14:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_hour"><h3 class="name"><a href="#add_hour">addHour()</a></h3>
+                    <p class="description">To increment a day verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addHour();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 15:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_hours"><h3 class="name"><a href="#add_hours">addHours()</a></h3>
+                    <p class="description">To increment days verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addHours(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 17:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_hour"><h3 class="name"><a href="#sub_hour">subHour()</a></h3>
+                    <p class="description">To decrement a hour verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subHour();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 13:12:32</code></pre>
+                </div>
+                <div class="entity" id="sub_hours"><h3 class="name"><a href="#sub_hours">subHours(value)</a></h3>
+                    <p class="description">To decrement hours verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subHours(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 11:12:32</code></pre>
+                </div>
+                <div class="entity" id="add_minute"><h3 class="name"><a href="#add_minute">addMinute()</a></h3>
+                    <p class="description">To increment a minute verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addMinute();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:13:32</code></pre>
+                </div>
+                <div class="entity" id="add_minutes"><h3 class="name"><a href="#add_minutes">addMinutes(value)</a></h3>
+                    <p class="description">To increment minutes verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addMinutes(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:15:32</code></pre>
+                </div>
+                <div class="entity" id="sub_minute"><h3 class="name"><a href="#sub_minute">subMinute()</a></h3>
+                    <p class="description">To decrement a minute verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subMinute();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:11:32</code></pre>
+                </div>
+                <div class="entity" id="sub_minutes"><h3 class="name"><a href="#sub_minutes">subMinutes(value)</a></h3>
+                    <p class="description">To decrement minutes verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subMinutes(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:09:32</code></pre>
+                </div>
+                <div class="entity" id="add_second"><h3 class="name"><a href="#add_second">addSecond()</a></h3>
+                    <p class="description">To decrement a second verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addSecond();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:33</code></pre>
+                </div>
+                <div class="entity" id="add_seconds"><h3 class="name"><a href="#add_seconds">addSeconds(value)</a></h3>
+                    <p class="description">To increment minutes verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->addSeconds(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:35</code></pre>
+                </div>
+                <div class="entity" id="sub_second"><h3 class="name"><a href="#sub_second">subSecond()</a></h3>
+                    <p class="description">To decrement a second verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subSecond();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:31</code></pre>
+                </div>
+                <div class="entity" id="sub_seconds"><h3 class="name"><a href="#sub_seconds">subSeconds(value)</a></h3>
+                    <p class="description">To decrement seconds verta date</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->subSeconds(3);
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:29</code></pre>
+                </div>
+            </section>
+            <section id="boundaries"><h2>Boundaries</h2>
+                <div class="entity" id="start_year"><h3 class="name"><a href="#start_year">startYear()</a></h3>
+                    <p class="description">To start year verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startYear();
+// if now 1395-10-07 14:12:32
+// output 1395-01-01 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_year"><h3 class="name"><a href="#end_year">endYear()</a></h3>
+                    <p class="description">To end year verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endYear();
+// if now 1395-10-07 14:12:32
+// output 1395-12-30 23:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_quarter"><h3 class="name"><a href="#start_quarter">startQuarter()</a></h3>
+                    <p class="description">To start quarter verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startQuarter();
+// if now 1395-11-07 14:12:32
+// output 1395-10-01 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_quarter"><h3 class="name"><a href="#end_quarter">endQuarter()</a></h3>
+                    <p class="description">To end quarter verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endQuarter();
+// if now 1395-11-07 14:12:32
+// output 1395-12-30 23:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_month"><h3 class="name"><a href="#start_month">startMonth()</a></h3>
+                    <p class="description">To start month verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startMonth();
+// if now 1395-10-07 14:12:32
+// output 1395-10-01 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_month"><h3 class="name"><a href="#end_month">endMonth()</a></h3>
+                    <p class="description">To end month verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endMonth();
+// if now 1395-10-07 14:12:32
+// output 1395-10-30 23:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_week"><h3 class="name"><a href="#start_week">startWeek()</a></h3>
+                    <p class="description">To start week verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startWeek();
+// if now 1395-10-07 14:12:32
+// output 1395-10-04 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_week"><h3 class="name"><a href="#end_week">endWeek()</a></h3>
+                    <p class="description">To end week verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endWeek();
+// if now 1395-10-07 14:12:32
+// output 1395-10-10 23:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_day"><h3 class="name"><a href="#start_day">startDay()</a></h3>
+                    <p class="description">To start day verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startDay();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 00:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_day"><h3 class="name"><a href="#end_day">endDay()</a></h3>
+                    <p class="description">To end day verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endDay();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 23:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_hour"><h3 class="name"><a href="#start_hour">startHour()</a></h3>
+                    <p class="description">To start hour verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startHour();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:00:00</code></pre>
+                </div>
+                <div class="entity" id="end_hour"><h3 class="name"><a href="#end_hour">endHour()</a></h3>
+                    <p class="description">To end hour verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endHour();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:59:59</code></pre>
+                </div>
+                <div class="entity" id="start_minute"><h3 class="name"><a href="#start_minute">startMinute()</a></h3>
+                    <p class="description">To start minute verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startMinute();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:00</code></pre>
+                </div>
+                <div class="entity" id="end_minute"><h3 class="name"><a href="#end_minute">endMinute()</a></h3>
+                    <p class="description">To start minute verta date</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endMinute();
+// if now 1395-10-07 14:12:32
+// output 1395-10-07 14:12:59</code></pre>
+                </div>
+            </section>
+            <section id="comparison"><h2>Comparison</h2>
+                <div class="entity" id="diff_years"><h3 class="name"><a href="#diff_years">diffYears(datetime)</a></h3>
+                    <p class="description">To difference year datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15')->diffYears(verta('2018-05-15'))
+ // output -1</code></pre>
+                </div>
+                <div class="entity" id="diff_months"><h3 class="name"><a href="#diff_months">diffMonths(datetime)</a>
+                </h3>
+                    <p class="description">To difference month datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-08-15')->diffYears()
+// if now 2017-05-15
+// output 3</code></pre>
+                </div>
+                <div class="entity" id="diff_weeks"><h3 class="name"><a href="#diff_weeks">diffWeeks(datetime)</a></h3>
+                    <p class="description">To difference week datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15')->diffWeeks()
+// if now 2017-05-15
+ // output 2</code></pre>
+                </div>
+                <div class="entity" id="diff_days"><h3 class="name"><a href="#diff_days">diffDays(datetime)</a></h3>
+                    <p class="description">To difference day datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15')->diffDays()
+// if now 2017-05-18
+ // output -3</code></pre>
+                </div>
+                <div class="entity" id="diff_hours"><h3 class="name"><a href="#diff_hours">diffHours(datetime)</a></h3>
+                    <p class="description">To difference hour datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15 12:20:32')->diffDays()
+// if now 2017-05-18 18:56:43
+ // output -6</code></pre>
+                </div>
+                <div class="entity" id="diff_minutes"><h3 class="name"><a href="#diff_minutes">diffMinutes(datetime)</a>
+                </h3>
+                    <p class="description">To difference minute datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15 12:20:32')->diffMinutes()
+// if now 2017-05-18 12:56:43
+ // output -36</code></pre>
+                </div>
+                <div class="entity" id="diff_seconds"><h3 class="name"><a href="#diff_seconds">diffSeconds(datetime)</a>
+                </h3>
+                    <p class="description">To difference minute datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('2017-05-15 12:20:32')->diffSeconds()
+// if now 2017-05-18 12:20:43
+ // output -10</code></pre>
+                </div>
+                <div class="entity" id="eq"><h3 class="name"><a href="#eq">eq(datetime)</a></h3>
+                    <p class="description">To compere equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->eq(jalalai('-1 minute'));
+// output false</code></pre>
+                </div>
+                <div class="entity" id="equal_to"><h3 class="name"><a href="#equal_to">equalTo(datetime)</a></h3>
+                    <p class="description">To compere equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->equalTo();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="ne"><h3 class="name"><a href="#ne">ne(datetime)</a></h3>
+                    <p class="description">To compere not equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->ne(jalalai('-1 minute'));
+// output true</code></pre>
+                </div>
+                <div class="entity" id="not_equal_to"><h3 class="name"><a href="#not_equal_to">notEqualTo(datetime)</a>
+                </h3>
+                    <p class="description">To compere not equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->notEqualTo();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="gt"><h3 class="name"><a href="#gt">gt(datetime)</a></h3>
+                    <p class="description">To compere greater than datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->gt(jalalai('-5 minute'));
+// output true</code></pre>
+                </div>
+                <div class="entity" id="greater_than"><h3 class="name"><a href="#greater_than">greaterThan(datetime)</a>
+                </h3>
+                    <p class="description">To compere greater than datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->greaterThan();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="gte"><h3 class="name"><a href="#gte">gte(datetime)</a></h3>
+                    <p class="description">To compere greater than or equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->gte();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="greater_than_or_equal_to"><h3 class="name"><a href="#greater_than_or_equal_to">greaterThanOrEqualTo(datetime)</a>
+                </h3>
+                    <p class="description">To compere greater than or equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->greaterThanOrEqualTo(verta('+2 second'));
+// output false</code></pre>
+                </div>
+                <div class="entity" id="lt"><h3 class="name"><a href="#lt">lt(datetime)</a></h3>
+                    <p class="description">To compere less than datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->lt(verta('+2 second'));
+// output true</code></pre>
+                </div>
+                <div class="entity" id="less_than"><h3 class="name"><a href="#less_than">lessThan(datetime)</a></h3>
+                    <p class="description">To compere less than datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->lessThan(verta('-3 second'));
+// output false</code></pre>
+                </div>
+                <div class="entity" id="lte"><h3 class="name"><a href="#lte">lte(datetime)</a></h3>
+                    <p class="description">To compere less than or equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->lte();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="less_than_or_equal_to"><h3 class="name"><a href="#less_than_or_equal_to">lessThanOrEqualTo(datetime)</a>
+                </h3>
+                    <p class="description">To compere less than or equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->lessThanOrEqualTo(verta('+2 hour'));
+// output false</code></pre>
+                </div>
+                <div class="entity" id="between"><h3 class="name"><a href="#between">between(first, second, equal)</a>
+                </h3>
+                    <p class="description">To compere less than or equal datetime together.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span class="name">first</span>
+                        </li>
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">second</span></li>
+                        <li><span class="type">bool</span>: <span class="name">equal</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->between(verta('+2 hour') , verta('+1 hour'));
+// output false</code></pre>
+                </div>
+                <div class="entity" id="closest"><h3 class="name"><a href="#closest">closest(first, second)</a></h3>
+                    <p class="description">To get closest datetime between two datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span class="name">first</span>
+                        </li>
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">second</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $first = verta('+2 hour');
+// output 1398-03-15 21:22:23
+ echo $second = verta('-1 hour');
+// output 1398-03-15 18:22:23
+ echo verta()->closest($first , $secound);
+// output 1398-03-15 18:22:23</code></pre>
+                </div>
+                <div class="entity" id="farthest"><h3 class="name"><a href="#farthest">farthest(first, second)</a></h3>
+                    <p class="description">To get farthest datetime between two datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span class="name">first</span>
+                        </li>
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">second</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $first = verta('+2 hour');
+// output 1398-03-15 21:22:23
+ echo $second = verta('-1 hour');
+// output 1398-03-15 18:22:23
+ echo verta()->farthest($first , $secound);
+// output 1398-03-15 18:22:23</code></pre>
+                </div>
+                <div class="entity" id="min"><h3 class="name"><a href="#min">min(datetime)</a></h3>
+                    <p class="description">To get minimum datetime between two datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta</span>: <span class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta('-2 hour');
+// output 1398-03-15 21:22:23
+ echo verta()->min($datetime);
+// output 1398-03-15 21:22:23</code></pre>
+                </div>
+                <div class="entity" id="minimum"><h3 class="name"><a href="#minimum">minimum(datetime)</a></h3>
+                    <p class="description">To get minimum datetime between two datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta</span>: <span class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta('+2 hour');
+// output 1398-03-15 21:22:23
+ echo verta()->min($datetime);
+// output 1398-03-15 19:22:23</code></pre>
+                </div>
+                <div class="entity" id="max"><h3 class="name"><a href="#max">max(datetime)</a></h3>
+                    <p class="description">To get maximum datetime between two datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta</span>: <span class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta('+2 hour');
+// output 1398-03-15 21:22:23
+ echo verta()->max($datetime);
+// output 1398-03-15 21:22:23</code></pre>
+                </div>
+                <div class="entity" id="maximum"><h3 class="name"><a href="#maximum">maximum(datetime)</a></h3>
+                    <p class="description">To get maximum datetime between two datetime.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta('-2 hour');
+// output 1398-03-15 21:22:23
+ echo verta()->maximum($datetime);
+// output 1398-03-15 19:22:23</code></pre>
+                </div>
+                <div class="entity" id="is_weekday"><h3 class="name"><a href="#is_weekday">isWeekday()</a></h3>
+                    <p class="description">To get datetime is in weekdays.</p><h4>Return</h4>
+                    <p class="return">Verta</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta()->format('j');
+// output 19
+ echo $datetime->isWeekday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_weekend"><h3 class="name"><a href="#is_weekend">isWeekend()</a></h3>
+                    <p class="description">To get datetime is in weekend days.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo $datetime = verta()->format('j');
+// output جمعه
+ echo $datetime->isWeekend();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_yesterday"><h3 class="name"><a href="#is_yesterday">isYesterday()</a></h3>
+                    <p class="description">To get datetime is yesterday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isYesterday();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_today"><h3 class="name"><a href="#is_today">isToday()</a></h3>
+                    <p class="description">To get datetime is today.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isToday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_next_week"><h3 class="name"><a href="#is_next_week">isNextWeek()</a></h3>
+                    <p class="description">To get datetime is next week.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next week')->isNextWeek();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_last_week"><h3 class="name"><a href="#is_last_week">isLastWeek()</a></h3>
+                    <p class="description">To get datetime is days last week.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('previous week')->isLastWeek();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_next_month"><h3 class="name"><a href="#is_next_month">isNextMonth()</a></h3>
+                    <p class="description">To get datetime is days next month.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('+2 month')->isNextMonth();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_last_month"><h3 class="name"><a href="#is_last_month">isLastMonth()</a></h3>
+                    <p class="description">To get datetime is days last month.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('-35 day')->isLastMonth();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_next_year"><h3 class="name"><a href="#is_next_year">isNextYear()</a></h3>
+                    <p class="description">To get datetime is days next year.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('+12 month')->isNextYear();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_last_year"><h3 class="name"><a href="#is_last_year">isLastYear()</a></h3>
+                    <p class="description">To get datetime is days last year.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('+5 day')->isLastYear();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_future"><h3 class="name"><a href="#is_future">isFuture()</a></h3>
+                    <p class="description">To get datetime is future.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('+5 day')->isFuture();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_past"><h3 class="name"><a href="#is_past">isPast()</a></h3>
+                    <p class="description">To get datetime is past.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('-2 day')->isPast();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_current_year"><h3 class="name"><a href="#is_current_year">isCurrentYear()</a>
+                </h3>
+                    <p class="description">To get datetime is current year.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isCurrentYear();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_current_month"><h3 class="name"><a
+                        href="#is_current_month">isCurrentMonth()</a></h3>
+                    <p class="description">To get datetime is current month.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->endMonth()->isCurrentMonth();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_same_as"><h3 class="name"><a href="#is_same_as">isSameAs(format,
+                    datetime)</a></h3>
+                    <p class="description">To get datetime is same part of datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">format</span></li>
+                        <li><span class="type">Varta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isSameAs('y', verta()->startYear());
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_same_year"><h3 class="name"><a href="#is_same_year">isSameYear(datetime)</a>
+                </h3>
+                    <p class="description">To get datetime is same year datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isSameYear(verta()->startYear());
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_same_month"><h3 class="name"><a
+                        href="#is_same_month">isSameMonth(datetime)</a></h3>
+                    <p class="description">To get datetime is same month datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isSameMonth('y', verta()->startMonth());
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_same_day"><h3 class="name"><a href="#is_same_day">isSameDay(datetime)</a>
+                </h3>
+                    <p class="description">To get datetime is same day datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isSameDay(verta()->startDay());
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_birthday"><h3 class="name"><a href="#is_birthday">isBirthday(datetime)</a>
+                </h3>
+                    <p class="description">To get datetime is birthday datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">Verta|DateTime|string|number|null</span>: <span
+                                class="name">datetime</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->isBirthday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_saturday"><h3 class="name"><a href="#is_saturday">isSaturday()</a></h3>
+                    <p class="description">To get datetime is suturday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startWeek()->isSaturday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_sunday"><h3 class="name"><a href="#is_sunday">isSunday()</a></h3>
+                    <p class="description">To get datetime is sunday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->startWeek()->isSunday();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_monday"><h3 class="name"><a href="#is_monday">isMonday()</a></h3>
+                    <p class="description">To get datetime is suturday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next monday')->isMonday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_tuesday"><h3 class="name"><a href="#is_tuesday">isTuesday()</a></h3>
+                    <p class="description">To get datetime is tuesday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('previous tuesday')->isTuesday();
+// output true</code></pre>
+                </div>
+                <div class="entity" id="is_wednesday"><h3 class="name"><a href="#is_wednesday">isWednesday()</a></h3>
+                    <p class="description">To get datetime is wednesday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next monday')->isWednesday();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_thursday"><h3 class="name"><a href="#is_thursday">isThursday()</a></h3>
+                    <p class="description">To get datetime is thursday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next monday')->isThursday();
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_friday"><h3 class="name"><a href="#is_friday">isFriday()</a></h3>
+                    <p class="description">To get datetime is friday.</p><h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta('next monday')->isFriday();
+// output false</code></pre>
+                </div>
+            </section>
+            <section id="validation"><h2>Validation</h2>
+                <div class="entity" id="is_leap_year"><h3 class="name"><a href="#is_leap_year">isLeapYear(year)</a></h3>
+                    <p class="description">Check year is leap.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">return Verta::isLeapYear(1394);
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_valid_date"><h3 class="name"><a href="#is_valid_date">isValidDate(year,
+                    month, day)</a></h3>
+                    <p class="description">Check date is valid.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">return Verta::isValidDate(1394, 12, 30);
+// output false</code></pre>
+                </div>
+                <div class="entity" id="is_valid_time"><h3 class="name"><a href="#is_valid_time">isValidTime(hour,
+                    minute, second)</a></h3>
+                    <p class="description">Check time is valid.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                    </ul>
+                    <h4>Return</h4>
+                    <p class="return">bool</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">return Verta::isValidTime(27, 52, 30);
+// output false</code></pre>
+                </div>
+                <div class="entity" id="valid_year"><h3 class="name"><a href="#valid_year">validYear(value)</a></h3>
+                    <p class="description">To valid year.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validYear(-1);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_month"><h3 class="name"><a href="#valid_month">validMount(value)</a></h3>
+                    <p class="description">To valid month.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validMount(13);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_day"><h3 class="name"><a href="#valid_day">validDay(year, month, day)</a>
+                </h3>
+                    <p class="description">To valid month.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validDay(1400, 12, 30);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_hour"><h3 class="name"><a href="#valid_hour">validHour(value)</a></h3>
+                    <p class="description">To valid hour.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validHour(30);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_minute"><h3 class="name"><a href="#valid_minute">validMinute(value)</a>
+                </h3>
+                    <p class="description">To valid minute.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validMinute(60);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_second"><h3 class="name"><a href="#valid_second">validSecond(value)</a>
+                </h3>
+                    <p class="description">To valid second.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validSecond(60);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_micro"><h3 class="name"><a href="#valid_micro">validMicro(value)</a></h3>
+                    <p class="description">To valid micro.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">value</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validMicro(1828888484);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_date"><h3 class="name"><a href="#valid_date">validDate(year, month,
+                    day)</a></h3>
+                    <p class="description">To valid date.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validDate(1400, 12, 30);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_time"><h3 class="name"><a href="#valid_time">validTime(hour, minute,
+                    second, micro)</a></h3>
+                    <p class="description">To valid time.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">int|null</span>: <span class="name">micro</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validTime(25, 12, 30);
+// throw InvalidUnitException</code></pre>
+                </div>
+                <div class="entity" id="valid_datetime"><h3 class="name"><a href="#valid_datetime">validDateTime(year,
+                    month, day, hour, minute, second, micro)</a></h3>
+                    <p class="description">To valid datetime.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">int</span>: <span class="name">year</span></li>
+                        <li><span class="type">int</span>: <span class="name">month</span></li>
+                        <li><span class="type">int</span>: <span class="name">day</span></li>
+                        <li><span class="type">int</span>: <span class="name">hour</span></li>
+                        <li><span class="type">int</span>: <span class="name">minute</span></li>
+                        <li><span class="type">int</span>: <span class="name">second</span></li>
+                        <li><span class="type">int|null</span>: <span class="name">micro</span></li>
+                    </ul>
+                    <h4>Exception</h4>
+                    <p class="exception">InvalidUnitException</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::validDateTime(1400, 12, 30, 25, 12, 30);
+// throw InvalidUnitException</code></pre>
+                </div>
+            </section>
+            <section id="laravel_validation"><h2>Laravel Validation</h2>
+                <p>To use rules for jalali datetime validation in laravel.</p>
+                <p>Append validation translate to langs/fa/validation.php file in laravel project. for other language
+                    use lang jalali package <a href="https://github.com/hekmatinasser/jalali/tree/master/src/Lang"
+                                               target="_blank">folder</a>.</p>
+                <pre>
+<code class="language-php">
+...
+'jdate'                  => ':attribute معتبر نمی باشد.',
+'jdate_equal'            => ':attribute برابر :date نمی باشد.',
+'jdate_not_equal'        => ':attribute نامساوی :date نمی باشد.',
+'jdatetime'              => ':attribute معتبر نمی باشد.',
+'jdatetime_equal'        => ':attribute مساوی :date نمی باشد.',
+'jdatetime_not_equal'    => ':attribute نامساوی :date نمی باشد.',
+'jdate_after'            => ':attribute باید بعد از :date باشد.',
+'jdate_after_equal'      => ':attribute باید بعد یا برابر از :date باشد.',
+'jdatetime_after'        => ':attribute باید بعد از :date باشد.',
+'jdatetime_after_equal'  => ':attribute باید بعد یا برابر از :date باشد.',
+'jdate_before'           => ':attribute باید قبل از :date باشد.',
+'jdate_before_equal'     => ':attribute باید قبل یا برابر از :date باشد.',
+'jdatetime_before'       => ':attribute باید قبل از :date باشد.',
+'jdatetime_before_equal' => ':attribute باید قبل یا برابر از :date باشد.',
+
+'attributes' => [
+    'start_date'      => 'تاریخ شروع',
+    'expire_datetime' => 'تاریخ انقضا',
+],
+...</code></pre>
+                <div class="entity" id="jdate"><h3 class="name"><a href="#jdate">jdate:format</a></h3>
+                    <p class="description">To validate date jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389-01-31'
+],[
+  'start_date' => 'jdate:Y.m.d'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع معتبر نمی باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime"><h3 class="name"><a href="#jdatetime">jdatetime:format</a></h3>
+                    <p class="description">To validate datetime jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389-01-31 12:20:30'
+],[
+  'start_date' => 'jdate:Y.m.d H.i.s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع معتبر نمی باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_equal"><h3 class="name"><a href="#jdate_equal">jdate_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate date equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389-01-31'
+],[
+  'start_date' => 'jdate_equal:1388/01/01,Y/m/d'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع برابر ۱۳۹۸/۱/۱ نمی باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_equal"><h3 class="name"><a href="#jdatetime_equal">jdatetime_equal:datetime,format</a>
+                </h3>
+                    <p class="description">To validate date equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389-01-31 12:20:30'
+],[
+  'start_date' => 'jdatetime_equal:1388/01/01 00:20:30,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع برابر ۱۳۹۸/۱/۱ ۰۰:۲۰:۳۰ نمی باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_not_equal"><h3 class="name"><a href="#jdate_not_equal">jdate_not_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate date not equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31'
+],[
+  'start_date' => 'jdate_not_equal:1388/01/31,Y/m/d'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع برابر ۱۳۹۸/۱/۳۱ می باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_not_equal"><h3 class="name"><a href="#jdatetime_not_equal">jdatetime_not_equal:datetime,format</a>
+                </h3>
+                    <p class="description">To validate datetime not equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31'
+],[
+  'start_date' => 'jdatetime_not_equal:1388/01/31 00:20:30,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع برابر ۱۳۹۸/۱/۳۱ ۰۰:۲۰:۳۰ می باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_after"><h3 class="name"><a href="#jdate_after">jdate_after:date,format</a>
+                </h3>
+                    <p class="description">To validate datetime not equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31'
+],[
+  'start_date' => 'jdate_after:1388/01/31,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید بعد از ۱۳۹۸/۱/۳۱ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_after"><h3 class="name"><a href="#jdatetime_after">jdatetime_after:datetime,format</a>
+                </h3>
+                    <p class="description">To validate datetime after jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">datetime</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31 13:21:56'
+],[
+  'start_date' => 'jdatetime_after:1388/01/31 18:30:57,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید بعد از ۱۳۹۸/۱/۳۱ ۱۸:۳۰:۵۷ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_after_equal"><h3 class="name"><a href="#jdate_after_equal">jdate_after_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate date after or equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/30'
+],[
+  'start_date' => 'jdate_after_equal:1388/01/31,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید بعد یا برابر ۱۳۹۸/۱/۳۱ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_after_equal"><h3 class="name"><a href="#jdatetime_after_equal">jdatetime_after_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate datetime after or equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31 12:23:52'
+],[
+  'start_date' => 'jdatetime_after_equal:1388/01/31 12:23:54,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید بعد یا برابر ۱۳۹۸/۱/۳۱ ۱۲:۲۳:۵۴ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_before"><h3 class="name"><a
+                        href="#jdate_before">jdate_before:date,format</a></h3>
+                    <p class="description">To validate date after jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31'
+],[
+  'start_date' => 'jdate_before:1388/01/31,Y/m/d'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید قبل از ۱۳۹۸/۱/۳۱ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_before"><h3 class="name"><a href="#jdatetime_before">jdatetime_before:datetime,format</a>
+                </h3>
+                    <p class="description">To validate datetime before jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">datetime</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31 13:21:58'
+],[
+  'start_date' => 'jdatetime_before:1388/01/31 10:30:57,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید قبل از ۱۳۹۸/۱/۳۱ ۱۰:۳۰:۵۷ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdate_before_equal"><h3 class="name"><a href="#jdate_before_equal">jdate_before_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate date after or equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/30'
+],[
+  'start_date' => 'jdate_before_equal:1388/01/28,Y/m/d'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید قبل یا برابر ۱۳۹۸/۱/۳۱ باشد."
+  ]
+]*/</code></pre>
+                </div>
+                <div class="entity" id="jdatetime_before_equal"><h3 class="name"><a href="#jdatetime_before_equal">jdatetime_before_equal:date,format</a>
+                </h3>
+                    <p class="description">To validate datetime before or equal jalali.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string|null</span>: <span class="name">date</span></li>
+                        <li><span class="type">string|null</span>: <span class="name">format</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">dd(validator([
+  'start_date' => '1389/01/31 12:23:55'
+],[
+  'start_date' => 'jdatetime_before_equal:1388/01/31 12:23:54,Y/m/d H:i:s'
+])
+->errors()
+->messages());
+/* output
+[
+  "start_date" => [
+      "تاریخ شروع باید قبل یا برابر ۱۳۹۸/۱/۳۱ ۱۲:۲۳:۵۴ باشد."
+  ]
+]*/</code></pre>
+                </div>
+            </section>
+            <section id="translation"><h2>Translation</h2>
+                <div class="entity" id="set_locale"><h3 class="name"><a href="#set_locale">setLocale(locale)</a></h3>
+                    <p class="description">To set locale.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">locale</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::setLocale('fa');</code></pre>
+                </div>
+                <div class="entity" id="reset_locale"><h3 class="name"><a href="#reset_locale">resetLocale()</a></h3>
+                    <p class="description">To reset to default(fa) locale.</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">Verta::resetLocale();</code></pre>
+                </div>
+                <div class="entity" id="get_locale"><h3 class="name"><a href="#get_locale">getLocale()</a></h3>
+                    <p class="description">To get current locale</p><h4>Return</h4>
+                    <p class="return">string</p><h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo Verta::getLocale();
+// output fa</code></pre>
+                </div>
+                <div class="entity" id="set_messages"><h3 class="name"><a href="#set_messages">setMessages(locale,
+                    messages)</a></h3>
+                    <p class="description">To Append custom messages to locale.</p><h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">string</span>: <span class="name">locale</span></li>
+                        <li><span class="type">array</span>: <span class="name">messages</span></li>
+                    </ul>
+                    <h4>Example</h4>
+                    <pre class="example"><code
+                            class="language-php">Verta::setMessages('fa', ['weekdays.7' => 'آدینه']);</code></pre>
+                </div>
+            </section>
+            main.js:9:17
+
+        </article>
+        <footer id="footer">
+            <div style="text-align: center;">
+                2017-2022 &copy;
+            </div>
+        </footer>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/highlight.min.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
