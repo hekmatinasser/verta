@@ -16,7 +16,31 @@
 <p align="center">Verta extend class PHP Datetime and Jalali, compatible with Carbon Package.</p>
 
 
-<h2>Installations</h2>
+## Quick view
+     
+- [Installation](#installation)
+- [Usage](#usage)
+    - [Jalali to Gregorian](#jalali-to-gregorian)
+    - [Gregorian to Jalali](#gregorian-to-jalali)
+    - [Jalali to Carbon](#jalali-to-carbon)
+    - [Carbon to Jalali](#carbon-to-jalali)
+- [Getters](#getters)
+- [Setters](#setters)
+  - [Fluent Setters](#fluent-setters)
+- [Formatting](#formatting)
+  - [Common Formats](#common-formats)
+- [Modification](#modification)
+- [Boundaries](#boundaries)
+- [Compression](#compression)
+  - [Difference](#difference)
+  - [Difference for Humans](#difference-for-humans)
+- [Validation](#validation)
+- [Localization](#localization)
+- [Validation Request](#validation-request)
+- [Licence](#licence)
+- [Contributors](#contributors)
+
+## Installations
 
 ```shell
 composer require hekmatinasser/verta
@@ -41,12 +65,39 @@ composer require hekmatinasser/verta
     </tbody>
 </table>
 
-<h2>Transformation</h2>
-<p>change jalali to gregorian and reverse</p>
+## Usage
+<p>use verta datetime jalali</p>
+
+```php
+echo verta(); //1401-05-24 00:00:00
+```
+
+### Gregorian to Jalali
+<p>change gregorian to jalali and reverse</p>
 
 ```php
 echo verta('2022-08-15'); //1401-05-24 00:00:00
-echo Verta::parse('1395-10-07 14:12:32')
+```
+
+### jalali to Gregorian
+<p>change jalali to gregorian and reverse</p>
+
+```php
+echo Verta::parse('1401-05-24 14:12:32')->datetime(); //2022-08-15 00:00:00
+```
+
+### Carbon to Jalali
+<p>change carbon to jalali and reverse</p>
+
+```php
+echo now()->toJalali(); //1401-05-24 00:00:00
+```
+
+### Jalali to Carbon
+<p>change jalali to gregorian and reverse</p>
+
+```php
+echo verta()->toCarbon(); //2022-08-15 00:00:00
 ```
 
 <h2>Property</h2>
@@ -83,7 +134,7 @@ echo verta()->startWeek(3);
 ...
 ```
 
-<h2>Diffrense</h2>
+<h2>Difference</h2>
 <p>calculate diff two jalali datetime</p>
 
 ```php
@@ -107,6 +158,11 @@ echo verta('+2 day')->gte('2022-08-15');
 'birthday' => ['required', 'jdate_before_equal']
 ...
 ```
+## Licence
 
-<p align="center">This package has been created by Nasser Hekmati under the license of MIT.</p>
+This package has been created by Nasser Hekmati under the license of MIT.
 
+## Contributors
+Thanks to people who contributed for grow varta.
+
+<a href="https://github.com/hekmatinasser/verta/graphs/contributors"><img src="https://opencollective.com/verta/contributors.svg?button=false" /></a>
