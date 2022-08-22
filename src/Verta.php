@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 
 class Verta extends Jalali
 {
-
     /**
      * Create a Carbon instance from Verta
      *
