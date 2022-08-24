@@ -76,6 +76,10 @@ class VertaServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadValidators();
+
+        Carbon::macro('toJalali', function ($timezone = null) {
+            return new Verta($this, $timezone);
+        });
     }
 
     /**
@@ -87,10 +91,6 @@ class VertaServiceProvider extends ServiceProvider
     {
         $this->app->bind('verta', function ($app) {
             return new Verta();
-        });
-
-        Carbon::macro('toJalali', function ($timezone = null) {
-            return new Verta($this, $timezone);
         });
     }
 
