@@ -181,13 +181,13 @@ echo verta('+2 day')->gte('2022-08-15');
 [view more compression](https://hekmatinasser.github.io/verta/#comparison)
 
 
-#### Difference
+### Difference
 <p>calculate difference two jalali datetime</p>
 
 ```php
 echo verta('+13 day')->diffMonths('2022-08-15'); 
 ```
-[view more differences](https://hekmatinasser.github.io/verta/#comparison)
+[view more differences](https://hekmatinasser.github.io/verta/#difference)
 
 ### Validation
 <p>check datetime check is valid </p>
@@ -204,7 +204,7 @@ echo Verta::isLeapYear(1394); // false
 ```php
 Verta::setLocale('ar');
 ```
-[view more localizations](https://hekmatinasser.github.io/verta/#translation)
+[view more localizations](https://hekmatinasser.github.io/verta/#localization)
 
 
 ### Validation Request
