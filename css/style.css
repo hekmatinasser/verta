@@ -164,6 +164,9 @@ section {
 .sidebar .parent {
     font-weight: bold;
 }
+.sidebar .sub {
+    display: none;
+}
 .sidebar .child {
     padding-left: 10px;
 }

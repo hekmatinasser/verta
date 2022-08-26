@@ -7,6 +7,9 @@ $(document).ready(function () {
         flat(menu);
         hljs.highlightAll();
     });
+    $(".parent").on("click", function() {
+        $(this).next().slideToggle(200);
+    });
 })
 
 function fill(data, child) {

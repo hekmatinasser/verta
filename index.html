@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/style.css?v=0.3">
+    <link rel="stylesheet" href="css/style.css?v=0.4">
     <link rel="stylesheet" href="css/atom-one-dark.min.css">
     <link rel="shortcut icon" type="image/png" href="image/logo.png" id="favicon"/>
 </head>
@@ -33,7 +33,7 @@
                         <li><a class="parent" href="#installation">Installation</a></li>
                         <li><a class="parent" href="#usage">Usage</a></li>
                         <li><a class="parent" href="#instantiate">Instantiate</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#new">new</a></li>
                                 <li><a class="child" href="#helper">verta()</a></li>
                                 <li><a class="child" href="#now">now()</a></li>
@@ -45,9 +45,7 @@
                                 <li><a class="child" href="#next_interval">next interval</a></li>
                                 <li><a class="child" href="#last_interval">last interval</a></li>
                                 <li><a class="child" href="#instance">instance()</a></li>
-                                <li><a class="child" href="#new_timestamp">new with timestamp</a></li>
-                                <li><a class="child" href="#new_datetime">new with Datetime</a></li>
-                                <li><a class="child" href="#new_carbon">new with Carbon</a></li>
+                                <li><a class="child" href="#new_timestamp">new timestamp</a></li>
                                 <li><a class="child" href="#copy">copy</a></li>
                                 <li><a class="child" href="#clone">clone</a></li>
                                 <li><a class="child" href="#parse">parse()</a></li>
@@ -65,14 +63,18 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#transformation">Transformation</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#jalali_to_gregorian">jalaliToGregorian()</a></li>
                                 <li><a class="child" href="#gregorian_to_jalali">GregorianToJalali()</a></li>
                                 <li><a class="child" href="#datetime">datetime</a></li>
+                                <li><a class="child" href="#to_jalali">to jalali</a></li>
+                                <li><a class="child" href="#to_carbon">to carbon</a></li>
+                                <li><a class="child" href="#new_datetime">new Datetime</a></li>
+                                <li><a class="child" href="#new_carbon">new Carbon</a></li>
                             </ul>
                         </li>
                         <li><a class="parent" href="#getter">Getter</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#get_year">get year</a></li>
                                 <li><a class="child" href="#get_month">get month</a></li>
                                 <li><a class="child" href="#get_day">get day</a></li>
@@ -88,7 +90,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#setter">Setter</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#set_year">set year</a></li>
                                 <li><a class="child" href="#set_month">set month</a></li>
                                 <li><a class="child" href="#set_day">set day</a></li>
@@ -114,7 +116,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#formatting">Formatting</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#format">format()</a></li>
                                 <li><a class="child" href="#format_date_time">formatDatetime()</a></li>
                                 <li><a class="child" href="#format_date">formatDate()</a></li>
@@ -129,7 +131,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#modification">Modification</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#add_year">addYear()</a></li>
                                 <li><a class="child" href="#add_years">addYears()</a></li>
                                 <li><a class="child" href="#sub_year">subYear()</a></li>
@@ -161,7 +163,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#boundaries">Boundaries</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#start_year">startYear()</a></li>
                                 <li><a class="child" href="#end_year">endYear()</a></li>
                                 <li><a class="child" href="#start_quarter">startQuarter()</a></li>
@@ -179,7 +181,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#difference">Difference</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#diff_years">diffYears()</a></li>
                                 <li><a class="child" href="#diff_months">diffMonths()</a></li>
                                 <li><a class="child" href="#diff_weeks">diffWeeks()</a></li>
@@ -190,7 +192,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#comparison">Comparison</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#eq">eq()</a></li>
                                 <li><a class="child" href="#equal_to">equalTo()</a></li>
                                 <li><a class="child" href="#ne">ne()</a></li>
@@ -239,7 +241,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#validation">Validation</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#is_leap_year">isLeapYear()</a></li>
                                 <li><a class="child" href="#is_valid_date">isValidDate()</a></li>
                                 <li><a class="child" href="#is_valid_time">isValidTime()</a></li>
@@ -256,7 +258,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#laravel_validation">Laravel Validation</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#jdate">jdate</a></li>
                                 <li><a class="child" href="#jdatetime">jdatetime</a></li>
                                 <li><a class="child" href="#jdate_equal">jdate_equal</a></li>
@@ -274,7 +276,7 @@
                             </ul>
                         </li>
                         <li><a class="parent" href="#localization">Localization</a>
-                            <ul>
+                            <ul class="sub">
                                 <li><a class="child" href="#set_locale">setLocale()</a></li>
                                 <li><a class="child" href="#reset_locale">resetLocale()</a></li>
                                 <li><a class="child" href="#get_locale">getLocale()</a></li>
@@ -297,7 +299,11 @@
                             Package.</p>
                         <p>Verta use algorithm transform jalali to gregorian and revert. This transformer Jalali
                             Calendar written Vahid Sohrablo, Rozbeh Pournader and Mohammad Tosi.</p>
-                        <p>This package has been created by Nasser Hekmati under the license of MIT.</p></div>
+                        <p>This package has been created by Nasser Hekmati under the license of MIT.</p>
+                        <h3><a href="https://github.com/hekmatinasser/verta">
+                            <img alt="GitHub Logotype" class="height-auto" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100" height="25">
+                        </a></h3>
+                    </div>
                 </div>
             </section>
             <section id="installation"><h2>Installation</h2>
@@ -526,40 +532,6 @@ echo Verta::instance('2019-01-01 10:20:11');
                     <h4>Example</h4>
                     <pre class="example"><code class="language-php">echo verta(1583501791);
 // output 1398-12-16 13:36:31</code></pre>
-                </div>
-                <div class="entity" id="new_datetime">
-                    <h3 class="name"><a href="#new_datetime">verta(datetime, timezone)</a></h3>
-                    <p class="description"></p>
-                    <h4>Arguments</h4>
-                    <ul class="arguments">
-                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
-                        </li>
-                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
-                    </ul>
-
-                    <h4>Return</h4>
-                    <p class="return">Verta</p>
-                    <h4>Example</h4>
-                    <pre class="example"><code class="language-php">$datetime = new Datetime('2019-01-01 10:20:11');
-echo verta($datetime);
-// output 1397-10-11 10:20:11</code></pre>
-                </div>
-                <div class="entity" id="new_carbon">
-                    <h3 class="name"><a href="#new_carbon">verta(datetime, timezone)</a></h3>
-                    <p class="description">To get the datetime with Carbon</p>
-                    <h4>Arguments</h4>
-                    <ul class="arguments">
-                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
-                        </li>
-                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
-                    </ul>
-
-                    <h4>Return</h4>
-                    <p class="return">Verta</p>
-                    <h4>Example</h4>
-                    <pre class="example"><code class="language-php">$datetime = new Carbon('2019-01-01 10:20:11');
-echo verta($datetime);
-// output 1397-10-11 10:20:11</code></pre>
                 </div>
                 <div class="entity" id="copy">
                     <h3 class="name"><a href="#copy">copy()</a></h3>
@@ -858,6 +830,59 @@ echo Verta::parse('1396 مهر 17');
                     <pre class="example"><code class="language-php">echo verta()->datetime();
 // if now 1397-10-11 10:20:11
 // output 2019-01-01 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="to_jalali">
+                    <h3 class="name"><a href="#to_jalali">datetime()</a></h3>
+                    <p class="description">To get the object Verta from carbon</p>
+                    <h4>Return</h4>
+                    <p class="return">Verta</p>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo now()->toJalali();
+// if now 2019-01-01 10:20:11
+// output 1397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="to_carbon">
+                    <h3 class="name"><a href="#to_carbon">toCarbon()</a></h3>
+                    <p class="description"></p>
+                    <h4>Return</h4>
+                    <p class="return">Carbon</p>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">echo verta()->toCarbon();
+// output '2019-01-01 10:20:11'</code></pre>
+                </div>
+                <div class="entity" id="new_datetime">
+                    <h3 class="name"><a href="#new_datetime">verta(datetime, timezone)</a></h3>
+                    <p class="description"></p>
+                    <h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+
+                    <h4>Return</h4>
+                    <p class="return">Verta</p>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = new Datetime('2019-01-01 10:20:11');
+echo verta($datetime);
+// output 1397-10-11 10:20:11</code></pre>
+                </div>
+                <div class="entity" id="new_carbon">
+                    <h3 class="name"><a href="#new_carbon">verta(datetime, timezone)</a></h3>
+                    <p class="description">To get the datetime with Carbon</p>
+                    <h4>Arguments</h4>
+                    <ul class="arguments">
+                        <li><span class="type">DateTime|string|number|null</span>: <span class="name">datetime</span>
+                        </li>
+                        <li><span class="type">TimeZone|string|null</span>: <span class="name">timezone</span></li>
+                    </ul>
+
+                    <h4>Return</h4>
+                    <p class="return">Verta</p>
+                    <h4>Example</h4>
+                    <pre class="example"><code class="language-php">$datetime = new Carbon('2019-01-01 10:20:11');
+echo verta($datetime);
+// output 1397-10-11 10:20:11</code></pre>
                 </div>
             </section>
             <section id="getter"><h2>Getter</h2>
@@ -3277,6 +3302,6 @@ echo verta(); // output 1395-12-12 00:18:04</code></pre>
 
 <script src="js/jquery.min.js"></script>
 <script src="js/highlight.min.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=0.1"></script>
 </body>
 </html>
