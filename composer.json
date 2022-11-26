@@ -2,6 +2,7 @@
     "name": "hekmatinasser/verta",
     "description": "This Package helps developers to work with Jalali Datetime class for Laravel Framework PHP",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Nasser Hekmati",
