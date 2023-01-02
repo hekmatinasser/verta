@@ -2,6 +2,7 @@
 
 namespace Hekmatinasser\Verta\Laravel;
 
+use Exception;
 use Hekmatinasser\Verta\Verta;
 
 class JalaliValidator
@@ -22,7 +23,7 @@ class JalaliValidator
 
         try {
             Verta::parseFormat($format, $value);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -48,7 +49,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->eq($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -72,7 +73,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->ne($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -94,7 +95,7 @@ class JalaliValidator
 
         try {
             Verta::parseFormat($format, $value);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
 
@@ -120,7 +121,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->eq($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -144,7 +145,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->ne($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -168,7 +169,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->gt($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -192,7 +193,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->gte($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -216,7 +217,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->gt($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -240,7 +241,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->gte($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -264,7 +265,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->lt($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -288,7 +289,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->lte($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -312,7 +313,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->lt($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
@@ -336,7 +337,7 @@ class JalaliValidator
             $base = count($parameters) > 0 ? Verta::parseFormat($format, $parameters[0]) : null;
 
             return Verta::parseFormat($format, $value)->lte($base);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
