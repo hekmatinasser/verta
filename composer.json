@@ -21,7 +21,7 @@
         "php": "^8.0",
         "illuminate/support": "^8.0|^9.0",
         "illuminate/validation": "^8.0|^9.0",
-        "hekmatinasser/jalali": "^8.1"
+        "hekmatinasser/jalali": "^8.2"
     },
     "require-dev": {
         "orchestra/testbench": "^4.18|^5.20|^6.24|^7.0"
