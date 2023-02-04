@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/style.css?v=0.4">
+    <link rel="stylesheet" href="css/style.css?v=0.5">
     <link rel="stylesheet" href="css/atom-one-dark.min.css">
     <link rel="shortcut icon" type="image/png" href="image/logo.png" id="favicon"/>
 </head>
@@ -300,9 +300,11 @@
                         <p>Verta use algorithm transform jalali to gregorian and revert. This transformer Jalali
                             Calendar written Vahid Sohrablo, Rozbeh Pournader and Mohammad Tosi.</p>
                         <p>This package has been created by Nasser Hekmati under the license of MIT.</p>
-                        <h3><a href="https://github.com/hekmatinasser/verta">
-                            <img alt="GitHub Logotype" class="height-auto" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100" height="25">
-                        </a></h3>
+                        <h3>
+                            <a href="https://github.com/hekmatinasser/verta">
+                            <img alt="GitHub Logotype" class="height-auto" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" height="50">
+                        </a>
+                        </h3>
                     </div>
                 </div>
             </section>
@@ -313,7 +315,7 @@
 composer require hekmatinasser/verta
 </code>
 </pre>
-                <table>
+                <table class="center">
                     <thead>
                     <tr>
                         <th>Laravel Version</th>
@@ -322,15 +324,31 @@ composer require hekmatinasser/verta
                     </thead>
                     <tbody>
                     <tr>
-                        <td>8.0</td>
-                        <td>8.x</td>
-                    </tr>
-                    <tr>
                         <td>9.0</td>
                         <td>8.x</td>
                     </tr>
+                    <tr>
+                        <td>8.0</td>
+                        <td>8.x</td>
+                    </tr>
+                    <tr class="deprecate">
+                        <td>7.0</td>
+                        <td>2.x</td>
+                    </tr>
+                    <tr class="deprecate">
+                        <td>6.0</td>
+                        <td>^1.10</td>
+                    </tr>
+                    <tr class="deprecate">
+                        <td>5.0</td>
+                        <td>1.x</td>
+                    </tr>
                     </tbody>
                 </table>
+                <div class="version-colors">
+                    <div class="color-box deprecate"></div>
+                    <div>End of life</div>
+                </div>
             </section>
             <section id="usage"><h2>Usage</h2>
                 <p>Use top of each file of the use Verta class</p>
