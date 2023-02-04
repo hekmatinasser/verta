@@ -45,10 +45,10 @@ class ComparisonTest extends TestCase
         $this->assertEquals(0, $result);
 
         $result = $datetime->diffYears(Jalali::parse('1395-10-10 21:30:50'));
-        $this->assertEquals(-3, $result);
+        $this->assertEquals(3, $result);
 
-        $result = $datetime->diffYears(Jalali::parse('1399-10-11 21:30:50'));
-        $this->assertEquals(1, $result);
+        $result = $datetime->diffYears(Jalali::parse('1399-10-11 21:30:50'), false);
+        $this->assertEquals(-1, $result);
     }
 
     public function testDiffMonths()
@@ -75,7 +75,7 @@ class ComparisonTest extends TestCase
         $result = $datetime->diffDays(Jalali::parse('1398-10-15 21:30:50'));
         $this->assertEquals(5, $result);
 
-        $result = $datetime->diffDays(Jalali::parse('1398-10-01 21:30:50'));
+        $result = $datetime->diffDays(Jalali::parse('1398-10-01 21:30:50'), false);
         $this->assertEquals(-9, $result);
     }
 
@@ -89,7 +89,7 @@ class ComparisonTest extends TestCase
         $result = $datetime->diffWeeks(Jalali::parse('1398-11-15 21:30:50'));
         $this->assertEquals(5, $result);
 
-        $result = $datetime->diffWeeks(Jalali::parse('1398-10-01 21:30:50'));
+        $result = $datetime->diffWeeks(Jalali::parse('1398-10-01 21:30:50'), false);
         $this->assertEquals(-1, $result);
     }
 
@@ -103,7 +103,7 @@ class ComparisonTest extends TestCase
         $result = $datetime->diffHours(Jalali::parse('1398-10-10 23:30:50'));
         $this->assertEquals(2, $result);
 
-        $result = $datetime->diffHours(Jalali::parse('1398-10-10 20:30:50'));
+        $result = $datetime->diffHours(Jalali::parse('1398-10-10 20:30:50'), false);
         $this->assertEquals(-1, $result);
     }
 
@@ -117,7 +117,7 @@ class ComparisonTest extends TestCase
         $result = $datetime->diffMinutes(Jalali::parse('1398-10-10 21:40:50'));
         $this->assertEquals(10, $result);
 
-        $result = $datetime->diffMinutes(Jalali::parse('1398-10-10 20:30:50'));
+        $result = $datetime->diffMinutes(Jalali::parse('1398-10-10 20:30:50'), false);
         $this->assertEquals(-60, $result);
     }
 
@@ -132,7 +132,7 @@ class ComparisonTest extends TestCase
         $this->assertEquals(3, $result);
 
 
-        $result = $datetime->diffSeconds(Jalali::parse('1398-10-10 21:30:45'));
+        $result = $datetime->diffSeconds(Jalali::parse('1398-10-10 21:30:45'), false);
         $this->assertEquals(-5, $result);
     }
 
