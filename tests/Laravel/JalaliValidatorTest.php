@@ -80,7 +80,7 @@ class JalaliValidatorTest extends TestCase
     /***
      * provider for tests
      */
-    public function correctDateFormatProvider()
+    public static function correctDateFormatProvider()
     {
         return [
             [
