@@ -19,8 +19,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/support": "^8.0|^9.0",
-        "illuminate/validation": "^8.0|^9.0",
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "illuminate/validation": "^8.0|^9.0|^10.0",
         "hekmatinasser/jalali": "^8.2"
     },
     "require-dev": {
