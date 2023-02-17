@@ -57,11 +57,15 @@ composer require hekmatinasser/verta
     <tbody>
     <tr>
         <td>8.0</td>
-        <td>8.x</td>
+        <td>8.0</td>
     </tr>
     <tr>
         <td>9.0</td>
-        <td>8.x</td>
+        <td>8.2</td>
+    </tr>
+    <tr>
+        <td>10.0</td>
+        <td>8.3</td>
     </tr>
     </tbody>
 </table>

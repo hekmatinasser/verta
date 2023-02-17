@@ -80,7 +80,7 @@ class JalaliValidatorTest extends TestCase
     /***
      * provider for tests
      */
-    public function correctDateFormatProvider()
+    public static function correctDateFormatProvider()
     {
         return [
             [
@@ -112,7 +112,7 @@ class JalaliValidatorTest extends TestCase
     /**
      * provider for tests
      */
-    public function incorrectDateFormatProvider()
+    public static function incorrectDateFormatProvider()
     {
         return [
             [
@@ -133,7 +133,7 @@ class JalaliValidatorTest extends TestCase
     /**
      * provider for tests
      */
-    public function jalaliValidatorMethods()
+    public static function jalaliValidatorMethods()
     {
         return [
             ["validateDate"],
