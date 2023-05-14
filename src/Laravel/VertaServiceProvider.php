@@ -14,6 +14,10 @@ class VertaServiceProvider extends ServiceProvider
             'extend' => 'validateDate',
             'replacer' => 'replaceDateOrDatetime',
         ],
+        'jdate_multi_format' => [
+            'extend' => 'validateDateMultiFormat',
+            'replacer' => 'replaceDateOrDatetime',
+        ],
         'jdate_equal' => [
             'extend' => 'validateDateEqual',
             'replacer' => 'replaceDateAfterOrBeforeOrEqual',
