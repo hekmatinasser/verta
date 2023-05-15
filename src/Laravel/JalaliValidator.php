@@ -40,7 +40,7 @@ class JalaliValidator
     public function validateDateMultiFormat(string $attribute, string $value, array $parameters): bool
     {
         foreach ($parameters as $format) {
-            if ($this->validateDate($attribute, $value, $format)) {
+            if ($this->validateDate($attribute, $value, [$format])) {
                 return true;
             }
         }
