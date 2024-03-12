@@ -315,40 +315,6 @@
 composer require hekmatinasser/verta
 </code>
 </pre>
-                <table class="center">
-                    <thead>
-                    <tr>
-                        <th>Laravel Version</th>
-                        <th>Package Version</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>9.0</td>
-                        <td>8.x</td>
-                    </tr>
-                    <tr>
-                        <td>8.0</td>
-                        <td>8.x</td>
-                    </tr>
-                    <tr class="deprecate">
-                        <td>7.0</td>
-                        <td>2.x</td>
-                    </tr>
-                    <tr class="deprecate">
-                        <td>6.0</td>
-                        <td>^1.10</td>
-                    </tr>
-                    <tr class="deprecate">
-                        <td>5.0</td>
-                        <td>1.x</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="version-colors">
-                    <div class="color-box deprecate"></div>
-                    <div>End of life</div>
-                </div>
             </section>
             <section id="usage"><h2>Usage</h2>
                 <p>Use top of each file of the use Verta class</p>
@@ -824,7 +790,7 @@ echo Verta::parse('1396 مهر 17');
 // output [2020,6,17]</code></pre>
                 </div>
                 <div class="entity" id="gregorian_to_jalali">
-                    <h3 class="name"><a href="#gregorian_to_jalali">jalaliToGregorian(year, month, day)</a></h3>
+                    <h3 class="name"><a href="#gregorian_to_jalali">GregorianToJalali(year, month, day)</a></h3>
                     <p class="description">To get the verta datetime form separate gregorian date.</p>
                     <h4>Arguments</h4>
                     <ul class="arguments">
@@ -836,7 +802,7 @@ echo Verta::parse('1396 مهر 17');
                     <h4>Return</h4>
                     <p class="return">array</p>
                     <h4>Example</h4>
-                    <pre class="example"><code class="language-php">var_dump(Verta::jalaliToGregorian(2020,6,17));
+                    <pre class="example"><code class="language-php">var_dump(Verta::GregorianToJalali(2020,6,17));
 // output [1401,03,27]</code></pre>
                 </div>
                 <div class="entity" id="datetime">

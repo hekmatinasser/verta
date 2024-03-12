@@ -145,9 +145,6 @@ section {
 .entity .return {
     padding-left: 20px;
 }
-.deprecate {
-    background: #ff3838;
-}
 .sidebar {
     background: white;
     height: 100vh;
