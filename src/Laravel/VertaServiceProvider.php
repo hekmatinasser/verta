@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class VertaServiceProvider extends ServiceProvider
 {
-    private $rules = [
+    private array $rules = [
         'jdate' => [
             'extend' => 'validateDate',
             'replacer' => 'replaceDateOrDatetime',
@@ -77,7 +77,7 @@ class VertaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadValidators();
 
@@ -91,7 +91,7 @@ class VertaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind('verta', function ($app) {
             return new Verta();
@@ -103,12 +103,12 @@ class VertaServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return ['verta'];
     }
 
-    public function loadValidators()
+    public function loadValidators(): void
     {
         $className = JalaliValidator::class . '@';
 
