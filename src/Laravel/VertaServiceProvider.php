@@ -2,8 +2,10 @@
 
 namespace Hekmatinasser\Verta\Laravel;
 
+use Hekmatinasser\Jalali\Exceptions\InvalidDatetimeException;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -83,6 +85,28 @@ class VertaServiceProvider extends ServiceProvider
 
         Carbon::macro('toJalali', function ($timezone = null) {
             return new Verta($this, $timezone);
+        });
+
+        Request::macro(
+            name: 'jdate',
+            /**
+             * @param string      $key
+             * @param string|null $format
+             * @param string|null $tz
+             * @return Verta|null
+             * @throw InvalidDatetimeException
+             */
+            macro: function (string $key, ?string $format = null, ?string $tz = null): ?Verta
+        {
+            if ($this->isNotFilled($key)) {
+                return null;
+            }
+
+            if (is_null($format)) {
+                return Verta::parse($this->input($key), $tz);
+            }
+
+            return Verta::parseFormat($format, $this->input($key), $tz);
         });
     }
 
