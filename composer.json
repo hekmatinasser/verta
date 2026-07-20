@@ -1,12 +1,12 @@
 {
-    "name": "hekmatinasser/verta",
+    "name": "natilosir/verta",
     "description": "This Package helps developers to work with Jalali Datetime class for Laravel Framework PHP",
     "license": "MIT",
     "type": "library",
     "authors": [
         {
-            "name": "Nasser Hekmati",
-            "email": "hekmati.nasser@gmail.com"
+            "name": "natilos.ir",
+            "email": "info@natilos.ir"
         }
     ],
     "keywords": [
@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hekmatinasser\\Verta\\": "src/"
+            "natilosir\\Verta\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -36,16 +36,16 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Hekmatinasser\\Verta\\Tests\\": "tests/"
+            "natilosir\\Verta\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Hekmatinasser\\Verta\\Laravel\\VertaServiceProvider"
+                "natilosir\\Verta\\Laravel\\VertaServiceProvider"
             ],
             "aliases": {
-                "Verta": "Hekmatinasser\\Verta\\Verta"
+                "Verta": "natilosir\\Verta\\Verta"
             }
         }
     },
