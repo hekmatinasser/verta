@@ -46,6 +46,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           coverage: none
+          tools: composer:v2
 
       - name: Setup problem matchers
         run: |
@@ -55,6 +56,10 @@ jobs:
       - name: Install dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          # PHPUnit 12+ no longer discovers the existing @test annotations.
+          composer require --dev "phpunit/phpunit:^9.5|^10.0|^11.0" --no-interaction --no-update
+          # Allow compatibility testing against older dependency versions in CI only.
+          composer config audit.block-insecure false
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
