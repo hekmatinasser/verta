@@ -5,11 +5,11 @@ use Hekmatinasser\Verta\Verta;
 
 if (! function_exists('verta')) {
     /**
-     * @param  Jalali|DateTime|string|int|null  $datetime
-     * @param  DateTimeZone|string|null  $timezone
+     * @param DateTime|int|string|Jalali|null $datetime
+     * @param DateTimeZone|string|null $timezone
      * @return Verta
      */
-    function verta($datetime = null, $timezone = null): Verta
+    function verta(DateTime|int|string|Jalali $datetime = null, DateTimeZone|string $timezone = null): Verta
     {
         return new Verta($datetime, $timezone);
     }
