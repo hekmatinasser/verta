@@ -5,9 +5,12 @@ namespace Hekmatinasser\Verta;
 use Exception;
 use Hekmatinasser\Jalali\Jalali;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Traits\Macroable;
 
 class Verta extends Jalali
 {
+    use Macroable;
+
     /**
      * Create a Carbon instance from Verta
      *
