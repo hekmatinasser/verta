@@ -9,13 +9,9 @@ use Illuminate\Support\ServiceProvider;
 
 class VertaServiceProvider extends ServiceProvider
 {
-    private $rules = [
+    private array $rules = [
         'jdate' => [
             'extend' => 'validateDate',
-            'replacer' => 'replaceDateOrDatetime',
-        ],
-        'jdate_multi_format' => [
-            'extend' => 'validateDateMultiFormat',
             'replacer' => 'replaceDateOrDatetime',
         ],
         'jdate_equal' => [
