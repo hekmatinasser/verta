@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         php: [8.0, 8.1, 8.2, '8.3', '8.4', '8.5']
         laravel: ['8.*', '9.*', '10.*', '13.*']
         dependency-version: [prefer-lowest, prefer-stable]
@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
